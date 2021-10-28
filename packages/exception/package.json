@@ -9,9 +9,9 @@
 	],
 	"main": "./index.sass",
 	"scripts": {
-		"prepack": "clean-package --config $npm_package_config_clean_package",
-		"new:pack": "yarn pack && clean-package restore --config $npm_package_config_clean_package",
-		"new:publish": "yarn publish && clean-package restore --config $npm_package_config_clean_package"
+		"clean-package": "clean-package --config $npm_package_config_clean_package",
+		"new:pack": "yarn clean-package && yarn pack && clean-package restore --config $npm_package_config_clean_package",
+		"new:publish": "yarn clean-package && yarn publish && clean-package restore --config $npm_package_config_clean_package"
 	},
 	"config": {
 		"clean-package": "../../clean-package.config.js"
