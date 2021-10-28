@@ -6,7 +6,7 @@
 
 @mixin import
 
-	details[class|='details__']
+	details[class^='details_']
 		--ifm-alert-border-color: var(--ifm-color-emphasis-200)
 		--ifm-alert-background-color: transparent
 		--ifm-code-background: #{palette.$background}
@@ -17,7 +17,7 @@
 		> summary
 			--docusaurus-details-decoration-color: currentColor
 
-		> div > div[class|='collapsibleContent__']
+		> div > div[class^='collapsibleContent_']
 			margin-top: var(--ifm-alert-padding-vertical)
 
 		dl
