@@ -18,5 +18,8 @@
 	},
 	"config": {
 		"clean-package": "../../clean-package.config.js"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }
