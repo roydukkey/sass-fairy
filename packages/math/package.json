@@ -1,7 +1,7 @@
 {
 	"name": "@sass-fairy/math",
 	"description": "Provides extended functionality for working with numbers in Sass",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"author": {
 		"name": "roydukkey",
