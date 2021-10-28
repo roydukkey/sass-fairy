@@ -1,7 +1,7 @@
 {
 	"name": "@sass-fairy/exception",
 	"description": "Provides Sass functions to standardize exception messages and assist with common validation",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"author": {
 		"name": "roydukkey",
