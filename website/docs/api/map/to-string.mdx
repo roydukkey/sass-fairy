@@ -1,0 +1,18 @@
+---
+title: to-string ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/map/Spec';
+
+<DocPage fieldName="to-string" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/map';
+
+$map: (false: true, a: 1, null: null, b: 2, 3: c, true: false);
+
+@debug map.to-string($map);
+  // 'false: true; a: 1; : ; b: 2; 3: c; true: false'
+```

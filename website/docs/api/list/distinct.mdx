@@ -1,0 +1,18 @@
+---
+title: distinct ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="distinct" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+$list: 'a' 1 'b' 'c' 1 1 2 3 'b';
+
+@debug list.distinct($list);
+  // "a" 1 "b" "c" 2 3
+```

@@ -1,0 +1,81 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/math/src/change'
+@use '@sass-fairy/meta/src/call-or-reference'
+
+
+///
+	@overload numeric()
+///
+	@overload numeric($first-item, $second-item, $center: 0)
+///
+/// @access public
+/// @require _numeric
+/// @require call-or-reference.call-or-reference
+///
+@function numeric($args...)
+	@return call-or-reference.call-or-reference(meta.get-function('_numeric'), $args...)
+
+
+///
+	@overload numeric-desc()
+///
+	@overload numeric-desc($first-item, $second-item, $center: 0)
+///
+/// @access public
+/// @require _numeric-desc
+/// @require call-or-reference.call-or-reference
+///
+@function numeric-desc($args...)
+	@return call-or-reference.call-or-reference(meta.get-function('_numeric-desc'), $args...)
+
+
+///
+/// Used to compare two list items as numbers in ascending order. All non-numeric items are shifted right.
+///
+/// @param {*} $first-item - The first item for the comparison.
+/// @param {*} $second-item - The second item for the comparison.
+/// @param {Number} $center [0] - The value indicating the center (zero) position between positive and negative values.
+/// @return {Number}
+///
+/// @access private
+/// @require change.change
+///
+@function _numeric($first-item, $second-item, $center: 0)
+
+	@if meta.type-of($first-item) != 'number'
+		@return 1
+
+	@if meta.type-of($second-item) != 'number'
+		@return -1
+
+	$center-test: math.is-unitless($center)
+	$first-test: math.is-unitless($first-item)
+	$second-test: math.is-unitless($second-item)
+
+	// Normalize units for incompatible and unitless numbers
+	@if $center-test and not $first-test or $first-test or not math.compatible($first-item, $center)
+		$first-item: change.change($first-item, $center)
+
+	@if $center-test and not $second-test or $second-test or not math.compatible($second-item, $center)
+		$second-item: change.change($second-item, $center)
+
+	@return $first-item - $second-item
+
+
+///
+/// Used to compare two list items as numbers in descending order. All non-numeric items are shifted left.
+///
+/// @param {*} $first-item - The first item for the comparison.
+/// @param {*} $second-item - The second item for the comparison.
+/// @param {Number} $center [0] - The value indicating the center (zero) position between positive and negative values.
+/// @return {Number}
+///
+/// @access private
+/// @require _numeric
+///
+@function _numeric-desc($first-item, $second-item, $center: 0)
+	@return _numeric($second-item, $first-item, $center)

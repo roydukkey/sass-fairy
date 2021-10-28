@@ -1,0 +1,43 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/math' as src
+@use 'true'
+
+
+@include true.describe('@function math.gcd')
+
+	@include true.it('Calculate the GCD for (24, 48) => 24')
+		$assert: src.gcd(24, 48)
+		$expected: 24
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Calculate the GCD for (8, 12, 20) => 4')
+		$assert: src.gcd(8, 12, 20)
+		$expected: 4
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Calculate the GCD for (8, 12, 20, 30) => 2')
+		$assert: src.gcd(8, 12, 20, 30)
+		$expected: 2
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Calculate the GCD for (8, 12, 20, 35) => 1')
+		$assert: src.gcd(8, 12, 20, 35)
+		$expected: 1
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Calculate the GCD for (24, 36, 48) => 12')
+		$assert: src.gcd(24, 36, 48)
+		$expected: 12
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Succeeds with negative numbers')
+		$assert: src.gcd(24, -36, 48)
+		$expected: 12
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $numbers is not a set of number')
+		$assert: src.gcd(24, 36, '48')
+		$expected: 'ERROR: $numbers: `"48"` is not a number for `gcd()`.'
+		@include true.assert-equal($assert, $expected)

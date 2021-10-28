@@ -1,0 +1,72 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:math'
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/exception/src/separator'
+@use '@sass-fairy/list/src/empty'
+
+
+///
+/// @throw `#{$string}` is not a string.
+/// @throw `#{$delimiter}` is not a string or null.
+/// @throw `#{$limit}` is not a number or null.
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require empty.empty
+/// @require is-separator-invalid.is-separator-invalid
+/// @require parameter-type.parameter-type
+/// @require separator.separator
+///
+@function split($string, $delimiter: null, $limit: null, $separator: auto, $bracketed: auto)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('split', 'string', $string, 'string')
+
+	@if meta.type-of($delimiter) != 'string' and meta.type-of($delimiter) != 'null'
+		@error parameter-type.parameter-type('split', 'delimiter', $delimiter, 'string', 'null')
+
+	@if meta.type-of($limit) != 'number' and meta.type-of($limit) != 'null'
+		@error parameter-type.parameter-type('split', 'limit', $limit, 'number', 'null')
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('split')
+
+	$list: empty.empty($separator, $bracketed)
+
+	@if $limit != null and $limit < 0
+		$limit: null
+
+	@if $limit != 0
+
+		@if $delimiter != null
+			$length: string.length($string)
+
+			// Return all characters
+			@if string.length($delimiter) == 0
+
+				@for $index from 1 through if($limit == null, $length, math.min($limit, $length))
+					$list: list.append($list, string.slice($string, $index, $index))
+
+				@return $list
+
+			// Split at delimiter
+			$index: string.index($string, $delimiter)
+
+			@while $index != null
+				$list: list.append($list, string.slice($string, 1, $index - 1))
+				$string: string.slice($string, $index + 1)
+
+				@if $limit != null and list.length($list) == $limit
+					@return $list
+
+				$index: string.index($string, $delimiter)
+
+		$list: list.append($list, $string)
+
+	@return $list

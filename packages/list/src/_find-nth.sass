@@ -1,0 +1,28 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$predicate}` is not a function.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+@function find-nth($list, $predicate, $args...)
+
+	@if meta.type-of($predicate) != 'function'
+		@error parameter-type.parameter-type('find-nth', 'predicate', $predicate, 'function')
+
+	$index: 1
+
+	@each $item in $list
+
+		@if meta.call($predicate, $item, $index, $list, $args...)
+			@return $index
+
+		$index: $index + 1
+
+	@return 0

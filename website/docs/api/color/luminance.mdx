@@ -1,0 +1,22 @@
+---
+title: luminance ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/color/Spec';
+
+<DocPage fieldName="luminance" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/color';
+
+@debug color.luminance(#fff);
+  // 1
+
+@debug color.luminance(#000);
+  // 0
+
+@debug color.luminance(red);
+  // 0.2126
+```

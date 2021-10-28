@@ -1,0 +1,29 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/break' as src
+@use 'true'
+
+
+@include true.describe('@variable break.$vertical-sizes')
+
+	@include true.it('Configured sizes are validated and sorted')
+		$assert: src.$vertical-sizes
+		$expected: (xs: 0, sm: 678px, md: 756px, lg: 929px, xl: 1040px, xxl: 2100px)
+		@include true.assert-equal($assert, $expected)
+
+
+@include true.describe('@variable break.$vertical-names')
+
+	@include true.it('Configured names sorted')
+		$assert: src.$vertical-names
+		$expected: (xs, sm, md, lg, xl, xxl)
+		@include true.assert-equal($assert, $expected)
+
+
+@include true.describe('@variable break.$vertical-values')
+
+	@include true.it('Configured values sorted')
+		$assert: src.$vertical-values
+		$expected: (0, 678px, 756px, 929px, 1040px, 2100px)
+		@include true.assert-equal($assert, $expected)

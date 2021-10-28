@@ -1,7 +1,9 @@
-﻿# User-specific files
-.DS_Store
-*.vs
+# User-specific files
+*.editorconfig
 *.user
+*.vs
+*.vscode
+*.github
 
 # Package Managers
 node_modules
@@ -10,10 +12,10 @@ npm-debug.log
 # Build Artifacts
 *.lock.json
 *-lock.json
-*.lock
 *.backup
 *.cache
-*.jest
 *.tgz
-dist
-package
+.jest
+
+# Source Code
+test

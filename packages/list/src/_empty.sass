@@ -1,0 +1,36 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/separator'
+
+
+///
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require is-separator-invalid.is-separator-invalid
+/// @require separator.separator
+///
+@function empty($separator: null, $bracketed: null, $list: null)
+
+	@if meta.type-of($list) == 'list'
+		@if $separator == auto or $separator == null
+			$separator: list.separator($list)
+
+		@if $bracketed == auto or $bracketed == null
+			$bracketed: list.is-bracketed($list)
+
+	@else
+		@if $separator == null
+			$separator: comma
+
+		@if $bracketed == null
+			$bracketed: false
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('empty')
+
+	@return list.join((), (), $separator, $bracketed)

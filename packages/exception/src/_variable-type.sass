@@ -1,0 +1,18 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:map'
+@use 'sass:meta'
+@use 'variable'
+@use 'internal/invalid-type'
+
+
+///
+/// @access public
+/// @require invalid-type.invalid-type
+/// @require variable.variable
+///
+@function variable-type($name, $value, $types...)
+	$keywords: meta.keywords($types)
+	$message: if(map.has-key($keywords, 'message'), map.get($keywords, 'message'), null)
+	@return variable.variable(invalid-type.invalid-type($types, $value, $message), $name)

@@ -1,0 +1,24 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/color/color' as combined
+@use 'sass:color' as native
+@use 'sass:map'
+@use 'sass:meta'
+@use 'true'
+
+
+@include true.describe('@sass-fairy/color Combined API')
+
+	$combined-functions: meta.module-functions('combined')
+	$native-functions: meta.module-functions('native')
+
+	@include true.it('Has access to native color.red() as module function')
+		$combine: map.get($combined-functions, 'red')
+		$native: map.get($native-functions, 'red')
+		@include true.assert-equal($combine, $native)
+
+	@include true.it("Has access to library's src.is-dark() as module function")
+		$combine: map.get($combined-functions, 'is-dark')
+		$native: map.get($native-functions, 'is-dark')
+		@include true.assert-unequal($combine, $native)

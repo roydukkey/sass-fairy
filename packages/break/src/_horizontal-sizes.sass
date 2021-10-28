@@ -1,0 +1,41 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:map'
+@use 'sass:meta'
+@use 'internal/validate-sizes'
+
+
+///
+/// @type Map
+///
+/// @throw `#{$sizes}` is not a map.
+/// @throw The smallest breakpoint must be equal to zero, but is `#{size}`.
+///
+/// @access public
+/// @require validate-sizes.validate-sizes
+///
+$sizes: (x-small: 0, small: 576px, medium: 768px, large: 992px, x-large: 1200px, xx-large: 1400px) !default
+
+
+$sizes: validate-sizes.validate-sizes($sizes)
+
+@if meta.type-of($sizes) == 'string'
+	// true:cannot-test
+	@error $sizes
+
+
+///
+/// @type List
+///
+/// @access public
+///
+$values: map.values($sizes)
+
+
+///
+/// @type List
+///
+/// @access public
+///
+$names: map.keys($sizes)

@@ -1,0 +1,65 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/parameter'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/exception/src/separator'
+@use 'empty'
+
+
+///
+/// @throw `#{$depth}` is not a number.
+/// @throw The depth may not be less than 1.
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require is-separator-invalid.is-separator-invalid
+/// @require parameter.parameter
+/// @require parameter-type.parameter-type
+/// @require separator.separator
+///
+@function flat($list, $depth: 1, $separator: auto, $bracketed: auto)
+
+	@if meta.type-of($depth) != 'number'
+		@error parameter-type.parameter-type('flat', 'depth', $depth, 'number')
+
+	@if $depth < 1
+		@error parameter.parameter('The depth may not be less than 1', 'flat', 'depth')
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('flat')
+
+	@return _flat($list, $depth, 1, $separator, $bracketed)
+
+
+///
+/// Recursively flattens a list until a specified depth.
+///
+/// @param {List} $list - The list to be flattened.
+/// @param {Number} $depth - The value indicating how deep a nested list structure should be flattened.
+/// @param {Number} $at-depth - The depth at which the current list is being flattened.
+/// @param {String} $separator [auto] - The type of separator to be used by the flattened list.
+/// @param {Boolean | String} $bracketed [auto] - Whether the flattened list has square brackets or no brackets.
+/// @return {List}
+///
+/// @access private
+/// @require empty.empty
+///
+@function _flat($list, $depth, $at-depth, $separator: auto, $bracketed: auto)
+	$result: empty.empty($separator, $bracketed, $list)
+
+	@each $item in $list
+
+		@if list.length($item) > 1 and $at-depth <= $depth
+			$sub-list: _flat($item, $depth, $at-depth + 1)
+
+			@each $sub-item in $sub-list
+				$result: list.append($result, $sub-item)
+
+		@else
+			$result: list.append($result, $item)
+
+	@return $result

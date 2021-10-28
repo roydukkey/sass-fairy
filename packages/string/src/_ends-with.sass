@@ -1,0 +1,35 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/exception/src/validate-index'
+@use 'index'
+
+
+///
+/// @throw `#{$string|$substring}` is not a string.
+/// @throw `#{$end-at}` is not a number.
+///
+/// @access public
+/// @require index.index
+/// @require parameter-type.parameter-type
+/// @require validate-index.validate-index
+///
+@function ends-with($string, $substring, $end-at: -1)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('ends-with', 'string', $string, 'string')
+
+	@if meta.type-of($substring) != 'string'
+		@error parameter-type.parameter-type('ends-with', 'substring', $substring, 'string')
+
+	$end-at: validate-index.validate-index('ends-with', 'end-at', $end-at, $string)
+
+	@if meta.type-of($end-at) != 'number'
+		@error $end-at
+
+	$start-at: $end-at - string.length($substring) + 1
+
+	@return index.index($string, $substring, $start-at) == $start-at

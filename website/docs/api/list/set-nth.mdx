@@ -1,0 +1,18 @@
+---
+title: set-nth ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="set-nth" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+$list: 'ant', 'bison', 'camel', 'bison', 'duck', 'elephant';
+
+@debug list.set-nth($list, -2, 'chicken');
+  // 'ant', 'bison', 'camel', 'bison', 'chicken', 'elephant'
+```

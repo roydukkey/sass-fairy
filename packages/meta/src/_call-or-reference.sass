@@ -1,0 +1,31 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$function}` is not a function.
+///
+/// @example sass
+///   // Taken from `sass-list`
+///   // https://github.com/roydukkey/sass-module-list/blob/8f8a322/src/list/compare/_string.sass#L15-L35
+///   @use '@sass-fairy/meta'
+///
+///   @function numeric($args...)
+///     @return meta.call-or-reference(meta.get-function('_numeric'), $args...)
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+@function call-or-reference($function, $args...)
+
+	@if meta.type-of($function) != 'function'
+		@error parameter-type.parameter-type('call-or-reference', 'function', $function, 'function')
+
+	@if list.length($args) != 0 or list.length(meta.keywords($args)) != 0
+		@return meta.call($function, $args...)
+
+	@return $function

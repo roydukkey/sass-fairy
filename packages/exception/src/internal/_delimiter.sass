@@ -1,0 +1,17 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+
+
+///
+/// Returns the delimiter to use when joining the items of the specified list.
+///
+/// @param {List} - The list for which to determine a delimiter.
+/// @return {String}
+///
+/// @access private
+///
+@function delimiter($list)
+	$separator: list.separator($list)
+	@return if($separator == 'space', ' ', if($separator == 'comma', ', ', ' / '))

@@ -1,0 +1,22 @@
+<!-- =============================================================== //
+// Copyright (c) roydukkey. All rights reserved.                     //
+// ================================================================ -->
+
+import { Fragment } from 'react';
+
+:::note
+
+<p>
+  Since {props.hiddenNativeFields.length > 1 ? 'their' : 'its'} functionality is enhanced by this library, the combined API hides the native {
+    props.hiddenNativeFields.map((field, index, { length }) =>
+      <Fragment key={index}>
+        {index > 0 && index < length - 1 && ','}
+        {length > 1 && index === length - 1 && ' and'}
+        {' '}
+        <code>{props.module}.{field}()</code>
+      </Fragment>
+    )
+  } {props.hiddenNativeFields.length > 1 ? 'functions' : 'function'}.
+</p>
+
+:::

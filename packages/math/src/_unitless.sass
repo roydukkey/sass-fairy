@@ -1,0 +1,20 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$number}` is not a number.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+@function unitless($number)
+
+	@if meta.type-of($number) != 'number'
+		@error parameter-type.parameter-type('unitless', 'number', $number, 'number')
+
+	@return math.div($number, $number * 0 + 1)

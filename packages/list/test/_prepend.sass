@@ -1,0 +1,56 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@include true.describe('@function list.prepend')
+
+	@include true.it('Add an item to the beginning of a list')
+		$assert: src.prepend('a' 'b' 'c' 'd', 'e')
+		$expected: 'e' 'a' 'b' 'c' 'd'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Add an item to the beginning of a list keeping bracket style')
+		$assert: src.prepend(['a' 'b' 'c' 'd'], 'e')
+		$expected: ['e' 'a' 'b' 'c' 'd']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Add an item to the beginning of a list changing the separator')
+		$assert: src.prepend(('a' 'b' 'c' 'd'), 'e', $separator: comma)
+		$expected: 'e', 'a', 'b', 'c', 'd'
+		@include true.assert-equal($assert, $expected, '[comma]')
+
+		$assert: src.prepend($assert, 'f', $separator: space)
+		$expected: 'f' 'e' 'a' 'b' 'c' 'd'
+		@include true.assert-equal($assert, $expected, '[space]')
+
+		$assert: src.prepend($assert, 'g', $separator: slash)
+		$expected: list.slash('g', 'f', 'e', 'a', 'b', 'c', 'd')
+		@include true.assert-equal($assert, $expected, '[slash]')
+
+	@include true.it('Add a list to the beginning of a list')
+		$assert: src.prepend('d' 'e' 'f', 'a' 'b' 'c')
+		$expected: ('a' 'b' 'c') 'd' 'e' 'f'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Accept non-list value as list parameter')
+		$assert: src.prepend('a', 'b')
+		$expected: 'b' 'a'
+		@include true.assert-equal($assert, $expected, ['b'])
+
+		$assert: src.prepend(true, 1)
+		$expected: 1 true
+		@include true.assert-equal($assert, $expected, '[1]')
+
+	@include true.it('Accept null list parameter')
+		$assert: src.prepend(null, 'a')
+		$expected: 'a' null
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $separator is invalid')
+		$assert: src.prepend(null, null, null)
+		$expected: 'ERROR: $separator: Must be "space", "comma", "slash", or "auto" for `prepend()`.'
+		@include true.assert-equal($assert, $expected)

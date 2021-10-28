@@ -1,0 +1,69 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/list/src/compare/numeric'
+@use '@sass-fairy/meta/src/call-or-reference'
+
+
+///
+	@overload numeric-value()
+///
+	@overload numeric-value($first-pair, $second-pair, $center: 0)
+///
+/// @access public
+/// @require _numeric-value
+/// @require call-or-reference.call-or-reference
+///
+@function numeric-value($args...)
+	@return call-or-reference.call-or-reference(meta.get-function('_numeric-value'), $args...)
+
+
+///
+	@overload numeric-value-desc()
+///
+	@overload numeric-value-desc($first-pair, $second-pair, $center: 0)
+///
+/// @access public
+/// @require _numeric-value-desc
+/// @require call-or-reference.call-or-reference
+///
+@function numeric-value-desc($args...)
+	@return call-or-reference.call-or-reference(meta.get-function('_numeric-value-desc'), $args...)
+
+
+///
+/// Used to compare two key/value pairs' values as numbers in ascending order. All non-numeric items are shifted right.
+///
+/// @param {*} $first-pair - The key/value pair for the comparison.
+/// @param {*} $second-pair - The key/value pair for the comparison.
+/// @param {Number} $center [0] - The value indicating the center (zero) position between positive and negative values.
+/// @return {Number}
+///
+/// @access private
+/// @require numeric.numeric
+///
+@function _numeric-value($first-pair, $second-pair, $center: 0)
+	@if list.length($first-pair) < 2
+		@return 1
+
+	@if list.length($second-pair) < 2
+		@return -1
+
+	@return numeric.numeric(list.nth($first-pair, 2), list.nth($second-pair, 2), $center)
+
+
+///
+/// Used to compare two key/value pairs' values as numbers in descending order. All non-numeric items are shifted left.
+///
+/// @param {*} $first-pair - The key/value pair for the comparison.
+/// @param {*} $second-pair - The key/value pair for the comparison.
+/// @param {Number} $center [0] - The value indicating the center (zero) position between positive and negative values.
+/// @return {Number}
+///
+/// @access private
+/// @require _numeric-value
+///
+@function _numeric-value-desc($first-pair, $second-pair, $center: 0)
+	@return _numeric-value($second-pair, $first-pair, $center)

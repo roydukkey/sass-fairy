@@ -1,0 +1,29 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$predicate}` is not a function.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+@function every($list, $predicate, $args...)
+
+	@if meta.type-of($predicate) != 'function'
+		@error parameter-type.parameter-type('every', 'predicate', $predicate, 'function')
+
+	$index: 1
+
+	@each $item in $list
+
+		@if not meta.call($predicate, $item, $index, $list, $args...)
+			@return false
+
+		$index: $index + 1
+
+	@return true
+

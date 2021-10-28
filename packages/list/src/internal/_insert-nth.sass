@@ -1,0 +1,30 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '../empty'
+
+
+///
+/// Returns a copy of a list with the specified value inserted into the list at a given index.
+///
+/// @param {List} $list - The list to which the value is to be inserted.
+/// @param {Number} $index - The index at which the value is to be inserted.
+/// @param {*} $value - The value which is to be inserted.
+/// @param {String} $separator - The type of separator to be used by the copied list.
+/// @return {List}
+///
+/// @access public
+/// @require empty.empty
+///
+@function insert-nth($list, $index, $value, $separator)
+	$result: empty.empty($separator, $list: $list)
+
+	@for $n from 1 through list.length($list)
+
+		@if $n == $index
+			$result: list.append($result, $value)
+
+		$result: list.append($result, list.nth($list, $n))
+
+	@return $result

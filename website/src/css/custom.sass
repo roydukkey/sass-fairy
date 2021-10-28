@@ -1,0 +1,124 @@
+//
+// Any CSS included here will be global. The classic template bundles Infima by default. Infima is a CSS framework designed to work well for content-centric websites.
+// cSpell:words Infima
+//
+
+@use '@sass-fairy/color/color'
+@use './palette'
+@use './sections/navbar'
+@use './modules/description-list'
+@use './modules/details'
+@use './modules/prism'
+
+$-background-light: color.scale(palette.$background, $lightness: 90%)
+
+
+/* You can override the default Infima variables here. */
+:root
+	--ifm-font-color-base: #{color.a11y(palette.$foreground, $-background-light)}
+	--ifm-background-color: #{$-background-light}
+
+	--ifm-color-primary-lightest: #{color.scale(palette.$pink, $lightness: 30% )}
+	--ifm-color-primary-lighter: #{color.scale(palette.$pink, $lightness: 15% )}
+	--ifm-color-primary-light: #{color.scale(palette.$pink, $lightness: 10% )}
+	--ifm-color-primary: #{palette.$pink}
+	--ifm-color-primary-dark: #{color.scale(palette.$pink, $lightness: -10% )}
+	--ifm-color-primary-darker: #{color.scale(palette.$pink, $lightness: -15% )}
+	--ifm-color-primary-darkest: #{color.scale(palette.$pink, $lightness: -30% )}
+
+	--ifm-color-secondary-lightest: #{color.scale(palette.$purple, $lightness: 30% )}
+	--ifm-color-secondary-lighter: #{color.scale(palette.$purple, $lightness: 15% )}
+	--ifm-color-secondary-light: #{color.scale(palette.$purple, $lightness: 10% )}
+	--ifm-color-secondary: #{palette.$purple}
+	--ifm-color-secondary-dark: #{color.scale(palette.$purple, $lightness: -10% )}
+	--ifm-color-secondary-darker: #{color.scale(palette.$purple, $lightness: -15% )}
+	--ifm-color-secondary-darkest: #{color.scale(palette.$purple, $lightness: -30% )}
+
+	--ifm-selection-background-color: #{rgba(palette.$selection, 0.75)}
+
+	--ifm-hero-background-color: #{color.scale($-background-light, $lightness: -10%)}
+
+	--ifm-code-font-size: 95%
+	--ifm-code-border-radius: 10px
+
+
+html
+	&[data-theme='dark']
+		--ifm-font-color-base: #{palette.$foreground}
+		--ifm-font-color-secondary: #{color.scale(palette.$foreground, $lightness: 75%)}
+		--ifm-background-color: #{color.scale(palette.$background, $lightness: 4%)}
+
+		// Note Admonition
+		--ifm-color-secondary-dark: #{color.scale(palette.$purple, $lightness: -30%, $saturation: -50%)}
+		--ifm-color-secondary-contrast-background: #{color.scale(palette.$purple, $lightness: -70%, $saturation: -80%)}
+
+		// Info Admonition
+		--ifm-color-info: #{palette.$cyan}
+		--ifm-color-info-dark: #{color.scale(palette.$cyan, $lightness: -30%, $saturation: -50%)}
+		--ifm-color-info-contrast-background: #{color.scale(palette.$cyan, $lightness: -70%, $saturation: -80%)}
+
+		--ifm-color-success: #{palette.$green}
+		--ifm-color-success-dark: #{color.scale(palette.$green, $lightness: -30%, $saturation: -50%)}
+		--ifm-color-success-contrast-background: #{color.scale(palette.$green, $lightness: -70%, $saturation: -80%)}
+
+		--ifm-color-warning: #{palette.$yellow}
+		--ifm-color-warning-dark: #{color.scale(palette.$yellow, $lightness: -45%, $saturation: -75%)}
+		--ifm-color-warning-contrast-background: #{color.scale(palette.$yellow, $lightness: -70%, $saturation: -85%)}
+
+		--ifm-color-danger: #{palette.$red}
+		--ifm-color-danger-dark: #{color.scale(palette.$red, $lightness: -30%, $saturation: -50%)}
+		--ifm-color-danger-contrast-background: #{color.scale(palette.$red, $lightness: -70%, $saturation: -80%)}
+
+		--ifm-hero-background-color: #{palette.$background}
+
+		--ifm-code-background: #{palette.$background}
+		--ifm-code-color: #{palette.$cyan}
+
+		::selection
+			background: var(--ifm-selection-background-color)
+
+	&[data-theme='light']
+
+		.main-wrapper
+			--ifm-color-primary: #{color.scale(palette.$pink, $lightness: -20%, $saturation: 10%)}
+			--ifm-link-color: var(--ifm-color-primary)
+			--ifm-menu-color-active: var(--ifm-link-color)
+
+	#nprogress .bar
+		background-color: var(--ifm-color-secondary-dark)
+
+		.peg
+			box-shadow: 0 0 10px var(--ifm-color-secondary-dark), 0 0 5px var(--ifm-color-secondary-dark)
+
+
+code
+	color: var(--ifm-code-color)
+
+	a &
+		color: var(--ifm-code-color)
+
+
+strong
+	color: var(--ifm-font-color-secondary)
+
+
+.footer--dark
+	--ifm-footer-background-color: #{color.scale(palette.$background, $lightness: 10%)}
+
+
+.module-doc-header
+	--ifm-code-color: var(--ifm-color-secondary)
+	font-size: 1.25rem
+
+
+.spec-overload-count
+	color: var(--ifm-color-success)
+	font:
+		weight: var(--ifm-font-weight-normal)
+		style: italic
+
+
+@include navbar.import
+@include description-list.import
+@include details.import
+@include prism.import

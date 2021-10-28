@@ -1,0 +1,69 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/list/src/compare/string'
+@use '@sass-fairy/meta/src/call-or-reference'
+
+
+///
+	@overload key()
+///
+	@overload key($first-pair, $second-pair, $center: never)
+///
+/// @access public
+/// @require _key
+/// @require call-or-reference.call-or-reference
+///
+@function key($args...)
+	@return call-or-reference.call-or-reference(meta.get-function('_key'), $args...)
+
+
+///
+	@overload key-desc()
+///
+	@overload key-desc($first-pair, $second-pair, $center: never)
+///
+/// @access public
+/// @require _key-desc
+/// @require call-or-reference.call-or-reference
+///
+@function key-desc($args...)
+	@return call-or-reference.call-or-reference(meta.get-function('_key-desc'), $args...)
+
+
+///
+/// Used to compare two key/value pairs' keys by converting them to strings, then comparing the value's sequences of UTF-16 code units values in ascending order. All null items are shifted right.
+///
+/// @param {*} $first-pair - The key/value pair for the comparison.
+/// @param {*} $second-pair - The key/value pair for the comparison.
+/// @ignore @param {Number} $center [never] - Irrelevant for this function.
+/// @return {Number}
+///
+/// @access private
+/// @require string.string
+///
+@function _key($first-pair, $second-pair, $center: never)
+	@if list.length($first-pair) < 1
+		@return 1
+
+	@if list.length($second-pair) < 1
+		@return -1
+
+	@return string.string(list.nth($first-pair, 1), list.nth($second-pair, 1), $center)
+
+
+///
+/// Used to compare two key/value pairs' keys by converting them to strings, then comparing the value's sequences of UTF-16 code units values in descending order. All null items are shifted left.
+///
+/// @param {*} $first-pair - The key/value pair for the comparison.
+/// @param {*} $second-pair - The key/value pair for the comparison.
+/// @ignore @param {Number} $center [never] - Irrelevant for this function.
+/// @return {Number}
+///
+/// @access private
+/// @require _key
+///
+@function _key-desc($first-pair, $second-pair, $center: never)
+	@return _key($second-pair, $first-pair, $center)

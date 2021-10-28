@@ -1,0 +1,96 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:string'
+@use '@sass-fairy/exception' as src
+@use 'true'
+
+
+@include true.describe('@function exception.validate-index')
+
+	$iterable-string: '1 2 3 4 5 6'
+	$iterable-list: 1 2 3 4 5 6
+
+	@include true.it('Formats an error message indicating an index is in not a number for list')
+		$assert: src.validate-index('includes', 'start-at', 'string-value', $iterable-list)
+		$expected: '$start-at: `"string-value"` is not a number for `includes()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Formats an error message indicating an index may not be zero for list')
+		$assert: src.validate-index('includes', 'start-at', 0, $iterable-list)
+		$expected: '$start-at: List index may not be 0 for `includes()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Formats an error message indicating an index exceeds length of list')
+		$assert: src.validate-index('includes', 'start-at', 100, $iterable-list)
+		$expected: '$start-at: Invalid index 100 for a list with 6 elements for `includes()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Formats an error message indicating an index is in not a number for string')
+		$assert: src.validate-index('includes', 'start-at', 'string-value', $iterable-string)
+		$expected: '$start-at: `"string-value"` is not a number for `includes()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Formats an error message indicating an index may not be zero for string')
+		$assert: src.validate-index('includes', 'start-at', 0, $iterable-string)
+		$expected: 0
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Validates positive (+) index for list')
+		$assert: src.validate-index('includes', 'start-at', 1, $iterable-list)
+		$expected: 1
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.validate-index('includes', 'start-at', list.length($iterable-list), $iterable-list)
+		$expected: 6
+		@include true.assert-equal($assert, $expected, '[list.length]')
+
+	@include true.it('Validates negative (-) index for list')
+		$assert: src.validate-index('includes', 'start-at', -1, $iterable-list)
+		$expected: 6
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.validate-index('includes', 'start-at', list.length($iterable-list) * -1, $iterable-list)
+		$expected: 1
+		@include true.assert-equal($assert, $expected, '[list.length]')
+
+	@include true.it('Validates positive (+) index for string')
+		$assert: src.validate-index('includes', 'start-at', -1, $iterable-string)
+		$expected: 11
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.validate-index('includes', 'start-at', string.length($iterable-string) * -1, $iterable-string)
+		$expected: 1
+		@include true.assert-equal($assert, $expected, '[list.length]')
+
+	@include true.it('Validates positive (+) index for string')
+		$assert: src.validate-index('includes', 'start-at', 1, $iterable-string)
+		$expected: 1
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.validate-index('includes', 'start-at', string.length($iterable-string), $iterable-string)
+		$expected: 11
+		@include true.assert-equal($assert, $expected, '[list.length]')
+
+	@include true.it('Validates an index exceeding length of string')
+		$assert: src.validate-index('includes', 'start-at', string.length($iterable-string) + 1, $iterable-string)
+		$expected: 12
+		@include true.assert-equal($assert, $expected, '[list.length + 1]')
+
+		$assert: src.validate-index('includes', 'start-at', string.length($iterable-string) * -1 + -1, $iterable-string)
+		$expected: -12
+		@include true.assert-equal($assert, $expected, '[list.length * -1 + -1]')
+
+	@include true.it('Does not throw error for non-iterable value')
+		$assert: src.validate-index('includes', 'start-at', 1, 10000)
+		$expected: 1
+		@include true.assert-equal($assert, $expected, '[10000]')
+
+		$assert: src.validate-index('includes', 'start-at', 1, null)
+		$expected: 1
+		@include true.assert-equal($assert, $expected, '[null]')
+
+		$assert: src.validate-index('includes', 'start-at', 1, false)
+		$expected: 1
+		@include true.assert-equal($assert, $expected, '[false]')

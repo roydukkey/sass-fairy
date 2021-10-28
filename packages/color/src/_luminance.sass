@@ -1,0 +1,29 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:color'
+@use 'sass:list'
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$color}` is not a color.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+@function luminance($color)
+
+	@if meta.type-of($color) != 'color'
+		@error parameter-type.parameter-type('luminance', 'color', $color, 'color')
+
+	$color: color.red($color), color.green($color), color.blue($color)
+
+	@for $i from 1 through 3
+		$channel: math.div(list.nth($color, $i), 255)
+		$channel: if($channel <= 0.03928, math.div($channel, 12.92), math.pow(math.div($channel + 0.055, 1.055), 2.4))
+		$color: list.set-nth($color, $i, $channel)
+
+	@return 0.2126 * list.nth($color, 1) + 0.7152 * list.nth($color, 2) + 0.0722 * list.nth($color, 3)

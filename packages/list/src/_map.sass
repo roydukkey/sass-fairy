@@ -1,0 +1,47 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/exception/src/separator'
+@use '@sass-fairy/meta/src/get-keyword'
+@use '@sass-fairy/meta/src/strip-keywords'
+@use 'empty'
+
+
+///
+/// @throw `#{$transformer}` is not a function.
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require empty.empty
+/// @require get-keyword.get-keyword
+/// @require is-separator-invalid.is-separator-invalid
+/// @require parameter-type.parameter-type
+/// @require separator.separator
+/// @require strip-keywords.strip-keywords
+///
+@function map($list, $transformer, $args...)
+
+	@if meta.type-of($transformer) != 'function'
+		@return throw.error(parameter-type.parameter-type('map', 'transformer', $transformer, 'function'))
+
+	$separator: get-keyword.get-keyword($args, 'separator', auto)
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@return throw.error(separator.separator('map'))
+
+	$bracketed: get-keyword.get-keyword($args, 'bracketed', auto)
+
+	$result: empty.empty($separator, $bracketed, $list)
+	$index: 1
+
+	$args: strip-keywords.strip-keywords($args)
+
+	@each $item in $list
+		$result: list.append($result, meta.call($transformer, $item, $index, $list, $args...))
+		$index: $index + 1
+
+	@return $result

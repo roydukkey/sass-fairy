@@ -1,0 +1,26 @@
+<!-- =============================================================== //
+// Copyright (c) roydukkey. All rights reserved.                     //
+// ================================================================ -->
+
+import { Fragment } from 'react';
+import Parameters from './partials/Parameters.mdx';
+import ModuleDocHeader from '../ModuleDocHeader';
+import ReturnValue from './partials/ReturnValue';
+import Signature from '../Signature';
+
+# <ModuleDocHeader spec={props.spec} function={props.fieldName} />
+
+<p>{props.field.description}</p>
+<Fragment>{props.children}</Fragment>
+
+<Fragment>
+  {props.field.parameters &&
+    <Parameters {...props} />
+  }
+</Fragment>
+
+## Return Value
+
+<ReturnValue spec={props.spec} fieldName={props.fieldName} />
+
+## Example

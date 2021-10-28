@@ -1,0 +1,39 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/separator'
+@use 'filter'
+
+
+///
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require _distinct-predicate
+/// @require filter.filter
+/// @require is-separator-invalid.is-separator-invalid
+/// @require separator.separator
+///
+@function distinct($list, $separator: auto)
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('distinct')
+
+	@return filter.filter($list, meta.get-function('_distinct-predicate'), $separator: $separator)
+
+
+///
+/// A filter function that tests equality of the current item's index to the index of the first instance of current item in the list.
+///
+/// @param {*} $item - The current item being processed in the list.
+/// @param {Number} $index - The index of the current item being processed in the list.
+/// @param {List} $list - The list being processed.
+/// @return {Boolean}
+///
+/// @access private
+///
+@function _distinct-predicate($item, $index, $list)
+	@return list.index($list, $item) == $index

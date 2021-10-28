@@ -1,0 +1,17 @@
+<!-- =============================================================== //
+// Copyright (c) roydukkey. All rights reserved.                     //
+// ================================================================ -->
+
+import ModuleDocHeader from '../ModuleDocHeader';
+import SignatureList from './partials/SignatureList';
+import { Fragment } from 'react';
+
+# <ModuleDocHeader spec={props.spec} function={props.fieldName} />
+
+<Fragment>{props.children}</Fragment>
+
+## Signatures
+
+<SignatureList {...props} />
+
+## Example

@@ -1,0 +1,20 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'parameter'
+@use 'variable'
+
+
+///
+	@overload separator()
+///
+	@overload separator($context)
+///
+/// @access public
+/// @require parameter.parameter
+/// @require variable.variable
+///
+@function separator($context: null)
+	$message: 'Must be "space", "comma", "slash", or "auto"'
+	$name: 'separator'
+	@return if($context == null, variable.variable($message, $name), parameter.parameter($message, $context, $name))

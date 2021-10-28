@@ -1,0 +1,97 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+// Copyright (c) 2017 Alex Page. Licensed under the MIT. Sourced and Modified 2021.
+
+@use 'sass:color'
+@use 'sass:map'
+@use 'sass:math'
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/exception/src/parameter'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'contrast'
+
+
+///
+/// @throw `#{$a11y-color|$other-color}` is not a color.
+/// @throw Must be either "normal" or "large".
+/// @throw Must be either "AA" or "AAA".
+///
+/// @access public
+/// @require contrast.$contrast-ratios
+/// @require contrast.contrast
+/// @require parameter.parameter
+/// @require parameter-type.parameter-type
+///
+@function a11y($a11y-color, $other-color, $size: 'normal', $level: 'AA')
+
+	@if meta.type-of($a11y-color) != 'color'
+		@error parameter-type.parameter-type('a11y', 'a11y-color', $a11y-color, 'color')
+
+	@if meta.type-of($other-color) != 'color'
+		@error parameter-type.parameter-type('a11y', 'other-color', $other-color, 'color')
+
+	@if meta.type-of($size) == 'string'
+		$size: string.to-lower-case($size)
+
+	@if $size != 'normal' and $size != 'large'
+		@error parameter.parameter('Must be either "normal" or "large"', 'a11y', 'size')
+
+	@if meta.type-of($level) == 'string'
+		$level: string.to-upper-case($level)
+
+	@if $level != 'AA' and $level != 'AAA'
+		@error parameter.parameter('Must be either "AA" or "AAA"', 'a11y', 'level')
+
+	$size: map.get(contrast.$contrast-ratios, $level, $size)
+
+	@if contrast.contrast($a11y-color, $other-color) >= $size
+		@return $a11y-color
+
+	$lightness: color.lightness($a11y-color)
+
+	$is-contrasted-to-black: contrast.contrast(#000, $other-color) >= $size
+	$is-contrasted-to-white: contrast.contrast(#fff, $other-color) >= $size
+	$min-lightness: 0
+	$max-lightness: 100
+	$is-dark: false
+
+	@if $is-contrasted-to-black and $is-contrasted-to-white
+
+		@if $lightness >= 50
+			$min-lightness: $lightness
+
+		@else
+			$max-lightness: $lightness
+			$is-dark: true
+
+	@else if $is-contrasted-to-black
+		$max-lightness: $lightness
+		$is-dark: true
+
+	@else
+		$min-lightness: $lightness
+
+	$found-color: null
+
+	@while $found-color == null
+		$mid-lightness: math.div($min-lightness + $max-lightness, 2)
+		$mid-color: hsl(color.hue($a11y-color), color.saturation($a11y-color), $mid-lightness)
+
+		@if contrast.contrast($mid-color, $other-color) >= $size
+			@if	$max-lightness - $min-lightness < math.div(100, 255)
+				$found-color: $mid-color
+
+			@if $is-dark
+				$min-lightness: $mid-lightness
+
+			@else
+				$max-lightness: $mid-lightness
+
+		@else if $is-dark
+			$max-lightness: $mid-lightness
+
+		@else
+			$min-lightness: $mid-lightness
+
+	@return $found-color

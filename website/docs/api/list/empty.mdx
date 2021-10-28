@@ -1,0 +1,29 @@
+---
+title: empty ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="empty" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list/list'
+
+// 1. Create default empty list
+$list: list.empty();
+
+@debug list.separator($list);
+  // comma
+@debug list.is-bracketed($result);
+  // false
+
+// 2. Create empty with the same characteristics as source list
+$list: list.empty($list: [1 2 3 4]);
+
+@debug list.separator($list);
+  // space
+@debug not list.is-bracketed($result);
+  // true
+```

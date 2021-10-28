@@ -1,0 +1,37 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/exception' as src
+@use 'true'
+
+
+@include true.describe('@function exception.is-separator-invalid')
+
+	@include true.it('Indicates the value is invalid')
+		$assert: src.is-separator-invalid('a')
+		@include true.assert-true($assert, '[a]')
+
+		$assert: src.is-separator-invalid(100)
+		@include true.assert-true($assert, '[100]')
+
+		$assert: src.is-separator-invalid(true)
+		@include true.assert-true($assert, '[true]')
+
+		$assert: src.is-separator-invalid(false)
+		@include true.assert-true($assert, '[true]')
+
+		$assert: src.is-separator-invalid(null)
+		@include true.assert-true($assert, '[null]')
+
+	@include true.it('Indicates the value is valid')
+		$assert: src.is-separator-invalid(space)
+		@include true.assert-false($assert, '[space]')
+
+		$assert: src.is-separator-invalid(comma)
+		@include true.assert-false($assert, '[comma]')
+
+		$assert: src.is-separator-invalid('slash')
+		@include true.assert-false($assert, '[slash]')
+
+		$assert: src.is-separator-invalid('auto')
+		@include true.assert-false($assert, '[auto]')

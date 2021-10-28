@@ -1,0 +1,48 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/exception/src/separator'
+@use '@sass-fairy/meta/src/get-keyword'
+@use '@sass-fairy/meta/src/strip-keywords'
+@use 'empty'
+
+
+///
+/// @throw `#{$predicate}` is not a function.
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require empty.empty
+/// @require get-keyword.get-keyword
+/// @require parameter-type.parameter-type
+/// @require is-separator-invalid.is-separator-invalid
+/// @require separator.separator
+/// @require strip-keywords.strip-keywords
+///
+@function filter($list, $predicate, $args...)
+
+	@if meta.type-of($predicate) != 'function'
+		@error parameter-type.parameter-type('filter', 'predicate', $predicate, 'function')
+
+	$separator: get-keyword.get-keyword($args, 'separator', auto)
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('filter')
+
+	$result: empty.empty($separator, $list: $list)
+	$index: 1
+
+	$args: strip-keywords.strip-keywords($args)
+
+	@each $item in $list
+
+		@if meta.call($predicate, $item, $index, $list, $args...)
+			$result: list.append($result, $item)
+
+		$index: $index + 1
+
+	@return $result

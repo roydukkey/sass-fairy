@@ -1,0 +1,20 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$args}` is not a arglist.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+@function strip-keywords($args)
+
+	@if meta.type-of($args) != 'arglist'
+		@error parameter-type.parameter-type('strip-keywords', 'args', $args, 'arglist')
+
+	@return list.join($args, ())

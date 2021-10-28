@@ -1,0 +1,130 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/break' as src
+@use 'true'
+
+
+@include true.describe('@function break.in')
+
+	@include true.it('Returns a media query rule for the given name')
+		$assert: src.in('md')
+		$expected: '(max-width: 767.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for the given size')
+		$assert: src.in(80px)
+		$expected: '(max-width: 79.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for smallest breakpoint')
+		$assert: src.in(list.nth(src.$horizontal-names, 1))
+		$expected: '(max-width: 0)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for largest breakpoint')
+		$assert: src.in(list.nth(src.$horizontal-names, -1))
+		$expected: '(max-width: 1399.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when given value is neither a string or number')
+		$assert: src.in(false)
+		$expected: 'ERROR: $breakpoint: `false` is not a string or number for `in()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when no breakpoint exists for the given name')
+		$assert: src.in('very-large')
+		$expected: 'ERROR: $breakpoint: No breakpoint exists by the name `"very-large"` for `in()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Can be used in a media query')
+		@include true.assert
+
+			@include true.output
+				@media #{src.in('sm')} and #{src.in(100px)}
+					body
+						color: red
+
+			@include true.expect
+				@media (max-width: 575.98px) and (max-width: 99.98px)
+					body
+						color: red
+
+
+@include true.describe('@mixin break.in')
+
+	@include true.it('Creates media query for the given name')
+		@include true.assert
+
+			@include true.output
+				@include src.in('lg')
+					body
+						color: green
+
+			@include true.expect
+				@media (max-width: 991.98px)
+					body
+						color: green
+
+	@include true.it('Creates media query for the given size')
+		@include true.assert
+
+			@include true.output
+				@include src.in(50vh)
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-width: 49.98vh)
+					body
+						color: blue
+
+	@include true.it('Does not create media query for the smallest size')
+		@include true.assert
+
+			@include true.output
+				@include src.in(list.nth(src.$horizontal-names, 1))
+					body
+						color: blue
+
+			@include true.expect
+				body
+					color: blue
+
+	@include true.it('Does not create media query for the largest size')
+		@include true.assert
+
+			@include true.output
+				@include src.in(list.nth(src.$horizontal-names, -1))
+					body
+						color: blue
+
+			@include true.expect
+				body
+					color: blue
+
+	@include true.it('Does not create media query for the given size equal to smallest size')
+		@include true.assert
+
+			@include true.output
+				@include src.in(list.nth(src.$horizontal-values, 1))
+					body
+						color: blue
+
+			@include true.expect
+				body
+					color: blue
+
+	@include true.it('Does create media query for the given size equal to largest size')
+		@include true.assert
+
+			@include true.output
+				@include src.in(list.nth(src.$horizontal-values, -1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-width: 1399.98px)
+					body
+						color: blue

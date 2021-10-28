@@ -1,0 +1,48 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/math' as src
+@use 'true'
+
+
+@include true.describe('@function math.change')
+
+	@include true.it('Changes the units of a positive number')
+		$assert: src.change(10px, 9em)
+		$expected: 10em
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Changes the units of a negative number')
+		$assert: src.change(-30rem, 10px)
+		$expected: -30px
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Changes the units of a negative number using a negative number')
+		$assert: src.change(-3rem, -10cm)
+		$expected: -3cm
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Changes the units of a number retaining precision')
+		$assert: src.change(3.6987354vh, 0vw)
+		$expected: 3.6987354vw
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Changes the units of a incompatible calculation')
+		$assert: src.change(5s * 8in, 90ms)
+		$expected: 40ms
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Changes the units of a incompatible calculation using another incompatible calculation')
+		$assert: src.change(5s * 8in, 7cm * 90ms)
+		$expected: 5cm * 8ms
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Changes the units of a number using a unitless number')
+		$assert: src.change(3.6987354vh, 10)
+		$expected: 3.6987354
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $number is not a number')
+		$assert: src.change(true, 10)
+		$expected: 'ERROR: $number: `true` is not a number for `change()`.'
+		@include true.assert-equal($assert, $expected)

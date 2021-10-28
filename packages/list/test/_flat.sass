@@ -1,0 +1,62 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@include true.describe('@function list.flat')
+	$list: 15 (14 13 12 (11 10 (9 8))) 7 (((6 5) 4) 3) 2 1
+
+	@include true.it('Flatten a list')
+		$assert: src.flat($list)
+		$expected: 15 14 13 12 (11 10 (9 8)) 7 ((6 5) 4) 3 2 1
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Flatten a list to a given depth')
+		$assert: src.flat($list, 2)
+		$expected: 15 14 13 12 11 10 (9 8) 7 (6 5) 4 3 2 1
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Flatten a list changing the separator')
+		$assert: src.flat($list, $separator: comma)
+		$expected: 15, 14, 13, 12, (11 10 (9 8)), 7, ((6 5) 4), 3, 2, 1
+		@include true.assert-equal($assert, $expected, '[comma]')
+
+		$assert: src.flat($expected, 2, space)
+		$expected: 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1
+		@include true.assert-equal($assert, $expected, '[space]')
+
+		$assert: src.flat($list, 2, slash)
+		$expected: list.slash(15, 14, 13, 12, 11, 10, (9 8), 7, (6 5), 4, 3, 2, 1)
+		@include true.assert-equal($assert, $expected, '[slash]')
+
+	@include true.it('Return a list with a different bracket style')
+		$assert: src.flat($list, $bracketed: true)
+		$expected: [15 14 13 12 (11 10 (9 8)) 7 ((6 5) 4) 3 2 1]
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Return a list with a different separator and bracket style')
+		$assert: src.flat($list, $separator: comma, $bracketed: true)
+		$expected: [15, 14, 13, 12, (11 10 (9 8)), 7, ((6 5) 4), 3, 2, 1]
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $depth is not a number')
+		$assert: src.flat(null, null)
+		$expected: 'ERROR: $depth: `null` is not a number for `flat()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when depth is less than 1')
+		$assert: src.flat(null, 0)
+		$expected: 'ERROR: $depth: The depth may not be less than 1 for `flat()`.'
+		@include true.assert-equal($assert, $expected, '[0]')
+
+		$assert: src.flat(null, -1)
+		$expected: 'ERROR: $depth: The depth may not be less than 1 for `flat()`.'
+		@include true.assert-equal($assert, $expected, '[-1]')
+
+	@include true.it('Throws when $separator is invalid')
+		$assert: src.flat(null, $separator: null)
+		$expected: 'ERROR: $separator: Must be "space", "comma", "slash", or "auto" for `flat()`.'
+		@include true.assert-equal($assert, $expected)

@@ -1,0 +1,34 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use '@sass-fairy/math' as src
+@use 'true'
+
+
+@include true.describe('@function math.fact')
+
+	@include true.it("Calculate the factorial of 5")
+		$assert: src.fact(5)
+		$expected: 120
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it("Calculate the factorial of 0")
+		$assert: src.fact(0)
+		$expected: 1
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it("Calculate the factorial of -100")
+		$assert: src.fact(-100)
+		$expected: 9.332621544394418e157
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $number is not number')
+		$assert: src.fact('48')
+		$expected: 'ERROR: $number: `"48"` is not a integer for `fact()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $number is not integer')
+		$assert: src.fact(48.5)
+		$expected: 'ERROR: $number: `48.5` is not a integer for `fact()`.'
+		@include true.assert-equal($assert, $expected)

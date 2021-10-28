@@ -1,0 +1,74 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@function _add($accumulator, $item, $index...)
+	@return $accumulator + $item
+
+
+@function _add-then-multiply($accumulator, $item, $index, $list)
+	@return if($index % 2 > 0, $accumulator + $item, $accumulator * $item)
+
+
+@function _call-count($accumulator, $item, $index, $list)
+	@return $accumulator + 1
+
+
+@function _receives-calling-list($accumulator, $item, $index, $list)
+	@return $list
+
+
+@include true.describe('@function list.reduce')
+
+	@include true.it('Reduce the items in a list')
+		$assert: src.reduce(2 4 6 8 16, meta.get-function('_add'))
+		$expected: 2 + 4 + 6 + 8 + 16
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Transformer receives the item indexes')
+		$assert: src.reduce(2 4 6 8 16, meta.get-function('_add-then-multiply'))
+		$expected: ((((0 + 2) * 4) + 6) * 8) + 16
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Calls to transformer equal the list length - 1, when no initial value is given')
+		$assert: src.reduce(0, meta.get-function('_call-count'))
+		$expected: 0
+		@include true.assert-equal($assert, $expected, '[0]')
+
+		$assert: src.reduce(0 0 0 0 0 0 0, meta.get-function('_call-count'))
+		$expected: 6
+		@include true.assert-equal($assert, $expected, '[6]')
+
+	@include true.it('Calls to transformer equal the list length, when initial value is given')
+		$assert: src.reduce(0, meta.get-function('_call-count'), $initial-value: 0)
+		$expected: 1
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.reduce(0 0 0 0 0 0 0, meta.get-function('_call-count'), $initial-value: 0)
+		$expected: 7
+		@include true.assert-equal($assert, $expected, '[7]')
+
+	@include true.it('Transformer receives the calling list')
+		$assert: src.reduce(1 2 3 4 5, meta.get-function('_receives-calling-list'))
+		$expected: 1 2 3 4 5
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Transformer receives an initial value')
+		$assert: src.reduce(2 4 6 8 16, meta.get-function('_add'), $initial-value: 20)
+		$expected: 20 + 2 + 4 + 6 + 8 + 16
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $transformer is not a function')
+		$assert: src.reduce(null, null)
+		$expected: 'ERROR: $transformer: `null` is not a function for `reduce()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when reducing and empty list with no initial value')
+		$assert: src.reduce((), meta.get-function('_add'))
+		$expected: 'ERROR: $list, $initial-value: Reduction of empty list with no initial value for `reduce()`.'
+		@include true.assert-equal($assert, $expected)

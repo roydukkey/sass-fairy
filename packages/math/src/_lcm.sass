@@ -1,0 +1,49 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'internal/gcd'
+
+
+///
+/// @throw `#{$numbers[i]}` is not a number.
+///
+/// @access public
+/// @require _lcm
+///
+@function lcm($numbers...)
+	$result: 1
+
+	@each $number in $numbers
+		$result: _lcm($result, $number)
+
+	@return $result
+
+
+///
+/// Calculates the Least Common Multiple (LCM) of two numbers.
+///
+/// @param {Number} $first-number - The first number of the calculation.
+/// @param {Number} $second-number - The second number of the calculation.
+/// @return {Number}
+///
+/// @throw `#{$first-number|$second-number}` is not a number.
+///
+/// @access private
+/// @require gcd.gcd
+/// @require parameter-type.parameter-type
+///
+@function _lcm ($first-number, $second-number)
+
+	@if meta.type-of($first-number) != 'number'
+		@error parameter-type.parameter-type('lcm', 'numbers', $first-number, 'number')
+
+	@if meta.type-of($second-number) != 'number'
+		@error parameter-type.parameter-type('lcm', 'numbers', $second-number, 'number')
+
+	$first-number: math.abs($first-number)
+	$second-number: math.abs($second-number)
+
+	@return math.div($first-number * $second-number, gcd.gcd($first-number, $second-number))

@@ -1,0 +1,24 @@
+---
+title: compare-string ()
+hide_title: true
+hide_table_of_contents: true
+---
+import CompareLogicCallout from '@site/src/components/CompareLogicCallout.mdx';
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="compare-string" fieldType="function" spec={Spec}><CompareLogicCallout /></DocPage>
+
+```scss
+@use '@sass-fairy/list';
+
+// 1. As a call
+@debug list.compare-string('x', 'm');
+  // 11
+
+// 2. As a reference
+$list: 'x' 'm' 'b' 't';
+
+@debug list.sort($list, list.compare-string());
+  // 'b' 'm' 't' 'x'
+```

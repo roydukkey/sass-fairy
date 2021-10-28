@@ -1,0 +1,53 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@function _greater-than-ten($item, $index...)
+	@return $item > 10
+
+@function _greater-than-index($item, $index, $list)
+	@return $item > $index
+
+@function _equals-2n-plus-index($item, $index, $list)
+	$length: list.length($list)
+	$n: $index + 2
+
+	@if $n > $length
+		$n: $n - $length + $length % 2
+
+	@return $item == list.nth($list, $n)
+
+
+@include true.describe('@function list.some')
+
+	@include true.it('Predicate matches some items in a list')
+		$assert: src.some(2 4 6 8 16, meta.get-function('_greater-than-ten'))
+		@include true.assert-true($assert)
+
+	@include true.it('Predicate does not match any items in a list')
+		$assert: src.some(2 4 6 8, meta.get-function('_greater-than-ten'))
+		@include true.assert-false($assert)
+
+	@include true.it('Predicate receives the item indexes')
+		$assert: src.some(2 4 6 8 16, meta.get-function('_greater-than-index'))
+		@include true.assert-true($assert, '[2 4 6 8 16]')
+
+		$assert: src.some(1 1 1 1 1, meta.get-function('_greater-than-index'))
+		@include true.assert-false($assert, '[1 1 1 1 1]')
+
+	@include true.it('Predicate receives the calling list')
+		$assert: src.some(1 2 3 1 2 1 4 5, meta.get-function('_equals-2n-plus-index'))
+		@include true.assert-true($assert, '[1 2 3 1 2 1 4 5]')
+
+		$assert: src.some(2 1 1 2 2 1 1 2, meta.get-function('_equals-2n-plus-index'))
+		@include true.assert-false($assert, '[2 1 1 2 2 1 1 2]')
+
+	@include true.it('Throws when $predicate is not a function')
+		$assert: src.some(null, null)
+		$expected: 'ERROR: $predicate: `null` is not a function for `some()`.'
+		@include true.assert-equal($assert, $expected)

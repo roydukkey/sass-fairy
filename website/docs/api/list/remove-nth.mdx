@@ -1,0 +1,18 @@
+---
+title: remove-nth ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="remove-nth" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+$list: 'ant', 'bison', 'camel', 'bison', 'duck', 'elephant';
+
+@debug list.remove-nth($list, 3);
+  // 'ant', 'bison', 'bison', 'duck', 'elephant'
+```

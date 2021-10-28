@@ -1,0 +1,21 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use 'sass:meta'
+@use 'internal/gcd' as internal
+
+
+///
+/// @throw `#{$numbers[i]}` is not a number.
+///
+/// @access public
+/// @require internal.gcd
+///
+@function gcd($numbers...)
+	$result: 0
+
+	@each $number in $numbers
+		$result: internal.gcd($result, $number)
+
+	@return $result

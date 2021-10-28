@@ -1,0 +1,69 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:string'
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.last-index')
+
+	// cSpell:disable-next-line
+	$string: 'abcdefgabcdefg'
+
+	@include true.it('Does get an index')
+		$assert: src.last-index($string, 'd')
+		$expected: 11
+		@include true.assert-equal($assert, $expected, '[d]')
+
+		$assert: src.last-index($string, 'ga')
+		$expected: 7
+		@include true.assert-equal($assert, $expected, '[ga]')
+
+	@include true.it('Does get an index from a positive (+) offset')
+		$assert: src.last-index($string, 'b', 6)
+		$expected: 2
+		@include true.assert-equal($assert, $expected, '[b]')
+
+		$assert: src.last-index($string, 'ef', 6)
+		$expected: 5
+		@include true.assert-equal($assert, $expected, '[ef]')
+
+	@include true.it('Does get an index from a negative (-) offset')
+		$assert: src.last-index($string, 'b', -6)
+		$expected: 9
+		@include true.assert-equal($assert, $expected, '[b]')
+
+		$assert: src.last-index($string, 'cd', -6)
+		$expected: 3
+		@include true.assert-equal($assert, $expected, '[cd]')
+
+	@include true.it('Does get an index even when a positive (+) offset exceeds length ')
+		$assert: src.last-index($string, 'c', string.length($string) + 1)
+		$expected: 10
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Does not get an index even when a negative (-) offset exceeds length ')
+		$assert: src.last-index($string, 'c', string.length($string) * -1 - 1)
+		$expected: 0
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Return zero when a character is not present')
+		$assert: src.last-index($string, 'z')
+		$expected: 0
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $string is not a string')
+		$assert: src.last-index(null, null)
+		$expected: 'ERROR: $string: `null` is not a string for `last-index()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $substring is not a string')
+		$assert: src.last-index('', null)
+		$expected: 'ERROR: $substring: `null` is not a string for `last-index()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $end-at is not a number')
+		$assert: src.last-index('', '', null)
+		$expected: 'ERROR: $end-at: `null` is not a number for `last-index()`.'
+		@include true.assert-equal($assert, $expected)

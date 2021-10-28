@@ -1,0 +1,19 @@
+---
+title: fact ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/math/Spec';
+
+<DocPage fieldName="fact" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/math';
+
+@debug math.fact(5);
+  // 120
+
+@debug math.fact(10);
+  // 3628800
+```

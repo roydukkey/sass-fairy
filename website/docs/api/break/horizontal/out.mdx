@@ -1,0 +1,40 @@
+---
+title: out ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/break/Spec';
+
+<DocPage fieldName="out" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/break';
+
+// 1. As a function
+@debug break.out('md');
+  // '(min-width: 768px)'
+
+@debug break.out(800px);
+  // '(min-width: 800px)'
+
+// 2. As a mixin
+body {
+  padding: 2rem;
+
+  @include break.out('md') {
+    padding: 1rem;
+  }
+
+  @include break.out(800px) {
+    padding: 1rem;
+  }
+}
+  // body { padding: 2rem }
+  // @media (min-width: 768px) {
+  //   body { padding: 1rem }
+  // }
+  // @media (min-width: 800px) {
+  //   body { padding: 1rem }
+  // }
+```

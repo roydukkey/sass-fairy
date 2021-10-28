@@ -1,0 +1,39 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use 'sass:string'
+@use 'parameter'
+@use 'parameter-type'
+
+
+///
+	@overload validate-index($context, $name, $value, $list)
+///
+	@overload validate-index($context, $name, $value, $string)
+///
+/// @access public
+/// @require parameter.parameter
+/// @require parameter.parameter-type
+///
+@function validate-index($context, $name, $value, $list)
+
+	@if meta.type-of($value) != 'number'
+		@return parameter-type.parameter-type($context, $name, $value, 'number')
+
+	$is-list: meta.type-of($list) != 'string'
+
+	@if $is-list and $value == 0
+		@return parameter.parameter('List index may not be 0', $context, $name)
+
+	$length: if($is-list, list.length($list), string.length($list))
+	$negative-transform: $value + $length + 1
+
+	@if $value < 1 and ($negative-transform >= 1 and $negative-transform <= $length)
+		$value: $negative-transform
+
+	@if $is-list and ($value < 0 or $value > $length)
+		@return parameter.parameter('Invalid index #{$value} for a list with #{$length} elements', $context, $name)
+
+	@return $value

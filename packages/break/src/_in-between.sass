@@ -1,0 +1,95 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter'
+@use 'in'
+@use 'out'
+@use 'internal/to-string'
+@use 'internal/validate-breakpoint'
+@use 'internal/value'
+
+
+///
+/// @throw No breakpoint exists by the name `#{$first-name|$second-name}`.
+///
+	@overload in-between($first-name, $second-name)
+///
+	@overload in-between($first-size, $second-size)
+///
+/// @throw `#{$first-breakpoint|$second-breakpoint}` is not a string or number.
+/// @throw First breakpoint must be smaller than second breakpoint.
+///
+/// @access public
+/// @require to-string.to-string
+/// @require validate-breakpoint.validate-breakpoint
+/// @require value.value
+/// @require parameter.parameter
+///
+@function in-between($first-breakpoint, $second-breakpoint)
+	$first-breakpoint: validate-breakpoint.validate-breakpoint('in-between', 'first-breakpoint', $first-breakpoint, 'min-width')
+
+	@if meta.type-of($first-breakpoint) != 'map'
+		@error $first-breakpoint
+
+	$second-breakpoint: validate-breakpoint.validate-breakpoint('in-between', 'second-breakpoint', $second-breakpoint, 'max-width')
+
+	@if meta.type-of($second-breakpoint) != 'map'
+		@error $second-breakpoint
+
+	@if value.value($first-breakpoint) >= value.value($second-breakpoint)
+		@error parameter.parameter('First breakpoint must be smaller than second breakpoint', 'in-between', 'first-breakpoint', 'second-breakpoint')
+
+	@return '#{to-string.to-string($first-breakpoint)} and #{to-string.to-string($second-breakpoint)}'
+
+
+///
+/// @throw No breakpoint exists by the name `#{$first-name|$second-name}`.
+///
+	@overload in-between($first-name, $second-name)
+///
+	@overload in-between($first-size, $second-size)
+///
+/// @output Unless the breakpoint is the smallest or largest, makes the content apply to the given breakpoints.
+///
+/// @throw `#{$first-breakpoint|$second-breakpoint}` is not a string or number.
+/// @throw First breakpoint must be smaller than second breakpoint.
+///
+/// @access public
+/// @require in.in
+/// @require to-string.to-string
+/// @require validate-breakpoint.validate-breakpoint
+/// @require value.value
+/// @require out.out
+///
+@mixin in-between($first-breakpoint, $second-breakpoint)
+	$first: validate-breakpoint.validate-breakpoint('in-between', 'first-breakpoint', $first-breakpoint, 'min-width', true)
+
+	@if $first and meta.type-of($first) != 'map'
+		// true:cannot-test
+		@error $first
+
+	$second: validate-breakpoint.validate-breakpoint('in-between', 'second-breakpoint', $second-breakpoint, 'max-width', true)
+
+	@if $second
+
+		@if meta.type-of($second) != 'map'
+			// true:cannot-test
+			@error $second
+
+		@if $first == null
+			@include in.in($second-breakpoint)
+				@content
+
+		@else
+
+			@if value.value($first) >= value.value($second)
+				// true:cannot-test
+				@error parameter.parameter('First breakpoint must be smaller than second breakpoint', 'in-between', 'first-breakpoint', 'second-breakpoint')
+
+			@media #{to-string.to-string($first)} and #{to-string.to-string($second)}
+				@content
+
+	@else
+		@include out.out($first-breakpoint)
+			@content

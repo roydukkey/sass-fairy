@@ -1,0 +1,32 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/exception/src/validate-index'
+@use 'index'
+
+
+///
+/// @throw `#{$string|$substring}` is not a string.
+/// @throw `#{$start-at}` is not a number.
+///
+/// @access public
+/// @require index.index
+/// @require parameter-type.parameter-type
+/// @require validate-index.validate-index
+///
+@function includes($string, $substring, $start-at: 1)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('includes', 'string', $string, 'string')
+
+	@if meta.type-of($substring) != 'string'
+		@error parameter-type.parameter-type('includes', 'substring', $substring, 'string')
+
+	$start-at: validate-index.validate-index('includes', 'start-at', $start-at, $string)
+
+	@if meta.type-of($start-at) != 'number'
+		@error $start-at
+
+	@return index.index($string, $substring, $start-at) != 0

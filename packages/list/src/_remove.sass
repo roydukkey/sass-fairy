@@ -1,0 +1,29 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/separator'
+@use 'remove-nth'
+
+
+///
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require is-separator-invalid.is-separator-invalid
+/// @require remove-nth.remove-nth
+/// @require separator.separator
+///
+@function remove($list, $value, $separator: auto)
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('remove')
+
+	$index: list.index($list, $value)
+
+	@while $index
+		$list: remove-nth.remove-nth($list, $index, $separator)
+		$index: list.index($list, $value)
+
+	@return $list

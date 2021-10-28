@@ -1,0 +1,54 @@
+{
+	"name": "sass-fairy",
+	"private": true,
+	"workspaces": [
+		"packages/*",
+		"website"
+	],
+	"author": {
+		"name": "roydukkey",
+		"email": "contact@changelog.me",
+		"url": "http://changelog.me"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roydukkey/sass-fairy.git"
+	},
+	"homepage": "https://github.com/roydukkey/sass-fairy#readme",
+	"bugs": {
+		"url": "https://github.com/roydukkey/sass-fairy/issues"
+	},
+	"keywords": [
+		"sass",
+		"scss",
+		"dart-sass"
+	],
+	"devDependencies": {
+		"clean-package": "^2.1.0",
+		"cspell": "^5.12.3",
+		"fs-extra": "^10.0.0",
+		"jest": "^27.3.1",
+		"replace-in-file": "^6.3.2",
+		"sass": "^1.43.4",
+		"sass-true": "^6.0.1"
+	},
+	"engines": {
+		"npm": "please-use-yarn",
+		"yarn": ">= 1.22.0"
+	},
+	"scripts": {
+		"serve": "yarn workspace website start",
+		"lint": "yarn lint:spelling && yarn lint:website",
+		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
+		"lint:website": "yarn workspace website lint",
+		"pretest": "yarn lint:spelling",
+		"test": "jest"
+	},
+	"jest": {
+		"testEnvironment": "node",
+		"verbose": true,
+		"coverageDirectory": ".jest/coverage",
+		"cacheDirectory": ".jest/cache"
+	}
+}

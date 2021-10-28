@@ -1,0 +1,36 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/separator'
+
+
+///
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require is-separator-invalid.is-separator-invalid
+/// @require separator.separator
+///
+@function reverse($list, $separator: auto)
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('reverse')
+
+	$length: list.length($list)
+
+	@if $length < 2
+		@if meta.type-of($list) == 'map'
+			@return list.join($list, (), $separator)
+		@else
+			@return $list
+
+	@for $i from 1 through math.floor(math.div($length, 2))
+		$item: list.nth($list, $i)
+		$list: list.set-nth($list, $i, list.nth($list, $i * -1))
+		$list: list.set-nth($list, $i * -1, $item)
+
+	@return list.join($list, (), $separator)

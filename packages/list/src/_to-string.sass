@@ -1,0 +1,20 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/core/from'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @access public
+/// @require from.to-string
+/// @require parameter-type.parameter-type
+///
+@function to-string($list)
+	$type: meta.type-of($list)
+
+	@if $type != 'list' and $type != 'map' and $type != 'arglist'
+		@error parameter-type.parameter-type('to-string', 'list', $list, 'list', 'map', 'arglist')
+
+	@return from.to-string($list, 'list')

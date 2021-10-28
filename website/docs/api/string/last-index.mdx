@@ -1,0 +1,21 @@
+---
+title: last-index ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/string/Spec';
+
+<DocPage fieldName="last-index" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/string';
+
+$sentence: 'The quick brown fox jumps over the lazy dog.';
+
+@debug string.last-index($sentence, 'he');
+  // 33
+
+@debug string.last-index($sentence, 'cat');
+  // 0
+```

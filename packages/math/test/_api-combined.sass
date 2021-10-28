@@ -1,0 +1,24 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/math/math' as combined
+@use 'sass:math' as native
+@use 'sass:map'
+@use 'sass:meta'
+@use 'true'
+
+
+@include true.describe('@sass-fairy/math Combined API')
+
+	$combined-functions: meta.module-functions('combined')
+	$native-functions: meta.module-functions('native')
+
+	@include true.it('Has access to native math.is-unitless() as module function')
+		$combine: map.get($combined-functions, 'is-unitless')
+		$native: map.get($native-functions, 'is-unitless')
+		@include true.assert-equal($combine, $native)
+
+	@include true.it("Has access to library's src.unitless() as module function")
+		$combine: map.get($combined-functions, 'unitless')
+		$native: map.get($native-functions, 'unitless')
+		@include true.assert-unequal($combine, $native)

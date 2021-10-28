@@ -1,0 +1,44 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:map'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$transformer}` is not a function.
+/// @throw Reduction of empty list with no initial value.
+///
+/// @access public
+/// @require parameter.parameter
+/// @require parameter-type.parameter-type
+///
+@function reduce($list, $transformer, $args...)
+
+	@if meta.type-of($transformer) != 'function'
+		@error parameter-type.parameter-type('reduce', 'transformer', $transformer, 'function')
+
+	$args: meta.keywords($args)
+	$accumulator: map.get($args, 'initial-value')
+	$length: list.length($list)
+	$index: 1
+
+	@if not map.has-key($args, 'initial-value')
+
+		@if $length == 0
+			@error parameter.parameter('Reduction of empty list with no initial value', 'reduce', 'list', 'initial-value')
+
+		$accumulator: list.nth($list, 1)
+
+		@if $length == 1
+			@return $accumulator
+
+		$index: 2
+
+	@for $index from $index through $length
+		$accumulator: meta.call($transformer, $accumulator, list.nth($list, $index), $index, $list)
+
+	@return $accumulator

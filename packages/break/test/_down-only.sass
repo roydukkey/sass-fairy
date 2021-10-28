@@ -1,0 +1,89 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/break' as src
+@use 'true'
+
+
+@include true.describe('@function break.down-only')
+
+	@include true.it('Returns a media query rule for the given names')
+		$assert: src.down-only('md')
+		$expected: '(min-height: 756px) and (max-height: 928.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for smallest breakpoint')
+		$assert: src.down-only(list.nth(src.$vertical-names, 1))
+		$expected: '(min-height: 0) and (max-height: 677.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for largest breakpoint')
+		$assert: src.down-only(list.nth(src.$vertical-names, -1))
+		$expected: '(min-height: 2100px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when given value is not a string')
+		$assert: src.down-only(false)
+		$expected: 'ERROR: $breakpoint: `false` is not a string for `down-only()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when no breakpoint exists for the given name')
+		$assert: src.down-only('very-large')
+		$expected: 'ERROR: $breakpoint: No breakpoint exists by the name `"very-large"` for `down-only()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Can be used in a media query')
+		@include true.assert
+
+			@include true.output
+				@media #{src.down-only('sm')}
+					body
+						color: red
+
+			@include true.expect
+				@media (min-height: 678px) and (max-height: 755.98px)
+					body
+						color: red
+
+
+@include true.describe('@mixin break.down-only')
+
+	@include true.it('Creates media query for the given names')
+		@include true.assert
+
+			@include true.output
+				@include src.down-only('md')
+					body
+						color: green
+
+			@include true.expect
+				@media (min-height: 756px) and (max-height: 928.98px)
+					body
+						color: green
+
+	@include true.it('Does create media query for the smallest size')
+		@include true.assert
+
+			@include true.output
+				@include src.down-only(list.nth(src.$vertical-names, 1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-height: 677.98px)
+					body
+						color: blue
+
+	@include true.it('Does create media query for the largest size')
+		@include true.assert
+
+			@include true.output
+				@include src.down-only(list.nth(src.$vertical-names, -1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (min-height: 2100px)
+					body
+						color: blue

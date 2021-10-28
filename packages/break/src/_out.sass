@@ -1,0 +1,59 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use 'internal/to-string'
+@use 'internal/validate-breakpoint'
+
+
+///
+/// @throw No breakpoint exists by the name `#{$name}`.
+///
+	@overload out($name)
+///
+	@overload out($size)
+///
+/// @throw `#{$breakpoint}` is not a string or number.
+///
+/// @access public
+/// @require to-string.to-string
+/// @require validate-breakpoint.validate-breakpoint
+///
+@function out($breakpoint)
+	$breakpoint: validate-breakpoint.validate-breakpoint('out', 'breakpoint', $breakpoint, 'min-width')
+
+	@if meta.type-of($breakpoint) != 'map'
+		@error $breakpoint
+
+	@return to-string.to-string($breakpoint)
+
+
+///
+/// @throw No breakpoint exists by the name `#{$name}`.
+///
+	@overload out($name)
+///
+	@overload out($size)
+///
+/// @output Unless the breakpoint's size is zero, makes the content apply to the given breakpoint.
+///
+/// @throw `#{$breakpoint}` is not a string or number.
+///
+/// @access public
+/// @require to-string.to-string
+/// @require validate-breakpoint.validate-breakpoint
+///
+@mixin out($breakpoint)
+	$breakpoint: validate-breakpoint.validate-breakpoint('out', 'breakpoint', $breakpoint, 'min-width', true)
+
+	@if $breakpoint
+
+		@if meta.type-of($breakpoint) != 'map'
+			// true:cannot-test
+			@error $breakpoint
+
+		@media #{to-string.to-string($breakpoint)}
+			@content
+
+	@else
+		@content

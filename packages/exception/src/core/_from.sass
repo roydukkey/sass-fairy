@@ -1,0 +1,91 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use 'sass:string'
+@use '../internal/delimiter'
+
+
+///
+/// @remarks This function is exposed by `@sass-fairy/string`, but has been abstracted to this package to avoid circular dependency.
+/// @see @link https://github.com/roydukkey/sass-fairy/tree/master/packages/string
+///
+/// @access public
+/// @require to-string
+///
+@function from($value)
+	$type: meta.type-of($value)
+
+	@if $type == 'string'
+		@return $value
+
+	@if $type == 'map'
+		@return '{' + to-string($value, $type) + '}'
+
+	@if $type == 'list' or $type == 'arglist'
+		$is-bracketed: list.is-bracketed($value)
+		$value: to-string($value, $type)
+
+		@return if($is-bracketed, '[' + $value + ']', '(' + $value + ')')
+
+	@if $type == 'function'
+		$value: meta.inspect($value)
+		$value: string.slice($value, string.index($value, '"') + 1)
+		$value: string.slice($value, 0, string.index($value, '"') - 1) + '()'
+
+	@return '#{$value}'
+
+
+///
+/// Returns a string representing the specified list or map and its items.
+///
+/// @param {List} $value - The value from which to generate a string.
+/// @param {'list' | 'map' | 'arglist'} $type - The type value from which to generate a string.
+/// @return {String}
+///
+/// @access private
+/// @require delimiter.delimiter
+/// @require join
+///
+@function to-string($value, $type)
+
+	@if $type == 'map'
+		@return join($value, '; ', $type)
+
+	@return join($value, delimiter.delimiter($value), $type)
+
+
+///
+/// Concatenates all of the items in an iterable value to a string, separated by the specified glue string. If the iterable has only one item, then that item will be returned without using the glue.
+///
+/// @param {List | Map | ArgList} $value - The iterable to join.
+/// @param {String} $glue - The string to separate each pair of adjacent items of the iterable value. The value is converted to a string if necessary.
+/// @param {'list' | 'map' | 'arglist'} $type - The type used to determine expected format.
+/// @return {String}
+///
+/// @access private
+/// @require from
+///
+@function join($value, $glue, $type)
+	$length: list.length($value)
+	$glue: from($glue)
+	$result: ''
+	$index: 1
+
+	@each $item in $value
+
+		@if $type == 'map'
+			$item: join($item, ': ', 'list')
+
+		$result: $result + from($item)
+
+		@if $index < $length
+			$result: $result + $glue
+
+		$index: $index + 1
+
+	@if $type == 'arglist'
+		$result: $result + $glue + join(meta.keywords($value), ', ', 'map')
+
+	@return $result

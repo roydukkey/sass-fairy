@@ -1,0 +1,21 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/list'
+@use '@sass-fairy/map' as src
+@use 'true'
+
+
+@include true.describe('@function map.compare-key')
+
+	$map: (b: 8em, f: 10mm, d: a, a: 3, c: 1cm, e: 2mm)
+
+	@include true.it('Order map keys in ascending order')
+		$assert: list.sort($map, src.compare-key())
+		$expected: (a 3, b 8em, c 1cm, d a, e 2mm, f 10mm)
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Order map keys in descending order')
+		$assert: list.sort($map, src.compare-key-desc(), $separator: space)
+		$expected: (f 10mm) (e 2mm) (d a) (c 1cm) (b 8em) (a 3)
+		@include true.assert-equal($assert, $expected)

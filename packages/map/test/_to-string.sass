@@ -1,0 +1,35 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use 'sass:list'
+@use '@sass-fairy/map' as src
+@use 'true'
+
+
+@function arglist($args...)
+	$keywords: meta.keywords($args)
+	@return $args
+
+
+@include true.describe('@function map.to-string')
+
+	@include true.it('Return the representation of a map')
+		$assert: src.to-string((false: true, a: 1, null: null, b: 2, 3: c, true: false))
+		$expected: 'false: true; a: 1; : ; b: 2; 3: c; true: false'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Nested maps are not flattened')
+		$assert: src.to-string((false: true, nested: (a: 1, null: null, b: 2), 3: c, true: false))
+		$expected: 'false: true; nested: {a: 1; : ; b: 2}; 3: c; true: false'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns the representation of a arglist with keywords')
+		$assert: src.to-string(arglist(a, 1, b, 2, c, 3, $new: 'okay', $separator: 'comma'))
+		$expected: 'a, 1, b, 2, c, 3, new: okay, separator: comma'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when not a map or arglist')
+		$assert: src.to-string(10px)
+		$expected: 'ERROR: $map: `10px` is not a map or arglist for `to-string()`.'
+		@include true.assert-equal($assert, $expected)

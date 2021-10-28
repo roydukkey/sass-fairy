@@ -1,0 +1,22 @@
+{
+	"name": "@sass-fairy/map",
+	"description": "Provides extended functionality for processing key/value pairs in Sass maps",
+	"version": "1.0.0",
+	"keywords": [
+		"map"
+	],
+	"main": "./index.sass",
+	"dependencies": {
+		"@sass-fairy/exception": "^1.0.0",
+		"@sass-fairy/list": "^1.0.0",
+		"@sass-fairy/meta": "^1.0.0"
+	},
+	"scripts": {
+		"prepack": "clean-package --config $npm_package_config_clean_package",
+		"new:pack": "yarn pack && clean-package restore --config $npm_package_config_clean_package",
+		"new:publish": "yarn publish && clean-package restore --config $npm_package_config_clean_package"
+	},
+	"config": {
+		"clean-package": "../../clean-package.config.js"
+	}
+}

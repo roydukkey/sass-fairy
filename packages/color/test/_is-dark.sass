@@ -1,0 +1,39 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/color' as src
+@use 'true'
+
+
+@include true.describe('@function color.is-dark')
+
+	@include true.it('Indicates color is dark')
+		$assert: src.is-dark(#000)
+		@include true.assert-true($assert, '[#000]')
+
+		$assert: src.is-dark(blue)
+		@include true.assert-true($assert, '[blue]')
+
+		$assert: src.is-dark(darkgreen)
+		@include true.assert-true($assert, '[darkgreen]')
+
+		$assert: src.is-dark(red)
+		@include true.assert-true($assert, '[red]')
+
+	@include true.it('Indicates color is not dark')
+		$assert: src.is-dark(#fff)
+		@include true.assert-false($assert, '[#fff]')
+
+		$assert: src.is-dark(pink)
+		@include true.assert-false($assert, '[pink]')
+
+		$assert: src.is-dark(goldenrod)
+		@include true.assert-false($assert, '[goldenrod]')
+
+		$assert: src.is-dark(goldenrod)
+		@include true.assert-false($assert, '[greenyellow]')
+
+	@include true.it('Throws when $color is not a color')
+		$assert: src.is-dark(boogie)
+		$expected: 'ERROR: $color: `boogie` is not a color for `is-dark()`.'
+		@include true.assert-equal($assert, $expected)

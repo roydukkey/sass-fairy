@@ -1,0 +1,19 @@
+---
+title: is-separator-invalid ()
+hide_title: true
+hide_table_of_contents: true
+---
+import CodeBlock from '@theme/CodeBlock';
+import DocPage from '@site/src/components/DocPage';
+import Example from '!!raw-loader!@sass-fairy/list/src/_set-nth.sass';
+import Spec from '@site/docs/api/exception/Spec';
+
+<DocPage fieldName="is-separator-invalid" fieldType="function" spec={Spec} />
+
+export const highlight = [
+  ['.is-separator-invalid(', '.separator(']
+];
+
+<CodeBlock className="language-scss" title="@sass-fairy/list/src/_set-nth.sass" highlightKeywords={highlight} stripSassDocs rewriteFairyUses>
+  {Example}
+</CodeBlock>

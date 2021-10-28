@@ -1,0 +1,39 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/list'
+@use '@sass-fairy/map' as src
+@use 'true'
+
+
+@include true.describe('@function map.compare-numeric-value')
+
+	$map: (b: 8em, f: 10mm, d: a, a: 3, c: 1cm, e: 2mm)
+
+	@include true.it('Order map values automatically in ascending order')
+		$assert: list.sort($map, src.compare-numeric-value())
+		$expected: (c 1cm, e 2mm, a 3, b 8em, f 10mm, d a)
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Order map values certainly in ascending order')
+		$assert: list.sort($map, src.compare-numeric-value(), 0mm, $separator: space)
+		$expected: (e 2mm) (a 3) (b 8em) (c 1cm) (f 10mm) (d a)
+		@include true.assert-equal($assert, $expected, '[0mm]')
+
+		$assert: list.sort($map, src.compare-numeric-value(), 0cm, $separator: space)
+		$expected: (e 2mm) (c 1cm) (f 10mm) (a 3) (b 8em) (d a)
+		@include true.assert-equal($assert, $expected, '[0cm]')
+
+	@include true.it('Order map values automatically in descending order')
+		$assert: list.sort($map, src.compare-numeric-value-desc(), $separator: space)
+		$expected: (d a) (f 10mm) (b 8em) (a 3) (e 2mm) (c 1cm)
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Order map values certainly in descending order')
+		$assert: list.sort($map, src.compare-numeric-value-desc(), 0mm, $separator: space)
+		$expected: (d a) (c 1cm) (f 10mm) (b 8em) (a 3) (e 2mm)
+		@include true.assert-equal($assert, $expected, '[0mm]')
+
+		$assert: list.sort($map, src.compare-numeric-value-desc(), 0cm, $separator: space)
+		$expected: (d a) (b 8em) (a 3) (c 1cm) (f 10mm) (e 2mm)
+		@include true.assert-equal($assert, $expected, '[0cm]')

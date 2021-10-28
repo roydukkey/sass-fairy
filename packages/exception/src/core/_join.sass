@@ -1,0 +1,44 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'from'
+@use '../internal/delimiter'
+
+
+///
+/// @remarks This function is exposed by `@sass-fairy/list`, but has been abstracted to this package to avoid circular dependency.
+/// @see @link https://github.com/roydukkey/sass-fairy/tree/master/packages/list
+///
+/// @access public
+/// @require _flat
+/// @require delimiter.delimiter
+/// @require from.join
+///
+@function join($list, $glue: delimiter.delimiter($list))
+	@return from.join(_flat($list), $glue, 'list')
+
+
+///
+/// Recursively flattens a list.
+///
+/// @param {List} $list - The list to be flattened.
+/// @return {List}
+///
+/// @access private
+///
+@function _flat($list)
+	$result: list.join((), (), list.separator($list))
+
+	@each $item in $list
+
+		@if list.length($item) > 1
+			$sub-list: _flat($item)
+
+			@each $sub-item in $sub-list
+				$result: list.append($result, $sub-item)
+
+		@else
+			$result: list.append($result, $item)
+
+	@return $result

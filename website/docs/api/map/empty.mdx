@@ -1,0 +1,23 @@
+---
+title: empty ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/map/Spec';
+
+<DocPage fieldName="empty" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass:list';
+@use '@sass:meta';
+@use '@sass-fairy/map';
+
+$map: map.empty();
+
+@debug meta.type-of($map) == 'map';
+  // true
+
+@debug list.length($map);
+  // 0
+```

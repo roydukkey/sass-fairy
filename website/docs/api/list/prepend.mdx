@@ -1,0 +1,22 @@
+---
+title: prepend ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="prepend" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+@debug list.prepend(10px 20px, 30px);
+  // 30px 10px 20px
+
+@debug list.prepend((blue, red), green);
+  // green, blue, red
+
+@debug list.prepend((blue, red), green, space);
+  // green blue red
+```

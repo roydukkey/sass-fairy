@@ -1,0 +1,107 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:math'
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/meta/src/call-or-reference'
+
+
+///
+	@overload string()
+///
+	@overload string($first-item, $second-item, $center: never)
+///
+/// @access public
+/// @require _string
+/// @require call-or-reference.call-or-reference
+///
+@function string($args...)
+	@return call-or-reference.call-or-reference(meta.get-function('_string'), $args...)
+
+
+///
+	@overload string-desc()
+///
+	@overload string($first-item, $second-item, $center: never)
+///
+/// @access public
+/// @require _string-desc
+/// @require call-or-reference.call-or-reference
+///
+@function string-desc($args...)
+	@return call-or-reference.call-or-reference(meta.get-function('_string-desc'), $args...)
+
+
+///
+/// The list that defines the sort order for UTF-16 code units.
+///
+/// @type List
+///
+/// @access private
+///
+$_order: '' ' ' '!' '"' '#' '$' '%' '&' "'" '(' ')' '*' '+' ',' '-' '.' '/'
+$_order: list.join($_order, '0' '1' '2' '3' '4' '5' '6' '7' '8' '9')
+$_order: list.join($_order, ':' ';' '<' '=' '>' '?' '@')
+$_order: list.join($_order, 'A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'Y' 'Z')
+$_order: list.join($_order, '[' '\\' ']' '^' '_' '`')
+$_order: list.join($_order, 'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z')
+$_order: list.join($_order, '{' '|' '}' '~')
+
+
+///
+/// Used to compare two list items by converting them to strings, then comparing the value's sequences of UTF-16 code units values in ascending order. All null items are shifted right.
+///
+/// @param {*} $first-item - The first item for the comparison.
+/// @param {*} $second-item - The second item for the comparison.
+/// @ignore @param {Number} $center: never - Irrelevant for this function.
+/// @return {Number}
+///
+/// @access private
+/// @require $_order
+///
+@function _string($first-item, $second-item, $center: never)
+
+	@if $first-item == null
+		@return 1
+
+	@if $second-item == null
+		@return -1
+
+	$first-item: '"#{$first-item}"'
+	$second-item: '"#{$second-item}"'
+
+	@for $i from 1 through math.min(string.length($first-item), string.length($second-item))
+		$first-index: list.index($_order, string.slice($first-item, $i, $i))
+		$second-index: list.index($_order, string.slice($second-item, $i, $i))
+
+		// The first item is not within the support UTF-16 range.
+		@if not $first-index
+			@return 1
+
+		// The second item is not within the support UTF-16 range.
+		@if not $second-index
+			@return -1
+
+		// Both items are found in the range, return the difference of the indexes of the characters.
+		@if $first-index != $second-index
+			@return $first-index - $second-index
+
+	// Both items are equal
+	@return 0
+
+
+///
+/// Used to compare two list items by converting them to strings, then comparing the value's sequences of UTF-16 code units values in descending order. All null items are shifted left.
+///
+/// @param {*} $first-item - The first item for the comparison.
+/// @param {*} $second-item - The second item for the comparison.
+/// @ignore @param {Number} $center [never] - Irrelevant for this function.
+/// @return {Number}
+///
+/// @access private
+/// @require _string
+///
+@function _string-desc($first-item, $second-item, $center: never)
+	@return _string($second-item, $first-item, $center)

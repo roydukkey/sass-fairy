@@ -1,0 +1,32 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/map' as src
+@use 'true'
+
+
+@include true.describe('@function map.from')
+
+	@include true.it('Creates a map from a list')
+		$assert: src.from([a 3, b 'yes']...)
+		$expected: (a: 3, b: 'yes')
+		@include true.assert-equal($assert, $expected, '[spread]')
+
+		$assert: src.from(a 3, b 'yes')
+		$expected: (a: 3, b: 'yes')
+		@include true.assert-equal($assert, $expected, '[params]')
+
+	@include true.it('Creates a map from a list filling empty values with `null`')
+		$assert: src.from([a 3, b]...)
+		$expected: (a: 3, b: null)
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Creates a map from a value other than a list')
+		$assert: src.from(death-star)
+		$expected: (death-star: null)
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when no key/value pairs are given')
+		$assert: src.from()
+		$expected: 'ERROR: $pairs: One or more key/value pairs are required for `from()`.'
+		@include true.assert-equal($assert, $expected)

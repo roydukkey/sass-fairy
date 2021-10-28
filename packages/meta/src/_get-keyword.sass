@@ -1,0 +1,33 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:map'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$args}` is not a arglist.
+/// @throw `#{$name}` is not a string.
+///
+/// @example sass
+///   @use '@sass-fairy/meta'
+///
+///   @function concat($values...)
+///     $separator: meta.get-keyword($values, 'separator', auto)
+///     ...
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+@function get-keyword($args, $name, $default: null)
+
+	@if meta.type-of($args) != 'arglist'
+		@error parameter-type.parameter-type('get-keyword', 'args', $args, 'arglist')
+
+	@if meta.type-of($name) != 'string'
+		@error parameter-type.parameter-type('get-keyword', 'name', $name, 'string')
+
+	$args: meta.keywords($args)
+
+	@return if(map.has-key($args, $name), map.get($args, $name), $default)

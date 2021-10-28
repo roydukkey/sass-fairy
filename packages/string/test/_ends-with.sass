@@ -1,0 +1,56 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.ends-with')
+
+	// cSpell:disable-next-line
+	$string: 'abcdefgabcdefg'
+
+	@include true.it('Does end with substring')
+		$assert: src.ends-with($string, 'efg')
+		@include true.assert-true($assert)
+
+	@include true.it('Does end with substring at a positive (+) index')
+		$assert: src.ends-with($string, 'bcd', 4)
+		@include true.assert-true($assert)
+
+		$assert: src.ends-with($string, 'bcd', 11)
+		@include true.assert-true($assert)
+
+	@include true.it('Does end with substring at a negative (-) index')
+		$assert: src.ends-with($string, 'bcd', -11)
+		@include true.assert-true($assert)
+
+		$assert: src.ends-with($string, 'bcd', -4)
+		@include true.assert-true($assert)
+
+	@include true.it('Does not end with substring')
+		$assert: src.ends-with($string, 'abc')
+		@include true.assert-false($assert)
+
+	@include true.it('Does not end with substring at a positive (+) index')
+		$assert: src.ends-with($string, 'bcd', 3)
+		@include true.assert-false($assert)
+
+	@include true.it('Does not end with substring at a negative (-) index')
+		$assert: src.ends-with($string, 'bcd', -3)
+		@include true.assert-false($assert)
+
+	@include true.it('Throws when $string is not a string')
+		$assert: src.ends-with(12345, 'a')
+		$expected: 'ERROR: $string: `12345` is not a string for `ends-with()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $substring is not a string')
+		$assert: src.ends-with('a', 12345)
+		$expected: 'ERROR: $substring: `12345` is not a string for `ends-with()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $end-at is not a number')
+		$assert: src.ends-with($string, 'a', 'x')
+		$expected: 'ERROR: $end-at: `"x"` is not a number for `ends-with()`.'
+		@include true.assert-equal($assert, $expected)

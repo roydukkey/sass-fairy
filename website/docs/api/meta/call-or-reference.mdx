@@ -1,0 +1,38 @@
+---
+title: call-or-reference ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/meta/Spec';
+
+<DocPage fieldName="call-or-reference" fieldType="function" spec={Spec} />
+
+```scss title="my-custom/module.scss"
+@use 'sass:math';
+@use '@sass-fairy/meta/meta';
+
+@function _predicate($value, $args...) {
+  @return meta.type-of($value) == 'number' and not math.is-unitless($value);
+}
+
+@function is-number-and-not-unitless($args...) {
+  $ref: meta.get-function('_predicate');
+  @return meta.call-or-reference($ref, $args...);
+}
+```
+
+```scss title="my-custom/site.scss"
+@use '@sass-fairy/list';
+@use 'module';
+
+// 1. As a call
+@debug module.is-number-and-not-unitless(10);
+  // false
+
+// 2. As a reference
+$list: a 1 5 b 20px 10 30px;
+
+@debug list.find($list, module.is-number-and-not-unitless());
+  // 20px
+```

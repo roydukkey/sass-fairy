@@ -1,0 +1,27 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:map'
+@use '@sass-fairy/exception/src/parameter'
+
+
+///
+/// @throw One or more key/value pairs are required.
+///
+/// @access public
+/// @require parameter.parameter
+///
+/// @example for website/docs/api/exception/parameter.mdx
+///
+@function from($pairs...)
+
+	@if list.length($pairs) < 1
+		@error parameter.parameter('One or more key/value pairs are required', 'from', 'pairs')
+
+	$result: ()
+
+	@each $key, $value in $pairs
+		$result: map.set($result, $key, $value)
+
+	@return $result

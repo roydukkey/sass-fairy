@@ -1,0 +1,39 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/color' as src
+@use 'true'
+
+
+@include true.describe('@function color.is-light')
+
+	@include true.it('Indicates color is light')
+		$assert: src.is-light(#fff)
+		@include true.assert-true($assert, '[#fff]')
+
+		$assert: src.is-light(pink)
+		@include true.assert-true($assert, '[pink]')
+
+		$assert: src.is-light(goldenrod)
+		@include true.assert-true($assert, '[goldenrod]')
+
+		$assert: src.is-light(goldenrod)
+		@include true.assert-true($assert, '[greenyellow]')
+
+	@include true.it('Indicates color is not light')
+		$assert: src.is-light(#000)
+		@include true.assert-false($assert, '[#000]')
+
+		$assert: src.is-light(blue)
+		@include true.assert-false($assert, '[blue]')
+
+		$assert: src.is-light(darkgreen)
+		@include true.assert-false($assert, '[darkgreen]')
+
+		$assert: src.is-light(red)
+		@include true.assert-false($assert, '[red]')
+
+	@include true.it('Throws when $color is not a color')
+		$assert: src.is-light(boogie)
+		$expected: 'ERROR: $color: `boogie` is not a color for `is-light()`.'
+		@include true.assert-equal($assert, $expected)

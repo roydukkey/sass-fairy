@@ -1,0 +1,24 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/list/list' as combined
+@use 'sass:list' as native
+@use 'sass:map'
+@use 'sass:meta'
+@use 'true'
+
+
+@include true.describe('@sass-fairy/list Combined API')
+
+	$combined-functions: meta.module-functions('combined')
+	$native-functions: meta.module-functions('native')
+
+	@include true.it('Has access to native list.append() as module function')
+		$combine: map.get($combined-functions, 'append')
+		$native: map.get($native-functions, 'append')
+		@include true.assert-equal($combine, $native)
+
+	@include true.it("Has access to library's src.index() as module function")
+		$combine: map.get($combined-functions, 'index')
+		$native: map.get($native-functions, 'index')
+		@include true.assert-unequal($combine, $native)

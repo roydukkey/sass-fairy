@@ -1,0 +1,69 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@include true.describe('@function list.remove-nth')
+	$list: ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+	@include true.it('Remove an item at a positive (+) index')
+		$assert: src.remove-nth($list, 2)
+		$expected: ['ant', 'camel', 'duck', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Remove an item at a negative (-) index')
+		$assert: src.remove-nth($list, -2)
+		$expected: ['ant', 'bison', 'camel', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Remove an item at the first position with a positive (+) index')
+		$assert: src.remove-nth($list, 1)
+		$expected: ['bison', 'camel', 'duck', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Remove an item at the first position with a negative (-) index')
+		$assert: src.remove-nth($list, -5)
+		$expected: ['bison', 'camel', 'duck', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Remove an item at the last position with a positive (+) index')
+		$assert: src.remove-nth($list, 5)
+		$expected: ['ant', 'bison', 'camel', 'duck']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Remove an item at the last position with a negative (-) index')
+		$assert: src.remove-nth($list, -1)
+		$expected: ['ant', 'bison', 'camel', 'duck']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Return a list with a different separator')
+		$assert: src.remove-nth($list, 2, space)
+		$expected: ['ant' 'camel' 'duck' 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $index is not a number')
+		$assert: src.remove-nth(null, null)
+		$expected: 'ERROR: $index: `null` is not a number for `remove-nth()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $index index is zero')
+		$assert: src.remove-nth(null, 0)
+		$expected: 'ERROR: $index: List index may not be 0 for `remove-nth()`.'
+		@include true.assert-equal($assert, $expected, '[0]')
+
+	@include true.it('Throws when $index index is invalid for length')
+		$assert: src.remove-nth(null, 2)
+		$expected: 'ERROR: $index: Invalid index 2 for a list with 1 elements for `remove-nth()`.'
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.remove-nth(null, -2)
+		$expected: 'ERROR: $index: Invalid index -2 for a list with 1 elements for `remove-nth()`.'
+		@include true.assert-equal($assert, $expected, '[-2]')
+
+	@include true.it('Throws when $separator is invalid')
+		$assert: src.remove-nth(null, 1, null)
+		$expected: 'ERROR: $separator: Must be "space", "comma", "slash", or "auto" for `remove-nth()`.'
+		@include true.assert-equal($assert, $expected)
+

@@ -1,0 +1,27 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/meta' as src
+@use 'true'
+
+
+@function _test-strip($values...)
+	// Keywords must be polled otherwise Sass (native) will throw an error.
+	$keywords: meta.keywords($values)
+	@return src.strip-keywords($values)
+
+
+@include true.describe('@function meta.strip-keywords')
+
+	@include true.it('Strips all named parameter from an argument list')
+		// Spreading an ArgList will include named parameters, therefore `zip($args...)` will otherwise error when `$a` and `$b` are not stripped.
+		$assert: list.zip(_test-strip(1, 3, 2, $a: comma, $b: 80)...)
+		$expected: (1 3 2,)
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $values is not an argument list')
+		$assert: src.strip-keywords(null)
+		$expected: 'ERROR: $args: `null` is not a arglist for `strip-keywords()`.'
+		@include true.assert-equal($assert, $expected)

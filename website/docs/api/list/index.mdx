@@ -1,0 +1,23 @@
+---
+title: index ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="index" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+$list: 32 8 65 79 34 8 13 66 18;
+
+// 1. Get the index of `8`
+@debug list.index($list, 13);
+  // 2
+
+// 2. Get the index of `8` starting a specific index
+@debug list.index($list, 8, -6);
+  // 7
+```

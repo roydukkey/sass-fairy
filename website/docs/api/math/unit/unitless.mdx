@@ -1,0 +1,22 @@
+---
+title: unitless ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/math/Spec';
+
+<DocPage fieldName="unitless" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/math';
+
+@debug math.unitless(10px);
+  // 10
+
+@debug math.unitless(-30rem);
+  // -30
+
+@debug math.unitless(5s * 8in);
+  // 40
+```

@@ -1,0 +1,23 @@
+---
+title: reduce-right ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="reduce-right" fieldType="function" spec={Spec} />
+
+```scss
+@use 'sass:meta';
+@use '@sass-fairy/list';
+
+@function _concat-right($accumulator, $item, $void...) {
+  @return list.concat($accumulator, $item);
+}
+
+$list: [[0, 1], [2, 3], [4, 5]];
+
+@debug list.reduce($list, meta.get-function('_concat-right'));
+  // [4, 5, 2, 3, 0, 1]
+```

@@ -1,0 +1,38 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use '@sass-fairy/color' as src
+@use 'true'
+
+
+@include true.describe('@function color.contrast')
+
+	@include true.it('Indicates correct contrast')
+		$assert: math.round(src.contrast(white, red))
+		$expected: 4
+		@include true.assert-equal($assert, $expected, '[white, red]')
+
+		$assert: math.round(src.contrast(red, white))
+		$expected: 4
+		@include true.assert-equal($assert, $expected, '[red, white]')
+
+	@include true.it('Indicates maximum contrast')
+		$assert: src.contrast(#fff, #000)
+		$expected: 21
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Indicates minimum contrast')
+		$assert: src.contrast(blue, #00f)
+		$expected: 1
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $first-color is not a color')
+		$assert: src.contrast(sandstorm, #000)
+		$expected: 'ERROR: $first-color: `sandstorm` is not a color for `contrast()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $second-color is not a color')
+		$assert: src.contrast(#000, sandstorm)
+		$expected: 'ERROR: $second-color: `sandstorm` is not a color for `contrast()`.'
+		@include true.assert-equal($assert, $expected)

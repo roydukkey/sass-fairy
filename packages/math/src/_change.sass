@@ -1,0 +1,27 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'unitless'
+
+
+///
+/// @throw `#{$number|$units}` is not a number.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+/// @require unitless.unitless
+///
+@function change($number, $units)
+
+	@if meta.type-of($number) != 'number'
+		@error parameter-type.parameter-type('change', 'number', $number, 'number')
+
+	@if meta.type-of($units) != 'number'
+		@error parameter-type.parameter-type('change', 'units', $units, 'number')
+
+	$units: math.abs($units)
+
+	@return unitless.unitless($number) * ($units - $units + 1)

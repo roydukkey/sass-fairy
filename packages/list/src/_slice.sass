@@ -1,0 +1,57 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/parameter'
+@use '@sass-fairy/exception/src/separator'
+@use '@sass-fairy/exception/src/validate-index'
+@use 'empty'
+
+
+///
+/// @throw `#{$start-at}` is not a number.
+/// @throw `#{$end-at}` is not a number.
+/// @throw List index may not be 0.
+/// @throw Invalid index #{$start-at} for a list with #{length} elements.
+/// @throw Invalid index #{$end-at} for a list with #{length} elements.
+/// @throw The starting index is not less than the ending index.
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @example scss
+/// 	slice([a, b, c, d], 3) //=> [c, d]
+/// 	slice([a, b, c, d], -2) //=> [c, d]
+/// 	slice([a, b, c, d], 2, 3) //=> [b, c]
+/// 	slice([a, b, c, d], 2, -3) //=> [b]
+///
+/// @access public
+/// @require empty.empty
+/// @require is-separator-invalid.is-separator-invalid
+/// @require parameter.parameter
+/// @require separator.separator
+/// @require validate-index.validate-index
+///
+@function slice($list, $start-at, $end-at: -1, $separator: auto)
+	$start-at: validate-index.validate-index('slice', 'start-at', $start-at, $list)
+
+	@if meta.type-of($start-at) != 'number'
+		@error $start-at
+
+	$end-at: validate-index.validate-index('slice', 'end-at', $end-at, $list)
+
+	@if meta.type-of($end-at) != 'number'
+		@error $end-at
+
+	@if $start-at > $end-at
+		@error parameter.parameter('The starting index is not less than the ending index', 'slice', 'start-at', 'end-at')
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('slice')
+
+	$result: empty.empty($separator, $list: $list)
+
+	@for $i from $start-at through $end-at
+		$result: list.append($result, list.nth($list, $i))
+
+	@return $result

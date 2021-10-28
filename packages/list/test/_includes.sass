@@ -1,0 +1,52 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@include true.describe('@function list.includes')
+	$list: ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+	@include true.it('List includes a value')
+		$assert: src.includes($list, 'duck')
+		@include true.assert-true($assert)
+
+	@include true.it('List includes a value from a positive (+) index')
+		$assert: src.includes($list, 'camel', 3)
+		@include true.assert-true($assert)
+
+	@include true.it('List includes a value from a negative (-) index')
+		$assert: src.includes($list, 'camel', -3)
+		@include true.assert-true($assert)
+
+	@include true.it('List does not include a value')
+		$assert: src.includes($list, 'deer')
+		@include true.assert-false($assert)
+
+	@include true.it('List does not include a value from a positive (+) index')
+		$assert: src.includes($list, 'camel', 4)
+		@include true.assert-false($assert)
+
+	@include true.it('List does not include a value from a negative (-) index')
+		$assert: src.includes($list, 'camel', -2)
+		@include true.assert-false($assert)
+
+	@include true.it('Throws when $start-at is not a number')
+		$assert: src.includes(null, null, null)
+		$expected: 'ERROR: $start-at: `null` is not a number for `includes()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $start-at index is zero')
+		$assert: src.includes(null, null, 0)
+		$expected: 'ERROR: $start-at: List index may not be 0 for `includes()`.'
+		@include true.assert-equal($assert, $expected, '[0]')
+
+	@include true.it('Throws when $start-at index is invalid for length')
+		$assert: src.includes(null, null, 2)
+		$expected: 'ERROR: $start-at: Invalid index 2 for a list with 1 elements for `includes()`.'
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.includes(null, null, -2)
+		$expected: 'ERROR: $start-at: Invalid index -2 for a list with 1 elements for `includes()`.'
+		@include true.assert-equal($assert, $expected, '[-2]')

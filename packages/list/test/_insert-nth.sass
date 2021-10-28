@@ -1,0 +1,53 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@include true.describe('@function list.insert-nth')
+	$list: ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+	@include true.it('Insert an item at a positive (+) index')
+		$assert: src.insert-nth($list, 2, 'deer')
+		$expected: ['ant', 'deer', 'bison', 'camel', 'duck', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Insert an item at a negative (-) index')
+		$assert: src.insert-nth($list, -2, 'deer')
+		$expected: ['ant', 'bison', 'camel', 'deer', 'duck', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Insert a list')
+		$assert: src.insert-nth($list, 3, (1 2 3))
+		$expected: ['ant', 'bison', (1 2 3), 'camel', 'duck', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Return a list with a different separator')
+		$assert: src.insert-nth($list, 2, 'deer', $separator: space)
+		$expected: ['ant' 'deer' 'bison' 'camel' 'duck' 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $index is not a number')
+		$assert: src.insert-nth(null, null, null)
+		$expected: 'ERROR: $index: `null` is not a number for `insert-nth()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $index index is zero')
+		$assert: src.insert-nth(null, 0, null)
+		$expected: 'ERROR: $index: List index may not be 0 for `insert-nth()`.'
+		@include true.assert-equal($assert, $expected, '[0]')
+
+	@include true.it('Throws when $index index is invalid for length')
+		$assert: src.insert-nth(null, 2, null)
+		$expected: 'ERROR: $index: Invalid index 2 for a list with 1 elements for `insert-nth()`.'
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.insert-nth(null, -2, null)
+		$expected: 'ERROR: $index: Invalid index -2 for a list with 1 elements for `insert-nth()`.'
+		@include true.assert-equal($assert, $expected, '[-2]')
+
+	@include true.it('Throws when $separator is invalid')
+		$assert: src.insert-nth(null, 1, null, null)
+		$expected: 'ERROR: $separator: Must be "space", "comma", "slash", or "auto" for `insert-nth()`.'
+		@include true.assert-equal($assert, $expected)

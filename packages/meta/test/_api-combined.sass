@@ -1,0 +1,23 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/meta/meta' as combined
+@use 'sass:meta' as native
+@use 'sass:map'
+@use 'sass:meta'
+@use 'true'
+
+
+@include true.describe('@sass-fairy/meta Combined API')
+
+	$combined-functions: meta.module-functions('combined')
+	$native-functions: meta.module-functions('native')
+
+	@include true.it('Has access to native meta.call() as module function')
+		$combine: map.get($combined-functions, 'call')
+		$native: map.get($native-functions, 'call')
+		@include true.assert-equal($combine, $native)
+
+	@include true.it("Has access to library's src.call-or-reference() as module function")
+		$assert: map.has-key($combined-functions, 'call-or-reference')
+		@include true.assert-true($assert)

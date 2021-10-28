@@ -1,0 +1,23 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:color'
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @throw `#{$color}` is not a color.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+/// @example for website/docs/api/exception/parameter-type.mdx
+///
+@function is-dark($color)
+
+	@if meta.type-of($color) != 'color'
+		@error parameter-type.parameter-type('is-dark', 'color', $color, 'color')
+
+	@return math.div(color.red($color) * 299 + color.green($color) * 587 + color.blue($color) * 114, 1000) < 128

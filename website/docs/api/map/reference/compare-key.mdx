@@ -1,0 +1,25 @@
+---
+title: compare-key ()
+hide_title: true
+hide_table_of_contents: true
+---
+import CompareLogicCallout from '@site/src/components/CompareLogicCallout.mdx';
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/map/Spec';
+
+<DocPage fieldName="compare-key" fieldType="function" spec={Spec}><CompareLogicCallout /></DocPage>
+
+```scss
+@use '@sass-fairy/list';
+@use '@sass-fairy/map';
+
+// 1. As a call
+@debug map.compare-key(b 8em, f 10mm);
+  // -4
+
+// 2. As a reference
+$map: (b: 8em, f: 10mm, d: a, a: 3, c: 1cm, e: 2mm);
+
+@debug list.sort($map, map.compare-key());
+  // a 3, b 8em, c 1cm, d a, e 2mm, f 10mm
+```

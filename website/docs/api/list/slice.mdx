@@ -1,0 +1,24 @@
+---
+title: slice ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="slice" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+$list: 'ant', 'bison', 'camel', 'bison', 'duck', 'elephant';
+
+@debug list.slice($list, 3);
+  // 'camel', 'bison', 'duck', 'elephant'
+
+@debug list.slice($list, 3, 5);
+  // 'camel', 'bison', 'duck'
+
+@debug list.slice($list, -3);
+  // 'bison', 'duck', 'elephant'
+```

@@ -1,0 +1,17 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/map/src/to-string'
+
+
+///
+/// Returns a string representing the specified breakpoint.
+///
+/// @param {Map} $list - The breakpoint from which to generate a string.
+/// @return {String}
+///
+/// @access private
+/// @require to-string.to-string
+///
+@function to-string($breakpoint)
+	@return '(' + to-string.to-string($breakpoint) + ')'

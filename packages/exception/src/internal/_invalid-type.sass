@@ -1,0 +1,33 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use 'sass:string'
+@use '../core/join'
+
+
+///
+/// Returns a string stating the specified value is invalid for the given types.
+///
+/// @param {List} $types - The types which are expected.
+/// @param {*} $value - The value which was received.
+/// @param {String} $additional-message - The additional message which describes the issue.
+/// @return {String}
+///
+/// @access private
+/// @require join.join
+///
+@function invalid-type($types, $value, $additional-message: null)
+	$length: list.length($types)
+
+	@if $length > 1
+		$types: list.set-nth($types, $length, 'or #{list.nth($types, $length)}')
+
+	$types: join.join($types, if($length > 2, ', ', ' '))
+	$message: '`#{meta.inspect($value)}` is not a #{string.unquote($types)}'
+
+	@if $additional-message
+		$message: '#{$message}. #{string.unquote($additional-message)}'
+
+	@return $message

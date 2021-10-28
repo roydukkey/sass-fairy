@@ -1,0 +1,166 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/break' as src
+@use 'true'
+
+
+@include true.describe('@function break.in-between')
+
+	@include true.it('Returns a media query rule for the given names')
+		$assert: src.in-between('md', 'xl')
+		$expected: '(min-width: 768px) and (max-width: 1199.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for the given sizes')
+		$assert: src.in-between(80px, 90px)
+		$expected: '(min-width: 80px) and (max-width: 89.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for smallest and largest breakpoints')
+		$assert: src.in-between(list.nth(src.$horizontal-names, 1), list.nth(src.$horizontal-names, -1))
+		$expected: '(min-width: 0) and (max-width: 1399.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when given values are neither a string or number')
+		$assert: src.in-between(false, 'xs')
+		$expected: 'ERROR: $first-breakpoint: `false` is not a string or number for `in-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+		$assert: src.in-between('xs', false)
+		$expected: 'ERROR: $second-breakpoint: `false` is not a string or number for `in-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when no breakpoint exists for the given name')
+		$assert: src.in-between('very-large', 'sm')
+		$expected: 'ERROR: $first-breakpoint: No breakpoint exists by the name `"very-large"` for `in-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+		$assert: src.in-between('sm', 'very-large')
+		$expected: 'ERROR: $second-breakpoint: No breakpoint exists by the name `"very-large"` for `in-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when first breakpoint is not smaller than second breakpoint')
+		$assert: src.in-between('lg', 'xs')
+		$expected: 'ERROR: $first-breakpoint, $second-breakpoint: First breakpoint must be smaller than second breakpoint for `in-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Can be used in a media query')
+		@include true.assert
+
+			@include true.output
+				@media #{src.in-between('sm', lg)} and #{src.in-between(100px, 150px)}
+					body
+						color: red
+
+			@include true.expect
+				@media (min-width: 576px) and (max-width: 991.98px) and (min-width: 100px) and (max-width: 149.98px)
+					body
+						color: red
+
+
+@include true.describe('@mixin break.in-between')
+
+	@include true.it('Creates media query for the given names')
+		@include true.assert
+
+			@include true.output
+				@include src.in-between('sm', 'lg')
+					body
+						color: green
+
+			@include true.expect
+				@media (min-width: 576px) and (max-width: 991.98px)
+					body
+						color: green
+
+	@include true.it('Creates media query for the given sizes')
+		@include true.assert
+
+			@include true.output
+				@include src.in-between(50vh, 55vh)
+					body
+						color: blue
+
+			@include true.expect
+				@media (min-width: 50vh) and (max-width: 54.98vh)
+					body
+						color: blue
+
+	@include true.it('Does not create media query for the smallest size')
+		@include true.assert
+
+			@include true.output
+				@include src.in-between(list.nth(src.$horizontal-names, 1), md)
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-width: 767.98px)
+					body
+						color: blue
+
+	@include true.it('Does not create media query for the largest size')
+		@include true.assert
+
+			@include true.output
+				@include src.in-between(md, list.nth(src.$horizontal-names, -1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (min-width: 768px)
+					body
+						color: blue
+
+	@include true.it('Does not create media query for the smallest and largest sizes')
+		@include true.assert
+
+			@include true.output
+				@include src.in-between(list.nth(src.$horizontal-names, 1), list.nth(src.$horizontal-names, -1))
+					body
+						color: blue
+
+			@include true.expect
+				body
+					color: blue
+
+	@include true.it('Does not create media query for the given size equal to the smallest size')
+		@include true.assert
+
+			@include true.output
+				@include src.in-between(list.nth(src.$horizontal-values, 1), md)
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-width: 767.98px)
+					body
+						color: blue
+
+	@include true.it('Does create media query for the given size equal to the largest size')
+		@include true.assert
+
+			@include true.output
+				@include src.in-between(md, list.nth(src.$horizontal-values, -1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (min-width: 768px) and (max-width: 1399.98px)
+					body
+						color: blue
+
+	@include true.it('Does create media query for the given sizes equal to the smallest and largest sizes')
+		@include true.assert
+
+			@include true.output
+				@include src.in-between(list.nth(src.$horizontal-values, 1), list.nth(src.$horizontal-values, -1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-width: 1399.98px)
+					body
+						color: blue

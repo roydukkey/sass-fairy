@@ -1,0 +1,43 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/separator'
+@use 'map'
+
+
+///
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require _replace-transformer
+/// @require is-separator-invalid.is-separator-invalid
+/// @require map.map
+/// @require separator.separator
+///
+@function replace($list, $value, $replacement, $separator: auto)
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('replace')
+
+	@if $value == $replacement and ($separator != auto or $separator == list.separator($list))
+		@return $list
+
+	@return map.map($list, meta.get-function('_replace-transformer'), $value, $replacement, $separator: $separator, $bracketed: auto)
+
+
+///
+/// Used to compare two list values for equality, returning the replacement when true, otherwise returning the original value.
+///
+/// @param {*} $item - The current item being processed in the list.
+/// @param {Number} $index - The index of the current item being processed in the list.
+/// @param {List} $list - The list being processed.
+/// @param {*} $value - The value to be replace by the replacement.
+/// @param {*} $replacement - The value that replaces the specified value.
+/// @return {*}
+///
+/// @access private
+///
+@function _replace-transformer($item, $index, $list, $value, $replacement)
+	@return if($item == $value, $replacement, $item)

@@ -1,0 +1,65 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:map'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/variable'
+@use '@sass-fairy/exception/src/variable-type'
+@use '@sass-fairy/list/src/sort'
+@use '@sass-fairy/map/src/from'
+@use '@sass-fairy/map/src/compare/numeric-value'
+
+
+///
+/// Ensures sizes are provided as a map and the smallest size is zero, sorting its values as numbers in ascending order.
+///
+/// @param {Map} $sizes - The name of the function or mixin validating a breakpoint.
+/// @return {Map | String} - A map is returned when the given sizes is valid; otherwise, a string contain an error message.
+///
+/// @access private
+/// @require compare
+/// @require from.from
+/// @require sort.sort
+/// @require variable.variable
+/// @require variable-type.variable-type
+///
+@function validate-sizes($sizes)
+
+	@if meta.type-of($sizes) != 'map'
+		@return variable-type.variable-type('sizes', $sizes, 'map')
+
+	$sizes: from.from(sort.sort($sizes, meta.get-function('compare'))...)
+
+	$smallest: list.nth(map.values($sizes), 1)
+
+	@if $smallest < 0 or $smallest > 0
+		@return variable.variable('The smallest breakpoint must be equal to zero, but is `#{$smallest}`', 'sizes')
+
+	@return $sizes
+
+
+///
+/// Used to compare two key/value pairs' values as numbers in ascending order. All non-numeric items are shifted right.
+///
+/// @param {*} $first-pair - The key/value pair for the comparison.
+/// @param {*} $second-pair - The key/value pair for the comparison.
+/// @param {Number} $center - The value indicating the center (zero) position between positive and negative values.
+/// @return {Number}
+///
+/// @access private
+/// @require numeric-value.numeric-value
+/// @require variable-type.variable-type
+///
+@function compare($first-pair, $second-pair, $center)
+	$first-value: if(list.length($first-pair) < 2, null, list.nth($first-pair, 2))
+
+	@if meta.type-of($first-value) != 'number'
+		@error variable-type.variable-type('sizes', $first-value, 'number', $message: 'Invalid breakpoint value')
+
+	$second-value: if(list.length($second-pair) < 2, null, list.nth($second-pair, 2))
+
+	@if meta.type-of($second-value) != 'number'
+		@error variable-type.variable-type('sizes', $second-value, 'number', $message: 'Invalid breakpoint value')
+
+	@return numeric-value.numeric-value($first-pair, $second-pair, $center)

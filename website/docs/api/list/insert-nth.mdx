@@ -1,0 +1,18 @@
+---
+title: insert-nth ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="insert-nth" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+$list: 'ant', 'bison', 'camel', 'bison', 'duck', 'elephant';
+
+@debug list.insert-nth($list, 2, 'deer');
+  // 'ant', 'deer', 'bison', 'camel', 'bison', 'duck', 'elephant'
+```

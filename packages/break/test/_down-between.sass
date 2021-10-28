@@ -1,0 +1,166 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/break' as src
+@use 'true'
+
+
+@include true.describe('@function break.down-between')
+
+	@include true.it('Returns a media query rule for the given names')
+		$assert: src.down-between('md', 'xl')
+		$expected: '(min-height: 756px) and (max-height: 1039.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for the given sizes')
+		$assert: src.down-between(80px, 90px)
+		$expected: '(min-height: 80px) and (max-height: 89.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a media query rule for smallest and largest breakpoints')
+		$assert: src.down-between(list.nth(src.$vertical-names, 1), list.nth(src.$vertical-names, -1))
+		$expected: '(min-height: 0) and (max-height: 2099.98px)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when given values are neither a string or number')
+		$assert: src.down-between(false, 'xs')
+		$expected: 'ERROR: $first-breakpoint: `false` is not a string or number for `down-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+		$assert: src.down-between('xs', false)
+		$expected: 'ERROR: $second-breakpoint: `false` is not a string or number for `down-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when no breakpoint exists for the given name')
+		$assert: src.down-between('very-large', 'sm')
+		$expected: 'ERROR: $first-breakpoint: No breakpoint exists by the name `"very-large"` for `down-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+		$assert: src.down-between('sm', 'very-large')
+		$expected: 'ERROR: $second-breakpoint: No breakpoint exists by the name `"very-large"` for `down-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when first breakpoint is not smaller than second breakpoint')
+		$assert: src.down-between('lg', 'xs')
+		$expected: 'ERROR: $first-breakpoint, $second-breakpoint: First breakpoint must be smaller than second breakpoint for `down-between()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Can be used in a media query')
+		@include true.assert
+
+			@include true.output
+				@media #{src.down-between('sm', lg)} and #{src.down-between(100px, 150px)}
+					body
+						color: red
+
+			@include true.expect
+				@media (min-height: 678px) and (max-height: 928.98px) and (min-height: 100px) and (max-height: 149.98px)
+					body
+						color: red
+
+
+@include true.describe('@mixin break.down-between')
+
+	@include true.it('Creates media query for the given names')
+		@include true.assert
+
+			@include true.output
+				@include src.down-between('sm', 'lg')
+					body
+						color: green
+
+			@include true.expect
+				@media (min-height: 678px) and (max-height: 928.98px)
+					body
+						color: green
+
+	@include true.it('Creates media query for the given sizes')
+		@include true.assert
+
+			@include true.output
+				@include src.down-between(50vh, 55vh)
+					body
+						color: blue
+
+			@include true.expect
+				@media (min-height: 50vh) and (max-height: 54.98vh)
+					body
+						color: blue
+
+	@include true.it('Does not create media query for the smallest size')
+		@include true.assert
+
+			@include true.output
+				@include src.down-between(list.nth(src.$vertical-names, 1), md)
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-height: 755.98px)
+					body
+						color: blue
+
+	@include true.it('Does not create media query for the largest size')
+		@include true.assert
+
+			@include true.output
+				@include src.down-between(md, list.nth(src.$vertical-names, -1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (min-height: 756px)
+					body
+						color: blue
+
+	@include true.it('Does not create media query for the smallest and largest sizes')
+		@include true.assert
+
+			@include true.output
+				@include src.down-between(list.nth(src.$vertical-names, 1), list.nth(src.$vertical-names, -1))
+					body
+						color: blue
+
+			@include true.expect
+				body
+					color: blue
+
+	@include true.it('Does not create media query for the given size equal to the smallest size')
+		@include true.assert
+
+			@include true.output
+				@include src.down-between(list.nth(src.$vertical-values, 1), md)
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-height: 755.98px)
+					body
+						color: blue
+
+	@include true.it('Does create media query for the given size equal to the largest size')
+		@include true.assert
+
+			@include true.output
+				@include src.down-between(md, list.nth(src.$vertical-values, -1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (min-height: 756px) and (max-height: 2099.98px)
+					body
+						color: blue
+
+	@include true.it('Does create media query for the given sizes equal to the smallest and largest sizes')
+		@include true.assert
+
+			@include true.output
+				@include src.down-between(list.nth(src.$vertical-values, 1), list.nth(src.$vertical-values, -1))
+					body
+						color: blue
+
+			@include true.expect
+				@media (max-height: 2099.98px)
+					body
+						color: blue

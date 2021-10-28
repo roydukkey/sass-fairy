@@ -1,0 +1,40 @@
+---
+title: in ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/break/Spec';
+
+<DocPage fieldName="in" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/break';
+
+// 1. As a function
+@debug break.in('md');
+  // '(max-width: 767.98px)'
+
+@debug break.in(800px);
+  // '(max-width: 799.89px)'
+
+// 2. As a mixin
+body {
+  padding: 2rem;
+
+  @include break.in('md') {
+    padding: 1rem;
+  }
+
+  @include break.in(800px) {
+    padding: 1rem;
+  }
+}
+  // body { padding: 2rem }
+  // @media (max-width: 767.98px) {
+  //   body { padding: 1rem }
+  // }
+  // @media (max-width: 799.98px) {
+  //   body { padding: 1rem }
+  // }
+```

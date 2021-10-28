@@ -1,0 +1,63 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use 'in-between'
+@use 'horizontal-sizes' as sizes
+@use 'out'
+@use 'internal/next'
+@use 'internal/validate-breakpoint'
+
+
+///
+/// @throw `#{$breakpoint}` is not a string.
+/// @throw No breakpoint exists by the name `#{$breakpoint}`.
+///
+/// @access public
+/// @require in-between.in-between
+/// @require next.next
+/// @require validate-breakpoint.validate-breakpoint
+/// @require out.out
+/// @require sizes.$names
+///
+@function in-only($breakpoint)
+	$first: validate-breakpoint.validate-breakpoint('in-only', 'breakpoint', $breakpoint, 'min-width', $must-be-name: true)
+
+	@if meta.type-of($first) != 'map'
+		@error $first
+
+	$second: next.next(sizes.$names, $breakpoint, 'min-width')
+
+	@if $second
+		@return in-between.in-between($breakpoint, $second)
+
+	@return out.out($breakpoint)
+
+
+///
+/// @throw `#{$breakpoint}` is not a string.
+/// @throw No breakpoint exists by the name `#{$breakpoint}`.
+///
+/// @access public
+/// @require in-between.in-between
+/// @require next.next
+/// @require validate-breakpoint.validate-breakpoint
+/// @require out.out
+/// @require sizes.$names
+///
+@mixin in-only($breakpoint)
+	$first: validate-breakpoint.validate-breakpoint('in-only', 'breakpoint', $breakpoint, 'min-width', true, true)
+
+	@if $first and meta.type-of($first) != 'map'
+		// true:cannot-test
+		@error $first
+
+	$second: next.next(sizes.$names, $breakpoint, 'min-width')
+
+	@if $second
+		@include in-between.in-between($breakpoint, $second)
+			@content
+
+	@else
+		@include out.out($breakpoint)
+			@content

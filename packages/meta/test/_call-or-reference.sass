@@ -1,0 +1,30 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/meta' as src
+@use 'true'
+
+
+@function _add($a, $b)
+	@return $a + $b
+
+
+@include true.describe('@function meta.call-or-reference')
+
+	$reference: meta.get-function('_add')
+
+	@include true.it('Returns the product of the function call')
+		$assert: src.call-or-reference($reference, 13, 7)
+		$expected: 20
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns the function reference')
+		$assert: src.call-or-reference($reference)
+		$expected: $reference
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $function is not a function')
+		$assert: src.call-or-reference(null)
+		$expected: 'ERROR: $function: `null` is not a function for `call-or-reference()`.'
+		@include true.assert-equal($assert, $expected)

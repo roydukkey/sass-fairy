@@ -1,0 +1,91 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/core/from' as src
+@use 'true'
+
+
+@function arglist($args...)
+	$keywords: meta.keywords($args)
+	@return $args
+
+
+@include true.describe('@function core.from')
+
+	@include true.it('Creates string from a null')
+		$assert: src.from(null)
+		$expected: ''
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Creates string from a string')
+		$assert: src.from('a b c')
+		$expected: 'a b c'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Creates string from a number')
+		$assert: src.from(01234567890)
+		$expected: '1234567890'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Creates string from a color')
+		$assert: src.from(rgba(127, 255, 34, 1))
+		$expected: '#7fff22'
+		@include true.assert-equal($assert, $expected, '[rgba(127, 255, 34, 1)]')
+
+		$assert: src.from(rgba(127, 255, 34, 0.5))
+		$expected: 'rgba(127, 255, 34, 0.5)'
+		@include true.assert-equal($assert, $expected, '[rgba(127, 255, 34, 0.5)]')
+
+	@include true.it('Creates string from a boolean')
+		$assert: src.from(true)
+		$expected: 'true'
+		@include true.assert-equal($assert, $expected, '[true]')
+
+		$assert: src.from(false)
+		$expected: 'false'
+		@include true.assert-equal($assert, $expected, '[false]')
+
+	@include true.it('Creates string from a function')
+		$assert: src.from(meta.get-function('empty', 'src'))
+		$expected: 'empty()'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Creates string from a list')
+		$assert: src.from(["a" 1 b 2 'c' 3])
+		$expected: '[a 1 b 2 c 3]'
+		@include true.assert-equal($assert, $expected, '[space, bracketed]')
+
+		$assert: src.from(("a", 1, b, 2, 'c', 3))
+		$expected: '(a, 1, b, 2, c, 3)'
+		@include true.assert-equal($assert, $expected, '[comma, unbracketed]')
+
+		$assert: src.from(list.slash("a", 1, b, 2, 'c', 3))
+		$expected: '(a / 1 / b / 2 / c / 3)'
+		@include true.assert-equal($assert, $expected, '[slash, unbracketed]')
+
+	@include true.it('Creates string from a map')
+		$assert: src.from((false: true, a: 1, null: null, b: 2, 3: c, true: false))
+		$expected: '{false: true; a: 1; : ; b: 2; 3: c; true: false}'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Creates string from an arglist')
+		$assert: src.from(arglist(a, 1, b, 2, c, 3, $new: 'okay', $separator: 'comma'))
+		$expected: '(a, 1, b, 2, c, 3, new: okay, separator: comma)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Creates string from a list of lists')
+		$level-4-arglist: arglist(a, 1, b, 2, c, 3, $separator: 'comma', $new: 'okay')
+		$level-3-colors: rgba(127, 255, 34, 1), rgba(127, 255, 34, 0.5)
+		$level-3-list: meta.get-function('from', 'src') $level-4-arglist
+		$level-2-function: meta.get-function('empty', 'src')
+		$level-2-list: [true $level-3-list false null]
+		$level-2-map: (a: 1, 2: b, colors: $level-3-colors, c: 3)
+		$level-1: (1 2 $level-2-function 3 $level-2-list 4 5 $level-2-map 7)
+
+		$assert: src.from($level-1)
+		$expected: '(1 2 empty() 3 [true (from() (a, 1, b, 2, c, 3, separator: comma, new: okay)) false ] 4 5 {a: 1; 2: b; colors: (#7fff22, rgba(127, 255, 34, 0.5)); c: 3} 7)'
+		@include true.assert-equal($assert, $expected)
+
+

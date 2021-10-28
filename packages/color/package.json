@@ -1,0 +1,22 @@
+{
+	"name": "@sass-fairy/color",
+	"description": "Provides extended functionality for generating new colors from an existing colors and building color themes in Sass",
+	"version": "1.0.0",
+	"keywords": [
+		"color",
+		"a11y",
+		"contrast"
+	],
+	"main": "./index.sass",
+	"dependencies": {
+		"@sass-fairy/exception": "^1.0.0"
+	},
+	"scripts": {
+		"prepack": "clean-package --config $npm_package_config_clean_package",
+		"new:pack": "yarn pack && clean-package restore --config $npm_package_config_clean_package",
+		"new:publish": "yarn publish && clean-package restore --config $npm_package_config_clean_package"
+	},
+	"config": {
+		"clean-package": "../../clean-package.config.js"
+	}
+}

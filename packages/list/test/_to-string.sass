@@ -1,0 +1,60 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@function arglist($args...)
+	$keywords: meta.keywords($args)
+	@return $args
+
+
+@include true.describe('@function list.to-string')
+
+	@include true.it('Return the space-delimited representation of a list')
+		$assert: src.to-string([10px 20px 'a'])
+		$expected: '10px 20px a'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Return the comma-delimited representation of a list')
+		$assert: src.to-string([10px, 20px, 'a'])
+		$expected: '10px, 20px, a'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Return the slash-delimited representation of a list')
+		$assert: src.to-string(list.slash(10px, 20px, 'a'))
+		$expected: '10px / 20px / a'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Return the comma-delimited representation of a list with a null value')
+		$assert: src.to-string([10px, 20px, null, 'a'])
+		$expected: '10px, 20px, , a'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Nested lists are not flattened')
+		$assert: src.to-string([10px 20px (true, null, 'a')])
+		$expected: '10px 20px (true, , a)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Including nested map')
+		$assert: src.to-string([10px 20px (a: 1, 2: b)])
+		$expected: '10px 20px {a: 1; 2: b}'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns the representation of a arglist without keywords')
+		$assert: src.to-string(arglist(a, 1, b, 2, c, 3, $new: 'okay', $separator: 'comma'))
+		$expected: 'a, 1, b, 2, c, 3'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns the representation of a map')
+		$assert: src.to-string((false: true, a: 1, null: null, b: 2, 3: c, true: false))
+		$expected: '(false true), (a 1), ( ), (b 2), (3 c), (true false)'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when not a list, map, or arglist')
+		$assert: src.to-string(10px)
+		$expected: 'ERROR: $list: `10px` is not a list, map, or arglist for `to-string()`.'
+		@include true.assert-equal($assert, $expected)

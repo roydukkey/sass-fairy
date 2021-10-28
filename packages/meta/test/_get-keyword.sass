@@ -1,0 +1,39 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/meta' as src
+@use 'true'
+
+
+@function _concat($values...)
+	$separator: src.get-keyword($values, 'separator', auto)
+	@return $separator
+
+
+@function _error-name-not-string($values...)
+	$separator: src.get-keyword($values, null)
+	@return $separator
+
+
+@include true.describe('@function meta.get-keyword')
+
+	@include true.it('Gets the named parameter from an argument list')
+		$assert: _concat(1, 2, 3, $separator: comma)
+		$expected: comma
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Provides the default value when the named parameter is not provided')
+		$assert: _concat(1, 2, 3)
+		$expected: auto
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $values is not an argument list')
+		$assert: src.get-keyword(null, null)
+		$expected: 'ERROR: $args: `null` is not a arglist for `get-keyword()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $name is not a string')
+		$assert: _error-name-not-string(null)
+		$expected: 'ERROR: $name: `null` is not a string for `get-keyword()`.'
+		@include true.assert-equal($assert, $expected)

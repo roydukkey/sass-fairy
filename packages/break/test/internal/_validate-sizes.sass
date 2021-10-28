@@ -1,0 +1,26 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/break/src/internal/validate-sizes' as internal
+@use 'true'
+
+
+@include true.describe('@function break.internal.compare')
+
+	@include true.it('Throws with first pair is not a number')
+		$assert: internal.compare(null, null, 0)
+		$expected: 'ERROR: $sizes: `null` is not a number. Invalid breakpoint value.'
+		@include true.assert-equal($assert, $expected, '[null, null]')
+
+		$assert: internal.compare(a b, null, 0)
+		$expected: 'ERROR: $sizes: `b` is not a number. Invalid breakpoint value.'
+		@include true.assert-equal($assert, $expected, '[a b, null]')
+
+	@include true.it('Throws with second pair is not a number')
+		$assert: internal.compare(a 1, null, 0)
+		$expected: 'ERROR: $sizes: `null` is not a number. Invalid breakpoint value.'
+		@include true.assert-equal($assert, $expected, '[a 1, null]')
+
+		$assert: internal.compare(a 1, c 'd', 0)
+		$expected: 'ERROR: $sizes: `"d"` is not a number. Invalid breakpoint value.'
+		@include true.assert-equal($assert, $expected, '[a 1, c "d"]')

@@ -1,0 +1,94 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.split')
+
+	$string: 'The quick brown fox jumps over the lazy dog.'
+	$expected-delimiter-empty: 'T' 'h' 'e' ' ' 'q' 'u' 'i' 'c' 'k' ' ' 'b' 'r' 'o' 'w' 'n' ' ' 'f' 'o' 'x' ' ' 'j' 'u' 'm' 'p' 's' ' ' 'o' 'v' 'e' 'r' ' ' 't' 'h' 'e' ' ' 'l' 'a' 'z' 'y' ' ' 'd' 'o' 'g' '.'
+	$expected-delimiter-space: 'The' 'quick' 'brown' 'fox' 'jumps' 'over' 'the' 'lazy' 'dog.'
+
+	@include true.it('Returns original string as list when delimiter is null')
+		$assert: src.split($string)
+		$expected: list.append((), 'The quick brown fox jumps over the lazy dog.')
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a list when delimiter is multiple characters')
+		$assert: src.split('Using an active voice in simple past, present, or future tense will reduce sentence length, speed your reader along and create more variety in your verbs.', 'en')
+		// cSpell:disable-next-line
+		$expected: 'Using an active voice in simple past, pres' 'nt, or future t' 'nse will reduce s' 'nt' 'nce l' 'ngth, speed your reader along and create more variety in your verbs.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns all characters as list when delimiter is empty string')
+		$assert: src.split($string, '')
+		$expected: $expected-delimiter-empty
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns all words as list when delimiter is space')
+		$assert: src.split($string, ' ')
+		$expected: $expected-delimiter-space
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a limited list when delimiter is empty string')
+		$assert: src.split($string, '', 1)
+		$expected: list.append((), 'T')
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.split($string, '', 2)
+		$expected: 'T' 'h'
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.split($string, '', list.length($expected-delimiter-empty))
+		$expected: $expected-delimiter-empty
+		@include true.assert-equal($assert, $expected, '[list.length]')
+
+	@include true.it('Returns a limited list when delimiter is space')
+		$assert: src.split($string, ' ', 1)
+		$expected: list.append((), 'The')
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.split($string, ' ', 2)
+		$expected: 'The' 'quick'
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.split($string, ' ', list.length($expected-delimiter-space))
+		$expected: $expected-delimiter-space
+		@include true.assert-equal($assert, $expected, '[list.length]')
+
+	@include true.it('Returns an empty list when limit is zero')
+		$assert: src.split($string, $limit: 0)
+		$expected: list.join((), ())
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns an entire list when limit is negative (-)')
+		$assert: src.split($string, '', -10)
+		$expected: $expected-delimiter-empty
+		@include true.assert-equal($assert, $expected, '[empty]')
+
+		$assert: src.split($string, ' ', -10)
+		$expected: $expected-delimiter-space
+		@include true.assert-equal($assert, $expected, '[space]')
+
+	@include true.it('Throws when $string is not a string')
+		$assert: src.split(10)
+		$expected: 'ERROR: $string: `10` is not a string for `split()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $delimiter is not a string or null')
+		$assert: src.split(' ', 10)
+		$expected: 'ERROR: $delimiter: `10` is not a string or null for `split()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $limit is not a number or null')
+		$assert: src.split(' ', '', 'fruit')
+		$expected: 'ERROR: $limit: `"fruit"` is not a number or null for `split()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $separator is invalid')
+		$assert: src.split(' ', $separator: null)
+		$expected: 'ERROR: $separator: Must be "space", "comma", "slash", or "auto" for `split()`.'
+		@include true.assert-equal($assert, $expected)

@@ -1,0 +1,43 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/separator'
+@use '@sass-fairy/exception/src/validate-index'
+@use 'slice'
+
+
+///
+/// @throw `#{$index}` is not a number.
+/// @throw List index may not be 0.
+/// @throw Invalid index #{$index} for a list with #{length} elements.
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require is-separator-invalid.is-separator-invalid
+/// @require separator.separator
+/// @require slice.slice
+/// @require validate-index.validate-index
+///
+@function remove-nth($list, $index, $separator: auto)
+	$index: validate-index.validate-index('remove-nth', 'index', $index, $list)
+
+	@if meta.type-of($index) != 'number'
+		@error $index
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('remove-nth')
+
+	@if $index == 1
+		@return slice.slice($list, $index + 1)
+
+	$length: list.length($list)
+
+	@if $index == $length
+		@return slice.slice($list, 1, $length - 1)
+
+	@return list.join(slice.slice($list, 1, $index - 1), slice.slice($list, $index + 1), $separator)
+
+

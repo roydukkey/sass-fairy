@@ -1,0 +1,53 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.starts-with')
+
+	// cSpell:disable-next-line
+	$string: 'abcdefgabcdefg'
+
+	@include true.it('Does start with substring')
+		$assert: src.starts-with($string, 'abc')
+		@include true.assert-true($assert)
+
+	@include true.it('Does start with substring at a positive (+) index')
+		$assert: src.starts-with($string, 'bcd', 2)
+		@include true.assert-true($assert)
+
+	@include true.it('Does start with substring at a negative (-) index')
+		$assert: src.starts-with($string, 'bcd', -13)
+		@include true.assert-true($assert)
+
+		$assert: src.starts-with($string, 'bcd', -6)
+		@include true.assert-true($assert)
+
+	@include true.it('Does not start with substring')
+		$assert: src.starts-with($string, 'bcd')
+		@include true.assert-false($assert)
+
+	@include true.it('Does not start with substring at a positive (+) index')
+		$assert: src.starts-with($string, 'bcd', 3)
+		@include true.assert-false($assert)
+
+	@include true.it('Does not start with substring at a negative (-) index')
+		$assert: src.starts-with($string, 'bcd', -3)
+		@include true.assert-false($assert)
+
+	@include true.it('Throws when $string is not a string')
+		$assert: src.starts-with(12345, 'a')
+		$expected: 'ERROR: $string: `12345` is not a string for `starts-with()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $substring is not a string')
+		$assert: src.starts-with('a', 12345)
+		$expected: 'ERROR: $substring: `12345` is not a string for `starts-with()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $start-at is not a number')
+		$assert: src.starts-with($string, 'a', 'x')
+		$expected: 'ERROR: $start-at: `"x"` is not a number for `starts-with()`.'
+		@include true.assert-equal($assert, $expected)

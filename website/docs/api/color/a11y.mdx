@@ -1,0 +1,22 @@
+---
+title: a11y ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/color/Spec';
+
+<DocPage fieldName="a11y" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/color';
+
+@debug color.a11y(red, blue);
+  // #ffa3a3
+
+@debug color.a11y(red, blue, 'large');
+  // #ff6666
+
+@debug color.a11y(red, blue, $level: 'AAA');
+  // #ffe1e1
+```

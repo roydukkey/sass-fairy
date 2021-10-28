@@ -1,0 +1,20 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/map/map'
+@use 'sass:map' as native-map
+@use 'sass:meta'
+@use 'true'
+
+
+@include true.describe('@sass-fairy/map Combined API')
+
+	$module-functions: meta.module-functions('map')
+
+	@include true.it('Has access to native map.get() as module function')
+		$assert: native-map.has-key($module-functions, 'get')
+		@include true.assert-true($assert, '[get]')
+
+	@include true.it("Has access to library's src.empty() as module function")
+		$assert: native-map.has-key($module-functions, 'empty')
+		@include true.assert-true($assert, '[empty]')

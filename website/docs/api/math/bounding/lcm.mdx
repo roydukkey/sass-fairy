@@ -1,0 +1,19 @@
+---
+title: lcm ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/math/Spec';
+
+<DocPage fieldName="lcm" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/math';
+
+@debug math.lcm(12, 15, 10, 75);
+  // 300
+
+@debug math.lcm(12, 15, 52, 75);
+  // 3900
+```

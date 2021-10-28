@@ -1,0 +1,18 @@
+---
+title: remove ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="remove" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+$list: 'ant', 'bison', 'camel', 'bison', 'duck', 'elephant';
+
+@debug list.remove($list, 'bison');
+  // 'ant', 'camel', 'duck', 'elephant'
+```

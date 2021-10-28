@@ -1,0 +1,19 @@
+---
+title: parameter-type ()
+hide_title: true
+hide_table_of_contents: true
+---
+import CodeBlock from '@theme/CodeBlock';
+import DocPage from '@site/src/components/DocPage';
+import Example from '!!raw-loader!@sass-fairy/color/src/_is-dark.sass';
+import Spec from '@site/docs/api/exception/Spec';
+
+<DocPage fieldName="parameter-type" fieldType="function" spec={Spec} />
+
+export const highlight = [
+  ['.parameter-type(']
+];
+
+<CodeBlock className="language-scss" title="@sass-fairy/color/src/_is-dark.sass" highlightKeywords={highlight} stripSassDocs rewriteFairyUses>
+  {Example}
+</CodeBlock>

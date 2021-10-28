@@ -1,0 +1,132 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@include true.describe('@function list.slice')
+	$list: ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+	@include true.it('Extract a list from a positive (+) beginning index')
+		$assert: src.slice($list, 2)
+		$expected: ['bison', 'camel', 'duck', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Extract a list from a negative (-) beginning index')
+		$assert: src.slice($list, -2)
+		$expected: ['duck', 'elephant']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Extract a list from a positive (+) beginning and ending indexes')
+		$assert: src.slice($list, 3, 4)
+		$expected: ['camel', 'duck']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Extract a list from a negative (-) beginning and positive (+) ending indexes')
+		$assert: src.slice($list, -4, 4)
+		$expected: ['bison', 'camel', 'duck']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Extract a list from a positive (+) beginning and negative (-) ending indexes')
+		$assert: src.slice($list, 2, -2)
+		$expected: ['bison', 'camel', 'duck']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Extract a list from a negative (-) beginning and ending indexes')
+		$assert: src.slice($list, -4, -2)
+		$expected: ['bison', 'camel', 'duck']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Extract the first element from a list')
+		$assert: src.slice($list, 1, 1)
+		$expected: ['ant',]
+		@include true.assert-equal($assert, $expected, '[1, 1]')
+
+		$assert: src.slice($list, 1, -5)
+		@include true.assert-equal($assert, $expected, '[1, -5]')
+
+		$assert: src.slice($list, -5, 1)
+		@include true.assert-equal($assert, $expected, '[-5, 1]')
+
+		$assert: src.slice($list, -5, -5)
+		@include true.assert-equal($assert, $expected, '[-5, -5]')
+
+	@include true.it('Extract the last element from a list')
+		$assert: src.slice($list, 5)
+		$expected: ['elephant',]
+		@include true.assert-equal($assert, $expected, '[5]')
+
+		$assert: src.slice($list, -1)
+		@include true.assert-equal($assert, $expected, '[-1]')
+
+		$assert: src.slice($list, -1, 5)
+		@include true.assert-equal($assert, $expected, '[-1, 5]')
+
+		$assert: src.slice($list, 5, -1)
+		@include true.assert-equal($assert, $expected, '[5, -1]')
+
+		$assert: src.slice($list, -1, -1)
+		@include true.assert-equal($assert, $expected, '[-1, -1]')
+
+	@include true.it('Extract a list with a different separator')
+		$assert: src.slice($list, 2, $separator: space)
+		$expected: ['bison' 'camel' 'duck' 'elephant']
+		@include true.assert-equal($assert, $expected, '[space]')
+
+		$assert: src.slice($expected, 2, $separator: comma)
+		$expected: ['camel', 'duck', 'elephant']
+		@include true.assert-equal($assert, $expected, '[comma]')
+
+		$assert: src.slice($expected, -2, -1, $separator: slash)
+		$expected: list.join(list.slash('duck', 'elephant'), (), $bracketed: true)
+		@include true.assert-equal($assert, $expected, '[slash]')
+
+	@include true.it('Throws when $start-at is not a number')
+		$assert: src.slice(null, null, null)
+		$expected: 'ERROR: $start-at: `null` is not a number for `slice()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $start-at index is zero')
+		$assert: src.slice(null, 0, null)
+		$expected: 'ERROR: $start-at: List index may not be 0 for `slice()`.'
+		@include true.assert-equal($assert, $expected, '[0]')
+
+	@include true.it('Throws when $start-at index is invalid for length')
+		$assert: src.slice(null, 2, null)
+		$expected: 'ERROR: $start-at: Invalid index 2 for a list with 1 elements for `slice()`.'
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.slice(null, -2, null)
+		$expected: 'ERROR: $start-at: Invalid index -2 for a list with 1 elements for `slice()`.'
+		@include true.assert-equal($assert, $expected, '[-2]')
+
+	@include true.it('Throws when $end-at is not a number')
+		$assert: src.slice(null, 1, null)
+		$expected: 'ERROR: $end-at: `null` is not a number for `slice()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $end-at index is zero')
+		$assert: src.slice(null, 1, 0)
+		$expected: 'ERROR: $end-at: List index may not be 0 for `slice()`.'
+		@include true.assert-equal($assert, $expected, '[0]')
+
+	@include true.it('Throws when $end-at index is invalid for length')
+		$assert: src.slice(null, 1, 2)
+		$expected: 'ERROR: $end-at: Invalid index 2 for a list with 1 elements for `slice()`.'
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.slice(null, 1, -2)
+		$expected: 'ERROR: $end-at: Invalid index -2 for a list with 1 elements for `slice()`.'
+		@include true.assert-equal($assert, $expected, '[-2]')
+
+	@include true.it('Throws when starting index is greater than ending index')
+		$assert: src.slice(null null, 2, 1)
+		$expected: 'ERROR: $start-at, $end-at: The starting index is not less than the ending index for `slice()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $separator is invalid')
+		$assert: src.slice(null, 1, 1, null)
+		$expected: 'ERROR: $separator: Must be "space", "comma", "slash", or "auto" for `slice()`.'
+		@include true.assert-equal($assert, $expected)

@@ -1,0 +1,19 @@
+---
+title: concat ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="concat" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+$list-one: 1 2 3;
+$list-two: #fff #ccc #000;
+
+@debug list.concat($list-one, 'x', 'y', $list-two, 'z');
+  // 1 2 3 "x" "y" #fff #ccc #000 "z"
+```

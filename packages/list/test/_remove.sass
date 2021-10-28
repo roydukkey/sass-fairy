@@ -1,0 +1,24 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@include true.describe('@function list.remove')
+	$list: ['ant', 'bison', 'camel', 'duck', 'bison']
+
+	@include true.it('Remove an item a list')
+		$assert: src.remove($list, 'bison')
+		$expected: ['ant', 'camel', 'duck']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Return a list with a different separator')
+		$assert: src.remove($list, 'bison', space)
+		$expected: ['ant' 'camel' 'duck']
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $separator is invalid')
+		$assert: src.remove(null, null, null)
+		$expected: 'ERROR: $separator: Must be "space", "comma", "slash", or "auto" for `remove()`.'
+		@include true.assert-equal($assert, $expected)

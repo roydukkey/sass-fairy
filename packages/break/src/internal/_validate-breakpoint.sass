@@ -1,0 +1,76 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:map'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/string/src/ends-with'
+@use '@sass-fairy/string/src/starts-with'
+@use '../horizontal-sizes'
+@use '../vertical-sizes'
+
+
+///
+/// Validates a breakpoint given either by name or value.
+///
+/// @param {String} $context - The name of the function or mixin validating a breakpoint.
+/// @param {String} $name - The name of the parameter which has received the breakpoint value.
+/// @param {*} $value - The breakpoint value which was received.
+/// @param {String} $rule - The rule to which this breakpoint applies.
+/// @param {Boolean} $is-mixin - Whether or not the context is a mixin.
+/// @param {Boolean} $must-be-name - Whether or not the value must be a breakpoint name.
+/// @return {Map | String | Null} - A map is returned when the given value is valid and requires the generation of a rule. A string contain an error message is returned when the given value is invalid. Null is returned when the generation of a rule is not required.
+///   @prop {Number} base.#{$rule} - The validated breakpoint size for the specified rule.
+///
+/// @access private
+/// @require $-max-correction
+/// @require ends-with.ends-with
+/// @require horizontal-sizes.$sizes
+/// @require horizontal-sizes.$values
+/// @require parameter.parameter
+/// @require parameter-type.parameter-type
+/// @require starts-with.starts-with
+/// @require vertical-sizes.$sizes
+/// @require vertical-sizes.$values
+///
+@function validate-breakpoint($context, $name, $value, $rule, $is-mixin: false, $must-be-name: false)
+	$is-horizontal: ends-with.ends-with($rule, 'width')
+	$sizes: if($is-horizontal, horizontal-sizes.$sizes, vertical-sizes.$sizes)
+	$values: if($is-horizontal, horizontal-sizes.$values, vertical-sizes.$values)
+	$size: $value
+	$type: meta.type-of($value)
+
+	@if $type == 'string'
+
+		@if not map.has-key($sizes, $value)
+			@return parameter.parameter('No breakpoint exists by the name `#{meta.inspect($value)}`', $context, $name)
+
+		$size: map.get($sizes, $value)
+
+	@else if $must-be-name or $type != 'number'
+		$types: if($must-be-name, 'string', 'string' 'number')
+		@return parameter-type.parameter-type($context, $name, $value, $types...)
+
+	$is-max-rule: starts-with.starts-with($rule, 'max')
+
+	@if $is-mixin and ($size <= 0 or $is-max-rule and $type == 'string' and $size == list.nth($values, -1))
+		@return null
+
+	@if $is-max-rule and $size > 0
+		$size: $size - $-max-correction
+
+	@return map.set((), $rule, $size)
+
+
+///
+/// The maximum value is reduced by 0.02px to work around the limitations of `min-` and `max-` prefixes and viewports with fractional widths.
+/// @see @link https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+///
+/// Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
+/// @see @link https://bugs.webkit.org/show_bug.cgi?id=178261
+///
+/// @type Number
+///
+$-max-correction: 0.02

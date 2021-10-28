@@ -1,0 +1,39 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/parameter'
+@use '@sass-fairy/exception/src/separator'
+@use '@sass-fairy/meta/src/get-keyword'
+@use 'empty'
+
+
+///
+/// @throw Must be "space", "comma", "slash", or "auto".
+/// @throw The beginning index is not less than the length of the list.
+///
+/// @access public
+/// @require empty.empty
+/// @require get-keyword.get-keyword
+/// @require is-separator-invalid.is-separator-invalid
+/// @require parameter.parameter
+/// @require separator.separator
+///
+@function concat($values...)
+
+	@if list.length($values) < 2
+		@error parameter.parameter('Two or more values are required', 'concat', 'values')
+
+	$separator: get-keyword.get-keyword($values, 'separator', auto)
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('concat')
+
+	$bracketed: get-keyword.get-keyword($values, 'bracketed', auto)
+	$result: empty.empty($separator, $bracketed, list.nth($values, 1))
+
+	@each $value in $values
+		$result: list.join($result, $value)
+
+	@return $result

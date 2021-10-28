@@ -1,0 +1,32 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/separator'
+@use '@sass-fairy/exception/src/validate-index'
+@use 'internal/insert-nth'
+
+
+///
+/// @throw `#{$index}` is not a number.
+/// @throw List index may not be 0.
+/// @throw Invalid index #{$index} for a list with #{length} elements.
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @access public
+/// @require insert-nth.insert-nth
+/// @require is-separator-invalid.is-separator-invalid
+/// @require separator.separator
+/// @require validate-index.validate-index
+///
+@function insert-nth($list, $index, $value, $separator: auto)
+	$index: validate-index.validate-index('insert-nth', 'index', $index, $list)
+
+	@if meta.type-of($index) != 'number'
+		@error $index
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('insert-nth')
+
+	@return insert-nth.insert-nth($list, $index, $value, $separator)

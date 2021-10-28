@@ -1,0 +1,22 @@
+---
+title: to-string ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="to-string" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+@debug list.to-string([10px 20px 'a']);
+  // 10px 20px a
+
+@debug list.to-string([10px, 20px, 'a']);
+  // 10px, 20px, a
+
+@debug list.to-string([10px 20px (a: 1, 2: b)])
+  // '10px 20px {a: 1; 2: b}'
+```

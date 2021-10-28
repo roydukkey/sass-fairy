@@ -1,0 +1,26 @@
+{
+	"name": "@sass-fairy/break",
+	"description": "Provides Sass mixins, functions, and variables for working with breakpoints and aids in responsive development",
+	"version": "1.0.0",
+	"keywords": [
+		"breakpoint",
+		"responsive",
+		"media",
+		"query"
+	],
+	"main": "./index.sass",
+	"dependencies": {
+		"@sass-fairy/exception": "^1.0.0",
+		"@sass-fairy/list": "^1.0.0",
+		"@sass-fairy/map": "^1.0.0",
+		"@sass-fairy/string": "^1.0.0"
+	},
+	"scripts": {
+		"prepack": "clean-package --config $npm_package_config_clean_package",
+		"new:pack": "yarn pack && clean-package restore --config $npm_package_config_clean_package",
+		"new:publish": "yarn publish && clean-package restore --config $npm_package_config_clean_package"
+	},
+	"config": {
+		"clean-package": "../../clean-package.config.js"
+	}
+}

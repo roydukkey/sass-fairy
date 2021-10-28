@@ -1,0 +1,18 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use '@sass-fairy/map' as src
+@use 'true'
+
+
+@include true.describe('@function map.empty')
+
+	@include true.it('Creates an empty map')
+		$result: src.empty()
+		$assert: meta.type-of($result) == 'map'
+		@include true.assert-true($assert, '[type-of]')
+
+		$assert: list.length($result) == 0
+		@include true.assert-true($assert, '[length]')

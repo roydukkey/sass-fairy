@@ -1,0 +1,26 @@
+---
+title: is-light ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/color/Spec';
+
+<DocPage fieldName="is-light" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/color';
+
+@debug color.is-light(#000);
+  // false
+
+@debug color.is-light(#fff);
+  // true
+
+@debug color.is-light(darkgreen);
+  // false
+```
+
+:::info
+See *24 ways’* <a href="http://24ways.org/2010/calculating-color-contrast" target="_blank" rel="nofollow noreferrer noopener">calculating color contrast</a> for more information.
+:::

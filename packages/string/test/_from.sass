@@ -1,0 +1,15 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/core/from' as core
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.from')
+
+	@include true.it('Provides the same function as received from `sass-exception`')
+		$assert: meta.get-function('from', $module: 'core')
+		$expected: meta.get-function('from', $module: 'src')
+		@include true.assert-equal($assert, $expected)

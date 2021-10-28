@@ -1,0 +1,24 @@
+---
+title: compare-numeric-desc ()
+hide_title: true
+hide_table_of_contents: true
+---
+import CompareLogicCallout from '@site/src/components/CompareLogicCallout.mdx';
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="compare-numeric-desc" fieldType="function" spec={Spec}><CompareLogicCallout /></DocPage>
+
+```scss
+@use '@sass-fairy/list';
+
+// 1. As a call
+@debug list.compare-numeric-desc(10, 20);
+  // 10
+
+// 2. As a reference
+$list: 2 1 4 3;
+
+@debug list.sort($list, list.compare-numeric());
+  // 4 3 2 1
+```

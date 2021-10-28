@@ -1,0 +1,132 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:color'
+@use '../palette'
+
+@mixin import()
+
+	[class|="codeBlockContainer__"]
+		--ifm-global-radius: var(--ifm-code-border-radius)
+
+	.prism-code
+		$foregroundDark2: #676e79
+		$greenYellowMix: #c8f1ba
+
+		color: palette.$foreground
+
+		* ::selection
+			background: palette.$selection
+
+		.token
+			&.doctype
+				.token.doctype-tag
+					color: palette.$pink
+				.token.name
+					color: palette.$cyan
+
+			&.comment, &.prolog
+				color: palette.$comment
+
+		.token
+			&.property, &.tag, &.boolean, &.number, &.constant, &.symbol, &.inserted, &.unit
+				color: $greenYellowMix
+
+			&.selector, &.attr-name, &.string, &.char, &.builtin, &.deleted
+				color: palette.$yellow
+
+			&.operator.arrow, &.important, &.punctuation.interpolation-punctuation, &.boolean, &.selector, &.escape, &.tag, &.entity
+				color: palette.$pink
+
+			&.operator, &.entity
+				color: palette.$foreground
+
+			&.atrule
+				color: palette.$yellow
+
+				.token.rule
+					color: palette.$purple
+
+				.token.url
+					color: palette.$cyan
+
+					.token.function
+						color: palette.$orange
+
+					.token.punctuation
+						color: palette.$foreground
+
+			&.class-name
+				color: palette.$green
+
+			&.keyword
+				color: palette.$pink
+
+				&.module, &.control-flow
+					color: palette.$purple
+
+			&.function
+				&, &.maybe-class-name
+					color: palette.$orange
+
+			&.regex
+				color: palette.$red
+
+			&.constant, &.console, &.parameter, &.interpolation, &.property, &.variable, &.imports .token.maybe-class-name, &.exports .token.maybe-class-name, &.attr-name
+				color: palette.$cyan
+
+			&.maybe-class-name, &.namespace
+				color: palette.$green
+
+			&.tag.punctuation, &.cdata
+				color: $foregroundDark2
+
+			&.attr-value
+				&, & .token.punctuation
+					color: palette.$yellow
+
+				& .token.punctuation.attr-equals
+					color: palette.$foreground
+
+		.token.punctuation, .language-html .language-css .token.punctuation, .language-html .language-javascript .token.punctuation
+			color: palette.$foreground
+
+		&[class*="language-javascript"], &[class*="language-jsx"], &[class*="language-typescript"], &[class*="language-tsx"]
+			color: palette.$cyan
+
+		&[class*="language-css"], &[class*="language-scss"], &[class*="language-scss"]
+			color: palette.$yellow
+
+			.token.color
+				color: palette.$yellow
+
+		&[class*="language-html"]
+			color: palette.$foreground
+
+		&[class*="language-csharp"]
+
+			.token.preprocessor
+				opacity: 0.498
+
+				&.property
+					color: palette.$purple
+
+					&.directive + .property
+						color: palette.$cyan
+
+		.language-css, .language-scss, .language-sass
+
+			.token.string.url
+				text-decoration: underline
+
+		.language-regex .token.anchor
+			color: palette.$orange
+
+		.language-html .token.punctuation
+			color: $foregroundDark2
+
+		.docusaurus-highlight-code-line
+			display: block
+			margin: 0 calc(-1 * var(--ifm-pre-padding))
+			padding: 0 var(--ifm-pre-padding)
+			background-color: color.scale(palette.$background, $lightness: -20%)

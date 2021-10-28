@@ -1,0 +1,34 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// Calculates the Great Common Divisor (GCD) of two numbers.
+///
+/// @param {Number} $first-number - The first number of the calculation.
+/// @param {Number} $second-number - The second number of the calculation.
+/// @return {Number}
+///
+/// @throw `#{$first-number|$second-number}` is not a number.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+///
+@function gcd($first-number, $second-number)
+
+	@if meta.type-of($first-number) != 'number'
+		// 'numbers' is used here as the parameter name, because the error is only intended for `@sass-fairy/math.gcd()`.
+		@error parameter-type.parameter-type('gcd', 'numbers', $first-number, 'number')
+
+	@if meta.type-of($second-number) != 'number'
+		// 'numbers' is used here as the parameter name, because the error is only intended for `@sass-fairy/math.gcd()`.
+		@error parameter-type.parameter-type('gcd', 'numbers', $second-number, 'number')
+
+	$first-number: math.abs($first-number)
+	$second-number: math.abs($second-number)
+
+	@return if($second-number == 0, $first-number, gcd($second-number, $first-number % $second-number))

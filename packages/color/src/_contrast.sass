@@ -1,0 +1,39 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:map'
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'luminance'
+
+
+///
+/// @type Map
+///
+/// @access public
+///
+$contrast-ratios: ()
+$contrast-ratios: map.set($contrast-ratios, 'AA', ('normal': 4.5, 'large': 3))
+$contrast-ratios: map.set($contrast-ratios, 'AAA', ('normal': 7, 'large': 4.5))
+
+
+///
+/// @throw `#{$first-color|$second-color}` is not a color.
+///
+/// @access public
+/// @require luminance.luminance
+/// @require parameter-type.parameter-type
+///
+@function contrast($first-color, $second-color)
+
+	@if meta.type-of($first-color) != 'color'
+		@error parameter-type.parameter-type('contrast', 'first-color', $first-color, 'color')
+
+	@if meta.type-of($second-color) != 'color'
+		@error parameter-type.parameter-type('contrast', 'second-color', $second-color, 'color')
+
+	$first-color: luminance.luminance($first-color) + 0.05
+	$second-color: luminance.luminance($second-color) + 0.05
+
+	@return math.div(math.max($first-color, $second-color), math.min($first-color, $second-color))

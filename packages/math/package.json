@@ -1,0 +1,20 @@
+{
+	"name": "@sass-fairy/math",
+	"description": "Provides extended functionality for working with numbers in Sass",
+	"version": "1.0.0",
+	"keywords": [
+		"math"
+	],
+	"main": "./index.sass",
+	"dependencies": {
+		"@sass-fairy/exception": "^1.0.0"
+	},
+	"scripts": {
+		"prepack": "clean-package --config $npm_package_config_clean_package",
+		"new:pack": "yarn pack && clean-package restore --config $npm_package_config_clean_package",
+		"new:publish": "yarn publish && clean-package restore --config $npm_package_config_clean_package"
+	},
+	"config": {
+		"clean-package": "../../clean-package.config.js"
+	}
+}

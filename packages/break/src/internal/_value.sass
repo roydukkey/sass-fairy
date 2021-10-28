@@ -1,0 +1,17 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:map'
+
+
+///
+/// Gets the last value from a map.
+///
+/// @param {String} $map - The name map from which to get the last value.
+/// @return {*}
+///
+/// @access private
+///
+@function value($map)
+	@return list.nth(map.values($map), -1)

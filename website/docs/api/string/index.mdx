@@ -1,0 +1,27 @@
+---
+title: index ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/string/Spec';
+
+<DocPage fieldName="index" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/string';
+
+$sentence: 'The quick brown fox jumps over the lazy dog.';
+
+@debug string.index($sentence, 'quick');
+  // 5
+
+@debug string.index($sentence, 'he', 3);
+  // 33
+
+@debug string.index($sentence, 'dog', -4);
+  // 41
+
+@debug string.index($sentence, 'cat');
+  // 0
+```

@@ -1,0 +1,22 @@
+---
+title: change ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/math/Spec';
+
+<DocPage fieldName="change" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/math';
+
+@debug math.change(10px, 9em);
+  // 10em
+
+@debug math.change(-30rem, 10px);
+  // -30px
+
+@debug math.change(5s * 8in, 7cm * 90ms);
+  // 40cm*ms
+```

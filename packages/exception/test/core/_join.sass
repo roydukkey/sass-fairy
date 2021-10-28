@@ -1,0 +1,60 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/exception/src/core/join' as src
+@use 'true'
+
+
+@include true.describe('@function core.join')
+
+	@include true.it('Automatically selects space for glue')
+		$assert: src.join([10px 20px 'a'])
+		$expected: '10px 20px a'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Automatically selects comma for glue')
+		$assert: src.join([10px, 20px, 'a'])
+		$expected: '10px, 20px, a'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Automatically selects slash for glue')
+		$assert: src.join(list.slash(10px, 20px, 'a'))
+		$expected: '10px / 20px / a'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Use specified string for glue')
+		$assert: src.join([10px 20px 'a'], '-')
+		$expected: '10px-20px-a'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Nested listed are flattened')
+		$list: [10px 20px 'a' (#fff, rgb(127, 127, 127), #000)]
+		$assert: src.join($list, ' ?? ')
+		$expected: '10px ?? 20px ?? a ?? #fff ?? #7f7f7f ?? #000'
+		@include true.assert-equal($assert, $expected)
+
+		$list: [10px 20px 'a' #fff rgb(127, 127, 127) #000]
+		$assert: src.join($list, ' ?? ')
+		$expected: '10px ?? 20px ?? a ?? #fff ?? #7f7f7f ?? #000'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Convert the glue to a string')
+		$assert: src.join([10px, 20px, 'a'], rgb(127, 127, 127))
+		$expected: '10px#7f7f7f20px#7f7f7fa'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Equal items do not collapse glue')
+		$assert: src.join(('' '' '' null null))
+		$expected: '    '
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Key/value pairs are extracted from maps')
+		$assert: src.join((a: 1, 2: b))
+		$expected: 'a, 1, 2, b'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Key/value pairs are extracted from nested maps')
+		$assert: src.join([10px 20px (a: 1, 2: b)])
+		$expected: '10px 20px a 1 2 b'
+		@include true.assert-equal($assert, $expected)

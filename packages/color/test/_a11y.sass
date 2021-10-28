@@ -1,0 +1,86 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use '@sass-fairy/color' as src
+@use 'true'
+
+
+@include true.describe('@function color.a11y')
+
+	@include true.it('Returns same color when already in compliance')
+		$assert: src.a11y(#646464, #E0E0E0)
+		$expected: #636363
+		@include true.assert-equal($assert, $expected, '[#646464, #E0E0E0]')
+
+		$assert: src.a11y(#231284, #ccc)
+		$expected: #231284
+		@include true.assert-equal($assert, $expected, '[#231284, #ccc]')
+
+		$assert: src.a11y(pink, blue)
+		$expected: pink
+		@include true.assert-equal($assert, $expected, '[pink, blue]')
+
+	@include true.it('Returns color complying to default contrast ratio')
+		$assert: src.a11y(red, blue)
+		$expected: #ffa3a3
+		@include true.assert-equal($assert, $expected, '[red, blue]')
+
+		$assert: src.a11y(green, blue)
+		$expected: #00da00
+		@include true.assert-equal($assert, $expected, '[green, blue]')
+
+		$assert: src.a11y(blue, blue)
+		$expected: #b5b5ff
+		@include true.assert-equal($assert, $expected, '[blue, blue]')
+
+		$assert: src.a11y(#c0c0c0, #c0c0c0)
+		$expected: #4f4f4f
+		@include true.assert-equal($assert, $expected, '[#c0c0c0, #c0c0c0]')
+
+		$assert: src.a11y(#fff, #fff)
+		$expected: #767676
+		@include true.assert-equal($assert, $expected, '[#fff, #fff]')
+
+		$assert: src.a11y(#c1c1c1, #767676)
+		$expected: #FEFEFE
+		@include true.assert-equal($assert, $expected, '[#c1c1c1, #767676]')
+
+		$assert: src.a11y(rgba(green, 0.25), rgba(blue, 0.5))
+		$expected: #00da00
+		@include true.assert-equal($assert, $expected, '[rgba(green, 0.25), rgba(blue, 0.5)]')
+
+	@include true.it('Returns color complying to large text')
+		$assert: src.a11y(red, blue, large)
+		$expected: #ff6666
+		@include true.assert-equal($assert, $expected, '[red, blue]')
+
+	@include true.it('Returns color complying to level AAA')
+		$assert: src.a11y(red, blue, $level: AAA)
+		$expected: #ffe1e1
+		@include true.assert-equal($assert, $expected, '[red, blue]')
+
+	@include true.it('Returns color complying to large text and level AAA')
+		$assert: src.a11y(red, blue, large, AAA)
+		$expected: #ffa3a3
+		@include true.assert-equal($assert, $expected, '[red, blue]')
+
+	@include true.it('Throws when $a11y-color is not a color')
+		$assert: src.a11y(null, null)
+		$expected: 'ERROR: $a11y-color: `null` is not a color for `a11y()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $other-color is not a color')
+		$assert: src.a11y(red, null)
+		$expected: 'ERROR: $other-color: `null` is not a color for `a11y()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $size is not "normal" or "large"')
+		$assert: src.a11y(red, blue, 'small')
+		$expected: 'ERROR: $size: Must be either "normal" or "large" for `a11y()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $level is not "AA" or "AAA"')
+		$assert: src.a11y(red, blue, $level: 'BB')
+		$expected: 'ERROR: $level: Must be either "AA" or "AAA" for `a11y()`.'
+		@include true.assert-equal($assert, $expected)

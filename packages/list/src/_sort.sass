@@ -1,0 +1,125 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:math'
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/is-separator-invalid'
+@use '@sass-fairy/exception/src/parameter'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/exception/src/separator'
+@use 'compare'
+@use 'empty'
+@use 'find'
+@use 'slice'
+
+
+///
+/// @throw `#{$compare}` is not a function.
+/// @throw `#{$center}` is not a number.
+/// @throw Must be "auto" or zero with or without units.
+/// @throw Must be "space", "comma", "slash", or "auto".
+///
+/// @example scss
+/// 	sort(c b e d a f) //=> a b c d e f
+/// 	sort(c b e d a f, src.compare-string-desc()) //=> f e d c b a
+/// 	sort([6mm 2px 10mm -9mm 25px 1cm -4px -3cm], src.compare-numeric()) //=> [-3cm -9mm -4px 2px 6mm 25px 1cm 10mm]
+/// 	sort(1cm 5mm 1 1mm 2em, src.compare-numeric-desc(), auto) //=> 2em 1 1cm 5mm 1mm
+/// 	sort(1cm 5mm 1 1mm 2em, src.compare-numeric-desc(), 0mm) //=> 1cm 5mm 2em 1mm 1
+/// 	sort(1cm 5mm 1 1mm 2em, src.compare-numeric-desc(), 0) //=> 5mm 2em 1mm 1 1cm
+///
+/// @access public
+/// @require _order
+/// @require compare.string
+/// @require find.find
+/// @require is-separator-invalid.is-separator-invalid
+/// @require parameter-type.parameter-type
+/// @require parameter.parameter
+/// @require separator.separator
+/// @require slice.slice
+///
+@function sort($list, $compare: compare.string(), $center: auto, $separator: auto)
+
+	@if meta.type-of($compare) != 'function'
+		@error parameter-type.parameter-type('sort', 'compare', $compare, 'function')
+
+	@if is-separator-invalid.is-separator-invalid($separator)
+		@error separator.separator('sort')
+
+	@if $separator == 'auto' and meta.type-of($list) == 'map'
+		$separator: 'comma'
+
+	$length: list.length($list)
+
+	@if $center != auto
+
+		@if meta.type-of($center) != 'number'
+			@error parameter-type.parameter-type('sort', 'center', $center, 'number')
+
+		@if $center < 0 or $center > 0
+			@error parameter.parameter('Must be "auto" or zero with or without units', 'sort', 'center')
+
+	@else
+		$item: find.find($list, meta.get-function('_is-number-and-not-unitless'))
+		$center: if($item == null, 0, $item - $item)
+
+	@if $length < 2
+		@if meta.type-of($list) == 'map'
+			@return list.join($list, (), $separator)
+		@else
+			@return $list
+
+	$middle: math.floor(math.div($length, 2))
+	$left: slice.slice($list, 1, $middle)
+	$right: slice.slice($list, $middle + 1)
+
+	@return _order(sort($left, $compare, $center), sort($right, $compare, $center), $compare, $center, $separator)
+
+
+///
+/// Orders and merges the items for a subset of a list.
+///
+/// @param {List} $left - The left side of the list being sorted.
+/// @param {List} $right - The right side of the list being sorted.
+/// @param {Function} $compare - The function that defines the sort order.
+/// @param {Number} $center - For numeric comparison, the value indicating the center (zero) position between positive and negative values.
+/// @param {String} $separator [auto] - The type of separator to be used by the returned list.
+/// @return {List}
+///
+/// @access private
+/// @require empty.empty
+/// @require slice.slice
+///
+@function _order($left, $right, $compare, $center, $separator)
+	$result: empty.empty($list: $left)
+	$left-index: 1
+	$right-index: 1
+	$left-length: list.length($left)
+	$right-length: list.length($right)
+
+	@while $left-index <= $left-length and $right-index <= $right-length
+		$left-value: list.nth($left, $left-index)
+		$right-value: list.nth($right, $right-index)
+
+		@if meta.call($compare, $left-value, $right-value, $center) < 0
+			$result: list.append($result, $left-value)
+			$left-index: $left-index + 1
+
+		@else
+			$result: list.append($result, $right-value)
+			$right-index: $right-index + 1
+
+	$remainder: if($left-index < $right-index, slice.slice($left, $left-index), slice.slice($right, $right-index))
+
+	@return list.join($result, $remainder, $separator)
+
+
+///
+/// Determines whether a value is a number and is not unitless.
+///
+/// @param {*} $value - The value to be tested.
+///
+/// @access private
+///
+@function _is-number-and-not-unitless($value, $args...)
+	@return meta.type-of($value) == 'number' and not math.is-unitless($value)

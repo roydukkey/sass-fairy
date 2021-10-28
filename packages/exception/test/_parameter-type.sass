@@ -1,0 +1,23 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/exception' as src
+@use 'true'
+
+
+@include true.describe('@function exception.parameter-type')
+
+	@include true.it('Formats an error message indicating a parameter is not any of one type')
+		$assert: src.parameter-type('reduce', 'transformer', null, 'function')
+		$expected: '$transformer: `null` is not a function for `reduce()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Formats an error message indicating a parameter is not any of two types')
+		$assert: src.parameter-type('test', 'name-or-size', null, 'string', 'number')
+		$expected: '$name-or-size: `null` is not a string or number for `test()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Formats an error message indicating a parameter is not any of three types')
+		$assert: src.parameter-type('test', 'names-or-sizes', null, 'string', 'number', 'list')
+		$expected: '$names-or-sizes: `null` is not a string, number, or list for `test()`.'
+		@include true.assert-equal($assert, $expected)

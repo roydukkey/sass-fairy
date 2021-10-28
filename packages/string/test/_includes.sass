@@ -1,0 +1,53 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.includes')
+
+	// cSpell:disable-next-line
+	$string: 'abcdefgabcdefg'
+
+	@include true.it('Does include substring')
+		$assert: src.includes($string, 'abc')
+		@include true.assert-true($assert)
+
+	@include true.it('Does include substring at a positive (+) index')
+		$assert: src.includes($string, 'bcd', 2)
+		@include true.assert-true($assert)
+
+	@include true.it('Does include substring at a negative (-) index')
+		$assert: src.includes($string, 'bcd', -13)
+		@include true.assert-true($assert)
+
+		$assert: src.includes($string, 'bcd', -6)
+		@include true.assert-true($assert)
+
+	@include true.it('Does not include substring')
+		$assert: src.includes($string, 'xyz')
+		@include true.assert-false($assert)
+
+	@include true.it('Does not include substring at a positive (+) index')
+		$assert: src.includes($string, 'bcd', 10)
+		@include true.assert-false($assert)
+
+	@include true.it('Does not include substring at a negative (-) index')
+		$assert: src.includes($string, 'bcd', -2)
+		@include true.assert-false($assert)
+
+	@include true.it('Throws when $string is not a string')
+		$assert: src.includes(12345, 'a')
+		$expected: 'ERROR: $string: `12345` is not a string for `includes()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $substring is not a string')
+		$assert: src.includes('a', 12345)
+		$expected: 'ERROR: $substring: `12345` is not a string for `includes()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $start-at is not a number')
+		$assert: src.includes($string, 'a', 'x')
+		$expected: 'ERROR: $start-at: `"x"` is not a number for `includes()`.'
+		@include true.assert-equal($assert, $expected)

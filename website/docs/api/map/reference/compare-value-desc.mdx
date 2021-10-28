@@ -1,0 +1,25 @@
+---
+title: compare-value-desc ()
+hide_title: true
+hide_table_of_contents: true
+---
+import CompareLogicCallout from '@site/src/components/CompareLogicCallout.mdx';
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/map/Spec';
+
+<DocPage fieldName="compare-value-desc" fieldType="function" spec={Spec}><CompareLogicCallout /></DocPage>
+
+```scss
+@use '@sass-fairy/list';
+@use '@sass-fairy/map';
+
+// 1. As a call
+@debug map.compare-value-desc(b 8em, f 10mm);
+  // -7
+
+// 2. As a reference
+$map: (b: 8em, f: 10mm, d: a, a: 3, c: 1cm, e: 2mm);
+
+@debug list.sort($map, map.compare-value-desc());
+  // d a, b 8em, a 3, e 2mm, c 1cm, f 10mm
+```
