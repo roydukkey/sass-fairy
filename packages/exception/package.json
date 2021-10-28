@@ -2,7 +2,25 @@
 	"name": "@sass-fairy/exception",
 	"description": "Provides Sass functions to standardize exception messages and assist with common validation",
 	"version": "1.0.0",
+	"license": "MIT",
+	"author": {
+		"name": "roydukkey",
+		"email": "contact@changelog.me",
+		"url": "http://changelog.me"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roydukkey/sass-fairy.git",
+		"directory": "packages/exception"
+	},
+	"homepage": "https://github.com/roydukkey/sass-fairy/tree/master/packages/exception#readme",
+	"bugs": {
+		"url": "https://github.com/roydukkey/sass-fairy/issues"
+	},
 	"keywords": [
+		"sass",
+		"scss",
+		"dart-sass",
 		"throw",
 		"error",
 		"warn"
