@@ -5,6 +5,16 @@
 
 const { copySync, removeSync } = require('fs-extra');
 const { resolve, basename } = require('path');
+const packageName = basename(process.cwd());
+const {
+	author,
+	bugs,
+	devDependencies,
+	homepage,
+	keywords: parentKeywords,
+	license,
+	repository
+} = require('./package.json');
 
 
 // These files should be included from project root in every package.
@@ -14,13 +24,33 @@ const commonFiles = [
 ];
 
 
+repository.directory = `packages/${packageName}`;
+
+
+const completePackage = require(`./${repository.directory}/package.json`);
+const { name, description, version, keywords, dependencies, publishConfig, ...package } = completePackage;
+delete package.scripts
+delete package.config
+
+
 module.exports = {
 	indent: '\t',
-	remove: [
-		'config',
-		'publishConfig',
-		'scripts'
-	],
+	remove: Object.keys(completePackage),
+	replace: {
+		name,
+		description,
+		version,
+		author,
+		license,
+		repository,
+		homepage: homepage.replace('#readme', `/tree/master/${repository.directory}$&`),
+		bugs,
+		keywords: [...parentKeywords, ...keywords],
+		...package,
+		dependencies,
+		devDependencies,
+		publishConfig
+	},
 
 	onClean: () => commonFiles.forEach((file) => {
 		copySync(resolve(__dirname, file), resolve(file));

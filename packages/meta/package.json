@@ -2,25 +2,7 @@
 	"name": "@sass-fairy/meta",
 	"description": "Provides extended functionality for handling Sass’s inner workings",
 	"version": "1.0.0",
-	"license": "MIT",
-	"author": {
-		"name": "roydukkey",
-		"email": "contact@changelog.me",
-		"url": "http://changelog.me"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/roydukkey/sass-fairy.git",
-		"directory": "packages/meta"
-	},
-	"homepage": "https://github.com/roydukkey/sass-fairy/tree/master/packages/meta#readme",
-	"bugs": {
-		"url": "https://github.com/roydukkey/sass-fairy/issues"
-	},
 	"keywords": [
-		"sass",
-		"scss",
-		"dart-sass",
 		"meta"
 	],
 	"main": "./index.sass",

@@ -2,25 +2,7 @@
 	"name": "@sass-fairy/color",
 	"description": "Provides extended functionality for generating new colors from an existing colors and building color themes in Sass",
 	"version": "1.0.0",
-	"license": "MIT",
-	"author": {
-		"name": "roydukkey",
-		"email": "contact@changelog.me",
-		"url": "http://changelog.me"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/roydukkey/sass-fairy.git",
-		"directory": "packages/color"
-	},
-	"homepage": "https://github.com/roydukkey/sass-fairy/tree/master/packages/color#readme",
-	"bugs": {
-		"url": "https://github.com/roydukkey/sass-fairy/issues"
-	},
 	"keywords": [
-		"sass",
-		"scss",
-		"dart-sass",
 		"color",
 		"a11y",
 		"contrast"

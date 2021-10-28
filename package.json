@@ -5,6 +5,25 @@
 		"packages/*",
 		"website"
 	],
+	"author": {
+		"name": "roydukkey",
+		"email": "contact@changelog.me",
+		"url": "http://changelog.me"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roydukkey/sass-fairy.git"
+	},
+	"homepage": "https://github.com/roydukkey/sass-fairy#readme",
+	"bugs": {
+		"url": "https://github.com/roydukkey/sass-fairy/issues"
+	},
+	"keywords": [
+		"sass",
+		"scss",
+		"dart-sass"
+	],
 	"devDependencies": {
 		"clean-package": "^2.1.0",
 		"cross-env": "^7.0.3",

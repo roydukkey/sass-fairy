@@ -2,25 +2,7 @@
 	"name": "@sass-fairy/string",
 	"description": "Provides extended functionality for processing strings in Sass, with interfaces similar to ECMA specifications",
 	"version": "1.0.0",
-	"license": "MIT",
-	"author": {
-		"name": "roydukkey",
-		"email": "contact@changelog.me",
-		"url": "http://changelog.me"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/roydukkey/sass-fairy.git",
-		"directory": "packages/string"
-	},
-	"homepage": "https://github.com/roydukkey/sass-fairy/tree/master/packages/string#readme",
-	"bugs": {
-		"url": "https://github.com/roydukkey/sass-fairy/issues"
-	},
 	"keywords": [
-		"sass",
-		"scss",
-		"dart-sass",
 		"string"
 	],
 	"main": "./index.sass",
