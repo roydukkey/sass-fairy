@@ -11,6 +11,7 @@ const config = {
 	tagline: 'A collection modern Sass utilities',
 	url: 'https://sass-fairy.com',
 	baseUrl: '/',
+	trailingSlash: false,
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',

@@ -26,6 +26,7 @@
 	],
 	"devDependencies": {
 		"clean-package": "^2.1.0",
+		"cross-env": "^7.0.3",
 		"cspell": "^5.12.3",
 		"fs-extra": "^10.0.0",
 		"jest": "^27.3.1",
@@ -39,6 +40,7 @@
 	},
 	"scripts": {
 		"serve": "yarn workspace website start",
+		"deploy": "cross-env GIT_USER=roydukkey USE_SSH=true yarn workspace website deploy",
 		"lint": "yarn lint:spelling && yarn lint:website",
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
 		"lint:website": "yarn workspace website lint",
