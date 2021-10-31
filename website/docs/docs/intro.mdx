@@ -6,6 +6,7 @@ hide_table_of_contents: true
 ---
 import { Fragment } from 'react';
 import Link from '@docusaurus/Link';
+import NpmBadge from '@site/src/components/NpmBadge.mdx';
 import ColorSpec from '@site/docs/api/color/Spec'
 import BreakSpec from '@site/docs/api/break/Spec'
 import ListSpec from '@site/docs/api/list/Spec'
@@ -20,21 +21,22 @@ import ExceptionSpec from '@site/docs/api/exception/Spec'
 There are two groups of modules: Core Modules and Special Modules. **Core Modules** extend the native, [built-in modules](https://sass-lang.com/documentation/modules) provided by Sass. While on the other hand, **Special Modules** are abstractions of other concepts and utilities commonly used when designing stylesheets, mixins, or functions.
 
 export const DescriptionItem = ({ name }) => {
-	return (
-		<Fragment>
-			<dt><Link to={`/api/${name}`}>@sass-fairy/{name}</Link></dt>
-			<dd><p>{{
-				color: ColorSpec.description,
-				list: ListSpec.description,
-				map: MapSpec.description,
-				math: MathSpec.description,
-				meta: MetaSpec.description,
-				string: StringSpec.description,
-				break: BreakSpec.description,
-				exception: ExceptionSpec.description
-			}[name]}.</p></dd>
-		</Fragment>
-	)
+  return (
+    <Fragment>
+      <dt><Link to={`/api/${name}`}>@sass-fairy/{name}</Link></dt>
+      <dd><p>{{
+        color: ColorSpec.description,
+        list: ListSpec.description,
+        map: MapSpec.description,
+        math: MathSpec.description,
+        meta: MetaSpec.description,
+        string: StringSpec.description,
+        break: BreakSpec.description,
+        exception: ExceptionSpec.description
+      }[name]}.</p></dd>
+      <dd><NpmBadge module={name} /></dd>
+    </Fragment>
+  )
 };
 
 ## Core Modules
