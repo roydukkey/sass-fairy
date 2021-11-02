@@ -1,0 +1,23 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'trim-end'
+@use 'trim-start'
+
+
+///
+/// @throw `#{$string}` is not a string.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+/// @require trim-end.trim-end
+/// @require trim-start.trim-start
+///
+@function trim($string)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('trim', 'string', $string, 'string')
+
+	@return trim-start.trim-start(trim-end.trim-end($string))
