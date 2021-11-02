@@ -1,0 +1,16 @@
+---
+title: trim ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/string/Spec';
+
+<DocPage fieldName="trim" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/string';
+
+@debug string.trim('     Hey, you guys!   ');
+  // "Hey, you guys!"
+```

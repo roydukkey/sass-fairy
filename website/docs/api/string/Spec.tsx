@@ -172,6 +172,51 @@ const spec: ModuleSpec = {
 			return: {
 				type: ['Boolean']
 			}
+		},
+
+		trim: {
+			group: 'main',
+			description: 'Removes whitespace from both ends of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).',
+			parameters: {
+				string: {
+					description: 'The source string from which to remove leading and trailing whitespace.',
+					type: ['String']
+				}
+			},
+			return: {
+				description: 'A string stripped of whitespace from both its beginning and end. If neither the beginning or end of source string has any whitespace, the string is simply returned, with no exception being thrown.',
+				type: ['String']
+			}
+		},
+
+		'trim-end': {
+			group: 'main',
+			description: 'Removes whitespace from the end of a string.',
+			parameters: {
+				string: {
+					description: 'The source string from which to remove trailing whitespace.',
+					type: ['String']
+				}
+			},
+			return: {
+				description: 'A string stripped of whitespace from its end. If the end of source string has no whitespace, the string is simply returned, with no exception being thrown.',
+				type: ['String']
+			}
+		},
+
+		'trim-start': {
+			group: 'main',
+			description: 'Removes whitespace from the beginning of a string.',
+			parameters: {
+				string: {
+					description: 'The source string from which to remove leading whitespace.',
+					type: ['String']
+				}
+			},
+			return: {
+				description: 'A string stripped of whitespace from its beginning. If the beginning of source string has no whitespace, the string is simply returned, with no exception being thrown.',
+				type: ['String']
+			}
 		}
 
 	}
