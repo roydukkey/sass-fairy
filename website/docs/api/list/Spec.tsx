@@ -139,6 +139,25 @@ const spec: ModuleSpec = {
 
 	functions: {
 
+		'box-model': {
+			group: 'main',
+			description: 'Gets the value of the specified side from the given shorthand box model value.',
+			parameters: {
+				values: {
+					description: 'The shorthand value of a box model to analyze for a value.',
+					type: ['List{1,4}']
+				},
+				side: {
+					description: 'The side of the box model for which to determine a value.',
+					type: ['top', 'right', 'bottom', 'left']
+				}
+			},
+			return: {
+				description: 'Returns a single value that corresponds to the requested side of the given box model value.',
+				type: ['*']
+			}
+		},
+
 		concat: {
 			group: 'main',
 			description: 'Merges two or more lists into a new list.',

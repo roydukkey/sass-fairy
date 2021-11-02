@@ -1,0 +1,22 @@
+---
+title: box-model ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/list/Spec';
+
+<DocPage fieldName="box-model" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/list';
+
+@debug list.box-model(1em, 'top');
+  // 1em
+
+@debug list.box-model(1em 0.5em, 'bottom');
+  // 1em
+
+@debug list.box-model(1em 0.5em 0.75em, 'bottom');
+  // 0.75em
+```
