@@ -1,0 +1,21 @@
+---
+title: replace ()
+hide_title: true
+hide_table_of_contents: true
+---
+import DocPage from '@site/src/components/DocPage';
+import Spec from '@site/docs/api/string/Spec';
+
+<DocPage fieldName="replace" fieldType="function" spec={Spec} />
+
+```scss
+@use '@sass-fairy/string';
+
+$sentence: 'The quick brown fox jumps over the lazy dog.';
+
+@debug string.replace($sentence, 'jumps', 'skipped');
+  // 'The quick brown fox skipped over the lazy dog.'
+
+@debug string.replace($sentence, 'jumps', '[$&]');
+  // 'The quick brown fox [jumps] over the lazy dog.'
+```

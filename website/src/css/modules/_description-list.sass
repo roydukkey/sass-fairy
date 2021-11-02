@@ -25,7 +25,9 @@
 
 			> dd
 				grid-column: 2
-				margin-bottom: calc(var(--ifm-spacing-vertical) * 0.5)
+
+				&, > p:not(:last-child)
+					margin-bottom: calc(var(--ifm-spacing-vertical) * 0.5)
 
 				> dl.grid
 					margin: 0

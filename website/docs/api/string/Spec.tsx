@@ -1,5 +1,6 @@
 import packageJson from '@sass-fairy/string/package.json';
 import type { ModuleSpec, SpecFunction } from '@site/src/spec/ModuleSpec';
+import React, { Fragment } from 'react';
 import { bracketedParameter, separatorParameter } from '@site/docs/api/list/Spec';
 
 
@@ -119,6 +120,40 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				type: ['Number']
+			}
+		},
+
+		replace: {
+			group: 'main',
+			description: 'Replaces all instances of a specified substring from the source string with a given replacement.',
+			parameters: {
+				string: {
+					description: 'The source string in which the substring is to be replaced.',
+					type: ['String']
+				},
+				substring: {
+					description: 'The substring to replace in the source string.',
+					type: ['String']
+				},
+				replacement: {
+					description: <Fragment>
+						<p>The replacement for each instance of the substring.</p>
+						<p>A number of special replacement patterns are supported.</p>
+						<dl className="grid">
+							<dt><code>$&amp;</code></dt>
+							<dd>Inserts the substring.</dd>
+							<dt><code>$`</code></dt>
+							<dd>Inserts the portion of the source string that precedes the replaced substring.</dd>
+							<dt><code>$'</code></dt>
+							<dd>Inserts the portion of the source string that follows the replaced substring.</dd>
+						</dl>
+					</Fragment>,
+					type: ['String']
+				}
+			},
+			return: {
+				description: 'A string with all instances of a substring replaced by a replacement.',
 				type: ['Number']
 			}
 		},
