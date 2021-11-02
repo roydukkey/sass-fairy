@@ -1,0 +1,30 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:map'
+@use 'sass:meta'
+@use 'sass:list'
+@use '@sass-fairy/exception/src/parameter'
+@use '@sass-fairy/exception/src/parameter-type'
+
+
+///
+/// @remarks This maybe moved to another package, if a better namespace is determined.
+///
+/// @access public
+/// @require parameter.parameter
+/// @require parameter-type.parameter-type
+///
+@function box-model($values, $side)
+	$length: list.length($values)
+
+	@if $length > 4
+		@error parameter.parameter('May not contain more than 4 items', 'box-model', 'values')
+
+	@if meta.type-of($side) != 'string'
+		@error parameter-type.parameter-type('box-model', 'side', $side, 'string')
+
+	@if $length == 1
+		@return $values
+
+	@return map.get((top: list.nth($values, 1), right: list.nth($values, 2), bottom: list.nth($values, if($length >= 3, 3, 1)), left: list.nth($values, if($length == 4, 4, 2))), $side)

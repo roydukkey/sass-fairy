@@ -1,0 +1,86 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/list' as src
+@use 'true'
+
+
+@include true.describe('@function list.box-model')
+
+	@include true.it("Determines size for 'top'")
+		$assert: src.box-model(10px, 'top')
+		$expected: 10px
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.box-model(10px 20px, 'top')
+		$expected: 10px
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.box-model(10px 20px 30px, 'top')
+		$expected: 10px
+		@include true.assert-equal($assert, $expected, '[3]')
+
+		$assert: src.box-model(10px 20px 30px 40px, 'top')
+		$expected: 10px
+		@include true.assert-equal($assert, $expected, '[4]')
+
+	@include true.it("Determines size for 'right'")
+		$assert: src.box-model(10px, 'right')
+		$expected: 10px
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.box-model(10px 20px, 'right')
+		$expected: 20px
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.box-model(10px 20px 30px, 'right')
+		$expected: 20px
+		@include true.assert-equal($assert, $expected, '[3]')
+
+		$assert: src.box-model(10px 20px 30px 40px, 'right')
+		$expected: 20px
+		@include true.assert-equal($assert, $expected, '[4]')
+
+	@include true.it("Determines size for 'bottom'")
+		$assert: src.box-model(10px, 'bottom')
+		$expected: 10px
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.box-model(10px 20px, 'bottom')
+		$expected: 10px
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.box-model(10px 20px 30px, 'bottom')
+		$expected: 30px
+		@include true.assert-equal($assert, $expected, '[3]')
+
+		$assert: src.box-model(10px 20px 30px 40px, 'bottom')
+		$expected: 30px
+		@include true.assert-equal($assert, $expected, '[4]')
+
+	@include true.it("Determines size for 'left'")
+		$assert: src.box-model(10px, 'left')
+		$expected: 10px
+		@include true.assert-equal($assert, $expected, '[1]')
+
+		$assert: src.box-model(10px 20px, 'left')
+		$expected: 20px
+		@include true.assert-equal($assert, $expected, '[2]')
+
+		$assert: src.box-model(10px 20px 30px, 'left')
+		$expected: 20px
+		@include true.assert-equal($assert, $expected, '[3]')
+
+		$assert: src.box-model(10px 20px 30px 40px, 'left')
+		$expected: 40px
+		@include true.assert-equal($assert, $expected, '[4]')
+
+	@include true.it('Throws when $values contains more than 4 items')
+		$assert: src.box-model(1 2 3 4 5, 'top')
+		$expected: 'ERROR: $values: May not contain more than 4 items for `box-model()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $side is invalid')
+		$assert: src.box-model(1, null)
+		$expected: 'ERROR: $side: `null` is not a string for `box-model()`.'
+		@include true.assert-equal($assert, $expected)
