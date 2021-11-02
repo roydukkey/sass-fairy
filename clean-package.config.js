@@ -29,8 +29,9 @@ repository.directory = `packages/${packageName}`;
 
 const completePackage = require(`./${repository.directory}/package.json`);
 const { name, description, version, keywords, dependencies, publishConfig, ...package } = completePackage;
-delete package.scripts
-delete package.config
+delete package.scripts;
+delete package.config;
+delete package['//'];
 
 
 module.exports = {

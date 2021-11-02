@@ -1,4 +1,9 @@
 {
+	"//": [
+		"Several properties of this file will be derived from the project's root ",
+		"package.json while packing. This is done to avoid duplication and to ",
+		"help maintain symmetry between packages."
+	],
 	"name": "@sass-fairy/color",
 	"description": "Provides extended functionality for generating new colors from existing colors and building color themes in Sass",
 	"version": "1.0.0",

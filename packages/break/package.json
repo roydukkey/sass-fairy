@@ -1,4 +1,9 @@
 {
+	"//": [
+		"Several properties of this file will be derived from the project's root ",
+		"package.json while packing. This is done to avoid duplication and to ",
+		"help maintain symmetry between packages."
+	],
 	"name": "@sass-fairy/break",
 	"description": "Provides Sass mixins, functions, and variables for working with breakpoints and aids in responsive development",
 	"version": "1.0.0",

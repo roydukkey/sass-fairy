@@ -1,4 +1,9 @@
 {
+	"//": [
+		"Several properties of this file will be derived from the project's root ",
+		"package.json while packing. This is done to avoid duplication and to ",
+		"help maintain symmetry between packages."
+	],
 	"name": "@sass-fairy/exception",
 	"description": "Provides Sass functions to standardize exception messages and assist with common validation",
 	"version": "1.0.1",
