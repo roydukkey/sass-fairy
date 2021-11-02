@@ -22,7 +22,7 @@
 		$replace: $replacement
 
 		@if string.index($replace, '$&') != null
-			$replace: replace($replace, '$&', string.slice($string, $index, $index + $length - 1), $replace)
+			$replace: replace($replace, '$&', $substring, $replace)
 
 		@if string.index($replace, '$`') != null
 			$replace: replace($replace, '$`', string.slice($original, 1, $offset - 1), $replace)
