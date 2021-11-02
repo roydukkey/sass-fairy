@@ -5,6 +5,7 @@
 
 ## UNRELEASED
 
+* Add `.replace()`
 * Add `.trim()`, `.trim-start()`, and `.trim-end()`
 
 ## 1.0.0
