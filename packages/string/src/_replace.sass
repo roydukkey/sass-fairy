@@ -1,0 +1,27 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'internal/replace'
+
+
+///
+/// @throw `#{$string|$substring|$replacement}` is not a string.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+/// @require replace.replace
+///
+@function replace($string, $substring, $replacement)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('replace', 'string', $string, 'string')
+
+	@if meta.type-of($substring) != 'string'
+		@error parameter-type.parameter-type('replace', 'substring', $substring, 'string')
+
+	@if meta.type-of($replacement) != 'string'
+		@error parameter-type.parameter-type('replace', 'replacement', $replacement, 'string')
+
+	@return replace.replace($string, $substring, $replacement, $string)

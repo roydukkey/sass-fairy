@@ -1,0 +1,35 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:string'
+
+
+///
+/// @param {String} $string
+/// @param {String} $substring
+/// @param {String} $replacement
+/// @param {String} $original - This allows the original $string value to forward through recursion so it may be used for special replacement patterns.
+/// @return {String}
+///
+/// @access public
+///
+@function replace($string, $substring, $replacement, $original)
+	$index: string.index($string, $substring)
+
+	@if $index
+		$length: string.length($substring)
+		$offset: $index + string.length($original) - string.length($string)
+		$replace: $replacement
+
+		@if string.index($replace, '$&') != null
+			$replace: replace($replace, '$&', string.slice($string, $index, $index + $length - 1), $replace)
+
+		@if string.index($replace, '$`') != null
+			$replace: replace($replace, '$`', string.slice($original, 1, $offset - 1), $replace)
+
+		@if string.index($replace, "$'") != null
+			$replace: replace($replace, "$'", string.slice($original, $offset + $length), $replace)
+
+		@return string.slice($string, 1, $index - 1) + $replace + replace(string.slice($string, $index + $length), $substring, $replacement, $original)
+
+	@return $string

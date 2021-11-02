@@ -1,0 +1,69 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.replace')
+
+	$input: 'The quick brown fox jumps over the lazy dog before visiting his grey fox friends.'
+
+	@include true.it('Replaces all instances of a character')
+		$assert: src.replace($input, 'e', '█')
+		$expect: 'Th█ quick brown fox jumps ov█r th█ lazy dog b█for█ visiting his gr█y fox fri█nds.'
+		@include true.assert-equal($assert, $expect)
+
+	@include true.it('Replaces all instances of a word')
+		$assert: src.replace($input, 'fox', '█__█')
+		$expect: 'The quick brown █__█ jumps over the lazy dog before visiting his grey █__█ friends.'
+		@include true.assert-equal($assert, $expect)
+
+	$input: 'a,,b,,c,,d'
+
+	@include true.it('Replaces using [$&]')
+		$assert: src.replace($input, ',,', '[$&]')
+		$expect: 'a[,,]b[,,]c[,,]d'
+		@include true.assert-equal($assert, $expect, '[single]')
+
+		$assert: src.replace($input, ',,', '[$&]{$&}')
+		$expect: 'a[,,]{,,}b[,,]{,,}c[,,]{,,}d'
+		@include true.assert-equal($assert, $expect, '[multiple]')
+
+	@include true.it('Replaces using [$`]')
+		$assert: src.replace($input, ',,', '[$`]')
+		$expect: 'a[a]b[a,,b]c[a,,b,,c]d'
+		@include true.assert-equal($assert, $expect, '[single]')
+
+		$assert: src.replace($input, ',,', '[$`]{$`}')
+		$expect: 'a[a]{a}b[a,,b]{a,,b}c[a,,b,,c]{a,,b,,c}d'
+		@include true.assert-equal($assert, $expect, '[multiple]')
+
+	@include true.it("Replaces using [$']")
+		$assert: src.replace($input, ',,', "[$']")
+		$expect: 'a[b,,c,,d]b[c,,d]c[d]d'
+		@include true.assert-equal($assert, $expect, '[single]')
+
+		$assert: src.replace($input, ',,', "[$']{$'}")
+		$expect: 'a[b,,c,,d]{b,,c,,d}b[c,,d]{c,,d}c[d]{d}d'
+		@include true.assert-equal($assert, $expect, '[multiple]')
+
+	@include true.it("Replaces using [$'$&$`]")
+		$assert: src.replace($input, ',,', "[$'$&$`]")
+		$expect: 'a[b,,c,,d,,a]b[c,,d,,a,,b]c[d,,a,,b,,c]d'
+		@include true.assert-equal($assert, $expect)
+
+	@include true.it('Throws when $string is not a string')
+		$assert: src.replace(12345, true, false)
+		$expected: 'ERROR: $string: `12345` is not a string for `replace()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $substring is not a string')
+		$assert: src.replace('12345', true, false)
+		$expected: 'ERROR: $substring: `true` is not a string for `replace()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $replacement is not a string')
+		$assert: src.replace('12345', 'true', false)
+		$expected: 'ERROR: $replacement: `false` is not a string for `replace()`.'
+		@include true.assert-equal($assert, $expected)
