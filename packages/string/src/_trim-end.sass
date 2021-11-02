@@ -1,0 +1,26 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'internal/whitespace'
+
+
+///
+/// @throw `#{$string}` is not a string.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+/// @require whitespace.$whitespace
+///
+@function trim-end($string)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('trim-end', 'string', $string, 'string')
+
+	@while list.index(whitespace.$whitespace, string.slice($string, string.length($string), -1))
+		$string: string.slice($string, 1, -2)
+
+	@return $string

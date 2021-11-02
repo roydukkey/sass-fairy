@@ -1,0 +1,30 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.trim-end')
+
+	$all-whitespace: '\000C\000A\000D\0009\000B\00A0\1680\2000\2001\2002\2003\2004\2005\2006\2007\2008\2009\200A\2028\2029\202F\205F\3000\FEFF'
+
+	@include true.it('Does trim space from end')
+		$assert: src.trim-end('   Hello world!   ')
+		$expect: '   Hello world!'
+		@include true.assert-equal($assert, $expect)
+
+	@include true.it('Does trim tab from end')
+		$assert: src.trim-end('			Hello world!			')
+		$expect: '			Hello world!'
+		@include true.assert-equal($assert, $expect)
+
+	@include true.it('Does trim all others characters from end')
+		$assert: src.trim-end('#{$all-whitespace}Hello world!#{$all-whitespace}')
+		$expect: '#{$all-whitespace}Hello world!'
+		@include true.assert-equal($assert, $expect)
+
+	@include true.it('Throws when $string is not a string')
+		$assert: src.trim-end(12345)
+		$expected: 'ERROR: $string: `12345` is not a string for `trim-end()`.'
+		@include true.assert-equal($assert, $expected)
