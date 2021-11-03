@@ -75,9 +75,14 @@
 		$expected: 40px
 		@include true.assert-equal($assert, $expected, '[4]')
 
+	@include true.it('Throws when $values contains no items')
+		$assert: src.box-model([], 'top')
+		$expected: 'ERROR: $values: May not contain less than 1 item or more than 4 items for `box-model()`.'
+		@include true.assert-equal($assert, $expected)
+
 	@include true.it('Throws when $values contains more than 4 items')
 		$assert: src.box-model(1 2 3 4 5, 'top')
-		$expected: 'ERROR: $values: May not contain more than 4 items for `box-model()`.'
+		$expected: 'ERROR: $values: May not contain less than 1 item or more than 4 items for `box-model()`.'
 		@include true.assert-equal($assert, $expected)
 
 	@include true.it('Throws when $side is invalid')

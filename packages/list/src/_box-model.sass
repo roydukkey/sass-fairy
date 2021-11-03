@@ -18,8 +18,8 @@
 @function box-model($values, $side)
 	$length: list.length($values)
 
-	@if $length > 4
-		@error parameter.parameter('May not contain more than 4 items', 'box-model', 'values')
+	@if $length < 1 or $length > 4
+		@error parameter.parameter('May not contain less than 1 item or more than 4 items', 'box-model', 'values')
 
 	@if meta.type-of($side) != 'string'
 		@error parameter-type.parameter-type('box-model', 'side', $side, 'string')
@@ -27,4 +27,4 @@
 	@if $length == 1
 		@return $values
 
-	@return map.get((top: list.nth($values, 1), right: list.nth($values, 2), bottom: list.nth($values, if($length >= 3, 3, 1)), left: list.nth($values, if($length == 4, 4, 2))), $side)
+	@return map.get((top: list.nth($values, 1), right: list.nth($values, 2), bottom: list.nth($values, if($length > 2, 3, 1)), left: list.nth($values, if($length == 4, 4, 2))), $side)
