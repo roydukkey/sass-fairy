@@ -1,0 +1,127 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/color/src/a11y'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/list/src/box-model'
+@use '@sass-fairy/string/src/includes'
+@use '@sass-fairy/string/src/starts-with'
+@use 'horizontal-sizes'
+@use 'out'
+@use 'up'
+@use 'vertical-sizes'
+
+
+///
+/// @throw `#{$position}` is not a string.
+/// @throw `#{$color}` is not a color.
+/// @throw `#{$size}` is not a Number.
+///
+/// @access public
+/// @require a11y.a11y
+/// @require box-model.box-model
+/// @require horizontal-sizes.horizontal-sizes
+/// @require includes.includes
+/// @require out.out
+/// @require parameter-type.parameter-type
+/// @require up.up
+/// @require vertical-sizes.vertical-sizes
+///
+@mixin annotate($direction: 'both', $position: 'bottom right', $color: #f3afe6, $size: 12px)
+
+	@if meta.type-of($position) != 'string'
+		// true:cannot-test
+		@error parameter-type.parameter-type('annotate', 'position', $position, 'string')
+
+	@if meta.type-of($color) != 'color'
+		// true:cannot-test
+		@error parameter-type.parameter-type('annotate', 'color', $color, 'color')
+
+	@if meta.type-of($size) != 'number'
+		// true:cannot-test
+		@error parameter-type.parameter-type('annotate', 'size', $size, 'number')
+
+	$foreground: a11y.a11y($color, $color)
+	$isBottom: not includes.includes($position, 'top')
+	$isRight: not includes.includes($position, 'left')
+	$padding: 0.5em 0.75em
+	$border-width: 2px
+	$border-radius: 0.5em
+	$icon-size: 1em
+	$icon-position-left: box-model.box-model($padding, left)
+	$icon-position-top: box-model.box-model($padding, top) + $icon-size * 0.33
+	$line-height: 1.66
+
+	// Copyright 2018 Fonticons, Inc.
+	// https://fontawesome.com/license
+	// Some changes have been made.
+	// cSpell:disable-next-line
+	$h-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3e%3cpath fill='#{_encode-color($foreground)}' d='M377.941 169.941V216H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.568 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296h243.882v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.568 0-33.941l-86.059-86.059c-15.119-15.12-40.971-4.412-40.971 16.97z'/%3e%3c/svg%3e")
+
+	// cSpell:disable-next-line
+	$v-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3e%3cpath fill='#{_encode-color($foreground)}' d='M342.059 377.941H296V134.059h46.059c21.382 0 32.09-25.851 16.971-40.971L272.971 7.029c-9.373-9.373-24.568-9.373-33.941 0l-86.059 86.059c-15.119 15.119-4.411 40.971 16.971 40.971H216v243.882h-46.059c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.568 9.373 33.941 0l86.059-86.059c15.12-15.119 4.412-40.971-16.97-40.971Z'/%3e%3c/svg%3e")
+
+	$use-icon: if($direction == 'horizontal', $h-icon, if($direction == 'vertical', $v-icon, ($h-icon, $v-icon)))
+
+	&::before
+		position: fixed
+		#{if($isBottom, bottom, top)}: 0
+		#{if($isRight, right, left)}: 0
+		border: 0 solid $foreground
+			#{if($isBottom, top, bottom)}-width: $border-width
+			#{if($isRight, left, right)}-width: $border-width
+			#{if($isBottom, top, bottom)}-#{if($isRight, left, right)}-radius: $border-radius
+		padding:
+			top: box-model.box-model($padding, top)
+			right: box-model.box-model($padding, right)
+			bottom: box-model.box-model($padding, bottom)
+			left: box-model.box-model($padding, left) + $icon-size * 1.5
+		background: no-repeat $color
+			position: $icon-position-left $icon-position-top, $icon-position-left $icon-position-top + $line-height
+			size: $icon-size
+			image: $use-icon
+		color: $foreground
+		font:
+			size: $size
+			weight: bold
+		line-height: $line-height
+		white-space: pre
+		z-index: 100
+
+		@content
+
+		@if $direction == 'horizontal'
+			@each $name, $value in horizontal-sizes.$sizes
+				@include out.out($name)
+					content: _content($name, $value)
+
+		@else if $direction == 'vertical'
+			@each $name, $value in vertical-sizes.$sizes
+				@include up.up($name)
+					content: _content($name, $value)
+
+		@else
+
+			@each $h-name, $h-value in horizontal-sizes.$sizes
+				@each $v-name, $v-value in vertical-sizes.$sizes
+					@include out.out($h-name)
+						@include up.up($v-name)
+							content: '#{_content($h-name, $h-value)}\A#{_content($v-name, $v-value)}'
+
+
+///
+/// @access private
+/// @require starts-with.starts-with
+///
+@function _encode-color($color)
+	$color: '#{$color}'
+	@return if(starts-with.starts-with($color, '#'), '%23#{string.slice($color, 2)}', $color)
+
+
+///
+/// @access private
+///
+@function _content($name, $value)
+	@return '#{$name} ≥ #{$value}'
