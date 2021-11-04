@@ -6,6 +6,7 @@
 ## UNRELEASED
 
 * Fix grammar in package description
+* Add `.box-model()`
 
 ## 1.0.0
 
