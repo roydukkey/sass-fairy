@@ -2,7 +2,7 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
-import type { SpecFunction } from '../spec/ModuleSpec';
+import type { SpecSignature } from '../spec/ModuleSpec';
 import React, { Fragment } from 'react';
 
 
@@ -29,5 +29,5 @@ export default function ({ fieldName, parameters }: Attributes): JSX.Element {
 
 interface Attributes {
 	fieldName: string;
-	parameters: SpecFunction['parameters'];
+	parameters: SpecSignature['parameters'];
 }

@@ -7,8 +7,8 @@ import React from 'react';
 
 
 export default function ({ fieldName, spec, overloadIndex }: Attributes): JSX.Element {
-	let type = spec.functions?.[fieldName].return.type;
-	let description = spec.functions?.[fieldName].return.description;
+	let type = spec.functions?.[fieldName].return?.type;
+	let description = spec.functions?.[fieldName].return?.description;
 
 	if (overloadIndex !== undefined && overloadIndex > -1) {
 		const overload = spec.functions?.[fieldName].overloads?.[overloadIndex].return;

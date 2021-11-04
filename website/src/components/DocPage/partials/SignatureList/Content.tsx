@@ -2,10 +2,11 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
+import Output from '../Output';
 import ParameterList from '../ParameterList';
 import ReturnValue from '../ReturnValue';
 import { default as generateHeading } from '@theme/Heading';
-import type { ModuleSpec, SpecFunction } from '../../../../spec/ModuleSpec';
+import type { ModuleSpec, SpecSignature } from '../../../../spec/ModuleSpec';
 import React, { Fragment } from 'react';
 
 
@@ -26,8 +27,19 @@ export default function ({ fieldName, field, spec, overloadIndex }: Attributes):
 				</Fragment>
 			}
 
-			<HeadingComponent>Return Value</HeadingComponent>
-			<ReturnValue {...{ fieldName, spec, overloadIndex }} />
+			{field.return &&
+				<Fragment>
+					<HeadingComponent>Return Value</HeadingComponent>
+					<ReturnValue {...{ fieldName, spec, overloadIndex }} />
+				</Fragment>
+			}
+
+			{field.output &&
+				<Fragment>
+					<HeadingComponent>Output</HeadingComponent>
+					<Output {...{ fieldName, spec, overloadIndex }} />
+				</Fragment>
+			}
 		</Fragment>
 	);
 }
@@ -35,7 +47,7 @@ export default function ({ fieldName, field, spec, overloadIndex }: Attributes):
 
 interface Attributes {
 	fieldName: string;
-	field: SpecFunction;
+	field: SpecSignature;
 	spec: ModuleSpec;
 	overloadIndex: number;
 }

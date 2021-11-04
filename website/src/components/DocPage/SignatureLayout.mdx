@@ -3,10 +3,11 @@
 // ================================================================ -->
 
 import { Fragment } from 'react';
-import Parameters from './partials/Parameters.mdx';
 import ModuleDocHeader from '../ModuleDocHeader';
-import ReturnValue from './partials/ReturnValue';
+import Parameters from './partials/Parameters.mdx';
 import Signature from '../Signature';
+import SignatureOutput from './partials/SignatureOutput.mdx';
+import SignatureReturnValue from './partials/SignatureReturnValue.mdx';
 
 # <ModuleDocHeader spec={props.spec} function={props.fieldName} />
 
@@ -19,8 +20,16 @@ import Signature from '../Signature';
   }
 </Fragment>
 
-## Return Value
+<Fragment>
+  {props.field.return &&
+    <SignatureReturnValue spec={props.spec} fieldName={props.fieldName} />
+  }
+</Fragment>
 
-<ReturnValue spec={props.spec} fieldName={props.fieldName} />
+<Fragment>
+  {props.field.output &&
+    <SignatureOutput spec={props.spec} fieldName={props.fieldName} />
+  }
+</Fragment>
 
 ## Example

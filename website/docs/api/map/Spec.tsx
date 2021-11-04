@@ -1,9 +1,9 @@
 import packageJson from '@sass-fairy/map/package.json';
-import type { ModuleSpec, SpecFunction } from '@site/src/spec/ModuleSpec';
+import type { ModuleSpec, SpecSignature } from '@site/src/spec/ModuleSpec';
 import { centerCompareParameter, compareReferenceCommon } from '@site/docs/api/list/Spec';
 
 
-const compareParameters: SpecFunction['parameters'] = {
+const compareParameters: SpecSignature['parameters'] = {
 	'first-pair': {
 		description: 'The first key/value pair for the comparison.',
 		type: ['*']

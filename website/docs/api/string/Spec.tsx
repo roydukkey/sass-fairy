@@ -1,10 +1,10 @@
 import packageJson from '@sass-fairy/string/package.json';
-import type { ModuleSpec, SpecFunction } from '@site/src/spec/ModuleSpec';
+import type { ModuleSpec, SpecSignature } from '@site/src/spec/ModuleSpec';
 import React, { Fragment } from 'react';
 import { bracketedParameter, separatorParameter } from '@site/docs/api/list/Spec';
 
 
-const startAtParameter: SpecFunction['parameters'] = {
+const startAtParameter: SpecSignature['parameters'] = {
 	'start-at': {
 		description: 'The index at which to begin the search. A negative index can be used, indicating an offset from the end of the source string.',
 		type: ['Number'],
@@ -13,7 +13,7 @@ const startAtParameter: SpecFunction['parameters'] = {
 };
 
 
-const endAtParameter: SpecFunction['parameters'] = {
+const endAtParameter: SpecSignature['parameters'] = {
 	'end-at': {
 		description: 'The index at which to end the search. A negative index can be used, indicating an offset from the end of the source string.',
 		type: ['Number'],

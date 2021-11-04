@@ -1,8 +1,8 @@
 import packageJson from '@sass-fairy/break/package.json';
-import type { ModuleSpec, SpecFunction, SpecFunctionOverload } from '@site/src/spec/ModuleSpec';
+import type { ModuleSpec, SpecSignature, SpecSignatureOverload } from '@site/src/spec/ModuleSpec';
 
 
-const breakpointParameter: SpecFunction['parameters'] = {
+const breakpointParameter: SpecSignature['parameters'] = {
 	breakpoint: {
 		description: 'The name of the breakpoint at which the generated rule should break.',
 		type: ['String']
@@ -10,7 +10,7 @@ const breakpointParameter: SpecFunction['parameters'] = {
 };
 
 
-const firstBreakpointParameter: SpecFunction['parameters'] = {
+const firstBreakpointParameter: SpecSignature['parameters'] = {
 	'first-breakpoint': {
 		description: 'The name of the smaller breakpoint at which the generated rule should break.',
 		type: ['String']
@@ -18,7 +18,7 @@ const firstBreakpointParameter: SpecFunction['parameters'] = {
 };
 
 
-const secondBreakpointParameter: SpecFunction['parameters'] = {
+const secondBreakpointParameter: SpecSignature['parameters'] = {
 	'second-breakpoint': {
 		description: 'The name of the larger breakpoint at which the generated rule should break.',
 		type: ['String']
@@ -26,7 +26,7 @@ const secondBreakpointParameter: SpecFunction['parameters'] = {
 };
 
 
-const sizeParameter: SpecFunctionOverload['parameters'] = {
+const sizeParameter: SpecSignatureOverload['parameters'] = {
 	size: {
 		description: 'The size at which the generated rule should break.',
 		type: ['Number']
@@ -34,14 +34,14 @@ const sizeParameter: SpecFunctionOverload['parameters'] = {
 };
 
 
-const firstSizeParameter: SpecFunctionOverload['parameters'] = {
+const firstSizeParameter: SpecSignatureOverload['parameters'] = {
 	'first-size': {
 		description: 'The smaller size at which the generated rule should break.',
 		type: ['Number']
 	}
 };
 
-const secondSizeParameter: SpecFunctionOverload['parameters'] = {
+const secondSizeParameter: SpecSignatureOverload['parameters'] = {
 	'second-size': {
 		description: 'The larger size at which the generated rule should break.',
 		type: ['Number']

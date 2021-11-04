@@ -1,6 +1,6 @@
 import packageJson from '@sass-fairy/list/package.json';
 import { passedByName } from '@site/docs/api/exception/Spec';
-import type { ModuleSpec, SpecFunction, SpecParameter } from '@site/src/spec/ModuleSpec';
+import type { ModuleSpec, SpecParameter, SpecSignature } from '@site/src/spec/ModuleSpec';
 
 
 const separatorParameter: Omit<SpecParameter, 'description'> = {
@@ -22,7 +22,7 @@ const predicateArgsParameter: SpecParameter = {
 };
 
 
-const binaryPredicateParameters: Required<Pick<SpecFunction, 'parameters'>> = {
+const binaryPredicateParameters: Required<Pick<SpecSignature, 'parameters'>> = {
 	parameters: {
 		list: {
 			description: 'The list from which items will be tested.',
@@ -42,7 +42,7 @@ const binaryPredicateParameters: Required<Pick<SpecFunction, 'parameters'>> = {
 const reduceInitialValueParameter = ['The value to use as the first parameter for the first call to the transformer.', passedByName];
 
 
-const reduceFunction: SpecFunction = {
+const reduceFunction: SpecSignature = {
 	group: 'main',
 	description: 'Reduces a list to a single value as the product of calling a specified function on every item in a list.',
 	parameters: {
@@ -71,7 +71,7 @@ const reduceFunction: SpecFunction = {
 };
 
 
-const reduceRightFunction: SpecFunction = {
+const reduceRightFunction: SpecSignature = {
 	...JSON.parse(JSON.stringify(reduceFunction)), // Deep Copy
 	description: 'Reduces a list to a single value as the product of calling a specified function on every item in a list, starting with the last item to the first.'
 };
@@ -93,7 +93,7 @@ const startAtParameter: SpecParameter = {
 };
 
 
-const compareParameters: SpecFunction['parameters'] = {
+const compareParameters: SpecSignature['parameters'] = {
 	'first-item': {
 		description: 'The first item for the comparison.',
 		type: ['*']
@@ -105,7 +105,7 @@ const compareParameters: SpecFunction['parameters'] = {
 };
 
 
-const centerCompareParameter: SpecFunction['parameters'] = {
+const centerCompareParameter: SpecSignature['parameters'] = {
 	center: {
 		description: 'The value indicating the center (zero) position between positive and negative values.',
 		type: ['Number'],
@@ -114,7 +114,7 @@ const centerCompareParameter: SpecFunction['parameters'] = {
 };
 
 
-const compareReferenceCommon: Pick<SpecFunction, 'overloads' | 'return'> = {
+const compareReferenceCommon: Pick<SpecSignature, 'overloads' | 'return'> = {
 	return: {
 		type: ['Number']
 	},

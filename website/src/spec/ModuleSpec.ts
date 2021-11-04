@@ -6,7 +6,7 @@ export interface ModuleSpec {
 	description: string;
 	basePath: string;
 	variables?: { [key: string]: SpecVariable };
-	functions?: { [key: string]: SpecFunction };
+	functions?: { [key: string]: SpecSignature };
 	hiddenNativeFields?: string[];
 }
 
@@ -18,25 +18,27 @@ export interface SpecVariable {
 	fileName?: string;
 }
 
-interface SpecFunctionBase {
+interface SpecSignatureBase {
 	description: string | JSX.Element;
 	parameters?: { [key: string]: SpecParameter };
 }
 
-export interface SpecFunctionOverload extends SpecFunctionBase {
+export interface SpecSignature extends SpecSignatureBase {
+	group: 'main' | 'list/reference' | 'map/reference' | 'break/horizontal' | 'break/vertical' | 'math/bounding' | 'math/exponential' | 'math/unit';
+	overloads?: SpecSignatureOverload[];
+	return?: {
+		description?: string | JSX.Element;
+		type: ParameterType[];
+	};
+	output?: string | JSX.Element;
+}
+
+export interface SpecSignatureOverload extends SpecSignatureBase {
 	return?: {
 		description?: string | JSX.Element;
 		type?: ParameterType[];
 	};
-}
-
-export interface SpecFunction extends SpecFunctionBase {
-	group: 'main' | 'list/reference' | 'map/reference' | 'break/horizontal' | 'break/vertical' | 'math/bounding' | 'math/exponential' | 'math/unit';
-	overloads?: SpecFunctionOverload[];
-	return: {
-		description?: string | JSX.Element;
-		type: ParameterType[];
-	};
+	output?: string | JSX.Element;
 }
 
 export interface SpecParameter {

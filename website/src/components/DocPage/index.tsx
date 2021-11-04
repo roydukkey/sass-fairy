@@ -2,11 +2,11 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
-import FunctionLayout from './FunctionLayout.mdx';
 import type { ModuleSpec } from '../../spec/ModuleSpec';
 import OverloadedLayout from './OverloadedLayout.mdx';
 import React from 'react';
 import type { ReactNode } from 'react';
+import SignatureLayout from './SignatureLayout.mdx';
 import VariableLayout from './VariableLayout.mdx';
 
 
@@ -22,7 +22,7 @@ export default function ({ fieldName, fieldType, spec, children }: Attributes): 
 		? <VariableLayout {...forwardProps}>{children}</VariableLayout>
 		: hasOverloads
 			? <OverloadedLayout {...forwardProps}>{children}</OverloadedLayout>
-			: <FunctionLayout {...forwardProps}>{children}</FunctionLayout>;
+			: <SignatureLayout {...forwardProps}>{children}</SignatureLayout>;
 }
 
 

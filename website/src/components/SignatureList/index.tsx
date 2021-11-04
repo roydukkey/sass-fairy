@@ -5,7 +5,7 @@
 import Link from '@docusaurus/Link';
 import MoreInfo from './MoreInfo.mdx';
 import Signature from '../Signature';
-import type { ModuleSpec, SpecFunction } from '../../spec/ModuleSpec';
+import type { ModuleSpec, SpecSignature } from '../../spec/ModuleSpec';
 import React, { Fragment } from 'react';
 
 
@@ -48,5 +48,5 @@ export default function ({ spec: { basePath, functions }, group }: Attributes): 
 
 interface Attributes {
 	spec: ModuleSpec;
-	group?: SpecFunction['group'];
+	group?: SpecSignature['group'];
 }

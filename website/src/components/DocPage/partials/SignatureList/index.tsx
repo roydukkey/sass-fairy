@@ -5,7 +5,7 @@
 import Content from './Content';
 import Details from '@theme/Details';
 import Signature from '../../../Signature';
-import type { ModuleSpec, SpecFunction } from '../../../../spec/ModuleSpec';
+import type { ModuleSpec, SpecSignature } from '../../../../spec/ModuleSpec';
 import React, { Fragment } from 'react';
 
 
@@ -32,6 +32,6 @@ export default function ({ fieldName, field, spec }: Attributes): JSX.Element {
 
 interface Attributes {
 	fieldName: string;
-	field: SpecFunction;
+	field: SpecSignature;
 	spec: ModuleSpec;
 }

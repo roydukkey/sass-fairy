@@ -1,8 +1,8 @@
 import packageJson from '@sass-fairy/exception/package.json';
-import type { ModuleSpec, SpecFunction } from '@site/src/spec/ModuleSpec';
+import type { ModuleSpec, SpecSignature } from '@site/src/spec/ModuleSpec';
 
 
-const contextParameter: SpecFunction['parameters'] = {
+const contextParameter: SpecSignature['parameters'] = {
 	context: {
 		description: 'The name of the function or mixin issuing the error.',
 		type: ['String']
@@ -10,7 +10,7 @@ const contextParameter: SpecFunction['parameters'] = {
 };
 
 
-const messageParameter: SpecFunction['parameters'] = {
+const messageParameter: SpecSignature['parameters'] = {
 	message: {
 		description: 'The message which describes the issue.',
 		type: ['String']
@@ -18,7 +18,7 @@ const messageParameter: SpecFunction['parameters'] = {
 };
 
 
-const valueParameter: SpecFunction['parameters'] = {
+const valueParameter: SpecSignature['parameters'] = {
 	value: {
 		description: 'The value which was received.',
 		type: ['*']
@@ -26,7 +26,7 @@ const valueParameter: SpecFunction['parameters'] = {
 };
 
 
-const typesParameter: SpecFunction['parameters'] = {
+const typesParameter: SpecSignature['parameters'] = {
 	types: {
 		description: 'The types which are expected.',
 		type: ['ArgList']
@@ -34,7 +34,7 @@ const typesParameter: SpecFunction['parameters'] = {
 };
 
 
-const validateIndexParameters: SpecFunction['parameters'] = {
+const validateIndexParameters: SpecSignature['parameters'] = {
 	...contextParameter,
 	name: {
 		description: 'The name of the index parameter which is being validated.',
