@@ -6,7 +6,7 @@
 ## UNRELEASED
 
 * Fix grammar in package description
-* Add `.box-model()`
+* Add [`.box-model()`](https://sass-fairy.com/api/list/box-model)
 
 ## 1.0.0
 

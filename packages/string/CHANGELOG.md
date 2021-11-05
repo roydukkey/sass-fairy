@@ -5,8 +5,8 @@
 
 ## UNRELEASED
 
-* Add `.replace()`
-* Add `.trim()`, `.trim-start()`, and `.trim-end()`
+* Add [`.replace()`](https://sass-fairy.com/api/string/replace)
+* Add [`.trim()`](https://sass-fairy.com/api/string/trim), [`.trim-start()`](https://sass-fairy.com/api/string/trim-start), and [`.trim-end()`](https://sass-fairy.com/api/string/trim-end)
 
 ## 1.0.0
 

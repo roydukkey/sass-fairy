@@ -5,7 +5,7 @@
 
 ## UNRELEASED
 
-* Add `.annotate()`
+* Add [`.annotate()`](https://sass-fairy.com/api/break/helpers/annotate)
 
 ## 1.0.0
 
