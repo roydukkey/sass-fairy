@@ -1,5 +1,6 @@
 import packageJson from '@sass-fairy/break/package.json';
 import type { ModuleSpec, SpecSignature, SpecSignatureOverload } from '@site/src/spec/ModuleSpec';
+import React, { Fragment } from 'react';
 
 
 const breakpointParameter: SpecSignature['parameters'] = {
@@ -251,6 +252,36 @@ const spec: ModuleSpec = {
 					parameters: sizeParameter
 				}
 			]
+		},
+
+		annotate: {
+			group: 'break/helpers',
+			description: 'Enables a fixed annotation displaying the active breakpoints of the viewport.',
+			parameters: {
+				direction: {
+					description: 'The breakpoint categories to annotate.',
+					type: ['\'horizontal\'', '\'vertical\'', '\'both\''],
+					defaultValue: '\'both\''
+				},
+				position: {
+					description: 'The location in the viewport where the annotation will be positioned.',
+					type: ['\'top right\'', '\'top left\'', '\'bottom right\'', '\'bottom left\''],
+					defaultValue: '\'bottom right\''
+				},
+				color: {
+					description: 'The primary color of the annotation.',
+					type: ['Color'],
+					defaultValue: '#f3afe6'
+				},
+				size: {
+					description: 'The font size of the annotation.',
+					type: ['Number'],
+					defaultValue: '12px'
+				}
+			},
+			output: <Fragment>
+				Styles a single <code>::before</code> pseudo-element to a fixed position, with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/content" target="_blank" rel="nofollow noreferrer noopener"><code>content</code></a> that describes the active horizontal and/or vertical breakpoints.
+			</Fragment>
 		}
 
 	}
