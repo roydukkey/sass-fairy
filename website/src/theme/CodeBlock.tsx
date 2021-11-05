@@ -6,6 +6,7 @@ import OriginalCodeBlock from '@theme-original/CodeBlock';
 import React from 'react';
 import type { ReactElement } from 'react';
 
+
 export default function ({ highlightLines, highlightKeywords, stripSassDocs, rewriteFairyUses, children, ...props }: Attributes): JSX.Element {
 	if (typeof children === 'string') {
 		children = children.trim().replace(/\t/g, '  ');
@@ -82,8 +83,9 @@ export default function ({ highlightLines, highlightKeywords, stripSassDocs, rew
 		props.metastring = highlightLines;
 	}
 
-  return <OriginalCodeBlock {...props}>{children}</OriginalCodeBlock>;
+	return <OriginalCodeBlock {...props}>{children}</OriginalCodeBlock>;
 }
+
 
 interface Attributes {
 	className?: string;

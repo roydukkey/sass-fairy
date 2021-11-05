@@ -1,3 +1,7 @@
+// ================================================================= //
+// Copyright (c) roydukkey. All rights reserved.                     //
+// ================================================================= //
+
 import packageJson from '@sass-fairy/string/package.json';
 import type { ModuleSpec, SpecSignature } from '@site/src/spec/ModuleSpec';
 import React, { Fragment } from 'react';

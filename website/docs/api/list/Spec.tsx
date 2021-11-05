@@ -1,3 +1,7 @@
+// ================================================================= //
+// Copyright (c) roydukkey. All rights reserved.                     //
+// ================================================================= //
+
 import packageJson from '@sass-fairy/list/package.json';
 import { passedByName } from '@site/docs/api/exception/Spec';
 import type { ModuleSpec, SpecParameter, SpecSignature } from '@site/src/spec/ModuleSpec';

@@ -1,7 +1,5 @@
-//
-// Any CSS included here will be global. The classic template bundles Infima by default. Infima is a CSS framework designed to work well for content-centric websites.
-// cSpell:words Infima
-//
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 @use '@sass-fairy/color/color'
 @use './palette'
@@ -14,7 +12,6 @@
 $-background-light: color.scale(palette.$background, $lightness: 90%)
 
 
-/* You can override the default Infima variables here. */
 :root
 	--ifm-font-color-base: #{color.a11y(palette.$foreground, $-background-light)}
 	--ifm-background-color: #{$-background-light}

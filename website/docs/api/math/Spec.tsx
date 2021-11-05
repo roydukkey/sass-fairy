@@ -1,3 +1,7 @@
+// ================================================================= //
+// Copyright (c) roydukkey. All rights reserved.                     //
+// ================================================================= //
+
 import type { ModuleSpec } from '@site/src/spec/ModuleSpec';
 import packageJson from '@sass-fairy/math/package.json';
 

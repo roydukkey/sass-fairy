@@ -2,6 +2,7 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
+
 // cSpell:disable-next-line
 const alphabet = [...'$abcdefghijklmnopqrstuvwxyz -'];
 
