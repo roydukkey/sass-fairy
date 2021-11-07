@@ -167,7 +167,7 @@ const spec: ModuleSpec = {
 
 		concat: {
 			group: 'main',
-			description: 'Merges two or more lists into a new list.',
+			description: 'Merges two or more lists into one list.',
 			parameters: {
 				values: {
 					description: 'The lists or single values to concatenate.',
@@ -190,7 +190,7 @@ const spec: ModuleSpec = {
 
 		distinct: {
 			group: 'main',
-			description: 'Creates a new list with all distinct items from a list.',
+			description: 'Creates a list of all distinct items from a source list.',
 			parameters: {
 				list: {
 					description: 'The list from which items distinct items will be selected.',
@@ -247,7 +247,7 @@ const spec: ModuleSpec = {
 
 		filter: {
 			group: 'main',
-			description: 'Creates a new list with all item from a list that satisfy the test implemented by the specified function.',
+			description: 'Creates a list of all the items from a source list that satisfy the test implemented by the specified function.',
 			parameters: {
 				list: binaryPredicateParameters.parameters.list,
 				predicate: binaryPredicateParameters.parameters.predicate,
@@ -289,7 +289,7 @@ const spec: ModuleSpec = {
 
 		flat: {
 			group: 'main',
-			description: 'Creates a new list with all sub-list items concatenated into it recursively up to a specified depth.',
+			description: 'Creates a list with all sub-list items from a source list concatenated into it recursively up to a specified depth.',
 			parameters: {
 				list: {
 					description: 'The list to be flattened.',
@@ -366,7 +366,7 @@ const spec: ModuleSpec = {
 
 		'insert-nth': {
 			group: 'main',
-			description: 'Returns a copy of a list with the specified value inserted into the list at a given index.',
+			description: 'Returns a list with the specified value inserted into the list at a given index.',
 			parameters: {
 				list: {
 					description: 'The list to which the value is to be inserted.',
@@ -448,7 +448,7 @@ const spec: ModuleSpec = {
 
 		map: {
 			group: 'main',
-			description: 'Creates a new list populated with the results of calling a specified function on every item in a list.',
+			description: 'Creates a list populated with the results of calling a specified function on every item in a source list.',
 			parameters: {
 				list: {
 					description: 'The list from which items will be processed.',
@@ -464,11 +464,11 @@ const spec: ModuleSpec = {
 				},
 				separator: {
 					...separatorParameter,
-					description: ['The type of separator to be used by the new list.', passedByName].join(' ')
+					description: ['The type of separator to be used by the created list.', passedByName].join(' ')
 				},
 				bracketed: {
 					...bracketedParameter,
-					description: ['Whether the new list has square brackets or no brackets.', passedByName].join(' ')
+					description: ['Whether the created list has square brackets or no brackets.', passedByName].join(' ')
 				}
 			},
 			return: {
@@ -479,7 +479,7 @@ const spec: ModuleSpec = {
 
 		prepend: {
 			group: 'main',
-			description: 'Returns a copy of a list with the specified value added to the beginning.',
+			description: 'Returns a list with the specified value added to the beginning.',
 			parameters: {
 				list: {
 					description: 'The list to which the value is to be prepended.',
@@ -506,7 +506,7 @@ const spec: ModuleSpec = {
 
 		remove: {
 			group: 'main',
-			description: 'Returns a copy of a list without the specified value.',
+			description: 'Returns a list without the specified value.',
 			parameters: {
 				list: {
 					description: 'The list from which the value is to be removed.',
@@ -529,7 +529,7 @@ const spec: ModuleSpec = {
 
 		'remove-nth': {
 			group: 'main',
-			description: 'Returns a copy of a list without the value at a specified index.',
+			description: 'Returns a list without the value at a specified index.',
 			parameters: {
 				list: {
 					description: 'The list to which the value is to be removed.',
@@ -552,7 +552,7 @@ const spec: ModuleSpec = {
 
 		replace: {
 			group: 'main',
-			description: 'Returns a copy of a list with all occurrences of the given value replaced by the specified replacement.',
+			description: 'Returns a list with all occurrences of the given value replaced by the specified replacement.',
 			parameters: {
 				list: {
 					description: 'The list from which the value is to be replaced.',
@@ -598,7 +598,7 @@ const spec: ModuleSpec = {
 
 		'set-nth': {
 			group: 'main',
-			description: 'Returns a copy of a list with the value at the given index replaced with the specified value.',
+			description: 'Returns a list with the value at the given index replaced with the specified value.',
 			parameters: {
 				list: {
 					description: 'The list from which the value is to be replaced.',
@@ -625,7 +625,7 @@ const spec: ModuleSpec = {
 
 		slice: {
 			group: 'main',
-			description: 'Extracts a portion of a list into a new list selected from a starting index through a ending index.',
+			description: 'Extracts a portion of a list selecting from a starting index through a ending index.',
 			parameters: {
 				list: {
 					description: 'The list to be sliced.',
