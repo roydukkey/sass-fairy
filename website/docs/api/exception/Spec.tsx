@@ -4,6 +4,7 @@
 
 import packageJson from '@sass-fairy/exception/package.json';
 import type { ModuleSpec, SpecSignature } from '@site/src/spec/ModuleSpec';
+import React, { Fragment } from 'react';
 
 
 const contextParameter: SpecSignature['parameters'] = {
@@ -71,6 +72,9 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: <Fragment>
+					<code>true</code> if the value is a valid; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},
@@ -87,6 +91,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A string describing the reason one or more parameters are invalid.',
 				type: ['String']
 			}
 		},
@@ -104,6 +109,7 @@ const spec: ModuleSpec = {
 				...typesParameter
 			},
 			return: {
+				description: 'A string describing what types are acceptable for a parameter and the value that is invalid.',
 				type: ['String']
 			}
 		},
@@ -112,6 +118,7 @@ const spec: ModuleSpec = {
 			group: 'main',
 			description: 'Returns an error message stating a separator variable received the wrong value.',
 			return: {
+				description: 'A string describing what values are acceptable for a separator.',
 				type: ['String']
 			},
 			overloads: [
@@ -168,6 +175,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A string describing the reason one or more variables are misconfigured.',
 				type: ['String']
 			}
 		},
@@ -189,6 +197,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A string describing what types are acceptable for a variable and the value that is misconfigured.',
 				type: ['String']
 			}
 		}

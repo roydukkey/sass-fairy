@@ -51,6 +51,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A color that meets the given standards for size and level in contrast to the other color.',
 				type: ['Color']
 			}
 		},
@@ -71,6 +72,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A number representing the contrast ratio between two colors.',
 				type: ['Number']
 			}
 		},
@@ -85,6 +87,9 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: <Fragment>
+					<code>true</code> if the given color is considered dark; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},
@@ -99,6 +104,9 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: <Fragment>
+					<code>true</code> if the given color is considered light; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},
@@ -115,6 +123,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A number representing the relative luminance of the given color.',
 				type: ['Number']
 			}
 		}

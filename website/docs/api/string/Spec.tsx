@@ -50,13 +50,16 @@ const spec: ModuleSpec = {
 				...endAtParameter
 			},
 			return: {
+				description: <Fragment>
+					<code>true</code> if the given characters are found at the end of the string; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},
 
 		from: {
 			group: 'main',
-			description: 'Creates a normalized string from the provided value.',
+			description: 'Creates a normalized string from the provided value, with unique punctuation differentiating types and characteristics.',
 			parameters: {
 				value: {
 					description: 'The value from which to generate a string.',
@@ -64,6 +67,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The string representation of the given value.',
 				type: ['String']
 			}
 		},
@@ -83,6 +87,9 @@ const spec: ModuleSpec = {
 				...startAtParameter
 			},
 			return: {
+				description: <Fragment>
+					<code>true</code> if the substring is found anywhere within the given string; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},
@@ -102,6 +109,9 @@ const spec: ModuleSpec = {
 				...startAtParameter
 			},
 			return: {
+				description: <Fragment>
+					The index of the first occurrence of the substring, or <code>0</code>.
+				</Fragment>,
 				type: ['Number']
 			}
 		},
@@ -124,6 +134,9 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: <Fragment>
+					The index of the last occurrence of the substring, or <code>0</code>.
+				</Fragment>,
 				type: ['Number']
 			}
 		},
@@ -157,7 +170,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
-				description: 'A string with all instances of a substring replaced by a replacement.',
+				description: 'A string with all instances of the substring replaced by a replacement.',
 				type: ['Number']
 			}
 		},
@@ -190,6 +203,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list of strings, split at each point where the delimiter occurs in the given string.',
 				type: ['List']
 			}
 		},
@@ -209,6 +223,9 @@ const spec: ModuleSpec = {
 				...startAtParameter
 			},
 			return: {
+				description: <Fragment>
+					<code>true</code> if the given characters are found at the beginning of the string; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},

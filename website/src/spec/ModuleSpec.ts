@@ -42,7 +42,7 @@ export interface SpecSignature extends SpecSignatureBase {
 	group: SignatureGroups;
 	overloads?: SpecSignatureOverload[];
 	return?: {
-		description?: string | JSX.Element;
+		description: string | JSX.Element;
 		type: ParameterType[];
 	};
 	output?: string | JSX.Element;

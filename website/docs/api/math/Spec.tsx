@@ -24,6 +24,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The number that is the GCD of the given set of numbers.',
 				type: ['Number']
 			}
 		},
@@ -38,13 +39,14 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The number that is the LCM of the given set of numbers.',
 				type: ['Number']
 			}
 		},
 
 		exp: {
 			group: 'math/exponential',
-			description: 'Returns Euler’s number to the specified power.',
+			description: 'Returns Euler’s number raised to the specified power.',
 			parameters: {
 				numbers: {
 					description: 'The power to which Euler’s number will be raise.',
@@ -52,6 +54,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The number representing Euler’s number raised to the given power.',
 				type: ['Number']
 			}
 		},
@@ -66,6 +69,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The number that is the product of the factorialization of the given integer.',
 				type: ['Number']
 			}
 		},
@@ -84,6 +88,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The given number with the given units.',
 				type: ['Number']
 			}
 		},
@@ -98,6 +103,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The given number without units.',
 				type: ['Number']
 			}
 		}

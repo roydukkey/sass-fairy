@@ -8,17 +8,17 @@
 
 @include true.describe('@function math.fact')
 
-	@include true.it("Calculate the factorial of 5")
+	@include true.it('Calculate the factorial of 5')
 		$assert: src.fact(5)
 		$expected: 120
 		@include true.assert-equal($assert, $expected)
 
-	@include true.it("Calculate the factorial of 0")
+	@include true.it('Calculate the factorial of 0')
 		$assert: src.fact(0)
 		$expected: 1
 		@include true.assert-equal($assert, $expected)
 
-	@include true.it("Calculate the factorial of -100")
+	@include true.it('Calculate the factorial of -100')
 		$assert: src.fact(-100)
 		$expected: 9.332621544394418e157
 		@include true.assert-equal($assert, $expected)

@@ -46,11 +46,22 @@ const firstSizeParameter: SpecSignatureOverload['parameters'] = {
 	}
 };
 
+
 const secondSizeParameter: SpecSignatureOverload['parameters'] = {
 	'second-size': {
 		description: 'The larger size at which the generated rule should break.',
 		type: ['Number']
 	}
+};
+
+
+const returnDescriptions = {
+	breakpoint: 'A string representation of the media query condition that meets the requirements for the given breakpoint.',
+	breakpoints: 'A string representation of the media query condition that meets the requirements for the given breakpoints.',
+	size: 'A string representation of the media query condition that meets the requirements for the given size.',
+	sizes: 'A string representation of the media query condition that meets the requirements for the given sizes.',
+	breakpointAndSize: 'A string representation of the media query condition that meets the requirements for the given breakpoint and size.',
+	sizeAndBreakpoint: 'A string representation of the media query condition that meets the requirements for the given size and breakpoint.'
 };
 
 
@@ -114,15 +125,19 @@ const spec: ModuleSpec = {
 			group: 'break/horizontal',
 			description: 'Generates a media query rule for the given horizontal breakpoint and narrower.',
 			parameters: breakpointParameter,
+			return: {
+				description: returnDescriptions.breakpoint,
+				type: ['String']
+			},
 			overloads: [
 				{
 					description: 'Generates a media query rule for the given size and narrower.',
-					parameters: sizeParameter
+					parameters: sizeParameter,
+					return: {
+						description: returnDescriptions.size
+					}
 				}
-			],
-			return: {
-				type: ['String']
-			}
+			]
 		},
 
 		'in-between': {
@@ -133,6 +148,7 @@ const spec: ModuleSpec = {
 				...secondBreakpointParameter
 			},
 			return: {
+				description: returnDescriptions.breakpoints,
 				type: ['String']
 			},
 			overloads: [
@@ -141,6 +157,9 @@ const spec: ModuleSpec = {
 					parameters: {
 						...firstSizeParameter,
 						...secondSizeParameter
+					},
+					return: {
+						description: returnDescriptions.sizes
 					}
 				},
 				{
@@ -148,6 +167,9 @@ const spec: ModuleSpec = {
 					parameters: {
 						...firstBreakpointParameter,
 						...secondSizeParameter
+					},
+					return: {
+						description: returnDescriptions.breakpointAndSize
 					}
 				},
 				{
@@ -155,6 +177,9 @@ const spec: ModuleSpec = {
 					parameters: {
 						...firstSizeParameter,
 						...secondBreakpointParameter
+					},
+					return: {
+						description: returnDescriptions.sizeAndBreakpoint
 					}
 				}
 			]
@@ -165,6 +190,7 @@ const spec: ModuleSpec = {
 			description: 'Generates a media query rule for the given horizontal breakpoint.',
 			parameters: breakpointParameter,
 			return: {
+				description: returnDescriptions.breakpoint,
 				type: ['String']
 			}
 		},
@@ -174,12 +200,16 @@ const spec: ModuleSpec = {
 			description: 'Generates a media query rule for the given horizontal breakpoint and wider.',
 			parameters: breakpointParameter,
 			return: {
+				description: returnDescriptions.breakpoint,
 				type: ['String']
 			},
 			overloads: [
 				{
 					description: 'Generates a media query rule for the given size and wider.',
-					parameters: sizeParameter
+					parameters: sizeParameter,
+					return: {
+						description: returnDescriptions.size
+					}
 				}
 			]
 		},
@@ -189,12 +219,16 @@ const spec: ModuleSpec = {
 			description: 'Generates a media query rule for the given vertical breakpoint and shorter.',
 			parameters: breakpointParameter,
 			return: {
+				description: returnDescriptions.breakpoint,
 				type: ['String']
 			},
 			overloads: [
 				{
 					description: 'Generates a media query rule for the given size and shorter.',
-					parameters: sizeParameter
+					parameters: sizeParameter,
+					return: {
+						description: returnDescriptions.size
+					}
 				}
 			]
 		},
@@ -207,6 +241,7 @@ const spec: ModuleSpec = {
 				...secondBreakpointParameter
 			},
 			return: {
+				description: returnDescriptions.breakpoints,
 				type: ['String']
 			},
 			overloads: [
@@ -215,6 +250,9 @@ const spec: ModuleSpec = {
 					parameters: {
 						...firstSizeParameter,
 						...secondSizeParameter
+					},
+					return: {
+						description: returnDescriptions.sizes
 					}
 				},
 				{
@@ -222,6 +260,9 @@ const spec: ModuleSpec = {
 					parameters: {
 						...firstBreakpointParameter,
 						...secondSizeParameter
+					},
+					return: {
+						description: returnDescriptions.breakpointAndSize
 					}
 				},
 				{
@@ -229,6 +270,9 @@ const spec: ModuleSpec = {
 					parameters: {
 						...firstSizeParameter,
 						...secondBreakpointParameter
+					},
+					return: {
+						description: returnDescriptions.sizeAndBreakpoint
 					}
 				}
 			]
@@ -239,6 +283,7 @@ const spec: ModuleSpec = {
 			description: 'Generates a media query rule for the given vertical breakpoint.',
 			parameters: breakpointParameter,
 			return: {
+				description: returnDescriptions.breakpoint,
 				type: ['String']
 			}
 		},
@@ -248,12 +293,16 @@ const spec: ModuleSpec = {
 			description: 'Generates a media query rule for the given vertical breakpoint and taller.',
 			parameters: breakpointParameter,
 			return: {
+				description: returnDescriptions.breakpoint,
 				type: ['String']
 			},
 			overloads: [
 				{
 					description: 'Generates a media query rule for the given size and taller.',
-					parameters: sizeParameter
+					parameters: sizeParameter,
+					return: {
+						description: returnDescriptions.size
+					}
 				}
 			]
 		},

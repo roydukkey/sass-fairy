@@ -28,6 +28,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The given function is returned when no arguments are given; otherwise, supplied with the given arguments, the value returned by the invocation of the given function is returned.',
 				type: ['Function', '*']
 			}
 		},
@@ -51,6 +52,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The value of the named parameter when it exists; otherwise, the given default value.',
 				type: ['*']
 			}
 		},

@@ -5,6 +5,7 @@
 import packageJson from '@sass-fairy/list/package.json';
 import { passedByName } from '@site/docs/api/exception/Spec';
 import type { ModuleSpec, SpecParameter, SpecSignature } from '@site/src/spec/ModuleSpec';
+import React, { Fragment } from 'react';
 
 
 const separatorParameter: Omit<SpecParameter, 'description'> = {
@@ -70,6 +71,7 @@ const reduceFunction: SpecSignature = {
 		}
 	},
 	return: {
+		description: 'The value that results from running the transformer function to completion over the entire list.',
 		type: ['*']
 	}
 };
@@ -120,6 +122,7 @@ const centerCompareParameter: SpecSignature['parameters'] = {
 
 const compareReferenceCommon: Pick<SpecSignature, 'overloads' | 'return'> = {
 	return: {
+		description: 'A positive number when the first given value is greater than the second given value, or a negative number when the second given value is greater than the first given value; otherwise, zero.',
 		type: ['Number']
 	},
 	overloads: [
@@ -180,6 +183,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with all the values of the every given list.',
 				type: ['List']
 			}
 		},
@@ -198,6 +202,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with no repeated values.',
 				type: ['List']
 			}
 		},
@@ -223,6 +228,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'An empty list with the given or derived characteristics.',
 				type: ['List']
 			}
 		},
@@ -232,6 +238,9 @@ const spec: ModuleSpec = {
 			description: 'Tests whether all items in a list satisfy the test implemented by the specified function.',
 			...binaryPredicateParameters,
 			return: {
+				description: <Fragment>
+					<code>true</code> if the predicate function returns a truthy value for every item in the list; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},
@@ -249,15 +258,19 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with the items that pass the test provided by the predicate function; otherwise, an empty list.',
 				type: ['List']
 			}
 		},
 
 		find: {
 			group: 'main',
-			description: 'Returns the value of the first element from a list that satisfies the test implemented by the specified function.',
+			description: 'Returns the value of the first item from a list that satisfies the test implemented by the specified function.',
 			...binaryPredicateParameters,
 			return: {
+				description: <Fragment>
+					The value of the first item in the list that satisfies the test provided by the predicate function; otherwise, <code>null</code>.
+				</Fragment>,
 				type: ['List', 'Null']
 			}
 		},
@@ -267,6 +280,9 @@ const spec: ModuleSpec = {
 			description: 'Returns the index of the first item from a list that satisfies the test implemented by the specified function; otherwise, 0 is returned, indicating no item satisfies the test.',
 			...binaryPredicateParameters,
 			return: {
+				description: <Fragment>
+					The index of the first item in the list that passes the test provided by the predicate function; otherwise, <code>0</code>.
+				</Fragment>,
 				type: ['Number']
 			}
 		},
@@ -295,6 +311,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with the sub-list items concatenated into it.',
 				type: ['List']
 			}
 		},
@@ -318,6 +335,9 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: <Fragment>
+					<code>true</code> if the value is found anywhere within the given list; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},
@@ -337,6 +357,9 @@ const spec: ModuleSpec = {
 				'start-at': startAtParameter
 			},
 			return: {
+				description: <Fragment>
+					The index of the first occurrence of the value; otherwise, <code>0</code>.
+				</Fragment>,
 				type: ['Number']
 			}
 		},
@@ -363,6 +386,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with the given value inserted at the given index.',
 				type: ['List']
 			}
 		},
@@ -392,6 +416,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A string with all list items joined.',
 				type: ['String']
 			}
 		},
@@ -414,6 +439,9 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: <Fragment>
+					The index of the last occurrence of the value; otherwise, <code>0</code>.
+				</Fragment>,
 				type: ['Number']
 			}
 		},
@@ -444,6 +472,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with each item being the result of the transformer function.',
 				type: ['List']
 			}
 		},
@@ -466,6 +495,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with the given value added to the beginning.',
 				type: ['List']
 			}
 		},
@@ -492,13 +522,14 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list without the given value.',
 				type: ['List']
 			}
 		},
 
 		'remove-nth': {
 			group: 'main',
-			description: 'Returns a copy of a list without the value at a given index.',
+			description: 'Returns a copy of a list without the value at a specified index.',
 			parameters: {
 				list: {
 					description: 'The list to which the value is to be removed.',
@@ -514,6 +545,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list without the value at the given index.',
 				type: ['List']
 			}
 		},
@@ -540,6 +572,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with all occurrences of the value replaced by a replacement.',
 				type: ['List']
 			}
 		},
@@ -558,6 +591,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The reversed list.',
 				type: ['List']
 			}
 		},
@@ -584,6 +618,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list with the given value at the given index.',
 				type: ['List']
 			}
 		},
@@ -611,6 +646,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A list of selected value.',
 				type: ['List']
 			}
 		},
@@ -620,6 +656,9 @@ const spec: ModuleSpec = {
 			description: 'Tests whether at least one item in a list satisfies the test implemented by the specified function.',
 			...binaryPredicateParameters,
 			return: {
+				description: <Fragment>
+					<code>true</code> if the predicate function returns a truthy value for at least one item in the list; otherwise, <code>false</code>.
+				</Fragment>,
 				type: ['Boolean']
 			}
 		},
@@ -648,6 +687,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'The sorted list.',
 				type: ['List']
 			}
 		},
@@ -662,6 +702,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A string representing the given list.',
 				type: ['String']
 			}
 		},

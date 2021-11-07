@@ -31,6 +31,7 @@ const spec: ModuleSpec = {
 			group: 'main',
 			description: 'Creates an empty map.',
 			return: {
+				description: 'An empty map.',
 				type: ['Map']
 			}
 		},
@@ -45,6 +46,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A map with the given keys and values.',
 				type: ['Map']
 			}
 		},
@@ -59,6 +61,7 @@ const spec: ModuleSpec = {
 				}
 			},
 			return: {
+				description: 'A string representing the given map.',
 				type: ['String']
 			}
 		},
