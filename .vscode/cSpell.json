@@ -23,6 +23,7 @@
 	"words": [
 		"arglist",
 		"atrule",
+		"browserconfig",
 		"browserslist",
 		"clsx",
 		"editorconfig",
@@ -31,6 +32,7 @@
 		"fonticons",
 		"horiz",
 		"metastring",
+		"mstile",
 		"npmignore",
 		"nprogress",
 		"roydukkey",
