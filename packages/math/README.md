@@ -1,5 +1,7 @@
 # @sass-fairy/math
 
+<a href="https://sass-fairy.com/"><img src="https://sass-fairy.com/img/logo.svg" alt="Sass Fairy Logo" width="150" align="right" /></a>
+
 [![Release Version](https://img.shields.io/npm/v/@sass-fairy/math.svg)](https://www.npmjs.com/package/@sass-fairy/math)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 

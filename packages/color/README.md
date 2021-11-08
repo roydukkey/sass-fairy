@@ -1,5 +1,7 @@
 # @sass-fairy/color
 
+<a href="https://sass-fairy.com/"><img src="https://sass-fairy.com/img/logo.svg" alt="Sass Fairy Logo" width="150" align="right" /></a>
+
 [![Release Version](https://img.shields.io/npm/v/@sass-fairy/color.svg)](https://www.npmjs.com/package/@sass-fairy/color)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
