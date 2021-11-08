@@ -3,9 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
-## UNRELEASED
+## v1.1.0
 
 * Add [`.annotate()`](https://sass-fairy.com/api/break/helpers/annotate)
+* Add logo to README
 
 ## 1.0.0
 
