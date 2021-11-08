@@ -15,10 +15,14 @@ import MathSpec from '@site/docs/api/math/Spec'
 import MetaSpec from '@site/docs/api/meta/Spec'
 import StringSpec from '@site/docs/api/string/Spec'
 import ExceptionSpec from '@site/docs/api/exception/Spec'
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+<img src={useBaseUrl('/img/logo.svg')} alt="Sass Fairy Logo" style={{ width: '200px', marginBottom: 'var(--ifm-spacing-vertical)', marginLeft: 'var(--ifm-spacing-vertical)', float: 'right' }} />
 
 **Sass Fairy** is a set of modules that abstract common functionality to aid in the rapid development of domain specific stylesheets and modules.
 
 There are two groups of modules: Core Modules and Special Modules. **Core Modules** extend the native, [built-in modules](https://sass-lang.com/documentation/modules) provided by Sass. While on the other hand, **Special Modules** are abstractions of other concepts and utilities commonly used when designing stylesheets, mixins, or functions.
+
 
 export const DescriptionItem = ({ name }) => {
   return (
