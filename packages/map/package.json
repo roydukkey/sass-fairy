@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/map",
 	"description": "Provides extended functionality for processing key/value pairs in Sass maps",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"keywords": [
 		"map"
 	],
