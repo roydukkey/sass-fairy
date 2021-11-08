@@ -129,7 +129,8 @@ config.presets = [
 // ================================================================= //
 
 config.plugins = [
-	'docusaurus-plugin-sass'
+	'docusaurus-plugin-sass',
+	require.resolve('./src/lifecycle.js')
 ];
 
 
