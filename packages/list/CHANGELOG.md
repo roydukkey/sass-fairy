@@ -3,10 +3,11 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
-## UNRELEASED
+## 1.1.0
 
 * Fix grammar in package description
 * Add [`.box-model()`](https://sass-fairy.com/api/list/box-model)
+* Add logo to README
 
 ## 1.0.0
 
