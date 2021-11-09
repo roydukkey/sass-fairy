@@ -115,7 +115,10 @@ config.presets = [
 
 			theme: {
 				customCss: require.resolve('./src/css/custom.sass')
-			}
+			},
+			
+			blog: false,
+			pages: false
 		}
 	]
 
