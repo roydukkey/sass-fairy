@@ -4,6 +4,7 @@
 @use '@sass-fairy/color/color'
 @use './palette'
 @use './sections/navbar'
+@use './sections/sidebar'
 @use './modules/description-list'
 @use './modules/details'
 @use './modules/prism'
@@ -117,6 +118,7 @@ strong
 
 
 @include navbar.import
+@include sidebar.import
 @include description-list.import
 @include details.import
 @include prism.import

@@ -4,7 +4,7 @@
 
 
 // cSpell:disable-next-line
-const alphabet = [...'$abcdefghijklmnopqrstuvwxyz -'];
+const alphabet = [...'$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -'];
 
 
 function customAlphabetCompare (a, b) {
@@ -15,8 +15,8 @@ function customAlphabetCompare (a, b) {
 			break;
 		}
 
-		const charA = alphabet.indexOf(a.charAt(index).toLocaleLowerCase());
-		const charB = alphabet.indexOf(b.charAt(index).toLocaleLowerCase());
+		const charA = alphabet.indexOf(a.charAt(index));
+		const charB = alphabet.indexOf(b.charAt(index));
 
 		result = (
 			charA > -1 ? charA : alphabet.length + 1
@@ -36,9 +36,18 @@ function sortSidebarItems (items) {
   )
 
 	// Order custom alphabet
-	.sort((a, b) => {
-		a = a.label || a.id;
-		b = b.label || b.id;
+	.sort(($a, $b) => {
+		let a = $a.label || $a.id;
+		let b = $b.label || $b.id;
+
+		if ($a.className?.includes('variable')) {
+			a = `$${a}`;
+		}
+
+		if ($b.className?.includes('variable')) {
+			b = `$${b}`;
+		}
+
 		return customAlphabetCompare(a, b);
 	})
 
