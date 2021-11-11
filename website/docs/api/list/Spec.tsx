@@ -156,7 +156,7 @@ const spec: ModuleSpec = {
 				},
 				side: {
 					description: 'The side of the box model for which to determine a value.',
-					type: ['top', 'right', 'bottom', 'left']
+					type: ['\'top\'', '\'right\'', '\'bottom\'', '\'left\'']
 				}
 			},
 			return: {
