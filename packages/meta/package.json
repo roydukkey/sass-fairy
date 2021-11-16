@@ -15,13 +15,10 @@
 		"@sass-fairy/exception": "^1.0.0"
 	},
 	"scripts": {
-		"clean-package": "clean-package --config $npm_package_config_clean_package",
-		"new:pack": "yarn clean-package && yarn pack && clean-package restore --config $npm_package_config_clean_package",
-		"new:publish": "yarn clean-package && yarn publish && clean-package restore --config $npm_package_config_clean_package"
+		"new:pack": "clean-package && yarn pack && clean-package restore --config $npm_package_clean_package",
+		"new:publish": "clean-package && yarn publish && clean-package restore --config $npm_package_clean_package"
 	},
-	"config": {
-		"clean-package": "../../clean-package.config.js"
-	},
+	"clean-package": "../../clean-package.config.js",
 	"publishConfig": {
 		"access": "public"
 	}
