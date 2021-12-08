@@ -3,7 +3,7 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
-## UNRELEASED
+## 1.1.0
 
 * Add [`.replace()`](https://sass-fairy.com/api/string/replace)
 * Add [`.trim()`](https://sass-fairy.com/api/string/trim), [`.trim-start()`](https://sass-fairy.com/api/string/trim-start), and [`.trim-end()`](https://sass-fairy.com/api/string/trim-end)
