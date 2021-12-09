@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## 1.1.0
+
+* Add automatic attribution
+
 ## 1.0.2
 
 * Add logo to README
