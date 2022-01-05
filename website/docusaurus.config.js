@@ -88,6 +88,12 @@ config.themeConfig = {
 			'scss',
 			'sass'
 		]
+	},
+
+	algolia: {
+		appId: 'OCHKCH0ON0',
+		apiKey: 'b8b1c7e9d0687a365d7bd6e2d7466002',
+		indexName: 'sass-fairy'
 	}
 
 };
@@ -116,7 +122,7 @@ config.presets = [
 			theme: {
 				customCss: require.resolve('./src/css/custom.sass')
 			},
-			
+
 			blog: false,
 			pages: false
 		}
