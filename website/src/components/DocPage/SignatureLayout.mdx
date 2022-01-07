@@ -3,13 +3,10 @@
 // ================================================================ -->
 
 import { Fragment } from 'react';
-import ModuleDocHeader from '../ModuleDocHeader';
 import Parameters from './partials/Parameters.mdx';
 import Signature from '../Signature';
 import SignatureOutput from './partials/SignatureOutput.mdx';
 import SignatureReturnValue from './partials/SignatureReturnValue.mdx';
-
-# <ModuleDocHeader spec={props.spec} function={props.fieldName} />
 
 <p>{props.field.description}</p>
 <Fragment>{props.children}</Fragment>

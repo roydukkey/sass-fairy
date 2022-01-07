@@ -1,16 +1,15 @@
 ---
 title: variable ()
+module: exception
 sidebar_label: variable
-sidebar_class_name: 'function'
-hide_title: true
+sidebar_class_name: function
 hide_table_of_contents: true
 ---
 import CodeBlock from '@theme/CodeBlock';
-import DocPage from '@site/src/components/DocPage';
 import Example from '!!raw-loader!@site/docs/_examples/variable.scss';
-import Spec from '@site/docs/api/exception/Spec';
+import FieldDetails from '@site/docs/api/exception/spec/FieldDetails';
 
-<DocPage fieldName="variable" fieldType="function" spec={Spec} />
+<FieldDetails />
 
 <CodeBlock className="language-scss" highlightLines={'{9-11}'}>
   {Example}

@@ -8,17 +8,25 @@ import React from 'react';
 import type { ReactNode } from 'react';
 import SignatureLayout from './SignatureLayout.mdx';
 import VariableLayout from './VariableLayout.mdx';
+import useFrontMatterContext from '../../theme/hooks/useFrontMatterContext';
 
 
-export default function ({ fieldName, fieldType, spec, children }: Attributes): JSX.Element {
+export default function ({ spec, children }: Attributes): JSX.Element {
+	const { sidebar_label, sidebar_class_name } = useFrontMatterContext();
+
+	if (typeof sidebar_label !== 'string' || typeof sidebar_class_name !== 'string') {
+		throw new TypeError('<DocPage /> requires `sidebar_label` and `sidebar_class_name` frontmatter to be defined.');
+	}
+
+	const isVariable = sidebar_class_name.includes('variable');
 	const forwardProps = {
-		fieldName,
-		field: (fieldType === 'variable' ? spec.variables : spec.functions)?.[fieldName],
+		fieldName: sidebar_label,
+		field: (isVariable ? spec.variables : spec.functions)?.[sidebar_label],
 		spec
 	};
-	const hasOverloads = (spec.functions?.[fieldName]?.overloads?.length ?? 0) > 0;
+	const hasOverloads = (spec.functions?.[sidebar_label]?.overloads?.length ?? 0) > 0;
 
-  return fieldType === 'variable'
+  return isVariable
 		? <VariableLayout {...forwardProps}>{children}</VariableLayout>
 		: hasOverloads
 			? <OverloadedLayout {...forwardProps}>{children}</OverloadedLayout>
@@ -27,8 +35,6 @@ export default function ({ fieldName, fieldType, spec, children }: Attributes): 
 
 
 interface Attributes {
-	fieldName: string;
-	fieldType: 'variable' | 'function';
 	spec: ModuleSpec;
 	/** Auxiliary description */
 	children?: ReactNode;

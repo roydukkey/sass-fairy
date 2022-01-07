@@ -1,17 +1,16 @@
 ---
 title: annotate ()
+module: break
 sidebar_label: annotate
-sidebar_class_name: 'mixin'
-hide_title: true
+sidebar_class_name: mixin
 hide_table_of_contents: true
 ---
 import AddClassToPage from '@site/src/components/AddClassToPage';
 import CodeBlock from '@theme/CodeBlock';
-import DocPage from '@site/src/components/DocPage';
 import Example from '!!raw-loader!@site/docs/_examples/annotate-example.scss';
-import Spec from '@site/docs/api/break/Spec';
+import FieldDetails from '@site/docs/api/break/spec/FieldDetails';
 
-<DocPage fieldName="annotate" fieldType="function" spec={Spec} />
+<FieldDetails />
 <AddClassToPage classNames="annotate-example" />
 
 <CodeBlock className="language-scss">
