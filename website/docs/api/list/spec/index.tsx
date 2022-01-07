@@ -3,7 +3,7 @@
 // ================================================================= //
 
 import packageJson from '@sass-fairy/list/package.json';
-import { passedByName } from '@site/docs/api/exception/Spec';
+import { passedByName } from '@site/docs/api/exception/spec';
 import type { ModuleSpec, SpecParameter, SpecSignature } from '@site/src/spec/ModuleSpec';
 import React, { Fragment } from 'react';
 

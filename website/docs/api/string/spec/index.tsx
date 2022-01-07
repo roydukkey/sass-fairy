@@ -5,7 +5,7 @@
 import packageJson from '@sass-fairy/string/package.json';
 import type { ModuleSpec, SpecSignature } from '@site/src/spec/ModuleSpec';
 import React, { Fragment } from 'react';
-import { bracketedParameter, separatorParameter } from '@site/docs/api/list/Spec';
+import { bracketedParameter, separatorParameter } from '@site/docs/api/list/spec';
 
 
 const startAtParameter: SpecSignature['parameters'] = {

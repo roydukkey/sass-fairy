@@ -4,7 +4,7 @@
 
 import packageJson from '@sass-fairy/map/package.json';
 import type { ModuleSpec, SpecSignature } from '@site/src/spec/ModuleSpec';
-import { centerCompareParameter, compareReferenceCommon } from '@site/docs/api/list/Spec';
+import { centerCompareParameter, compareReferenceCommon } from '@site/docs/api/list/spec';
 
 
 const compareParameters: SpecSignature['parameters'] = {
