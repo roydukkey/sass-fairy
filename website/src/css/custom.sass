@@ -76,6 +76,17 @@ html
 		::selection
 			background: var(--ifm-selection-background-color)
 
+		--docsearch-primary-soft: #{color.scale(palette.$pink, $lightness: -20%, $saturation: -50%)}
+
+		.DocSearch-Form
+			--docsearch-searchbox-shadow: inset 0 0 0 2px var(--docsearch-primary-soft)
+
+		.DocSearch-MagnifierLabel, .DocSearch-Reset
+			--docsearch-highlight-color: var(--docsearch-primary-soft)
+
+		.DocSearch-Hit[aria-selected=true] a
+			--docsearch-highlight-color: var(--docsearch-primary-soft)
+
 	&[data-theme='light']
 
 		.main-wrapper

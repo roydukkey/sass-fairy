@@ -91,7 +91,7 @@ config.themeConfig = {
 	},
 
 	algolia: {
-		appId: 'OCHKCH0ON0',
+		appId: 'OCHKCH0ON0', // cspell:disable-line
 		apiKey: 'b8b1c7e9d0687a365d7bd6e2d7466002',
 		indexName: 'sass-fairy'
 	}

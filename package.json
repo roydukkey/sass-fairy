@@ -39,9 +39,10 @@
 		"yarn": ">= 1.22.0"
 	},
 	"scripts": {
+		"clean": "yarn workspace website clear",
 		"serve": "yarn workspace website start",
 		"deploy": "cross-env GIT_USER=roydukkey USE_SSH=true yarn workspace website deploy",
-		"lint": "yarn lint:spelling && yarn lint:website",
+		"lint": "yarn clean && yarn lint:spelling && yarn lint:website",
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
 		"lint:website": "yarn workspace website lint",
 		"pretest": "yarn lint:spelling",
