@@ -16,15 +16,18 @@ export default Heading;
 export const MainHeading: typeof MainHeadingType = ({ ...props }) => {
 	const { module, link_title } = useFrontMatterContext();
 	const moduleName = <code>@sass-fairy/{module}</code>;
+	const hideModuleTag = typeof module !== 'string';
 
 	return (
 		<Fragment>
 
-			<p className="module-doc-tag">{
-				link_title === false
-					? moduleName
-					: <Link to={`/api/${module}`}>{moduleName}</Link>
-			}</p>
+			{!hideModuleTag &&
+				<p className="module-doc-tag">{
+					link_title === false
+						? moduleName
+						: <Link to={`/api/${module}`}>{moduleName}</Link>
+				}</p>
+			}
 
 			<OriginalMainHeading {...props} />
 
