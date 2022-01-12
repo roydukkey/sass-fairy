@@ -2,17 +2,18 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
+import type FrontMatter from '../../theme/FrontMatter';
 import type { ModuleSpec } from '../../spec/ModuleSpec';
 import OverloadedLayout from './OverloadedLayout.mdx';
 import React from 'react';
 import type { ReactNode } from 'react';
 import SignatureLayout from './SignatureLayout.mdx';
 import VariableLayout from './VariableLayout.mdx';
-import useFrontMatterContext from '../../theme/hooks/useFrontMatterContext';
+import useFrontMatter from '@theme/useFrontMatter';
 
 
 export default function ({ spec, children }: Attributes): JSX.Element {
-	const { sidebar_label, sidebar_class_name } = useFrontMatterContext();
+	const { sidebar_label, sidebar_class_name } = useFrontMatter<FrontMatter>();
 
 	if (typeof sidebar_label !== 'string' || typeof sidebar_class_name !== 'string') {
 		throw new TypeError('<DocPage /> requires `sidebar_label` and `sidebar_class_name` frontmatter to be defined.');

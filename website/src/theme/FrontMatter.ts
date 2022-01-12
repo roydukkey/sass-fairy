@@ -2,15 +2,10 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
-import type { FrontMatter } from '@theme/DocItem';
-import { createContext } from 'react';
+import type { DocItemFrontMatter } from '@theme/useFrontMatter';
 
 
-const context = createContext<FrontMatterContext | null>(null);
-export default context;
-
-
-export interface FrontMatterContext extends FrontMatter {
+export default interface FrontMatter extends DocItemFrontMatter {
 	readonly module?: string;
 	readonly link_title?: boolean;
 	/** Additionally, used to identify the field name for <DocPage /> */
