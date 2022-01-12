@@ -3,8 +3,9 @@
 	"version": "1.0.0",
 	"private": true,
 	"dependencies": {
-		"@docusaurus/core": "^2.0.0-beta.14",
-		"@docusaurus/preset-classic": "^2.0.0-beta.14",
+		"@docusaurus/core": "2.0.0-beta.14",
+		"@docusaurus/plugin-google-gtag": "2.0.0-beta.14",
+		"@docusaurus/preset-classic": "2.0.0-beta.14",
 		"@mdx-js/react": "^1.6.22",
 		"@sass-fairy/list": "^1.0.0",
 		"@sass-fairy/map": "^1.0.0",
@@ -21,7 +22,7 @@
 		"webpack": "^5.65.0"
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "^2.0.0-beta.14",
+		"@docusaurus/module-type-aliases": "2.0.0-beta.14",
 		"@roydukkey/eslint-config": "^1.0.10",
 		"@tsconfig/docusaurus": "^1.0.4",
 		"@types/react": "^17.0.31",

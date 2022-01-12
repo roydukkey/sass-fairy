@@ -124,7 +124,11 @@ config.presets = [
 			},
 
 			blog: false,
-			pages: false
+			pages: false,
+
+			gtag: {
+				trackingID: 'G-0BKXN0KE1C'
+			}
 		}
 	]
 
