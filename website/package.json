@@ -10,6 +10,7 @@
 		"@sass-fairy/map": "^1.0.0",
 		"@svgr/webpack": "^5.5.0",
 		"docusaurus-plugin-sass": "roydukkey/docusaurus-plugin-sass#issue/20",
+		"docusaurus-theme-frontmatter": "^1.0.0",
 		"file-loader": "^6.2.0",
 		"prism-react-renderer": "^1.2.1",
 		"raw-loader": "^4.0.2",

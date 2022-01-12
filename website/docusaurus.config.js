@@ -132,12 +132,16 @@ config.presets = [
 
 
 // ================================================================= //
-// Plugins                                                           //
+// Plugins and Themes                                                //
 // ================================================================= //
 
 config.plugins = [
 	'docusaurus-plugin-sass',
 	require.resolve('./src/lifecycle.js')
+];
+
+config.themes = [
+	'docusaurus-theme-frontmatter'
 ];
 
 

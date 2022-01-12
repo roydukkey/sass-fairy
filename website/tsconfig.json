@@ -3,7 +3,10 @@
 	"extends": "@tsconfig/docusaurus/tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": ".",
-		"types": ["docusaurus-plugin-sass"],
+		"types": [
+			"docusaurus-plugin-sass",
+			"docusaurus-theme-frontmatter"
+		],
 		"strictNullChecks": true,
 		"resolveJsonModule": true
 	}
