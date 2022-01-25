@@ -1,6 +1,6 @@
 # Sass Fairy
 
-Sass Fairy is a set of modules that abstract common functionality to aid in the rapid development of domain specific stylesheets and modules.
+Sass Fairy enhances built-in Sass modules with additional functions and adds modules for handling breakpoints and exceptions. The primary goal is to abstract common functionality which aids in the rapid development of domain specific stylesheets and modules.
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
