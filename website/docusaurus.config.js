@@ -127,6 +127,7 @@ config.presets = [
 			pages: false,
 
 			gtag: {
+				// cSpell:disable-next-line
 				trackingID: 'G-0BKXN0KE1C'
 			}
 		}

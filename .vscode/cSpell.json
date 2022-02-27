@@ -5,6 +5,7 @@
 		".git",
 		".jest",
 		".docusaurus",
+		"website/build",
 		"**/.DS_Store",
 		"*.lock.json",
 		"*-lock.json",
