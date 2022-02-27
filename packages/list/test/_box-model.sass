@@ -85,7 +85,12 @@
 		$expected: 'ERROR: $values: May not contain less than 1 item or more than 4 items for `box-model()`.'
 		@include true.assert-equal($assert, $expected)
 
-	@include true.it('Throws when $side is invalid')
+	@include true.it('Throws when $side is an invalid type')
 		$assert: src.box-model(1, null)
 		$expected: 'ERROR: $side: `null` is not a string for `box-model()`.'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Throws when $side is an invalid value')
+		$assert: src.box-model(1, 'tops')
+		$expected: 'ERROR: $side: Must be "top", "right", "bottom", or "left" for `box-model()`.'
 		@include true.assert-equal($assert, $expected)

@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## UNRELEASED
+
+* Validate `$side` parameter against allowed values for `.box-model()`
+
 ## 1.1.0
 
 * Fix grammar in package description

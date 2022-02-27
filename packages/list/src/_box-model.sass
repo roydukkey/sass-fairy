@@ -24,6 +24,9 @@
 	@if meta.type-of($side) != 'string'
 		@error parameter-type.parameter-type('box-model', 'side', $side, 'string')
 
+	@if $side != 'top' and $side != 'right' and $side != 'bottom' and $side != 'left'
+		@error parameter.parameter('Must be "top", "right", "bottom", or "left"', 'box-model', 'side')
+
 	@if $length == 1
 		@return $values
 
