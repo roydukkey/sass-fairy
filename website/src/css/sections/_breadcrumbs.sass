@@ -1,0 +1,34 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '../palette'
+
+
+@mixin import
+
+	@media (min-width: 996px)
+		html.hide\/breadcrumb .theme-doc-breadcrumbs
+			display: none
+
+		.theme-doc-breadcrumbs
+			--ifm-code-padding-horizontal: 0.5rem
+
+			ul > li
+
+				> span
+					border-radius: var(--ifm-code-border-radius)
+					padding: var(--ifm-code-padding-vertical) var(--ifm-code-padding-horizontal)
+					background: palette.$background
+					color: palette.$purple
+					font:
+						family: var(--ifm-font-family-monospace)
+						size: var(--ifm-code-font-size)
+						weight: var(--ifm-font-weight-bold)
+
+				&:not(:nth-of-type(2))
+					display: none
+
+				&:not(:last-child):after
+					content: none
+
+

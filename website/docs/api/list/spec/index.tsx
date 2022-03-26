@@ -1,6 +1,7 @@
 // ================================================================= //
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
+/* eslint-disable @typescript-eslint/naming-convention */
 
 import packageJson from '@sass-fairy/list/package.json';
 import { passedByName } from '@site/docs/api/exception/spec';

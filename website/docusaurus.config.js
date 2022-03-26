@@ -64,6 +64,7 @@ config.themeConfig = {
 			{
 				href: repoUrl,
 				className: 'header-github-link',
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				'aria-label': 'GitHub repository',
 				position: 'right'
 			}

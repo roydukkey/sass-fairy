@@ -3,12 +3,14 @@
 
 @use '@sass-fairy/color/color'
 @use './palette'
+@use './sections/breadcrumbs'
 @use './sections/navbar'
 @use './sections/sidebar'
 @use './modules/description-list'
 @use './modules/details'
 @use './modules/prism'
 @use '../../docs/_examples/annotate-example'
+
 
 $-background-light: color.scale(palette.$background, $lightness: 90%)
 
@@ -39,6 +41,7 @@ $-background-light: color.scale(palette.$background, $lightness: 90%)
 
 	--ifm-code-font-size: 95%
 	--ifm-code-border-radius: 10px
+	--ifm-code-padding-horizontal: 0.2rem
 
 
 html
@@ -72,6 +75,8 @@ html
 
 		--ifm-code-background: #{palette.$background}
 		--ifm-code-color: #{palette.$cyan}
+
+		--ifm-breadcrumb-item-background-active: #{palette.$background}
 
 		::selection
 			background: var(--ifm-selection-background-color)
@@ -130,6 +135,7 @@ strong
 		style: italic
 
 
+@include breadcrumbs.import
 @include navbar.import
 @include sidebar.import
 @include description-list.import

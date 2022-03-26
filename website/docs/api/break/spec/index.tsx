@@ -1,6 +1,7 @@
 // ================================================================= //
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
+/* eslint-disable @typescript-eslint/naming-convention */
 
 import packageJson from '@sass-fairy/break/package.json';
 import type { ModuleSpec, SpecSignature, SpecSignatureOverload } from '@site/src/spec/ModuleSpec';

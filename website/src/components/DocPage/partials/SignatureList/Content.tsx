@@ -2,15 +2,12 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 
+import Heading from '@theme/Heading';
 import Output from '../Output';
 import ParameterList from '../ParameterList';
 import ReturnValue from '../ReturnValue';
-import { default as generateHeading } from '@theme/Heading';
 import type { ModuleSpec, SpecSignature } from '../../../../spec/ModuleSpec';
 import React, { Fragment } from 'react';
-
-
-const HeadingComponent = generateHeading('h3');
 
 
 export default function ({ fieldName, field, spec, overloadIndex }: Attributes): JSX.Element {
@@ -22,21 +19,21 @@ export default function ({ fieldName, field, spec, overloadIndex }: Attributes):
 		<Fragment>
 			{parameters &&
 				<Fragment>
-					<HeadingComponent>Parameters</HeadingComponent>
+					<Heading as='h3'>Parameters</Heading>
 					<ParameterList {...{ fieldName, spec, overloadIndex }} />
 				</Fragment>
 			}
 
 			{field.return &&
 				<Fragment>
-					<HeadingComponent>Return Value</HeadingComponent>
+					<Heading as='h3'>Return Value</Heading>
 					<ReturnValue {...{ fieldName, spec, overloadIndex }} />
 				</Fragment>
 			}
 
 			{field.output &&
 				<Fragment>
-					<HeadingComponent>Output</HeadingComponent>
+					<Heading as='h3'>Output</Heading>
 					<Output {...{ fieldName, spec, overloadIndex }} />
 				</Fragment>
 			}

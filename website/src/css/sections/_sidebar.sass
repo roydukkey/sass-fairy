@@ -9,6 +9,9 @@
 		$background-size: 1rem
 		$background-position: ($size - $background-size) * 0.5
 
+		%link
+			justify-content: space-between
+
 		%icon
 			content: ''
 			display: inline-block
@@ -23,25 +26,40 @@
 			&:hover, &.menu__link--active
 				opacity: 1
 
-		&.function > a::after
-			@extend %icon
-			background-image: url('/img/icon/function.svg')
+		&.function > a
+			@extend %link
 
-		&.mixin > a::after
-			@extend %icon
-			background-image: url('/img/icon/mixin.svg')
+			&::after
+				@extend %icon
+				background-image: url('/img/icon/function.svg')
 
-		&.placeholder > a::after
-			@extend %icon
-			background-image: url('/img/icon/placeholder.svg')
+		&.mixin > a
+			@extend %link
 
-		&.variable > a::after
-			@extend %icon
-			background-image: url('/img/icon/variable.svg')
+			&::after
+				@extend %icon
+				background-image: url('/img/icon/mixin.svg')
 
-		&.mixin.function > a::after
-			@extend %icon
-			min-width: $size * 2
-			background:
-				image: url('/img/icon/function.svg'), url('/img/icon/mixin.svg')
+		&.placeholder > a
+			@extend %link
+
+			&::after
+				@extend %icon
+				background-image: url('/img/icon/placeholder.svg')
+
+		&.variable > a
+			@extend %link
+
+			&::after
+				@extend %icon
+				background-image: url('/img/icon/variable.svg')
+
+		&.mixin.function > a
+			@extend %link
+
+			&::after
+				@extend %icon
+				min-width: $size * 2
+				background:
+					image: url('/img/icon/function.svg'), url('/img/icon/mixin.svg')
 
