@@ -92,7 +92,7 @@
 								"camelCase"
 							],
 							"filter": {
-								"regex": "^(.*?(Component)|link_title|sidebar_(label|class_name))$",
+								"regex": "^(.*?(Component)|sidebar_(label|class_name))$",
 								"match": false
 							}
 						},
