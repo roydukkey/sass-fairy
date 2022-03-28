@@ -3,9 +3,9 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
-## UNRELEASED
+## 1.2.1
 
-* Fix co-oping configuration from ArgLists for `.empty()`.
+* Fix co-oping configuration from ArgLists for `.empty()`
 
 ## 1.2.0
 
