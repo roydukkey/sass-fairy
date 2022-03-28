@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## UNRELEASED
+
+* Fix co-oping configuration from ArgLists for `.empty()`.
+
 ## 1.2.0
 
 * Validate `$side` parameter against allowed values for `.box-model()`

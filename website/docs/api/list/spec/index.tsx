@@ -224,7 +224,7 @@ const spec: ModuleSpec = {
 				},
 				list: {
 					description: 'The list from which to determine separator and bracket style.',
-					type: ['List'],
+					type: ['List', 'ArgList'],
 					defaultValue: 'null'
 				}
 			},

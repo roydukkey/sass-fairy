@@ -16,7 +16,7 @@
 ///
 @function empty($separator: null, $bracketed: null, $list: null)
 
-	@if meta.type-of($list) == 'list'
+	@if meta.type-of($list) == 'list' or meta.type-of($list) == 'arglist'
 		@if $separator == auto or $separator == null
 			$separator: list.separator($list)
 
