@@ -6,128 +6,90 @@
 
 
 @mixin import()
+	$greenYellowMix: #c8f1ba
 
-	[class^="codeBlockContainer_"]
-		--ifm-global-radius: var(--ifm-code-border-radius)
+	:root
+		--prism-foreground: #{palette.$cyan}
+		--prism-background: #{palette.$background}
+		--prism-punctuation: #{palette.$foreground}
+		--interpolation-punctuation: #{palette.$pink}
+		--prism-operator: #{palette.$foreground}
+		--prism-comment: #{palette.$comment}
+		--prism-keyword: #{palette.$pink}
+		--prism-class-name: #{palette.$green}
+		--prism-maybe-class-name: #{palette.$green}
+		--prism-builtin: #{palette.$green}
+		--prism-function: #{palette.$orange}
+		--prism-string: #{palette.$yellow}
+		--prism-number: #{$greenYellowMix}
+		--prism-unit: #{$greenYellowMix}
+		--prism-control-flow: #{palette.$purple}
+		--prism-parameter: #{palette.$cyan}
+		--prism-atrule: #{palette.$purple}
+
+		--prism-constant: #{palette.$green}
+		--prism-module: #{palette.$purple}
+		--prism-regex: #{palette.$red}
+		--prism-regex-flags: #{palette.$pink}
 
 	.prism-code
-		$foregroundDark2: #676e79
-		$greenYellowMix: #c8f1ba
 
-		color: palette.$foreground
+		::selection
+			background: palette.$selection !important
 
-		* ::selection
-			background: palette.$selection
+		.arrow.operator
+			--prism-operator: #{palette.$pink}
 
-		.token
-			&.doctype
-				.token.doctype-tag
-					color: palette.$pink
-				.token.name
-					color: palette.$cyan
+		.interpolation-punctuation
+			--prism-punctuation: var(--interpolation-punctuation)
 
-			&.comment, &.prolog
-				color: palette.$comment
+		.imports
+			--prism-maybe-class-name: #{palette.$cyan}
 
-		.token
-			&.property, &.tag, &.boolean, &.number, &.constant, &.symbol, &.inserted, &.unit
-				color: $greenYellowMix
+		&.language-ts
+			.module:nth-child(1), .module:nth-child(2)
+				+ .plain + .keyword
+					--prism-keyword: #{palette.$purple}
 
-			&.selector, &.attr-name, &.string, &.char, &.builtin, &.deleted
-				color: palette.$yellow
+					+ .plain
+						&, + .punctuation + .plain
+							+ .maybe-class-name
+								--prism-maybe-class-name: #{palette.$cyan}
 
-			&.operator.arrow, &.important, &.punctuation.interpolation-punctuation, &.boolean, &.selector, &.escape, &.tag, &.entity
-				color: palette.$pink
+		&.language-scss
+			--prism-keyword: #{palette.$purple}
 
-			&.operator, &.entity
-				color: palette.$foreground
+	.theme-code-block
+		--ifm-global-radius: var(--ifm-code-border-radius)
 
-			&.atrule
-				color: palette.$yellow
-
-				.token.rule
-					color: palette.$purple
-
-				.token.url
-					color: palette.$cyan
-
-					.token.function
-						color: palette.$orange
-
-					.token.punctuation
-						color: palette.$foreground
-
-			&.class-name
-				color: palette.$green
-
-			&.keyword
-				color: palette.$pink
-
-				&.module, &.control-flow
-					color: palette.$purple
-
-			&.function
-				&, &.maybe-class-name
-					color: palette.$orange
-
-			&.regex
-				color: palette.$red
-
-			&.constant, &.console, &.parameter, &.interpolation, &.property, &.variable, &.imports .token.maybe-class-name, &.exports .token.maybe-class-name, &.attr-name
-				color: palette.$cyan
-
-			&.maybe-class-name, &.namespace
-				color: palette.$green
-
-			&.tag.punctuation, &.cdata
-				color: $foregroundDark2
-
-			&.attr-value
-				&, & .token.punctuation
-					color: palette.$yellow
-
-				& .token.punctuation.attr-equals
-					color: palette.$foreground
-
-		.token.punctuation, .language-html .language-css .token.punctuation, .language-html .language-javascript .token.punctuation
-			color: palette.$foreground
-
-		&[class*="language-javascript"], &[class*="language-jsx"], &[class*="language-typescript"], &[class*="language-tsx"]
-			color: palette.$cyan
-
-		&[class*="language-css"], &[class*="language-scss"], &[class*="language-scss"]
-			color: palette.$yellow
-
-			.token.color
-				color: palette.$yellow
-
-		&[class*="language-html"]
-			color: palette.$foreground
-
-		&[class*="language-csharp"]
-
-			.token.preprocessor
-				opacity: 0.498
-
-				&.property
-					color: palette.$purple
-
-					&.directive + .property
-						color: palette.$cyan
-
-		.language-css, .language-scss, .language-sass
-
-			.token.string.url
-				text-decoration: underline
-
-		.language-regex .token.anchor
-			color: palette.$orange
-
-		.language-html .token.punctuation
-			color: $foregroundDark2
+		[class^='codeBlockTitle_']
+			--prism-foreground: #{palette.$foreground}
 
 		.docusaurus-highlight-code-line
+			background-color: rgba(#44475A, 0.3)
+
+		.docusaurus-highlight-code-line, .docusaurus-highlight-code-line + :not(.docusaurus-highlight-code-line)
+			position: relative
 			display: block
 			margin: 0 calc(-1 * var(--ifm-pre-padding))
 			padding: 0 var(--ifm-pre-padding)
-			background-color: color.scale(palette.$background, $lightness: -20%)
+
+		%highlight-line
+			content: ''
+			position: absolute
+			left: 0
+			width: 100%
+			height: 2px
+			background: rgba(#44475A, 0.4)
+
+		.docusaurus-highlight-code-line:first-child, :not(.docusaurus-highlight-code-line) + .docusaurus-highlight-code-line
+			&::before
+				@extend %highlight-line
+
+		.docusaurus-highlight-code-line:last-child, .docusaurus-highlight-code-line + :not(.docusaurus-highlight-code-line)
+			&::after
+				@extend %highlight-line
+				bottom: 100%
+
+		.docusaurus-highlight-code-line:last-child::after
+			bottom: 0

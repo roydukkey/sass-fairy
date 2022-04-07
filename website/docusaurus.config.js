@@ -77,14 +77,7 @@ config.themeConfig = {
 	},
 
 	prism: {
-		theme: {
-			plain: {
-				color: '#dee0e3',
-				backgroundColor: '#1e1f29'
-			},
-			// Use stylesheet instead of `styles` configuration
-			styles: []
-		},
+		theme: require('./src/prism-theme-vars'),
 		additionalLanguages: [
 			'scss',
 			'sass'
