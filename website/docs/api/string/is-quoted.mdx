@@ -1,0 +1,20 @@
+---
+title: is-quoted ()
+module: string
+sidebar_label: is-quoted
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/docs/api/string/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/string';
+
+@debug string.is-quoted('Roboto, Arial, sans-serif');
+  // true
+
+@debug string.is-quoted(bold);
+  // false
+```

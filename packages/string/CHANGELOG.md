@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## UNRELEASED
+
+* Add [`.is-quoted()`](https://sass-fairy.com/api/string/is-quoted)
+
 ## 1.1.0
 
 * Add [`.replace()`](https://sass-fairy.com/api/string/replace)

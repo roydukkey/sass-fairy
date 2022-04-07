@@ -16,6 +16,7 @@
 	"dictionaries": [
 		"css",
 		"fullstack",
+		"fonts",
 		"html",
 		"node",
 		"typescript"
@@ -33,6 +34,7 @@
 		"factorialization",
 		"factorialize",
 		"fonticons",
+		"hexcode",
 		"horiz",
 		"metastring",
 		"mstile",

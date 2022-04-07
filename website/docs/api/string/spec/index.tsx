@@ -117,6 +117,23 @@ const spec: ModuleSpec = {
 			}
 		},
 
+		'is-quoted': {
+			group: 'main',
+			description: 'Determines whether a string is quoted, returning true or false as appropriate.',
+			parameters: {
+				string: {
+					description: 'The string which is being evaluated.',
+					type: ['String']
+				}
+			},
+			return: {
+				description: <Fragment>
+					<code>true</code> if the string quoted; otherwise, <code>false</code>.
+				</Fragment>,
+				type: ['Boolean']
+			}
+		},
+
 		'last-index': {
 			group: 'main',
 			description: 'Returns the last index at which a specified substring can be found in a string; otherwise, 0 is returned, indicating the substring is not present. The string is searched forwards, ending at a given index when specified.',

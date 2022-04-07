@@ -1,0 +1,21 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/string' as src
+@use 'true'
+
+
+@include true.describe('@function string.is-quoted')
+
+	@include true.it('Does indicate string is quoted')
+		$assert: src.is-quoted('"Helvetica Neue", helvetica, sans-serif')
+		@include true.assert-true($assert)
+
+	@include true.it('Does not indicate string is quoted')
+		$assert: src.is-quoted(bold)
+		@include true.assert-false($assert)
+
+	@include true.it('Throws when $string is not a string')
+		$assert: src.is-quoted(12345)
+		$expected: 'ERROR: $string: `12345` is not a string for `is-quoted()`.'
+		@include true.assert-equal($assert, $expected)
