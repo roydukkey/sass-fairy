@@ -19,6 +19,7 @@ import FieldDetails from '@site/docs/api/meta/spec/FieldDetails';
 
 @function is-number-and-not-unitless($args...) {
   $ref: meta.get-function('_predicate');
+  // highlight-next-line
   @return meta.call-or-reference($ref, $args...);
 }
 ```
@@ -34,6 +35,7 @@ import FieldDetails from '@site/docs/api/meta/spec/FieldDetails';
 // 2. As a reference
 $list: a 1 5 b 20px 10 30px;
 
+// highlight-next-line
 @debug list.find($list, module.is-number-and-not-unitless());
   // 20px
 ```
