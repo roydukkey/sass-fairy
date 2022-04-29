@@ -28,7 +28,7 @@ export default function ({ fieldName, spec: { functions }, overloadIndex }: Attr
 								<dd>
 									{Array.isArray(defaultValue)
 										? <CodeBlock className="language-scss">{defaultValue.join('\n')}</CodeBlock>
-										: <code>{defaultValue}</code>
+										: <code>{defaultValue.toString()}</code>
 									}
 								</dd>
 							</Fragment>

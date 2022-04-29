@@ -65,7 +65,29 @@ export interface SpecParameter {
 }
 
 
-export type ParameterType = number | boolean | 'Number' | 'Boolean' | 'String' | 'Color' | 'List' | 'Map' | 'ArgList' | '!ArgList' | 'Function' | 'Null' | '*' | string; // | 'ArgList<${string}>' | `'${string}'`; @ TypeScript 4.5
+/* eslint-disable @typescript-eslint/no-type-alias */
+
+type MainTypes = 'Number' | 'Boolean' | 'String' | 'Color' | 'List' | 'Map';
+type ListSeparator = 'auto' | 'comma' | 'space' | 'slash';
+type LibraryFunction = `${string}${string}.${string}${string}()`;
+type QuotedString = `'${string}${string}'`;
+type HexColor = `#${string}${string}`;
+
+// Because we can.
+type CssLength = `${number}${AbsoluteLengthUnits | RelativeLengthUnits}`;
+type AbsoluteLengthUnits = 'cm' | 'mm' | 'in' | 'pc' | 'pt' | 'px';
+type RelativeLengthUnits = 'em' | 'rem' | 'vw' | 'vh' | 'vmin' | 'vmax' | '%';
 
 
-export type DefaultValue = number | boolean | 'null' | '%derived%' | string; // | `'${string}'`; @ TypeScript 4.5
+export type ParameterType = MainTypes | QuotedString | ListSeparator |
+	`List{${number},${number}}` |
+	`ArgList<${MainTypes}>` | `${'' | '!'}ArgList` |
+	'Function' | 'Null' | '*';
+
+
+export type DefaultValue = number | boolean |
+	ListSeparator | CssLength | LibraryFunction |
+	QuotedString | HexColor | `(${string})` |
+	'null' | '%derived%';
+
+/* eslint-enable @typescript-eslint/no-type-alias */

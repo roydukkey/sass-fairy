@@ -10,21 +10,21 @@ import React, { Fragment } from 'react';
 
 
 const separatorParameter: Omit<SpecParameter, 'description'> = {
-	type: ['\'space\'', '\'comma\'', '\'slash\'', '\'auto\''],
-	defaultValue: '\'auto\''
+	type: ['space', 'comma', 'slash', 'auto'],
+	defaultValue: 'auto'
 };
 
 
 const bracketedParameter: Omit<SpecParameter, 'description'> = {
-	type: ['Boolean', '\'auto\''],
-	defaultValue: '\'auto\''
+	type: ['Boolean', 'auto'],
+	defaultValue: 'auto'
 };
 
 
 const predicateArgsParameter: SpecParameter = {
 	description: 'Additional parameters which are provided to predicate function.',
 	type: ['ArgList'],
-	defaultValue: '[]'
+	defaultValue: '()'
 };
 
 
@@ -220,7 +220,7 @@ const spec: ModuleSpec = {
 				bracketed: {
 					...bracketedParameter,
 					description: 'Whether the empty list has square brackets or no brackets.',
-					defaultValue: 'false'
+					defaultValue: false
 				},
 				list: {
 					description: 'The list from which to determine separator and bracket style.',
@@ -308,7 +308,7 @@ const spec: ModuleSpec = {
 				bracketed: {
 					...bracketedParameter,
 					description: 'Whether the flattened list has square brackets or no brackets.',
-					defaultValue: 'false'
+					defaultValue: false
 				}
 			},
 			return: {
@@ -403,17 +403,7 @@ const spec: ModuleSpec = {
 				glue: {
 					description: 'The string to separate each pair of adjacent items of the list. The value is converted to a string if necessary.',
 					type: ['String'],
-					defaultValue: [
-						'if (',
-						'  list.separator($list) == space,',
-						'  \' \',',
-						'  if (',
-						'    list.separator($list) == comma,',
-						'    \', \',',
-						'    \' / \'',
-						'  )',
-						')'
-					]
+					defaultValue: '%derived%'
 				}
 			},
 			return: {
@@ -679,8 +669,8 @@ const spec: ModuleSpec = {
 				},
 				center: {
 					description: 'For numeric comparison, the value indicating the center (zero) position between positive and negative values.',
-					type: ['Number', '\'auto\''],
-					defaultValue: '\'auto\''
+					type: ['Number', 'auto'],
+					defaultValue: 'auto'
 				},
 				separator: {
 					...separatorParameter,
