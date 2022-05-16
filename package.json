@@ -29,9 +29,10 @@
 		"cross-env": "^7.0.3",
 		"cspell": "^5.19.3",
 		"fs-extra": "^10.0.1",
-		"jest": "^27.5.1",
+		"jest": "^28.1.0",
+		"jest-environment-node-single-context": "^28.0.0",
 		"replace-in-file": "^6.3.2",
-		"sass": "^1.49.9",
+		"sass": "^1.51.0",
 		"sass-true": "^6.1.0"
 	},
 	"engines": {
@@ -49,7 +50,7 @@
 		"test": "jest"
 	},
 	"jest": {
-		"testEnvironment": "node",
+		"testEnvironment": "jest-environment-node-single-context",
 		"verbose": true,
 		"coverageDirectory": ".jest/coverage",
 		"cacheDirectory": ".jest/cache"

@@ -31,17 +31,18 @@
 	@include true.it('Nested listed are flattened')
 		$list: [10px 20px 'a' (#fff, rgb(127, 127, 127), #000)]
 		$assert: src.join($list, ' ?? ')
-		$expected: '10px ?? 20px ?? a ?? #fff ?? #7f7f7f ?? #000'
+		$expected: '10px ?? 20px ?? a ?? #fff ?? rgb(127, 127, 127) ?? #000'
 		@include true.assert-equal($assert, $expected)
 
 		$list: [10px 20px 'a' #fff rgb(127, 127, 127) #000]
 		$assert: src.join($list, ' ?? ')
-		$expected: '10px ?? 20px ?? a ?? #fff ?? #7f7f7f ?? #000'
+		$expected: '10px ?? 20px ?? a ?? #fff ?? rgb(127, 127, 127) ?? #000'
 		@include true.assert-equal($assert, $expected)
 
 	@include true.it('Convert the glue to a string')
 		$assert: src.join([10px, 20px, 'a'], rgb(127, 127, 127))
-		$expected: '10px#7f7f7f20px#7f7f7fa'
+		// cSpell: disable-next-line
+		$expected: '10pxrgb(127, 127, 127)20pxrgb(127, 127, 127)a'
 		@include true.assert-equal($assert, $expected)
 
 	@include true.it('Equal items do not collapse glue')

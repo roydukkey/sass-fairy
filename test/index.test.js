@@ -4,7 +4,6 @@
 const { copySync, moveSync } = require('fs-extra');
 const { sync: replaceSync } = require('replace-in-file');
 const sass = require('sass');
-const { resolve } = require('path');
 const { runSass: sassTrue } = require('sass-true');
 
 

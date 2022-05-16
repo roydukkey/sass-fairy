@@ -31,7 +31,7 @@
 
 	@include true.it('Creates string from a color')
 		$assert: src.from(rgba(127, 255, 34, 1))
-		$expected: '#7fff22'
+		$expected: 'rgb(127, 255, 34)'
 		@include true.assert-equal($assert, $expected, '[rgba(127, 255, 34, 1)]')
 
 		$assert: src.from(rgba(127, 255, 34, 0.5))
@@ -85,7 +85,7 @@
 		$level-1: (1 2 $level-2-function 3 $level-2-list 4 5 $level-2-map 7)
 
 		$assert: src.from($level-1)
-		$expected: '(1 2 empty() 3 [true (from() (a, 1, b, 2, c, 3, separator: comma, new: okay)) false ] 4 5 {a: 1; 2: b; colors: (#7fff22, rgba(127, 255, 34, 0.5)); c: 3} 7)'
+		$expected: '(1 2 empty() 3 [true (from() (a, 1, b, 2, c, 3, separator: comma, new: okay)) false ] 4 5 {a: 1; 2: b; colors: (rgb(127, 255, 34), rgba(127, 255, 34, 0.5)); c: 3} 7)'
 		@include true.assert-equal($assert, $expected)
 
 
