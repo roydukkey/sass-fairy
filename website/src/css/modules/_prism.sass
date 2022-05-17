@@ -60,12 +60,12 @@
 		--ifm-global-radius: var(--ifm-code-border-radius)
 
 		[class^='codeBlockTitle_']
-			--prism-foreground: #{palette.$foreground}
+			color: #{palette.$foreground}
 
-		.docusaurus-highlight-code-line
+		.theme-code-block-highlighted-line
 			background-color: rgba(palette.$currentLine, 0.3)
 
-		.docusaurus-highlight-code-line, .docusaurus-highlight-code-line + :not(.docusaurus-highlight-code-line)
+		.theme-code-block-highlighted-line, .theme-code-block-highlighted-line + :not(.theme-code-block-highlighted-line)
 			position: relative
 			display: block
 			margin: 0 calc(-1 * var(--ifm-pre-padding))
@@ -79,14 +79,14 @@
 			height: 2px
 			background: rgba(palette.$currentLine, 0.4)
 
-		.docusaurus-highlight-code-line:first-child, :not(.docusaurus-highlight-code-line) + .docusaurus-highlight-code-line
+		.theme-code-block-highlighted-line:first-child, :not(.theme-code-block-highlighted-line) + .theme-code-block-highlighted-line
 			&::before
 				@extend %highlight-line
 
-		.docusaurus-highlight-code-line:last-child, .docusaurus-highlight-code-line + :not(.docusaurus-highlight-code-line)
+		.theme-code-block-highlighted-line:last-child, .theme-code-block-highlighted-line + :not(.theme-code-block-highlighted-line)
 			&::after
 				@extend %highlight-line
 				bottom: 100%
 
-		.docusaurus-highlight-code-line:last-child::after
+		.theme-code-block-highlighted-line:last-child::after
 			bottom: 0
