@@ -25,6 +25,18 @@ Use the package like any other Sass module:
 @use '@sass-fairy/meta';
 ```
 
+Depending on your setup, you may need to configure `node_modules` as include path:
+
+```js
+const sass = require('sass');
+
+sass.render({
+  file: scss_filename,
+  includePaths: ['node_modules']
+});
+```
+
+
 ## Documentation
 
 See [sass-fairy.com/api/meta](http://sass-fairy.com/api/meta) for more information about this package.
