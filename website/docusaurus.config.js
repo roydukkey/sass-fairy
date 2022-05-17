@@ -62,6 +62,21 @@ config.themeConfig = {
 				label: 'API'
 			},
 			{
+				type: 'custom-version-dropdown',
+				position: 'right',
+				label: 'Versions',
+				items: [
+					{
+						label: 'v2.0.0-alpha.1',
+						to: '/v2'
+					},
+					{
+						label: 'v1.x.x',
+						to: '/'
+					}
+				]
+			},
+			{
 				href: repoUrl,
 				className: 'header-github-link',
 				// eslint-disable-next-line @typescript-eslint/naming-convention
