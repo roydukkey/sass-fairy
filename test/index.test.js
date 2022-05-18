@@ -13,7 +13,10 @@ const sassConfig = {
 	file: './test/index.sass',
 	includePaths: [
 		'node_modules'
-	]
+	],
+	functions: {
+		...require('../packages/exception')
+	}
 };
 const backupSlug = '.testing-backup';
 
@@ -23,17 +26,17 @@ copySync(source, `${source}${backupSlug}`);
 replaceSync({
 	files: `${source}/**/*.sass`,
 	from: [/(.)/, /^(?<!^\s*\/\/\s*true:cannot-test\s*$\n)(\s*)@error\s(.*)$/gm],
-	to: ["@use 'throw'\n$1", '$1@return throw.error($2)']
+	to: ['@use \'throw\'\n$1', '$1@return throw.error($2)']
 });
 
 
 // Run tests
 try {
-	sassTrue(sassConfig, { sass, describe, it });
+	sassTrue(sassConfig, { sass });
 }
 
 
 // Restore source
 finally {
-	moveSync(`${source}${backupSlug}`, source, { overwrite: true })
+	moveSync(`${source}${backupSlug}`, source, { overwrite: true });
 }

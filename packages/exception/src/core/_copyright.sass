@@ -1,7 +1,16 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+@use 'sass:map'
 
 // This file is selectively `@use`d so any route to public APIs will automatically include attribution.
 
-/*! Sass Fairy v1 | (c) roydukkey | https://sass-fairy.com/license
+$packages: null
+
+@each $package, $version in sass-fairy_core_installed-packages()
+	@if $packages != null
+		$packages: $packages + ', '
+
+	$packages: $packages + $package + ' v' + $version
+
+/*! Sass Fairy | #{$packages} | (c) roydukkey | https://sass-fairy.com/license

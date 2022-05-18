@@ -25,15 +25,22 @@
 		"dart-sass"
 	],
 	"devDependencies": {
+		"@roydukkey/eslint-config": "^1.0.12",
+		"@tsconfig/node12": "^1.0.9",
+		"@typescript-eslint/eslint-plugin": "^5.25.0",
+		"@typescript-eslint/parser": "^5.25.0",
 		"clean-package": "^2.1.1",
 		"cross-env": "^7.0.3",
 		"cspell": "^5.19.3",
+		"eslint": "^8.15.0",
+		"eslint-plugin-tsdoc": "^0.2.16",
 		"fs-extra": "^10.0.1",
 		"jest": "^28.1.0",
 		"jest-environment-node-single-context": "^28.0.0",
 		"replace-in-file": "^6.3.2",
 		"sass": "^1.51.0",
-		"sass-true": "^6.1.0"
+		"sass-true": "^6.1.0",
+		"typescript": "^4.6.4"
 	},
 	"engines": {
 		"npm": "please-use-yarn",
@@ -43,8 +50,9 @@
 		"clean": "yarn workspace website clear",
 		"serve": "yarn workspace website start",
 		"deploy": "cross-env GIT_USER=roydukkey USE_SSH=true yarn workspace website deploy",
-		"lint": "yarn clean && yarn lint:spelling && yarn lint:website",
+		"lint": "yarn clean && yarn lint:spelling && yarn lint:source && yarn lint:website",
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
+		"lint:source": "eslint --ext js,jsx,ts,tsx ./",
 		"lint:website": "yarn workspace website lint",
 		"pretest": "yarn lint:spelling",
 		"test": "jest"
@@ -54,5 +62,85 @@
 		"verbose": true,
 		"coverageDirectory": ".jest/coverage",
 		"cacheDirectory": ".jest/cache"
+	},
+	"eslintConfig": {
+		"extends": [
+			"@roydukkey/eslint-config"
+		],
+		"env": {
+			"node": true
+		},
+		"ignorePatterns": [
+			"website"
+		],
+		"overrides": [
+			{
+				"files": [
+					"*.js?(x)"
+				],
+				"rules": {
+					"@typescript-eslint/no-require-imports": "off"
+				}
+			},
+			{
+				"files": [
+					"*.{j,t}s?(x)"
+				],
+				"rules": {
+					"@typescript-eslint/naming-convention": [
+						"error",
+						{
+							"selector": "default",
+							"format": [
+								"camelCase"
+							],
+							"filter": {
+								"regex": "^sass-fairy_[a-z]+_[a-z-]+\\(",
+								"match": false
+							}
+						},
+						{
+							"selector": "default",
+							"modifiers": [
+								"unused"
+							],
+							"format": [
+								"camelCase"
+							],
+							"leadingUnderscore": "require"
+						},
+						{
+							"selector": [
+								"typeLike",
+								"enumMember"
+							],
+							"format": [
+								"PascalCase"
+							]
+						},
+						{
+							"selector": "property",
+							"modifiers": [
+								"private"
+							],
+							"format": [
+								"camelCase"
+							],
+							"leadingUnderscore": "require"
+						},
+						{
+							"selector": "interface",
+							"format": [
+								"PascalCase"
+							],
+							"custom": {
+								"regex": "^I[A-Z]",
+								"match": false
+							}
+						}
+					]
+				}
+			}
+		]
 	}
 }
