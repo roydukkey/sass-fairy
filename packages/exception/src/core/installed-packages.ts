@@ -2,13 +2,14 @@
 // Copyright (c) roydukkey. All rights reserved.                     //
 // ================================================================= //
 import { OrderedMap } from 'immutable';
+import { version } from '../../package.json';
 import { SassMap, SassString } from 'sass';
 
+const insertExceptionPackageAfterIndex = 2;
 
 const packages = [
 	['break', '@sass-fairy/break/package.json'],
 	['color', '@sass-fairy/color/package.json'],
-	['exception', '../../package.json'],
 	['list', '@sass-fairy/list/package.json'],
 	['map', '@sass-fairy/map/package.json'],
 	['math', '@sass-fairy/math/package.json'],
@@ -38,6 +39,8 @@ export default {
 			}
 			catch (error: unknown) { }
 		}
+
+		map.splice(insertExceptionPackageAfterIndex, 0, addPackage('exception', version));
 
 		return new SassMap(OrderedMap(map));
 	}
