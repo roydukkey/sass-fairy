@@ -1,12 +1,12 @@
-// ================================================================= //
-// Copyright (c) roydukkey. All rights reserved.                     //
-// ================================================================= //
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
 import { OrderedMap } from 'immutable';
 import { version } from '../../package.json';
 import { SassMap, SassString } from 'sass';
 
-const insertExceptionPackageAfterIndex = 2;
 
+const insertExceptionPackageAfterIndex = 2;
 const packages = [
 	['break', '@sass-fairy/break/package.json'],
 	['color', '@sass-fairy/color/package.json'],
@@ -28,6 +28,7 @@ const addPackage = (name: string, version: string): [SassString, SassString] => 
 	new SassString(name, { quotes: true }),
 	new SassString(version, { quotes: true })
 ];
+
 
 export default {
 	'sass-fairy_core_installed-packages()': async (): Promise<SassMap> => {
