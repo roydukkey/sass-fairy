@@ -10,7 +10,11 @@
 	"keywords": [
 		"string"
 	],
-	"main": "./index.sass",
+	"main": "./dist/functions.js",
+	"types": "./dist/types.d.ts",
+	"addDependenciesOnPublish": {
+		"sass": "^1.33.0"
+	},
 	"dependencies": {
 		"@sass-fairy/exception": "^1.0.0",
 		"@sass-fairy/list": "^1.0.0"

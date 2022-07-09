@@ -13,11 +13,7 @@ export const buildNames = globbySync(join(basePath, '*'), { onlyDirectories: tru
 
 export const buildName = process.env.BUILD;
 
-if (buildName === undefined) {
-	throw new Error(`The environment variable \`BUILD\` has not been defined. The following are acceptable values: ${listBuildNames()}.`);
-}
-
-if (!buildNames.includes(buildName)) {
+if (buildName !== undefined && !buildNames.includes(buildName)) {
 	throw new Error(`The environment variable \`BUILD\` has been set to '${buildName}', but only the following are acceptable values: ${listBuildNames()}.`);
 }
 

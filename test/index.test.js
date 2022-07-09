@@ -6,6 +6,7 @@ const { copySync, moveSync } = require('fs-extra');
 const { describe, it } = require('@jest/globals');
 const { sync: replaceSync } = require('replace-in-file');
 const { runSass: sassTrue } = require('sass-true');
+const { buildNames } = require('../utils/build');
 
 
 // Configuration
@@ -16,7 +17,10 @@ const sassConfig = {
 		'node_modules'
 	],
 	functions: {
-		...require('../packages/exception')
+		...buildNames.reduce((accumulator, name) => ({
+			...accumulator,
+			...require(`../packages/${name}`)
+		}), {})
 	}
 };
 const backupSlug = '.testing-backup';

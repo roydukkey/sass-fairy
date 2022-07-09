@@ -10,7 +10,11 @@
 	"keywords": [
 		"meta"
 	],
-	"main": "./index.sass",
+	"main": "./dist/functions.js",
+	"types": "./dist/types.d.ts",
+	"addDependenciesOnPublish": {
+		"sass": "^1.23.0"
+	},
 	"dependencies": {
 		"@sass-fairy/exception": "^1.0.0"
 	},
