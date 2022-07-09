@@ -16,3 +16,4 @@ npm-debug.log
 *.tgz
 dist
 package
+utils/**/*.js

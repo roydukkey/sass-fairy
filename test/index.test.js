@@ -1,9 +1,10 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
-const { copySync, moveSync } = require('fs-extra');
-const { sync: replaceSync } = require('replace-in-file');
 const sass = require('sass');
+const { copySync, moveSync } = require('fs-extra');
+const { describe, it } = require('@jest/globals');
+const { sync: replaceSync } = require('replace-in-file');
 const { runSass: sassTrue } = require('sass-true');
 
 
@@ -32,7 +33,7 @@ replaceSync({
 
 // Run tests
 try {
-	sassTrue(sassConfig, { sass });
+	sassTrue(sassConfig, { sass, describe, it });
 }
 
 

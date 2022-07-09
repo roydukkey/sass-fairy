@@ -2,44 +2,44 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 import type { RollupOptions } from 'rollup';
-import { basename } from 'path';
+import { buildRelativePath } from './utils/build';
 import json from '@rollup/plugin-json';
 import license from 'rollup-plugin-license';
 import typescript from 'rollup-plugin-ts';
 import { author, repository } from './package.json';
 
 
-const packageName = basename(process.cwd());
 // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
-const { version } = require(`./packages/${packageName}/package.json`);
+const { version } = require(buildRelativePath('package.json'));
 
 
 const config: RollupOptions = {
-  input: './src/index.ts',
-  output: {
-    file: `dist/${packageName}-functions.js`,
-    format: 'commonjs',
+	input: buildRelativePath('src', 'index.ts'),
+	output: {
+		file: buildRelativePath('dist', 'functions.js'),
+		format: 'commonjs',
 		exports: 'default'
-  },
+	},
 	external: [
 		'sass',
-		'immutable'
+		'immutable',
+		'@sass-fairy/exception',
+		'@sass-fairy/break'
 	],
-  plugins: [
+	plugins: [
 		json(),
 		typescript({
-			tsconfig: '../../tsconfig.json',
+			tsconfig: './tsconfig.json',
 			hook: {
-				outputPath: (path, kind) => kind === 'declaration' ? 'dist/types.d.ts' : path
+				outputPath: (path, kind) => kind === 'declaration'
+					? buildRelativePath('dist', 'types.d.ts')
+					: path
 			}
 		}),
 		license({
 			banner: {
-				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-				// @ts-ignore
 				commentStyle: 'none',
-				content: `/*! ${
-					[
+				content: `/*! ${[
 						`Sass-Fairy v${version}`,
 						`(c) ${author.name}`,
 						repository.url.replace('.git', '/blob/LICENSE')

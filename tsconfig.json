@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"resolveJsonModule": true,
 		"moduleResolution": "node",
-		"declaration": true
+		"declaration": true,
+		"removeComments": true
 	}
 }

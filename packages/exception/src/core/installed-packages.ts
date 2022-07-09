@@ -18,10 +18,9 @@ const packages = [
 ];
 
 
-const getPackageVersion = async (packageName: string): Promise<string> => {
-	const json: { [key: string]: string } = await import(packageName);
-	return json.version;
-};
+// Using `require()` to avoid the limitations of `CustomFunction<'async'>`
+// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
+const getPackageVersion = (packageName: string): string => require(packageName).version;
 
 
 const addPackage = (name: string, version: string): [SassString, SassString] => [
@@ -30,19 +29,17 @@ const addPackage = (name: string, version: string): [SassString, SassString] => 
 ];
 
 
-export default {
-	'sass-fairy_core_installed-packages()': async (): Promise<SassMap> => {
-		const map: Array<[SassString, SassString]> = [];
+export default (): SassMap => {
+	const map: Array<[SassString, SassString]> = [];
 
-		for (const [name, path] of packages) {
-			try {
-				map.push(addPackage(name, await getPackageVersion(path)));
-			}
-			catch (error: unknown) { }
+	for (const [name, path] of packages) {
+		try {
+			map.push(addPackage(name, getPackageVersion(path)));
 		}
-
-		map.splice(insertExceptionPackageAfterIndex, 0, addPackage('exception', version));
-
-		return new SassMap(OrderedMap(map));
+		catch (error: unknown) { }
 	}
+
+	map.splice(insertExceptionPackageAfterIndex, 0, addPackage('exception', version));
+
+	return new SassMap(OrderedMap(map));
 };

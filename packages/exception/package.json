@@ -12,9 +12,10 @@
 		"error",
 		"warn"
 	],
-	"main": "./dist/exception-functions.js",
-	"publishDependencies": {
-		"sass": "^1.51.0"
+	"main": "./dist/functions.js",
+	"types": "./dist/types.d.ts",
+	"addDependenciesOnPublish": {
+		"sass": "^1.23.0"
 	},
 	"optionalDependencies": {
 		"@sass-fairy/break": ">=1.0.0",
@@ -24,9 +25,6 @@
 		"@sass-fairy/math": ">=1.0.0",
 		"@sass-fairy/meta": ">=1.0.0",
 		"@sass-fairy/string": ">=1.0.0"
-	},
-	"scripts": {
-		"build": "rollup --config ../../rollup.config.ts --configPlugin 'rollup-plugin-ts={ tsconfig: `../../tsconfig.json` }'",
 	},
 	"publishConfig": {
 		"access": "public"

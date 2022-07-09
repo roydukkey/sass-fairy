@@ -1,5 +1,13 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+import type { CustomFunction } from 'sass';
+import InstalledPackages from './core/installed-packages';
 
-export { default } from './core/installed-packages';
+
+const functions: { [key: string]: CustomFunction<'sync'> } = {
+	'sass-fairy_core_installed-packages()': InstalledPackages
+};
+
+
+export default functions;
