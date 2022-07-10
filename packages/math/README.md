@@ -11,7 +11,7 @@ Provides extended functionality for working with numbers in Sass.
 
 ### Requires
 
-* Dart Sass: `>=1.33.0`
+* Dart Sass: `^1.52.0`
 
 Install the package:
 

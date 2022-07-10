@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/exception",
 	"description": "Provides Sass functions to standardize exception messages and assist with common validation",
-	"version": "1.1.0",
+	"version": "2.0.0-alpha.0",
 	"keywords": [
 		"throw",
 		"error",
@@ -15,16 +15,16 @@
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"addDependenciesOnPublish": {
-		"sass": "^1.23.0"
+		"sass": "^1.52.0"
 	},
 	"optionalDependencies": {
-		"@sass-fairy/break": ">=1.0.0",
-		"@sass-fairy/color": ">=1.0.0",
-		"@sass-fairy/list": ">=1.0.0",
-		"@sass-fairy/map": ">=1.0.0",
-		"@sass-fairy/math": ">=1.0.0",
-		"@sass-fairy/meta": ">=1.0.0",
-		"@sass-fairy/string": ">=1.0.0"
+		"@sass-fairy/break": ">=2.0.0-alpha.0",
+		"@sass-fairy/color": ">=2.0.0-alpha.0",
+		"@sass-fairy/list": ">=2.0.0-alpha.0",
+		"@sass-fairy/map": ">=2.0.0-alpha.0",
+		"@sass-fairy/math": ">=2.0.0-alpha.0",
+		"@sass-fairy/meta": ">=2.0.0-alpha.0",
+		"@sass-fairy/string": ">=2.0.0-alpha.0"
 	},
 	"publishConfig": {
 		"access": "public"

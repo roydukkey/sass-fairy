@@ -149,7 +149,16 @@ config.presets = [
 // ================================================================= //
 
 config.plugins = [
-	'docusaurus-plugin-sass',
+	[
+		'docusaurus-plugin-sass',
+		{
+			sassOptions: {
+				functions: {
+					...require('@sass-fairy/color')
+				}
+			}
+		}
+	],
 	require.resolve('./src/lifecycle.js')
 ];
 

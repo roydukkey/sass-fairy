@@ -7,8 +7,7 @@
 		"@docusaurus/plugin-google-gtag": "2.0.0-beta.20",
 		"@docusaurus/preset-classic": "2.0.0-beta.20",
 		"@mdx-js/react": "^1.6.22",
-		"@sass-fairy/list": "^1.1.0",
-		"@sass-fairy/map": "^1.1.0",
+		"@sass-fairy/color": "^2.0.0-alpha.0",
 		"@svgr/webpack": "^6.2.1",
 		"clsx": "^1.1.1",
 		"docusaurus-plugin-sass": "roydukkey/docusaurus-plugin-sass#issue/20",
@@ -18,7 +17,6 @@
 		"raw-loader": "^4.0.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
-		"sass": "^1.49.9",
 		"url-loader": "^4.1.1",
 		"webpack": "^5.70.0"
 	},

@@ -11,7 +11,7 @@ Provides extended functionality for processing strings in Sass, with interfaces 
 
 ### Requires
 
-* Dart Sass: `>=1.33.0`
+* Dart Sass: `^1.52.0`
 
 Install the package:
 

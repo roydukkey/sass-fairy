@@ -11,7 +11,7 @@ Provides extended functionality for handling Sass’s inner workings.
 
 ### Requires
 
-* Dart Sass: `>=1.23.0`
+* Dart Sass: `^1.52.0`
 
 Install the package:
 
