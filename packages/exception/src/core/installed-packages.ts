@@ -6,7 +6,6 @@ import { version } from '../../package.json';
 import { SassMap, SassString } from 'sass';
 
 
-const insertExceptionPackageAfterIndex = 2;
 const packages = [
 	['break', '@sass-fairy/break/package.json'],
 	['color', '@sass-fairy/color/package.json'],
@@ -30,7 +29,9 @@ const addPackage = (name: string, version: string): [SassString, SassString] => 
 
 
 export default (): SassMap => {
-	const map: Array<[SassString, SassString]> = [];
+	const map: Array<[SassString, SassString]> = [
+		addPackage('exception', version)
+	];
 
 	for (const [name, path] of packages) {
 		try {
@@ -39,7 +40,6 @@ export default (): SassMap => {
 		catch (error: unknown) { }
 	}
 
-	map.splice(insertExceptionPackageAfterIndex, 0, addPackage('exception', version));
-
-	return new SassMap(OrderedMap(map));
+	// eslint-disable-next-line @typescript-eslint/require-array-sort-compare
+	return new SassMap(OrderedMap(map.sort()));
 };

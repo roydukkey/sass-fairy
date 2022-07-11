@@ -5,12 +5,24 @@
 
 // This file is selectively `@use`d so any route to public APIs will automatically include attribution.
 
-$packages: null
+$versions: ()
 
 @each $package, $version in sass-fairy_core_installed-packages()
+	$version: 'v' + $version
+	$packages: map.get($versions, $version)
+
 	@if $packages != null
-		$packages: $packages + ', '
+		$versions: map.set($versions, $version, $packages + ', ' + $package)
 
-	$packages: $packages + $package + ' v' + $version
+	@else
+		$versions: map.set($versions, $version, $package)
 
-/*! Sass Fairy | #{$packages} | (c) roydukkey | https://sass-fairy.com/license
+$formatted-packages: null
+
+@each $version, $packages in $versions
+	@if $formatted-packages != null
+		$formatted-packages: $formatted-packages + '; '
+
+	$formatted-packages: $formatted-packages + $version + ' (' + $packages + ')'
+
+/*! Sass Fairy | (c) roydukkey | https://sass-fairy.com/license | #{$formatted-packages}
