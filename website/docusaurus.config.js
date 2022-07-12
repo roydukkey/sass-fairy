@@ -66,7 +66,7 @@ config.themeConfig = {
 				label: 'Versions',
 				items: [
 					{
-						label: 'v2.0.0-alpha.1',
+						label: 'v2.0.0-alpha.x',
 						to: '/v2'
 					},
 					{
