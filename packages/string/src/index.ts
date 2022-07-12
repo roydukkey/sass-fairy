@@ -3,10 +3,12 @@
 
 import type { CustomFunction } from 'sass';
 import ExceptionFunctions from '@sass-fairy/exception';
+import IsQuoted from './is-quoted';
 import ListFunctions from '@sass-fairy/list';
 
 
 const functions: { [key: string]: CustomFunction<'sync'> } = {
+	'sass-fairy_string_is-quoted($string)': IsQuoted,
 	...ExceptionFunctions,
 	...ListFunctions
 };
