@@ -1,7 +1,6 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
-const sass = require('sass');
 const { copySync, moveSync } = require('fs-extra');
 const { describe, it } = require('@jest/globals');
 const { sync: replaceSync } = require('replace-in-file');
@@ -10,10 +9,10 @@ const { buildNames } = require('../utils/build');
 
 
 // Configuration
-const source = './packages';
+const sourcePath = './packages';
+const entry = './test/index.sass';
 const sassConfig = {
-	file: './test/index.sass',
-	includePaths: [
+	loadPaths: [
 		'node_modules'
 	],
 	functions: {
@@ -27,9 +26,9 @@ const backupSlug = '.testing-backup';
 
 
 // Back up source and transform `@error`s to `true` error handling
-copySync(source, `${source}${backupSlug}`);
+copySync(sourcePath, `${sourcePath}${backupSlug}`);
 replaceSync({
-	files: `${source}/**/*.sass`,
+	files: `${sourcePath}/**/*.sass`,
 	from: [/(.)/, /^(?<!^\s*\/\/\s*true:cannot-test\s*$\n)(\s*)@error\s(.*)$/gm],
 	to: ['@use \'throw\'\n$1', '$1@return throw.error($2)']
 });
@@ -37,11 +36,11 @@ replaceSync({
 
 // Run tests
 try {
-	sassTrue(sassConfig, { sass, describe, it });
+	sassTrue({ describe, it }, entry, sassConfig);
 }
 
 
 // Restore source
 finally {
-	moveSync(`${source}${backupSlug}`, source, { overwrite: true });
+	moveSync(`${sourcePath}${backupSlug}`, sourcePath, { overwrite: true });
 }
