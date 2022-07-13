@@ -5,8 +5,8 @@ import type { RollupOptions } from 'rollup';
 import json from '@rollup/plugin-json';
 import license from 'rollup-plugin-license';
 import typescript from 'rollup-plugin-ts';
-import { author, name, repository } from './package.json';
-import { buildNames, buildRelativePath } from './utils/build';
+import { author, name } from './package.json';
+import { buildName, buildNames, buildRelativePath } from './utils/build';
 
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
@@ -39,9 +39,9 @@ const config: RollupOptions = {
 			banner: {
 				commentStyle: 'none',
 				content: `/*! ${[
-						`Sass-Fairy v${version}`,
+						`@${name}/${buildName} v${version}`,
 						`(c) ${author.name}`,
-						repository.url.replace('.git', '/blob/LICENSE')
+						'https://sass-fairy.com/license'
 					].join(' | ')
 				} */`
 			}
