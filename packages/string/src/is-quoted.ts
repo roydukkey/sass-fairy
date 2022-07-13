@@ -5,6 +5,6 @@ import type { SassBoolean, Value } from 'sass';
 import { sassFalse, sassTrue } from 'sass';
 
 
-export default (args: Value[]): SassBoolean => {
-	return args[0].assertString('string').hasQuotes ? sassTrue : sassFalse;
+export default ([string]: Value[]): SassBoolean => {
+	return string.assertString('string').hasQuotes ? sassTrue : sassFalse;
 };
