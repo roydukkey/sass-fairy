@@ -6,7 +6,7 @@ import InstalledPackages from './core/installed-packages';
 
 
 const functions: { [key: string]: CustomFunction<'sync'> } = {
-	'sass-fairy_core_installed-packages()': InstalledPackages
+	'fairy-internal_core_installed-packages()': InstalledPackages
 };
 
 

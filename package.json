@@ -121,7 +121,7 @@
 								"camelCase"
 							],
 							"filter": {
-								"regex": "^sass-fairy_[a-z]+_[a-z-]+\\(",
+								"regex": "^fairy-internal_[a-z]+_[a-z-]+\\(",
 								"match": false
 							}
 						},

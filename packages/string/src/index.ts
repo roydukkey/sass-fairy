@@ -8,7 +8,7 @@ import ListFunctions from '@sass-fairy/list';
 
 
 const functions: { [key: string]: CustomFunction<'sync'> } = {
-	'sass-fairy_string_is-quoted($string)': IsQuoted,
+	'fairy-internal_string_is-quoted($string)': IsQuoted,
 	...ExceptionFunctions,
 	...ListFunctions
 };

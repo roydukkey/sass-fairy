@@ -5,9 +5,9 @@
 @use 'sass:map'
 
 
-@include true.describe('sass-fairy_core_installed-packages()')
+@include true.describe('fairy-internal_core_installed-packages()')
 
 	@include true.it('Returns all packages')
-		$assert: map.keys(sass-fairy_core_installed-packages())
+		$assert: map.keys(fairy-internal_core_installed-packages())
 		$expected: 'break', 'color', 'exception', 'list', 'map', 'math', 'meta', 'string'
 		@include true.assert-equal($assert, $expected)

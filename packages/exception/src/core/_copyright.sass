@@ -7,7 +7,7 @@
 
 $versions: ()
 
-@each $package, $version in sass-fairy_core_installed-packages()
+@each $package, $version in fairy-internal_core_installed-packages()
 	$version: 'v' + $version
 	$packages: map.get($versions, $version)
 
