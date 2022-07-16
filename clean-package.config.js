@@ -2,10 +2,9 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 const { copySync, removeSync } = require('fs-extra');
-const { resolve, basename } = require('path');
+const { buildName, buildRelativePath } = require('./utils/build');
 
 
-const packageName = basename(process.cwd());
 const {
 	author,
 	bugs,
@@ -24,13 +23,12 @@ const commonFiles = [
 ];
 
 
-repository.directory = `packages/${packageName}`;
+repository.directory = `packages/${buildName}`;
 
 
-const completePackage = require(`./${repository.directory}/package.json`);
+const completePackage = require(buildRelativePath('package.json'));
 const { name, description, version, keywords, dependencies, publishConfig, ...package } = completePackage;
 delete package.scripts;
-delete package['clean-package'];
 delete package['//'];
 
 
@@ -54,11 +52,11 @@ module.exports = {
 	},
 
 	onClean: () => commonFiles.forEach((file) => {
-		copySync(resolve(__dirname, file), resolve(file));
+		copySync(file, buildRelativePath(file));
 	}),
 
 	onRestore: () => commonFiles.forEach((file) => {
-		removeSync(resolve(file));
+		removeSync(buildRelativePath(file));
 	})
 
 };

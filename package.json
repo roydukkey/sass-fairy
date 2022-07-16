@@ -47,7 +47,11 @@
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
 		"lint:website": "yarn workspace website lint",
 		"pretest": "yarn lint:spelling",
-		"test": "jest"
+		"test": "jest",
+		"package:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
+		"package:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
+		"package:pack": "yarn package:clean-package && yarn workspace @$npm_package_name/$BUILD pack && yarn package:clean-package:restore",
+		"package:publish": "yarn test && yarn package:clean-package && yarn workspace @$npm_package_name/$BUILD publish && yarn package:clean-package:restore"
 	},
 	"jest": {
 		"testEnvironment": "jest-environment-node-single-context",

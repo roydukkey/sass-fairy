@@ -16,11 +16,6 @@
 	"dependencies": {
 		"@sass-fairy/exception": "^1.0.0"
 	},
-	"scripts": {
-		"new:pack": "clean-package && yarn pack && clean-package restore --config $npm_package_clean_package",
-		"new:publish": "clean-package && yarn publish && clean-package restore --config $npm_package_clean_package"
-	},
-	"clean-package": "../../clean-package.config.js",
 	"publishConfig": {
 		"access": "public"
 	}
