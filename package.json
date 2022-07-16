@@ -25,39 +25,148 @@
 		"dart-sass"
 	],
 	"devDependencies": {
+		"@rollup/plugin-json": "^4.1.0",
+		"@roydukkey/eslint-config": "^1.0.12",
+		"@tsconfig/node12": "^1.0.9",
+		"@typescript-eslint/eslint-plugin": "^5.25.0",
+		"@typescript-eslint/parser": "^5.25.0",
 		"clean-package": "^2.1.1",
 		"cross-env": "^7.0.3",
 		"cspell": "^5.19.3",
+		"eslint": "^8.15.0",
+		"eslint-plugin-tsdoc": "^0.2.16",
 		"fs-extra": "^10.0.1",
+		"globby": "^11.1.0",
 		"jest": "^28.1.0",
 		"jest-environment-node-single-context": "^28.0.0",
 		"npm-run-all": "^4.1.5",
 		"replace-in-file": "^6.3.2",
-		"sass": "^1.51.0",
-		"sass-true": "npm:@roydukkey/sass-true@^7.0.0-alpha.0"
+		"rollup": "^2.73.0",
+		"rollup-plugin-commonjs": "^10.1.0",
+		"rollup-plugin-ts": "^2.0.7",
+		"rollup-plugin-license": "^2.8.1",
+		"sass": "^1.52.0",
+		"sass-true": "npm:@roydukkey/sass-true@^7.0.0-alpha.0",
+		"typescript": "^4.6.4"
 	},
 	"engines": {
 		"npm": "please-use-yarn",
 		"yarn": ">= 1.22.0"
 	},
 	"scripts": {
-		"clean": "yarn workspace website clear",
-		"serve": "yarn workspace website start",
-		"deploy": "cross-env GIT_USER=roydukkey USE_SSH=true yarn workspace website deploy",
-		"lint": "run-s clean lint:spelling lint:website",
+		"postinstall": "tsc ./utils/build.ts",
+		"clean": "run-s clean:src clean:website",
+		"clean:src": "node -e \"require('globby').sync('./packages/**/dist', { onlyDirectories: true }).forEach((path) => fs.rmSync(path, { recursive: true, force: true }))\"",
+		"clean:website": "yarn workspace website clear",
+		"lint": "run-s clean lint:spelling lint:src lint:website",
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
+		"lint:src": "eslint --ext js,jsx,ts,tsx ./",
 		"lint:website": "yarn workspace website lint",
-		"pretest": "yarn lint:spelling",
+		"pretest": "run-s lint:spelling lint:src",
 		"test": "jest",
+		"build": "run-s build:exception build:color build:math build:meta build:list build:map build:string build:break",
+		"build:break": "cross-env BUILD=break yarn package:build",
+		"build:color": "cross-env BUILD=color yarn package:build",
+		"build:exception": "cross-env BUILD=exception yarn package:build",
+		"build:list": "cross-env BUILD=list yarn package:build",
+		"build:map": "cross-env BUILD=map yarn package:build",
+		"build:math": "cross-env BUILD=math yarn package:build",
+		"build:meta": "cross-env BUILD=meta yarn package:build",
+		"build:string": "cross-env BUILD=string yarn package:build",
+		"package:build": "rollup --config ./rollup.config.ts --configPlugin rollup-plugin-ts --plugin rollup-plugin-commonjs",
 		"package:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"package:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"package:pack": "yarn package:clean-package && yarn workspace @$npm_package_name/$BUILD pack && yarn package:clean-package:restore",
-		"package:publish": "run-s test package:clean-package && yarn workspace @$npm_package_name/$BUILD publish && yarn package:clean-package:restore"
+		"package:publish": "run-s test package:clean-package && yarn workspace @$npm_package_name/$BUILD publish && yarn package:clean-package:restore",
+		"serve": "yarn workspace website start",
+		"deploy": "cross-env GIT_USER=roydukkey USE_SSH=true yarn workspace website deploy"
 	},
 	"jest": {
 		"testEnvironment": "jest-environment-node-single-context",
 		"verbose": true,
 		"coverageDirectory": ".jest/coverage",
 		"cacheDirectory": ".jest/cache"
+	},
+	"eslintConfig": {
+		"extends": [
+			"@roydukkey/eslint-config"
+		],
+		"env": {
+			"node": true
+		},
+		"ignorePatterns": [
+			"dist",
+			"website",
+			"utils/**/*.js"
+		],
+		"overrides": [
+			{
+				"files": [
+					"*.js?(x)"
+				],
+				"rules": {
+					"@typescript-eslint/no-require-imports": "off"
+				}
+			},
+			{
+				"files": [
+					"*.{j,t}s?(x)"
+				],
+				"rules": {
+					"@typescript-eslint/naming-convention": [
+						"error",
+						{
+							"selector": "default",
+							"format": [
+								"camelCase"
+							],
+							"filter": {
+								"regex": "^fairy-internal_[a-z]+_[a-z-]+\\(",
+								"match": false
+							}
+						},
+						{
+							"selector": "default",
+							"modifiers": [
+								"unused"
+							],
+							"format": [
+								"camelCase"
+							],
+							"leadingUnderscore": "require"
+						},
+						{
+							"selector": [
+								"typeLike",
+								"enumMember"
+							],
+							"format": [
+								"PascalCase"
+							]
+						},
+						{
+							"selector": "property",
+							"modifiers": [
+								"private"
+							],
+							"format": [
+								"camelCase"
+							],
+							"leadingUnderscore": "require"
+						},
+						{
+							"selector": "interface",
+							"format": [
+								"PascalCase"
+							],
+							"custom": {
+								"regex": "^I[A-Z]",
+								"match": false
+							}
+						}
+					]
+				}
+			}
+		]
 	}
 }

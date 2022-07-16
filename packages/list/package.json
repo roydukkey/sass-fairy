@@ -12,7 +12,8 @@
 		"array",
 		"slice"
 	],
-	"main": "./index.sass",
+	"main": "./dist/functions.js",
+	"types": "./dist/types.d.ts",
 	"dependencies": {
 		"@sass-fairy/exception": "^1.0.0",
 		"@sass-fairy/math": "^1.0.0",

@@ -27,7 +27,7 @@ repository.directory = `packages/${buildName}`;
 
 
 const completePackage = require(buildRelativePath('package.json'));
-const { name, description, version, keywords, dependencies, publishConfig, ...package } = completePackage;
+const { name, description, version, keywords, dependencies, addDependenciesOnPublish, optionalDependencies, publishConfig, ...package } = completePackage;
 delete package.scripts;
 delete package['//'];
 
@@ -46,8 +46,9 @@ module.exports = {
 		bugs,
 		keywords: [...parentKeywords, ...keywords],
 		...package,
-		dependencies,
+		dependencies: sortObjectByKeys({ ...dependencies, ...addDependenciesOnPublish }),
 		devDependencies,
+		optionalDependencies,
 		publishConfig
 	},
 
@@ -60,3 +61,8 @@ module.exports = {
 	})
 
 };
+
+
+function sortObjectByKeys (obj) {
+	return Object.fromEntries(Object.entries(obj).sort(([a], [b]) => a.localeCompare(b)));
+}

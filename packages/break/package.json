@@ -13,7 +13,8 @@
 		"media",
 		"query"
 	],
-	"main": "./index.sass",
+	"main": "./dist/functions.js",
+	"types": "./dist/types.d.ts",
 	"dependencies": {
 		"@sass-fairy/color": "^1.0.0",
 		"@sass-fairy/exception": "^1.0.0",

@@ -2,8 +2,10 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 const { copySync, moveSync } = require('fs-extra');
+const { describe, it } = require('@jest/globals');
 const { sync: replaceSync } = require('replace-in-file');
 const { runSass: sassTrue } = require('sass-true');
+const { buildNames } = require('../utils/build');
 
 
 // Configuration
@@ -12,7 +14,13 @@ const entry = './test/index.sass';
 const sassConfig = {
 	loadPaths: [
 		'node_modules'
-	]
+	],
+	functions: {
+		...buildNames.reduce((accumulator, name) => ({
+			...accumulator,
+			...require(`../packages/${name}`)
+		}), {})
+	}
 };
 const backupSlug = '.testing-backup';
 

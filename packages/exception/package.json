@@ -12,7 +12,8 @@
 		"error",
 		"warn"
 	],
-	"main": "./index.sass",
+	"main": "./dist/functions.js",
+	"types": "./dist/types.d.ts",
 	"publishConfig": {
 		"access": "public"
 	}
