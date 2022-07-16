@@ -1,6 +1,5 @@
-// ================================================================= //
-// Copyright (c) roydukkey. All rights reserved.                     //
-// ================================================================= //
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 const use = (namespace, name, property) => {
 	const parts = [namespace, name];
@@ -12,6 +11,7 @@ const use = (namespace, name, property) => {
 	return `var(--${parts.join('-')})`;
 };
 
+
 const style = (namespace, names, properties) => ({
 	types: names,
 	style: properties.reduce((accumulator, property) => {
@@ -19,6 +19,7 @@ const style = (namespace, names, properties) => ({
 		return accumulator;
 	}, {})
 });
+
 
 const create = (namespace, ...scopes) => ({
 	plain: {
@@ -30,6 +31,7 @@ const create = (namespace, ...scopes) => ({
 		: style(namespace, scope.types, scope.styles)
 	)
 });
+
 
 module.exports = create(
 	'prism',
