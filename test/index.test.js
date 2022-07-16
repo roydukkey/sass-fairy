@@ -3,15 +3,14 @@
 
 const { copySync, moveSync } = require('fs-extra');
 const { sync: replaceSync } = require('replace-in-file');
-const sass = require('sass');
 const { runSass: sassTrue } = require('sass-true');
 
 
 // Configuration
-const source = './packages';
+const sourcePath = './packages';
+const entry = './test/index.sass';
 const sassConfig = {
-	file: './test/index.sass',
-	includePaths: [
+	loadPaths: [
 		'node_modules'
 	]
 };
@@ -19,9 +18,9 @@ const backupSlug = '.testing-backup';
 
 
 // Back up source and transform `@error`s to `true` error handling
-copySync(source, `${source}${backupSlug}`);
+copySync(sourcePath, `${sourcePath}${backupSlug}`);
 replaceSync({
-	files: `${source}/**/*.sass`,
+	files: `${sourcePath}/**/*.sass`,
 	from: [/(.)/, /^(?<!^\s*\/\/\s*true:cannot-test\s*$\n)(\s*)@error\s(.*)$/gm],
 	to: ["@use 'throw'\n$1", '$1@return throw.error($2)']
 });
@@ -29,11 +28,11 @@ replaceSync({
 
 // Run tests
 try {
-	sassTrue(sassConfig, { sass, describe, it });
+	sassTrue({ describe, it }, entry, sassConfig);
 }
 
 
 // Restore source
 finally {
-	moveSync(`${source}${backupSlug}`, source, { overwrite: true })
+	moveSync(`${sourcePath}${backupSlug}`, sourcePath, { overwrite: true });
 }

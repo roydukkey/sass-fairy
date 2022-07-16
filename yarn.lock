@@ -9366,10 +9366,10 @@ sass-loader@^10.1.1:
     schema-utils "^3.0.0"
     semver "^7.3.2"
 
-sass-true@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/sass-true/-/sass-true-6.1.0.tgz#cbcb78135071b1bae0882ea456a2b0dd9a6c8b3a"
-  integrity sha512-Qt6TpPe8Ogr8g9FvBSwXvzfrkbtHD7rej0X3lzyoiZ+I0kKV9NFeefcF560uMn5NFCA7g5rcVKxc9UHrrMcDrw==
+"sass-true@npm:@roydukkey/sass-true@^7.0.0-alpha.0":
+  version "7.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@roydukkey/sass-true/-/sass-true-7.0.0-alpha.0.tgz#69664c67ae59dcfa270beabf439dff8736064c44"
+  integrity sha512-7plx/r5UD5e+7gWbsZcjH4LD6xerTorooqk+iY9pY01Hllsh2WDR/KiJjgUDUt063pqXCTzeje7egwGhUmJw/A==
   dependencies:
     "@types/css" "^0.0.33"
     css "^3.0.0"
