@@ -42,12 +42,11 @@
 		"npm-run-all": "^4.1.5",
 		"replace-in-file": "^6.3.2",
 		"rollup": "^2.73.0",
-		"rollup-plugin-commonjs": "^10.1.0",
-		"rollup-plugin-ts": "^2.0.7",
+		"rollup-plugin-ts": "^3.0.2",
 		"rollup-plugin-license": "^2.8.1",
 		"sass": "^1.52.0",
 		"sass-true": "npm:@roydukkey/sass-true@^7.0.0-alpha.0",
-		"typescript": "^4.6.4"
+		"typescript": "^4.7.4"
 	},
 	"engines": {
 		"npm": "please-use-yarn",
@@ -73,7 +72,7 @@
 		"build:math": "cross-env BUILD=math yarn package:build",
 		"build:meta": "cross-env BUILD=meta yarn package:build",
 		"build:string": "cross-env BUILD=string yarn package:build",
-		"package:build": "rollup --config ./rollup.config.ts --configPlugin rollup-plugin-ts --plugin rollup-plugin-commonjs",
+		"package:build": "rollup --config ./rollup.config.ts --configPlugin rollup-plugin-ts",
 		"package:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"package:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"package:pack": "yarn package:clean-package && yarn workspace @$npm_package_name/$BUILD pack && yarn package:clean-package:restore",
