@@ -3,7 +3,7 @@ hide_table_of_contents: true
 ---
 # Reference Functions
 
-Some of the functions provided by Sass Fairy return a reference to a function so they may be used as parameters in other function calls. Examples of this are the compare methods from [`@sass-fairy/list`](/api/list).
+Some of the functions provided by Sass Fairy return a reference to a function so they may be used as parameters in other function calls. Examples of this are the compare methods from [`@sass-fairy/list`](../api/list/overview.mdx).
 
 ```scss
 $sorted: list.sort($unsorted, list.compare-numeric())
@@ -19,4 +19,4 @@ $result: list.compare-numeric($first-item, $second-item)
 
 ## Implementing in Custom Modules
 
-Creating these functions in you own modules is very easy using the [`meta.call-or-reference()`](/api/meta/call-or-reference) from the [`@sass-fairy/meta`](/api/meta) package. [Read the API](/api/meta/call-or-reference) for more details.
+Creating these functions in you own modules is very easy using the [`meta.call-or-reference()`](../api/meta/call-or-reference.mdx) from the [`@sass-fairy/meta`](../api/meta/overview.mdx) package. [Read the API](../api/meta/call-or-reference.mdx) for more details.

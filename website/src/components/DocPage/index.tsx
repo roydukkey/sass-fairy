@@ -34,7 +34,7 @@ export default function ({ spec, children }: Attributes): JSX.Element {
 }
 
 
-interface Attributes {
+export interface Attributes {
 	spec: ModuleSpec;
 	/** Auxiliary description */
 	children?: ReactNode;
