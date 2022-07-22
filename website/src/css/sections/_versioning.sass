@@ -6,6 +6,22 @@
 
 @mixin import
 
+	.theme-doc-version-banner
+		--ifm-alert-padding-vertical: 0.5rem
+		--ifm-alert-padding-horizontal: 0.5rem
+
+		font-size: 0.8rem
+
+		> div
+			display: inline
+
+			&:not(:first-child)::before
+				content: ' '
+				white-space: pre-line
+
+		> .margin-top--md
+			margin: 0 !important
+
 	@include break.out(small)
 		.theme-doc-breadcrumbs
 			float: left

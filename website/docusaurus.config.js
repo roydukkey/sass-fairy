@@ -117,11 +117,13 @@ config.presets = [
 				lastVersion: '1',
 				versions: {
 					current: {
-						label: 'v2'
+						label: 'v2',
+						badge: false
 					},
 					// eslint-disable-next-line @typescript-eslint/naming-convention
 					1: {
-						label: 'v1'
+						label: 'v1',
+						badge: false
 					}
 				}
 			},
