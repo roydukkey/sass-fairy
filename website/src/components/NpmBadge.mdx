@@ -4,6 +4,6 @@ Licensed under the MIT. See LICENSE file in the project root for full license in
 
 import Link from '@docusaurus/Link';
 
-<Link to={`https://www.npmjs.com/package/@sass-fairy/${props.module}`}>
-  <img src={`https://img.shields.io/npm/v/@sass-fairy/${props.module}.svg?color=6272a4&style=flat-square`} alt="Release Version" />
+<Link to={`https://www.npmjs.com/package/@sass-fairy/${props.module}${props.tag !== undefined ? `/v/${props.tag}` : ''}`}>
+  <img src={`https://img.shields.io/npm/v/@sass-fairy/${props.module}${props.tag !== undefined ? `/${props.tag}` : ''}.svg?color=6272a4&style=flat-square`} alt="Release Version" />
 </Link>
