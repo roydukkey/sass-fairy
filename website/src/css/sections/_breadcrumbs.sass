@@ -1,12 +1,13 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+@use '@sass-fairy/break'
 @use '../palette'
 
 
 @mixin import
 
-	@media (min-width: 996px)
+	@include break.out(996px)
 		html.hide\/breadcrumb .theme-doc-breadcrumbs
 			display: none
 
