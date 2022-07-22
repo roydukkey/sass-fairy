@@ -1,0 +1,28 @@
+---
+title: split ()
+module: string
+sidebar_label: split
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/string/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/string';
+
+$str: 'The quick brown fox jumps over the lazy dog.';
+
+@debug string.split($str);
+  // 'The quick brown fox jumps over the lazy dog.'
+
+@debug string.split($str, ' ');
+  // 'The' 'quick' 'brown' 'fox' 'jumps' 'over' 'the' 'lazy' 'dog.'
+
+@debug string.split($str, '', 3);
+  // 'T' 'h' 'e'
+
+@debug string.split($str, 'o', $separator: 'comma', $bracketed: true);
+  // ['The quick br', 'wn f', 'x jumps ', 'ver the lazy d', 'g.']
+```

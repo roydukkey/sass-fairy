@@ -1,0 +1,20 @@
+---
+title: fact ()
+module: math
+sidebar_label: fact
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/math/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/math';
+
+@debug math.fact(5);
+  // 120
+
+@debug math.fact(10);
+  // 3628800
+```

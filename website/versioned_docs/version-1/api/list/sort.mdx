@@ -1,0 +1,53 @@
+---
+title: sort ()
+module: list
+sidebar_label: sort
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/list/spec/FieldDetails';
+
+<FieldDetails>
+
+Read more on [comparison logic](../../docs/compare-logic.mdx) for a detailed explanation on sorting methods.
+
+</FieldDetails>
+
+```scss
+@use '@sass-fairy/list';
+
+// 1. Sorting as strings
+$list: 'Three' 'Two' 'Five' 'Six' 'Four' 'One';
+
+@debug list.sort($list);
+  // 'Five' 'Four' 'One' 'Six' 'Three' 'Two'
+
+@debug list.sort($list, list.compare-string());
+  // 'Five' 'Four' 'One' 'Six' 'Three' 'Two'
+
+@debug list.sort($list, list.compare-string-desc());
+  // 'Two' 'Three' 'Six' 'One' 'Four' 'Five'
+
+// 2. Sorting as numbers (Automatic)
+$unsorted: 6mm 2px 4em 20mm -9mm 2cm 25px 1.25cm -4px 1 -3cm;
+
+$sorted: list.sort($unsorted, list.compare-numeric());
+
+@debug $sorted;
+  // -3cm -9mm -4px 2px 1 4em 6mm 25px 1.25cm 2cm 20mm
+
+@debug list.sort($sorted, list.compare-numeric());
+  // -3cm -9mm -4px 2px 6mm 25px 1 1.25cm 20mm 2cm 4em
+
+// 3. Sorting as numbers (Certain)
+$sorted: list.sort($unsorted, list.compare-numeric(), 0cm);
+
+@debug $sorted;
+  // -3cm -9mm -4px 2px 6mm 25px 1 1.25cm 20mm 2cm 4em
+
+@debug list.sort($sorted, list.compare-numeric(), 0mm);
+  // -3cm -9mm -4px 2px 1 4em 6mm 25px 1.25cm 2cm 20mm
+
+@debug list.sort($sorted, list.compare-numeric(), 0);
+  // -9mm -4px -3cm 1 1.25cm 2cm 2px 4em 6mm 20mm 25px
+```

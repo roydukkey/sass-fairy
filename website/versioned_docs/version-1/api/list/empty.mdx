@@ -1,0 +1,30 @@
+---
+title: empty ()
+module: list
+sidebar_label: empty
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/list/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/list/list';
+
+// 1. Create default empty list
+$list: list.empty();
+
+@debug list.separator($list);
+  // comma
+@debug list.is-bracketed($result);
+  // false
+
+// 2. Create empty with the same characteristics as source list
+$list: list.empty($list: [1 2 3 4]);
+
+@debug list.separator($list);
+  // space
+@debug not list.is-bracketed($result);
+  // true
+```

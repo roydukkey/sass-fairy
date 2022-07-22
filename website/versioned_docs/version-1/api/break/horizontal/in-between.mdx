@@ -1,0 +1,41 @@
+---
+title: in-between ()
+module: break
+sidebar_label: in-between
+sidebar_class_name: 'function mixin'
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/break/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/break';
+
+// 1. As a function
+@debug break.in-between('md', 'xl');
+  // '(min-width: 768px) and (max-width: 1199.98px)'
+
+@debug break.in-between(800px, 'xl');
+  // '(min-width: 800px) and (max-width: 1199.98px)'
+
+// 2. As a mixin
+body {
+  padding: 2rem;
+
+  @include break.in-between('md', 'xl') {
+    padding: 1rem;
+  }
+
+  @include break.in-between(800px, 'xl') {
+    padding: 1rem;
+  }
+}
+  // body { padding: 2rem }
+  // @media (min-width: 768px) and (max-width: 1199.98px) {
+  //   body { padding: 1rem }
+  // }
+  // @media (min-width: 800px) and (max-width: 1199.98px) {
+  //   body { padding: 1rem }
+  // }
+```

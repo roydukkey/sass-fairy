@@ -1,0 +1,11 @@
+@use '@sass-fairy/exception';
+
+$height: 20rem !default;
+
+@if meta.type-of($height) != 'number' {
+  @error exception.variable-type('height', $height, 'number');
+}
+
+@if $height < 0 {
+  @error exception.variable('Value must not be less than zero, but is `#{$height}`', 'height');
+}

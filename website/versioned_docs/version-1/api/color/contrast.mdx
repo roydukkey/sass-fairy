@@ -1,0 +1,23 @@
+---
+title: contrast ()
+module: color
+sidebar_label: contrast
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/color/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/color';
+
+@debug color.contrast(white, red);
+  // 4
+
+@debug color.contrast(#fff, #000);
+  // 21
+
+@debug color.contrast(blue, #00f);
+  // 1
+```

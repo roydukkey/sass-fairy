@@ -1,0 +1,25 @@
+---
+title: compare-string-desc ()
+module: list
+sidebar_label: compare-string-desc
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import CompareLogicCallout from '@site/src/components/CompareLogicCallout';
+import FieldDetails from '@site/versioned_docs/version-1/api/list/spec/FieldDetails';
+
+<FieldDetails><CompareLogicCallout /></FieldDetails>
+
+```scss
+@use '@sass-fairy/list';
+
+// 1. As a call
+@debug list.compare-string-desc('x', 'm');
+  // -11
+
+// 2. As a reference
+$list: 'x' 'm' 'b' 't';
+
+@debug list.sort($list, list.compare-string-desc());
+  // 'x' 't' 'm' 'b'
+```

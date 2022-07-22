@@ -1,0 +1,43 @@
+---
+title: up ()
+module: break
+sidebar_label: up
+sidebar_class_name: 'function mixin'
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/break/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/break' with (
+  $vertical-sizes: $your-sizes
+);
+
+// 1. As a function
+@debug break.up('md');
+  // '(min-height: 768px)'
+
+@debug break.up(800px);
+  // '(min-height: 800px)'
+
+// 2. As a mixin
+body {
+  padding: 2rem;
+
+  @include break.up('md') {
+    padding: 1rem;
+  }
+
+  @include break.up(800px) {
+    padding: 1rem;
+  }
+}
+  // body { padding: 2rem }
+  // @media (min-height: 768px) {
+  //   body { padding: 1rem }
+  // }
+  // @media (min-height: 800px) {
+  //   body { padding: 1rem }
+  // }
+```

@@ -1,0 +1,29 @@
+---
+title: index ()
+module: string
+slug: ./index
+sidebar_label: index
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/string/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/string';
+
+$sentence: 'The quick brown fox jumps over the lazy dog.';
+
+@debug string.index($sentence, 'quick');
+  // 5
+
+@debug string.index($sentence, 'he', 3);
+  // 33
+
+@debug string.index($sentence, 'dog', -4);
+  // 41
+
+@debug string.index($sentence, 'cat');
+  // 0
+```

@@ -3,6 +3,7 @@
 	"extends": "@tsconfig/docusaurus/tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": ".",
+		"moduleResolution": "Node16",
 		"types": [
 			"docusaurus-plugin-sass",
 			"docusaurus-theme-frontmatter"

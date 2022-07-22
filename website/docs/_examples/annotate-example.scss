@@ -7,7 +7,7 @@
 	)
 );
 
-body.annotate-example {
+body.annotate-example-v2 {
 	@include break.annotate($position: 'bottom left', $size: 14px) {
 		z-index: 300;
 	}

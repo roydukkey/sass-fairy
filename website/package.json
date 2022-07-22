@@ -9,6 +9,14 @@
 		"@mdx-js/react": "^1.6.22",
 		"@sass-fairy/break": "^1.1.0",
 		"@sass-fairy/color": "^1.0.1",
+		"@sass-fairy/v1/break": "npm:@sass-fairy/break@^1",
+		"@sass-fairy/v1/color": "npm:@sass-fairy/color@^1",
+		"@sass-fairy/v1/exception": "npm:@sass-fairy/exception@^1",
+		"@sass-fairy/v1/list": "npm:@sass-fairy/list@^1",
+		"@sass-fairy/v1/map": "npm:@sass-fairy/map@^1",
+		"@sass-fairy/v1/math": "npm:@sass-fairy/math@^1",
+		"@sass-fairy/v1/meta": "npm:@sass-fairy/meta@^1",
+		"@sass-fairy/v1/string": "npm:@sass-fairy/string@^1",
 		"@svgr/webpack": "^6.2.1",
 		"clsx": "^1.1.1",
 		"docusaurus-plugin-sass": "roydukkey/docusaurus-plugin-sass#issue/20",
@@ -23,7 +31,7 @@
 	},
 	"devDependencies": {
 		"@docusaurus/module-type-aliases": "2.0.0-rc.1",
-		"@tsconfig/docusaurus": "^1.0.5"
+		"@tsconfig/docusaurus": "^1.0.6"
 	},
 	"scripts": {
 		"docusaurus": "docusaurus",

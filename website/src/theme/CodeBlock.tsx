@@ -14,6 +14,9 @@ export default function ({ highlightLines, highlightKeywords, stripSassDocs, rew
 			children = children.replace(/^\/\/\/.*\n/gm, '');
 		}
 
+		// Replace version-aliased package @use statements.
+		children = children.replace(/(@use\s*'@sass-fairy\/)v\d\//g, '$1');
+
 		if (rewriteFairyUses) {
 			const modules: { [key: string]: string[] } = {};
 

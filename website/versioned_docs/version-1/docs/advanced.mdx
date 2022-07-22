@@ -1,0 +1,28 @@
+---
+hide_table_of_contents: true
+---
+
+# Advanced Usage
+
+If you’re packaging your own Sass modules and want to use Sass Fairy in the project. It is best to use direct-path `@use` rules to the specific features of Sass Fairy that your modules needs.
+
+This ensures the Sass Compiler is loading only the features required by your package. This may slightly improve your modules load time as well.
+
+For example, imagine you require the `contrast()` from `@sass-fairy/color`, the `@use` rule should be as follows:
+
+```scss
+@use '@sass-fairy/color/src/contrast';
+
+@function my-function ($fg-color, $bg-color) {
+
+  @if contrast.contrast($fg-color, $bg-color) > 5 {
+    // ...
+  }
+
+  @else {
+    // ...
+  }
+
+  @return $value;
+}
+```

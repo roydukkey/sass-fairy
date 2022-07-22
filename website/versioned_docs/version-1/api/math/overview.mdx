@@ -1,0 +1,30 @@
+---
+title: Math API Overview
+module: math
+slug: ./
+hide_title: true
+---
+import CombinedApi from '@site/src/components/CombinedApi';
+import FeatureRequest from '@site/src/components/FeatureRequest.mdx';
+import SignatureList from '@site/src/components/SignatureList';
+import Spec from '@site/versioned_docs/version-1/api/math/spec';
+
+# API Overview
+
+## Bounding Functions
+
+<SignatureList spec={Spec} group="math/bounding" />
+
+## Exponential Functions
+
+<SignatureList spec={Spec} group="math/exponential" />
+
+## Unit Functions
+
+<SignatureList spec={Spec} group="math/unit" />
+
+<FeatureRequest />
+
+## Combined API
+
+<CombinedApi spec={Spec} />

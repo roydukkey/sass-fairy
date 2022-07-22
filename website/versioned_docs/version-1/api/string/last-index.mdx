@@ -1,0 +1,22 @@
+---
+title: last-index ()
+module: string
+sidebar_label: last-index
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/string/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/string';
+
+$sentence: 'The quick brown fox jumps over the lazy dog.';
+
+@debug string.last-index($sentence, 'he');
+  // 33
+
+@debug string.last-index($sentence, 'cat');
+  // 0
+```

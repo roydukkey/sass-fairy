@@ -1,0 +1,14 @@
+@use '@sass-fairy/v1/break' with (
+	$vertical-sizes: (
+		x-small: 0,
+		medium: 680px,
+		large: 960px,
+		x-large: 1200px
+	)
+);
+
+body.annotate-example {
+	@include break.annotate($position: 'bottom left', $size: 14px) {
+		z-index: 300;
+	}
+}

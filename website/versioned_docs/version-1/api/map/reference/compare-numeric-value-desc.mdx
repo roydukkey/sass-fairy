@@ -1,0 +1,26 @@
+---
+title: compare-numeric-value-desc ()
+module: map
+sidebar_label: compare-numeric-value-desc
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import CompareLogicCallout from '@site/src/components/CompareLogicCallout';
+import FieldDetails from '@site/versioned_docs/version-1/api/map/spec/FieldDetails';
+
+<FieldDetails><CompareLogicCallout /></FieldDetails>
+
+```scss
+@use '@sass-fairy/list';
+@use '@sass-fairy/map';
+
+// 1. As a call
+@debug map.compare-numeric-value-desc(b 8em, f 10mm);
+  // 2
+
+// 2. As a reference
+$map: (b: 8em, f: 10mm, d: a, a: 3, c: 1cm, e: 2mm);
+
+@debug list.sort($map, map.compare-numeric-value-desc());
+  // d a, f 10mm, b 8em, a 3, e 2mm, c 1cm
+```

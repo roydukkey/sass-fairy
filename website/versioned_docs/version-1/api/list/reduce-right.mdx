@@ -1,0 +1,24 @@
+---
+title: reduce-right ()
+module: list
+sidebar_label: reduce-right
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/list/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use 'sass:meta';
+@use '@sass-fairy/list';
+
+@function _concat-right($accumulator, $item, $void...) {
+  @return list.concat($accumulator, $item);
+}
+
+$list: [[0, 1], [2, 3], [4, 5]];
+
+@debug list.reduce($list, meta.get-function('_concat-right'));
+  // [4, 5, 2, 3, 0, 1]
+```

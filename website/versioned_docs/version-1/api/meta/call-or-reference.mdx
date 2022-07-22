@@ -1,0 +1,41 @@
+---
+title: call-or-reference ()
+module: meta
+sidebar_label: call-or-reference
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/meta/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss title="my-custom/module.scss"
+@use 'sass:math';
+@use '@sass-fairy/meta/meta';
+
+@function _predicate($value, $args...) {
+  @return meta.type-of($value) == 'number' and not math.is-unitless($value);
+}
+
+@function is-number-and-not-unitless($args...) {
+  $ref: meta.get-function('_predicate');
+  // highlight-next-line
+  @return meta.call-or-reference($ref, $args...);
+}
+```
+
+```scss title="my-custom/site.scss"
+@use '@sass-fairy/list';
+@use 'module';
+
+// 1. As a call
+@debug module.is-number-and-not-unitless(10);
+  // false
+
+// 2. As a reference
+$list: a 1 5 b 20px 10 30px;
+
+// highlight-next-line
+@debug list.find($list, module.is-number-and-not-unitless());
+  // 20px
+```

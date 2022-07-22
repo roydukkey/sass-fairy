@@ -1,0 +1,23 @@
+---
+title: luminance ()
+module: color
+sidebar_label: luminance
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/color/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/color';
+
+@debug color.luminance(#fff);
+  // 1
+
+@debug color.luminance(#000);
+  // 0
+
+@debug color.luminance(red);
+  // 0.2126
+```

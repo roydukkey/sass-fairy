@@ -1,0 +1,23 @@
+---
+title: a11y ()
+module: color
+sidebar_label: a11y
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/color/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/color';
+
+@debug color.a11y(red, blue);
+  // #ffa3a3
+
+@debug color.a11y(red, blue, 'large');
+  // #ff6666
+
+@debug color.a11y(red, blue, $level: 'AAA');
+  // #ffe1e1
+```

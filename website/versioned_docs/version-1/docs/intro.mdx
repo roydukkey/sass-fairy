@@ -1,0 +1,62 @@
+---
+title: Introduction
+description: Sass Fairy enhances built-in Sass modules with additional functions and adds modules for handling breakpoints and exceptions.
+slug: /
+hide_table_of_contents: true
+---
+import { Fragment } from 'react';
+import Link from '@docusaurus/Link';
+import NpmBadge from '@site/src/components/NpmBadge.mdx';
+import ColorSpec from '@site/versioned_docs/version-1/api/color/spec'
+import BreakSpec from '@site/versioned_docs/version-1/api/break/spec'
+import ListSpec from '@site/versioned_docs/version-1/api/list/spec'
+import MapSpec from '@site/versioned_docs/version-1/api/map/spec'
+import MathSpec from '@site/versioned_docs/version-1/api/math/spec'
+import MetaSpec from '@site/versioned_docs/version-1/api/meta/spec'
+import StringSpec from '@site/versioned_docs/version-1/api/string/spec'
+import ExceptionSpec from '@site/versioned_docs/version-1/api/exception/spec'
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+<img src={useBaseUrl('/img/logo.svg')} alt="Sass Fairy Logo" style={{ width: '200px', marginBottom: 'var(--ifm-spacing-vertical)', marginLeft: 'var(--ifm-spacing-vertical)', float: 'right' }} />
+
+**Sass Fairy** is a set of modules that abstract common functionality to aid in the rapid development of domain specific stylesheets and modules.
+
+There are two groups of modules: Core Modules and Special Modules. **Core Modules** extend the native, [built-in modules](https://sass-lang.com/documentation/modules) provided by Sass. While on the other hand, **Special Modules** are abstractions of other concepts and utilities commonly used when designing stylesheets, mixins, or functions.
+
+
+export const DescriptionItem = ({ name }) => {
+  return (
+    <Fragment>
+      <dt><Link to={`/api/${name}`}>@sass-fairy/{name}</Link></dt>
+      <dd><p>{{
+        color: ColorSpec.description,
+        list: ListSpec.description,
+        map: MapSpec.description,
+        math: MathSpec.description,
+        meta: MetaSpec.description,
+        string: StringSpec.description,
+        break: BreakSpec.description,
+        exception: ExceptionSpec.description
+      }[name]}.</p></dd>
+      <dd><NpmBadge module={name} /></dd>
+    </Fragment>
+  )
+};
+
+## Core Modules
+
+<dl>
+	<DescriptionItem name="color" />
+	<DescriptionItem name="list" />
+	<DescriptionItem name="map" />
+	<DescriptionItem name="math" />
+	<DescriptionItem name="meta" />
+	<DescriptionItem name="string" />
+</dl>
+
+## Special Modules
+
+<dl>
+	<DescriptionItem name="break" />
+	<DescriptionItem name="exception" />
+</dl>

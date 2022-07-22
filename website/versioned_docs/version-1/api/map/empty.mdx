@@ -1,0 +1,24 @@
+---
+title: empty ()
+module: map
+sidebar_label: empty
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/map/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass:list';
+@use '@sass:meta';
+@use '@sass-fairy/map';
+
+$map: map.empty();
+
+@debug meta.type-of($map) == 'map';
+  // true
+
+@debug list.length($map);
+  // 0
+```

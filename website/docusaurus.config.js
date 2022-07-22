@@ -61,6 +61,10 @@ config.themeConfig = {
 				label: 'API'
 			},
 			{
+				type: 'docsVersionDropdown',
+				position: 'right'
+			},
+			{
 				href: repoUrl,
 				className: 'header-github-link',
 				// eslint-disable-next-line @typescript-eslint/naming-convention
@@ -108,8 +112,18 @@ config.presets = [
 			docs: {
 				routeBasePath: '/',
 				sidebarPath: require.resolve('./sidebars.js'),
+				sidebarItemsGenerator: require('./sidebars.sort.js'),
 				editUrl: `${repoUrl}/edit/master/website`,
-				sidebarItemsGenerator: require('./sidebars.sort.js')
+				lastVersion: '1',
+				versions: {
+					current: {
+						label: 'v2'
+					},
+					// eslint-disable-next-line @typescript-eslint/naming-convention
+					1: {
+						label: 'v1'
+					}
+				}
 			},
 
 			theme: {

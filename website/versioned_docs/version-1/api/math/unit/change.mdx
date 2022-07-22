@@ -1,0 +1,23 @@
+---
+title: change ()
+module: math
+sidebar_label: change
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/math/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/math';
+
+@debug math.change(10px, 9em);
+  // 10em
+
+@debug math.change(-30rem, 10px);
+  // -30px
+
+@debug math.change(5s * 8in, 7cm * 90ms);
+  // 40cm*ms
+```

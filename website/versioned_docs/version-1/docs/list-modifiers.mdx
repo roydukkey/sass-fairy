@@ -1,0 +1,26 @@
+---
+sidebar_label: List Modifiers
+---
+
+# List Configuration Modifiers
+
+Functions that work on lists should accepts parameters that modify list configuration according to the conditions outline below.
+
+## Delimiting Punctuation
+
+The `$separator` parameter should be accepted when returning a list.
+
+## Enclosing Punctuation
+
+The `$bracketed` parameter should be accepted when returning a list...
+
+  1. ...and bracket style cannot be singularly determined from the input.
+
+     1. [`list.concat()`](../api/list/concat.mdx)
+     2. [`list.empty()`](../api/list/empty.mdx)
+     3. etc.
+
+  2. ...that is not a subset of a source list and a potential input value.
+
+     1. [`list.map()`](../api/list/map.mdx)
+     2. etc.

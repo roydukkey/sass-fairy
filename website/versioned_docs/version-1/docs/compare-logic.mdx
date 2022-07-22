@@ -1,0 +1,51 @@
+# Comparison Logic
+
+There are two methods of comparison provided by [`@sass-fairy/list`](../api/list/overview.mdx): string and numeric. The string and default comparison method is equivalent to the default functionality of [`Array.prototype.sort()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort). While on the other hand, the numeric comparison method is unique to how Sass handles numbers.
+
+Each method offers ascending and descending variants, the later of which being suffixed with <code>&#8209;desc</code>, e.g. [`list.compare-string-desc()`](../api/list/reference/compare-string-desc.mdx).
+
+## String Comparison
+
+This method orders a list by converting its values to strings, then comparing each value’s sequences of UTF-16 code units values from `feff0020` to `feff007e`; otherwise, shifting all null items to the end of the list for ascending comparison or the beginning for descending. For example, `'banana'` comes before `'cherry'`. However, because numbers are converted to strings, `'80'` comes before `'9'` in the Unicode order.
+
+## Numeric Comparison
+
+This method orders a list of numeric values by transforming incompatible units to compatible units before comparing each value, shifting smaller values left and larger values right for ascending comparison and vice versa for descending. Any values which are not numbers will be shifted to the end of the list for ascending comparison or beginning for descending.
+
+### Automatic Behavior
+
+When comparing incompatible values they will be automatically transformed into compatibility based on the units of the first, non-unitless value in the source list or zero.
+
+```scss
+$unsorted: 6mm 2px 4em 20mm -9mm 2cm 25px 1.25cm -4px 1 -3cm
+
+// Example 1
+$sorted: list.sort($unsorted, list.compare-numeric())
+  // -3cm -9mm -4px 2px 1 4em 6mm 25px 1.25cm 2cm 20mm
+
+// Example 2
+$resorted: list.sort($sorted, list.compare-numeric())
+  // -3cm -9mm -4px 2px 6mm 25px 1 1.25cm 20mm 2cm 4em
+```
+
+In the examples above, `1` and `4em` and transformed to `1mm` and `4mm` for the first example, and `1cm` and `4cm` for the second. Since the behavior changes based on the order of the incoming list, the `$center` parameter has been added to the `.sort()` to specify the desired behavior.
+
+### Certain Behavior
+
+The `$center` parameter indicates the center (zero) position between positive and negative values and makes comparison definitely determinate regardless of the incoming list.
+
+```scss
+$unsorted: 6mm 2px 4em 20mm -9mm 2cm 25px 1.25cm -4px 1 -3cm
+
+// Example 1
+$sorted: list.sort($unsorted, list.compare-numeric(), 0cm)
+  // -3cm -9mm -4px 2px 6mm 25px 1 1.25cm 20mm 2cm 4em
+
+// Example 2
+$resorted: list.sort($sorted, list.compare-numeric(), 0mm)
+  // -3cm -9mm -4px 2px 1 4em 6mm 25px 1.25cm 2cm 20mm
+
+// Example 3
+$resorted: list.sort($sorted, list.compare-numeric(), 0)
+  // -9mm -4px -3cm 1 1.25cm 2cm 2px 4em 6mm 20mm 25px
+```

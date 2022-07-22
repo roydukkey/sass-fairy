@@ -1,0 +1,24 @@
+---
+title: includes ()
+module: list
+sidebar_label: includes
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/list/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/list';
+
+$list: 32 8 65 79 34 8 13 66 18;
+
+// 1. Check if the list includes `79`
+@debug list.includes($list, 79);
+  // true
+
+// 2. Check if the list includes `65` starting at a specific index
+@debug list.includes($list, 65, 4);
+  // false
+```

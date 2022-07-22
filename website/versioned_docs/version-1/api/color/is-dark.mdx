@@ -1,0 +1,27 @@
+---
+title: is-dark ()
+module: color
+sidebar_label: is-dark
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/color/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/color';
+
+@debug color.is-dark(#000);
+  // true
+
+@debug color.is-dark(#fff);
+  // false
+
+@debug color.is-dark(darkgreen);
+  // true
+```
+
+:::info
+See *24 ways’* <a href="http://24ways.org/2010/calculating-color-contrast" target="_blank" rel="nofollow noreferrer noopener">calculating color contrast</a> for more information.
+:::

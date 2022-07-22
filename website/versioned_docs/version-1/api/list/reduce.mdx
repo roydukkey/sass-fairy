@@ -1,0 +1,24 @@
+---
+title: reduce ()
+module: list
+sidebar_label: reduce
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/list/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use 'sass:meta';
+@use '@sass-fairy/list';
+
+@function _add($accumulator, $item, $void...) {
+  @return $accumulator + $item;
+}
+
+$list: 32 8 65 79 34 8 13 66 18;
+
+@debug list.reduce($list, meta.get-function('_add'));
+  // 323
+```

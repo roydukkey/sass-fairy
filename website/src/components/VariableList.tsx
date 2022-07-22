@@ -2,11 +2,13 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 import Link from '@docusaurus/Link';
+import useActiveVersionPath from '../hooks/useActiveVersionPath';
 import type { ModuleSpec, SpecVariable } from '../spec/ModuleSpec';
 import React, { Fragment } from 'react';
 
 
 export default function ({ spec: { basePath, variables }, group }: Attributes): JSX.Element {
+	const versionPath = useActiveVersionPath();
 	const groupDirectory = group?.split('/')[1];
 
 	if (groupDirectory) {
@@ -19,7 +21,7 @@ export default function ({ spec: { basePath, variables }, group }: Attributes): 
 				.filter(([, { group: filterGroup }]) => filterGroup === (group ?? 'main'))
 				.map(([name, { fileName, description, configurable }], key) =>
 					<Fragment key={key}>
-						<dt><Link to={`${basePath}/${fileName ?? name}`}><code>${name}{configurable && ' !default'}</code></Link></dt>
+						<dt><Link to={`${versionPath}${basePath}/${fileName ?? name}`}><code>${name}{configurable && ' !default'}</code></Link></dt>
 						<dd><p>{description}</p></dd>
 					</Fragment>
 				)
