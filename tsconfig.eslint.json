@@ -1,0 +1,5 @@
+{
+	"//": "Because... https://stackoverflow.com/questions/63118405#68686975 (Solution 2.2)",
+	"extends": "@tsconfig/node12/tsconfig.json",
+	"include": [".eslintrc.js"],
+}
