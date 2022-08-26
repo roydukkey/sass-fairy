@@ -14,6 +14,15 @@
 	],
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
+	"optionalDependencies": {
+		"@sass-fairy/break": ">=2.0.0-alpha.0",
+		"@sass-fairy/color": ">=2.0.0-alpha.0",
+		"@sass-fairy/list": ">=2.0.0-alpha.0",
+		"@sass-fairy/map": ">=2.0.0-alpha.0",
+		"@sass-fairy/math": ">=2.0.0-alpha.0",
+		"@sass-fairy/meta": ">=2.0.0-alpha.0",
+		"@sass-fairy/string": ">=2.0.0-alpha.0"
+	},
 	"addDependenciesOnPublish": {
 		"sass": "^1.52.0"
 	},

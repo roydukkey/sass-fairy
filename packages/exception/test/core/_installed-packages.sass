@@ -1,0 +1,13 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'true'
+@use 'sass:map'
+
+
+@include true.describe('fairy-internal_core_installed-packages()')
+
+	@include true.it('Returns all packages')
+		$assert: map.keys(fairy-internal_core_installed-packages())
+		$expected: 'break', 'color', 'exception', 'list', 'map', 'math', 'meta', 'string'
+		@include true.assert-equal($assert, $expected)
