@@ -11,7 +11,7 @@ Provides extended functionality for accessing and modifying lists in Sass, with 
 
 ### Requires
 
-* Dart Sass: `>=1.33.0`
+* Dart Sass: `^1.52.0`
 
 Install the package:
 

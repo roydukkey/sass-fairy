@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/break",
 	"description": "Provides Sass mixins, functions, and variables for working with breakpoints and aids in responsive development",
-	"version": "1.1.0",
+	"version": "2.0.0-alpha.0",
 	"keywords": [
 		"breakpoint",
 		"responsive",
@@ -16,11 +16,14 @@
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/color": "^1.0.0",
-		"@sass-fairy/exception": "^1.0.0",
-		"@sass-fairy/list": "^1.1.0",
-		"@sass-fairy/map": "^1.0.0",
-		"@sass-fairy/string": "^1.0.0"
+		"@sass-fairy/color": "^2.0.0-alpha.0",
+		"@sass-fairy/exception": "^2.0.0-alpha.0",
+		"@sass-fairy/list": "^2.0.0-alpha.0",
+		"@sass-fairy/map": "^2.0.0-alpha.0",
+		"@sass-fairy/string": "^2.0.0-alpha.0"
+	},
+	"addDependenciesOnPublish": {
+		"sass": "^1.52.0"
 	},
 	"publishConfig": {
 		"access": "public"

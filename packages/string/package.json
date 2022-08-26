@@ -6,15 +6,18 @@
 	],
 	"name": "@sass-fairy/string",
 	"description": "Provides extended functionality for processing strings in Sass, with interfaces similar to ECMA specifications",
-	"version": "1.2.0",
+	"version": "2.0.0-alpha.0",
 	"keywords": [
 		"string"
 	],
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/exception": "^1.0.0",
-		"@sass-fairy/list": "^1.0.0"
+		"@sass-fairy/exception": "^2.0.0-alpha.0",
+		"@sass-fairy/list": "^2.0.0-alpha.0"
+	},
+	"addDependenciesOnPublish": {
+		"sass": "^1.52.0"
 	},
 	"publishConfig": {
 		"access": "public"

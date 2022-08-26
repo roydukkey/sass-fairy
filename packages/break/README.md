@@ -11,7 +11,7 @@ Provides Sass mixins, functions, and variables for working with breakpoints and 
 
 ### Requires
 
-* Dart Sass: `>=1.33.0`
+* Dart Sass: `^1.52.0`
 
 Install the package:
 

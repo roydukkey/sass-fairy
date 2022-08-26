@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/exception",
 	"description": "Provides Sass functions to standardize exception messages and assist with common validation",
-	"version": "1.1.0",
+	"version": "2.0.0-alpha.0",
 	"keywords": [
 		"throw",
 		"error",
@@ -14,6 +14,9 @@
 	],
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
+	"addDependenciesOnPublish": {
+		"sass": "^1.52.0"
+	},
 	"publishConfig": {
 		"access": "public"
 	}

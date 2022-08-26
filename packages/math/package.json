@@ -6,14 +6,17 @@
 	],
 	"name": "@sass-fairy/math",
 	"description": "Provides extended functionality for working with numbers in Sass",
-	"version": "1.0.2",
+	"version": "2.0.0-alpha.0",
 	"keywords": [
 		"math"
 	],
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/exception": "^1.0.0"
+		"@sass-fairy/exception": "^2.0.0-alpha.0"
+	},
+	"addDependenciesOnPublish": {
+		"sass": "^1.52.0"
 	},
 	"publishConfig": {
 		"access": "public"
