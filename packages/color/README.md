@@ -25,14 +25,18 @@ Use the package like any other Sass module:
 @use '@sass-fairy/color';
 ```
 
-Depending on your setup, you may need to configure `node_modules` as include path:
+Configure Sass options to use the functions provided by this package:
 
 ```js
 const sass = require('sass');
+const ColorFunctions = require('@sass-fairy/color');
 
 sass.render({
   file: scss_filename,
-  includePaths: ['node_modules']
+  includePaths: ['node_modules'],
+  functions: {
+    ...ColorFunctions
+  }
 });
 ```
 

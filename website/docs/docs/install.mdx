@@ -4,7 +4,7 @@ hide_table_of_contents: true
 
 # Install
 
-In order to begin using any Sass Fairy module, it's package must first be installed and your Sass compiler must be configured to include it.
+In order to begin using any Sass Fairy module, its package must first be installed and your Sass compiler must be configured to use it properly.
 
 This example shows how to install the list module.
 
@@ -12,19 +12,23 @@ This example shows how to install the list module.
 npm install @sass-fairy/list
 ```
 
-After the package has been installed, it might already be available for use just like any other Sass module.
-
-```scss
-@use '@sass-fairy/list';
-```
-
-However, if Sass can't find the module, your compiler will need to be configured to include the `node_modules` folder. That should look something like this.
+Next, configure the compiler to include the `node_modules` folder and to use the functions provided by the package. That should look something like this:
 
 ```js
 const sass = require('sass');
+const ListFunctions = require('@sass-fairy/list');
 
 sass.render({
   file: scss_filename,
-  includePaths: ['node_modules']
+  includePaths: ['node_modules'],
+  functions: {
+    ...ListFunctions
+  }
 });
+```
+
+Finally, it is ready to use just like any other Sass module.
+
+```scss
+@use '@sass-fairy/list';
 ```

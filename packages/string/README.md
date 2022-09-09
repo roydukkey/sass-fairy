@@ -25,14 +25,18 @@ Use the package like any other Sass module:
 @use '@sass-fairy/string';
 ```
 
-Depending on your setup, you may need to configure `node_modules` as include path:
+Configure Sass options to use the functions provided by this package:
 
 ```js
 const sass = require('sass');
+const StringFunctions = require('@sass-fairy/string');
 
 sass.render({
   file: scss_filename,
-  includePaths: ['node_modules']
+  includePaths: ['node_modules'],
+  functions: {
+    ...StringFunctions
+  }
 });
 ```
 
