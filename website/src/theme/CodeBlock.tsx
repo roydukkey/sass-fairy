@@ -50,7 +50,10 @@ export default function ({ highlightLines, highlightKeywords, isolateDefinition,
 
 		// Isolate Definition
 		if (isolateDefinition) {
-			const abstractedLines = abstractDefinition(`@function ${isolateDefinition}`, lines) ?? abstractDefinition(`@mixin ${isolateDefinition}`, lines);
+			const abstractedLines = abstractDefinitions([
+				`@function ${isolateDefinition}`,
+				`@mixin ${isolateDefinition}`
+			], lines);
 
 			if (abstractedLines?.length) {
 				if (highlightLines) {
@@ -161,7 +164,7 @@ interface Attributes {
 	isolateDefinition?: string;
 }
 
-function abstractDefinition (definition: string, lines: string[]): string[] | undefined {
+function abstractDefinitions ([definition, ...definitions]: string[], lines: string[]): string[] | undefined {
 	const startingLine = lines.findIndex((line) => line.startsWith(definition));
 
 	if (startingLine >= 0) {
@@ -179,5 +182,9 @@ function abstractDefinition (definition: string, lines: string[]): string[] | un
 			: startingLine + endingLine;
 
 		return lines.slice(startingLine, endingLine + 1);
+	}
+
+	if (definitions.length) {
+		return abstractDefinitions(definitions, lines);
 	}
 }
