@@ -12,13 +12,13 @@ const {
 	homepage,
 	keywords: parentKeywords,
 	license,
-	repository
+	repository,
+	files
 } = require('./package.json');
 
 
 // These files should be included from project root in every package.
 const commonFiles = [
-	'.npmignore',
 	'./LICENSE'
 ];
 
@@ -45,11 +45,12 @@ module.exports = {
 		homepage: homepage.replace('#readme', `/tree/master/${repository.directory}$&`),
 		bugs,
 		keywords: [...parentKeywords, ...keywords],
+		files,
 		...package,
 		dependencies,
-		devDependencies,
 		peerDependencies: addPeerDependenciesOnPublish,
 		optionalDependencies,
+		devDependencies,
 		publishConfig
 	},
 

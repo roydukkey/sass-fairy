@@ -24,6 +24,14 @@
 		"scss",
 		"dart-sass"
 	],
+	"files": [
+		"/dist",
+		"/src/**/*.s{a,c}ss",
+		"/CHANGELOG.md",
+		"/LICENSE",
+		"/*.s{a,c}ss",
+		"/README.md"
+	],
 	"devDependencies": {
 		"@rollup/plugin-json": "^4.1.0",
 		"@roydukkey/eslint-config": "^1.0.13",
