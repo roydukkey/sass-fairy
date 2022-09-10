@@ -39,7 +39,9 @@ export default function ({ highlightLines, highlightKeywords, stripSassDocs, rew
 
 			for (const [module, fields] of Object.entries(modules)) {
 				for (const field of fields) {
-					children = children.replace(field, module);
+					while (children.indexOf(field) > 0) {
+						children = children.replace(field, module);
+					}
 				}
 			}
 		}
