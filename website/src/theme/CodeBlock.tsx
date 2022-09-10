@@ -82,6 +82,10 @@ export default function ({ highlightLines, highlightKeywords, isolateDefinition,
 		if (!highlightLines && highlightKeywords) {
 			const highlight: string[] = [];
 
+			if (typeof highlightKeywords === 'string') {
+				highlightKeywords = [[highlightKeywords]];
+			}
+
 			highlightKeywords.forEach(([from, to]) => {
 				let fromLine = 0;
 				let toLine = 0;
@@ -93,8 +97,13 @@ export default function ({ highlightLines, highlightKeywords, isolateDefinition,
 						fromLine = lineNumber + 1;
 					}
 
-					if (!toLine && line.includes(to)) {
-						toLine = lineNumber + 1;
+					if (to) {
+						if (!toLine && line.includes(to)) {
+							toLine = lineNumber + 1;
+						}
+					}
+					else if (fromLine) {
+						toLine = fromLine;
 					}
 
 					if (fromLine && toLine) {
@@ -144,7 +153,7 @@ interface Attributes {
 	/**
 	 * Search code for line that contain specific keywords and highlight the line.
 	 */
-	highlightKeywords?: Array<[string, string]>;
+	highlightKeywords?: string | Array<[string, string?]>;
 
 	/**
 	 * Isolate the definition of a Sass function or mixin as the only content of the code block.
