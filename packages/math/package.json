@@ -15,7 +15,7 @@
 	"dependencies": {
 		"@sass-fairy/exception": "^2.0.0-alpha.0"
 	},
-	"addDependenciesOnPublish": {
+	"addPeerDependenciesOnPublish": {
 		"sass": "^1.52.0"
 	},
 	"publishConfig": {
