@@ -6,7 +6,7 @@ import React from 'react';
 import type { ReactElement } from 'react';
 
 
-export default function ({ highlightLines, highlightKeywords, stripSassDocs, rewriteFairyUses, children, ...props }: Attributes): JSX.Element {
+export default function ({ highlightLines, highlightKeywords, isolateDefinition, stripSassDocs, rewriteFairyUses, children, ...props }: Attributes): JSX.Element {
 	if (typeof children === 'string') {
 		children = children.trim().replace(/\t/g, '  ');
 
@@ -46,8 +46,40 @@ export default function ({ highlightLines, highlightKeywords, stripSassDocs, rew
 			}
 		}
 
+		let lines = children.split('\n');
+
+		// Isolate Definition
+		if (isolateDefinition) {
+			const abstractedLines = abstractDefinition(`@function ${isolateDefinition}`, lines) ?? abstractDefinition(`@mixin ${isolateDefinition}`, lines);
+
+			if (abstractedLines?.length) {
+				if (highlightLines) {
+					const highlightOffset = lines.length - abstractedLines.length - 1;
+
+					highlightLines = `{${
+						highlightLines.slice(1, -1).split(',').reduce<string[]>((accumulator, selection) => {
+							const lineNumbers = selection.split('-').map((lineNumber) => Number(lineNumber) - highlightOffset);
+
+							if (lineNumbers[0] < 1 && lineNumbers[1]) {
+								lineNumbers[0] = 1;
+							}
+
+							if (lineNumbers[0] >= 1 && (lineNumbers.length === 1 || lineNumbers[1] > 1)) {
+								accumulator.push(lineNumbers.join('-'));
+							}
+
+							return accumulator;
+						}, []).join()
+					}}`;
+				}
+
+				lines = abstractedLines;
+				children = lines.join('\n');
+			}
+		}
+
+		// Highlight Keywords
 		if (!highlightLines && highlightKeywords) {
-			const lines = children.split('\n');
 			const highlight: string[] = [];
 
 			highlightKeywords.forEach(([from, to]) => {
@@ -113,4 +145,30 @@ interface Attributes {
 	 * Search code for line that contain specific keywords and highlight the line.
 	 */
 	highlightKeywords?: Array<[string, string]>;
+
+	/**
+	 * Isolate the definition of a Sass function or mixin as the only content of the code block.
+	 */
+	isolateDefinition?: string;
+}
+
+function abstractDefinition (definition: string, lines: string[]): string[] | undefined {
+	const startingLine = lines.findIndex((line) => line.startsWith(definition));
+
+	if (startingLine >= 0) {
+		let endingLine = lines.slice(startingLine + 1).findIndex((line, index) =>
+			line.length
+				? line.length === line.trimStart().length
+				// Current line is empty. Look ahead to see if next line is part of the definition.
+				: lines.slice(index + 1).findIndex((lineLookAhead) =>
+					lineLookAhead.length || line.length === line.trimStart().length
+				)
+		);
+
+		endingLine = endingLine <= 0
+			? lines.length - 1
+			: startingLine + endingLine;
+
+		return lines.slice(startingLine, endingLine + 1);
+	}
 }
