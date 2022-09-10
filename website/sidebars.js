@@ -17,6 +17,7 @@ const packages = [
 const sidebars = {
 
 	docsSidebar: [
+		'docs/development',
 		'docs/intro',
 		'docs/install',
 		{

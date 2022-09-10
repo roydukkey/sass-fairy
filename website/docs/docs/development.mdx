@@ -1,0 +1,47 @@
+---
+title: 'Upcoming: Version 2'
+slug: /
+hide_table_of_contents: true
+---
+import CodeBlock from '@theme/CodeBlock';
+import Example from '!!raw-loader!@sass-fairy/v1/string/src/_is-quoted.sass';
+
+# Developing v2
+
+One of the main goals of this project remains bringing an API to Sass that complements JavaScript. Great strides toward that end have already been achieved in Sass Fairy v1, but there are still some areas where differences exist. During development of v2 hopefully that gap can close even further.
+
+One difference is that Sass Fairy’s `string.replace()` function does not accept regular expressions. CSS even doesn’t have regular expressions, but I’m gonna sure try to add them.
+
+Other current deficiencies in Sass Fairy are hacky solutions. Take for instance the `string.is-quoted()` function:
+
+<CodeBlock className="language-scss" title="@sass-fairy/string/src/_is-quoted.sass" isolateDefinition="is-quoted" highlightKeywords="@return" rewriteFairyUses>
+  {Example}
+</CodeBlock>
+
+Comparing `meta.inspect()` is hardly intuitive or in spec.
+
+## What is actually changing
+
+Sass has begun exposing a [JavaScript API](https://sass-lang.com/documentation/js-api/) enabling direct access to the features of JavaScript Sass Fairy is trying complement.
+
+## Migrating from v1
+
+:::caution
+Version 2 is still under heavy development and is not yet ready for use in production.
+:::
+
+First and foremost, each Sass Fairy v2 package now exports a JavaScript API. These are functions that Sass needs to know about in order to compile stylesheets using the Sass Fairy.
+
+Simply update your Sass compiler to include them:
+
+```js
+sass.render({
+  // ...
+  functions: {
+    ...require('@sass-fairy/list'),
+    ...require('@sass-fairy/break')
+  }
+});
+```
+
+Expect the Sass Fairy API to have changed between v1 and v2. Primarily these changes are going to be new features and expansions to the API of v1.
