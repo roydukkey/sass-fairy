@@ -16,7 +16,7 @@ Provides extended functionality for processing strings in Sass, with interfaces 
 Install the package:
 
 ```bash
-npm install @sass-fairy/string
+npm install @sass-fairy/string@next
 ```
 
 Use the package like any other Sass module:

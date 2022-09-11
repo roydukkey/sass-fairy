@@ -16,7 +16,7 @@ Provides extended functionality for processing key/value pairs in Sass maps.
 Install the package:
 
 ```bash
-npm install @sass-fairy/map
+npm install @sass-fairy/map@next
 ```
 
 Use the package like any other Sass module:

@@ -16,7 +16,7 @@ Provides extended functionality for working with numbers in Sass.
 Install the package:
 
 ```bash
-npm install @sass-fairy/math
+npm install @sass-fairy/math@next
 ```
 
 Use the package like any other Sass module:

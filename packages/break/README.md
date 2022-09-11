@@ -16,7 +16,7 @@ Provides Sass mixins, functions, and variables for working with breakpoints and 
 Install the package:
 
 ```bash
-npm install @sass-fairy/break
+npm install @sass-fairy/break@next
 ```
 
 Use the package like any other Sass module:

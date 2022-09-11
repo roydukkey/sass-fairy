@@ -16,7 +16,7 @@ Provides extended functionality for generating new colors from existing colors a
 Install the package:
 
 ```bash
-npm install @sass-fairy/color
+npm install @sass-fairy/color@next
 ```
 
 Use the package like any other Sass module:

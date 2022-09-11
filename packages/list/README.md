@@ -16,7 +16,7 @@ Provides extended functionality for accessing and modifying lists in Sass, with 
 Install the package:
 
 ```bash
-npm install @sass-fairy/list
+npm install @sass-fairy/list@next
 ```
 
 Use the package like any other Sass module:

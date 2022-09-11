@@ -16,7 +16,7 @@ Provides Sass functions to standardize exception messages and assist with common
 Install the package:
 
 ```bash
-npm install @sass-fairy/exception
+npm install @sass-fairy/exception@next
 ```
 
 Use the package like any other Sass module:

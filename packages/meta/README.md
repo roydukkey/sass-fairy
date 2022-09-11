@@ -16,7 +16,7 @@ Provides extended functionality for handling Sass’s inner workings.
 Install the package:
 
 ```bash
-npm install @sass-fairy/meta
+npm install @sass-fairy/meta@next
 ```
 
 Use the package like any other Sass module:
