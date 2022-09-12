@@ -18,7 +18,6 @@
 		"fullstack",
 		"fonts",
 		"html",
-		"node",
 		"typescript"
 	],
 	// Before adding a word, see if there is already a dictionary in which it is contained.
@@ -36,17 +35,14 @@
 		"fonticons",
 		"globby",
 		"hexcode",
-		"horiz",
 		"metastring",
 		"mstile",
-		"npmignore",
 		"nprogress",
 		"roydukkey",
 		"streetsidesoftware",
 		"svgr",
 		"tsdoc",
 		"typecheck",
-		"undermaintained",
 		"unifiedjs",
 		"viewports",
 		"wcag"
