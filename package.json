@@ -51,10 +51,10 @@
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
 		"pretest": "yarn lint:spelling",
 		"test": "jest",
-		"package:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
-		"package:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
-		"package:pack": "yarn package:clean-package && yarn workspace @$npm_package_name/$BUILD pack && yarn package:clean-package:restore",
-		"package:publish": "run-s test package:clean-package && yarn workspace @$npm_package_name/$BUILD publish && yarn package:clean-package:restore"
+		"bundle:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
+		"bundle:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
+		"package": "yarn bundle:clean-package && yarn workspace @$npm_package_name/$BUILD pack && yarn bundle:clean-package:restore",
+		"publish-package": "run-s test bundle:clean-package && yarn workspace @$npm_package_name/$BUILD publish && yarn bundle:clean-package:restore"
 	},
 	"jest": {
 		"testEnvironment": "jest-environment-node-single-context",
