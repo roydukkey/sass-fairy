@@ -5,7 +5,6 @@
 		".git",
 		".jest",
 		".docusaurus",
-		"website/build",
 		"**/.DS_Store",
 		"*.lock.json",
 		"*-lock.json",
@@ -25,29 +24,13 @@
 	// http://github.com/streetsidesoftware/cspell-dicts
 	"words": [
 		"arglist",
-		"atrule",
 		"browserconfig",
-		"browserslist",
-		"clsx",
-		"docsearch",
 		"editorconfig",
-		"factorialization",
-		"factorialize",
 		"fonticons",
-		"hexcode",
-		"horiz",
-		"metastring",
-		"mstile",
 		"npmignore",
-		"nprogress",
 		"roydukkey",
 		"silvenon",
 		"streetsidesoftware",
-		"svgr",
-		"tsdoc",
-		"typecheck",
-		"undermaintained",
 		"viewports",
-		"wcag"
 	]
 }

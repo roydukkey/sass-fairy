@@ -2,8 +2,7 @@
 	"name": "sass-fairy",
 	"private": true,
 	"workspaces": [
-		"packages/*",
-		"website"
+		"packages/*"
 	],
 	"author": {
 		"name": "roydukkey",
@@ -41,12 +40,8 @@
 		"yarn": ">= 1.22.0"
 	},
 	"scripts": {
-		"clean": "yarn workspace website clear",
-		"serve": "yarn workspace website start",
-		"deploy": "cross-env GIT_USER=roydukkey USE_SSH=true yarn workspace website deploy",
-		"lint": "run-s clean lint:spelling lint:website",
+		"lint": "yarn lint:spelling",
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
-		"lint:website": "yarn workspace website lint",
 		"pretest": "yarn lint:spelling",
 		"test": "jest",
 		"package:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
