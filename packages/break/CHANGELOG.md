@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## UNRELEASED
+
+* Restructure and improve development underpinnings
+
 ## v1.1.0
 
 * Add [`.annotate()`](https://sass-fairy.com/api/break/helpers/annotate)
