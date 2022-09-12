@@ -23,6 +23,13 @@
 		"scss",
 		"dart-sass"
 	],
+	"files": [
+		"/src/**/*.s{a,c}ss",
+		"/CHANGELOG.md",
+		"/LICENSE",
+		"/*.s{a,c}ss",
+		"/README.md"
+	],
 	"devDependencies": {
 		"clean-package": "^2.1.1",
 		"cross-env": "^7.0.3",
