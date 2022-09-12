@@ -14,10 +14,7 @@
 	],
 	"dictionaries": [
 		"css",
-		"fullstack",
 		"fonts",
-		"html",
-		"node",
 		"typescript"
 	],
 	// Before adding a word, see if there is already a dictionary in which it is contained.
@@ -31,6 +28,6 @@
 		"roydukkey",
 		"silvenon",
 		"streetsidesoftware",
-		"viewports",
+		"viewports"
 	]
 }
