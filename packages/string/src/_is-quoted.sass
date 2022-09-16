@@ -17,4 +17,4 @@
 	@if meta.type-of($string) != 'string'
 		@error parameter-type.parameter-type('is-quoted', 'string', $string, 'string')
 
-	@return meta.inspect($string) != $string
+	@return fairy-internal_string_is-quoted($string)
