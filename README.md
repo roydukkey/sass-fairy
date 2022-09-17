@@ -8,8 +8,8 @@ Sass Fairy enhances built-in Sass modules with additional functions and adds mod
 
 ## Packing / Publishing
 
-npx cross-env BUILD=exception yarn package:pack
-npx cross-env BUILD=exception yarn package:publish
+yarn cross-env BUILD=exception yarn package
+yarn cross-env BUILD=exception yarn publish-package
 
 -->
 
