@@ -4,6 +4,15 @@ Sass Fairy enhances built-in Sass modules with additional functions and adds mod
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+<!--
+
+## Packing / Publishing
+
+yarn cross-env BUILD=exception yarn package
+yarn cross-env BUILD=exception yarn publish-package
+
+-->
+
 ## Core Modules
 
 This set of modules extend the natively [built-in modules](https://sass-lang.com/documentation/modules) provided by Sass.

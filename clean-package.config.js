@@ -45,11 +45,11 @@ module.exports = {
 		homepage: homepage.replace('#readme', `/tree/master/${repository.directory}$&`),
 		bugs,
 		keywords: [...parentKeywords, ...keywords],
-		files,
 		...package,
 		dependencies,
 		devDependencies,
-		publishConfig
+		publishConfig,
+		files
 	},
 
 	onClean: () => commonFiles.forEach((file) => {
