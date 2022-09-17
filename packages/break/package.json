@@ -20,7 +20,8 @@
 		"@sass-fairy/exception": "^2.0.0-alpha.0",
 		"@sass-fairy/list": "^2.0.0-alpha.0",
 		"@sass-fairy/map": "^2.0.0-alpha.0",
-		"@sass-fairy/string": "^2.0.0-alpha.0"
+		"@sass-fairy/string": "^2.0.0-alpha.0",
+		"@sass-fairy/url": "^2.0.0-alpha.0"
 	},
 	"addPeerDependenciesOnPublish": {
 		"sass": "^1.52.0"
