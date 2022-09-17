@@ -1,0 +1,27 @@
+---
+title: encode ()
+module: url
+sidebar_label: encode
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import CodeBlock from '@theme/CodeBlock';
+import Example from '!!raw-loader!@site/versioned_docs/version-1/_examples/encode-example.scss';
+import FieldDetails from '@site/versioned_docs/version-1/api/url/spec/FieldDetails';
+import '@site/versioned_docs/version-1/_examples/encode-example.scss';
+
+<FieldDetails />
+
+The following example shows an SVG with some characters that been encoded and several that remain untouched.
+
+<p id="encode-example"></p>
+
+<CodeBlock className="language-scss" highlightKeywords="url.encode">
+  {Example}
+</CodeBlock>
+
+:::info
+
+Currently, encoding is only preformed on `%` and `#`. If you find a breaking case, please [open an issue](https://github.com/roydukkey/sass-fairy/issues/new) to add new characters.
+
+:::

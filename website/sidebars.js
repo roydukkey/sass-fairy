@@ -10,7 +10,8 @@ const packages = [
 	'map',
 	'math',
 	'meta',
-	'string'
+	'string',
+	'url'
 ];
 
 

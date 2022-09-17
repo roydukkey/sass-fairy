@@ -7,14 +7,15 @@ hide_table_of_contents: true
 import { Fragment } from 'react';
 import Link from '@docusaurus/Link';
 import NpmBadge from '@site/src/components/NpmBadge.mdx';
-import ColorSpec from '@site/versioned_docs/version-1/api/color/spec'
 import BreakSpec from '@site/versioned_docs/version-1/api/break/spec'
+import ColorSpec from '@site/versioned_docs/version-1/api/color/spec'
+import ExceptionSpec from '@site/versioned_docs/version-1/api/exception/spec'
 import ListSpec from '@site/versioned_docs/version-1/api/list/spec'
 import MapSpec from '@site/versioned_docs/version-1/api/map/spec'
 import MathSpec from '@site/versioned_docs/version-1/api/math/spec'
 import MetaSpec from '@site/versioned_docs/version-1/api/meta/spec'
 import StringSpec from '@site/versioned_docs/version-1/api/string/spec'
-import ExceptionSpec from '@site/versioned_docs/version-1/api/exception/spec'
+import useActiveVersionPath from '@site/src/hooks/useActiveVersionPath';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <img src={useBaseUrl('/img/logo.svg')} alt="Sass Fairy Logo" style={{ width: '200px', marginBottom: 'var(--ifm-spacing-vertical)', marginLeft: 'var(--ifm-spacing-vertical)', float: 'right' }} />
@@ -25,18 +26,20 @@ There are two groups of modules: Core Modules and Special Modules. **Core Module
 
 
 export const DescriptionItem = ({ name }) => {
+  const versionPath = useActiveVersionPath();
   return (
     <Fragment>
-      <dt><Link to={`/api/${name}`}>@sass-fairy/{name}</Link></dt>
+      <dt><Link to={`${versionPath}/api/${name}`}>@sass-fairy/{name}</Link></dt>
       <dd><p>{{
+        break: BreakSpec.description,
         color: ColorSpec.description,
+        exception: ExceptionSpec.description,
         list: ListSpec.description,
         map: MapSpec.description,
         math: MathSpec.description,
         meta: MetaSpec.description,
         string: StringSpec.description,
-        break: BreakSpec.description,
-        exception: ExceptionSpec.description
+        url: UrlSpec.description
       }[name]}.</p></dd>
       <dd><NpmBadge module={name} /></dd>
     </Fragment>
@@ -58,5 +61,6 @@ export const DescriptionItem = ({ name }) => {
 
 <dl>
 	<DescriptionItem name="break" />
+	<DescriptionItem name="url" />
 	<DescriptionItem name="exception" />
 </dl>

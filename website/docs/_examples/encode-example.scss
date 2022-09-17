@@ -1,0 +1,38 @@
+@use '@sass-fairy/list';
+@use '@sass-fairy/url';
+
+$svg: list.join(
+	'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">'
+		'<rect x="0" y="0" width="100%" height="100%" stroke="red" stroke-width="2%" fill="#fff" />'
+		'<foreignObject width="100%" height="100%">'
+			'<div xmlns="http://www.w3.org/1999/xhtml">'
+				'<style>'
+					':root { font: 1.15em sans-serif; }'
+					'div {'
+						'height: 100px;'
+						'display: grid;'
+						'grid-template-columns: min-content auto;'
+						'grid-auto-rows: auto;'
+						'align-content: space-evenly;'
+						'gap: 0 0.5em;'
+						'padding: 0 0.75em'
+					'}'
+					'p { margin: 0; }'
+				'</style>'
+				'<p><strong>Encoded:</strong></p>'
+				'<p>% #</p>'
+				'<p><strong>Untouched:</strong></p>'
+				'<p>! $ &amp; ( ) \' " * + , / : ; = ? @ [ ] ◐</p>'
+			'</div>'
+		'</foreignObject>'
+	'</svg>',
+	''
+);
+
+#encode-example-v2::before {
+	content: url('data:image/svg+xml,' + url.encode($svg));
+	// The following produces the same output
+	// content: url.svg-url($svg);
+	display: block;
+	max-width: 500px;
+}

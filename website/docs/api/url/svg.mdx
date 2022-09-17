@@ -1,0 +1,28 @@
+---
+title: svg ()
+module: url
+sidebar_label: svg
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import CodeBlock from '@theme/CodeBlock';
+import FieldDetails from '@site/docs/api/url/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/url';
+
+$svg: '<svg viewBox="0 0 100 100">'
+  '<circle fill="#f00" cx="50" cy="50" r="50" />'
+'</svg>';
+
+@debug url.svg($svg...);
+  // url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="%23f00" cx="50" cy="50" r="50" /></svg>')
+```
+
+:::note
+
+The `xmlns` attribute will be automatically added to the `<svg />` element when missing.
+
+:::
