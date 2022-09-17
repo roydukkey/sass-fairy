@@ -6,6 +6,7 @@
 ## UNRELEASED
 
 * Restructure and improve development underpinnings
+* Update internal handling of SVGs
 
 ## v1.1.0
 

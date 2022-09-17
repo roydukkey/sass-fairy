@@ -19,7 +19,8 @@
 		"@sass-fairy/exception": "^1.0.0",
 		"@sass-fairy/list": "^1.1.0",
 		"@sass-fairy/map": "^1.0.0",
-		"@sass-fairy/string": "^1.0.0"
+		"@sass-fairy/string": "^1.0.0",
+		"@sass-fairy/url": "^1.0.0"
 	},
 	"publishConfig": {
 		"access": "public"
