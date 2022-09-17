@@ -1,0 +1,25 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/list/src/join'
+@use '@sass-fairy/string/src/includes'
+@use '@sass-fairy/string/src/replace'
+@use 'data'
+
+
+///
+/// @access public
+/// @require data.data
+/// @require includes.includes
+/// @require join.join
+/// @require replace.replace
+///
+@function svg($data...)
+	$data: join.join($data, '')
+	$namespace: 'xmlns="http://www.w3.org/2000/svg"'
+
+	@if not includes.includes($data, $namespace)
+		$data: replace.replace($data, '<svg', '$& #{$namespace}')
+
+	@return data.data($data, 'image/svg+xml')
