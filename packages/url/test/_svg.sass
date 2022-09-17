@@ -1,0 +1,23 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use '@sass-fairy/url' as src
+@use 'true'
+
+
+@include true.describe('@function url.svg')
+
+	@include true.it('Creates url() for the given SVG data')
+		$data: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">'
+		$data: list.append($data, '<circle cx="50" cy="50" r="50"/>')
+		$data: list.append($data, '</svg>')
+
+		$assert: src.svg($data...)
+		$expected: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"/></svg>')
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Creates url() for the given SVG data and adds missing namespace')
+		$assert: src.svg('<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"/></svg>')
+		$expected: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"/></svg>')
+		@include true.assert-equal($assert, $expected)

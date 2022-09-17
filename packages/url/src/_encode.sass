@@ -1,0 +1,30 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/string/src/replace'
+
+
+///
+/// @throw `#{$string}` is not a string.
+///
+/// @access public
+/// @require parameter-type.parameter-type
+/// @require replace.replace
+///
+@function encode($string)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('encode', 'string', $string, 'string')
+
+	// https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
+	// However, I believe we only need to encode the following in the context of CSS.
+	// Please created an issue if you find a breaking case.
+	//
+	// Dart Sass will handle escaping a few other special characters.
+	// https://sass-lang.com/documentation/values/strings#escapes
+	@each $char, $code in ('%': '%25', '#': '%23')
+		$string: replace.replace($string, $char, $code)
+
+	@return $string

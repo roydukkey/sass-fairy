@@ -1,0 +1,25 @@
+{
+	"//": [
+		"Several properties of this file will be derived from the project's root ",
+		"package.json while packing. This is done to avoid duplication and to ",
+		"help maintain symmetry between packages."
+	],
+	"name": "@sass-fairy/url",
+	"description": "Provides Sass functions for working with URL data, encoding, and inline SVGs",
+	"version": "1.0.0",
+	"keywords": [
+		"url",
+		"encode",
+		"encode-url",
+		"data"
+	],
+	"main": "./index.sass",
+	"dependencies": {
+		"@sass-fairy/exception": "^1.0.0",
+		"@sass-fairy/list": "^1.0.0",
+		"@sass-fairy/string": "^1.1.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

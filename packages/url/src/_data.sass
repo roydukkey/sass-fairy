@@ -1,0 +1,31 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'encode'
+
+
+///
+/// @throw `#{$data|$media-type}` is not a string.
+/// @throw `#{$encode}` is not a boolean.
+///
+/// @access public
+/// @require encode.encode
+/// @require parameter-type.parameter-type
+///
+@function data($data, $media-type: 'text/plain', $encode: true)
+
+	@if meta.type-of($data) != 'string'
+		@error parameter-type.parameter-type('data', 'data', $data, 'string')
+
+	@if meta.type-of($media-type) != 'string'
+		@error parameter-type.parameter-type('data', 'media-type', $media-type, 'string')
+
+	@if meta.type-of($encode) != 'bool'
+		@error parameter-type.parameter-type('data', 'encode', $encode, 'boolean')
+
+	@if $encode
+		$data: encode.encode($data)
+
+	@return url('data:#{$media-type},#{$data}')
