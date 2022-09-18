@@ -5,17 +5,7 @@ hide_table_of_contents: true
 ---
 import { Fragment } from 'react';
 import Link from '@docusaurus/Link';
-import NpmBadge from '@site/src/components/NpmBadge.mdx';
-import BreakSpec from '@site/docs/api/break/spec'
-import ColorSpec from '@site/docs/api/color/spec'
-import ExceptionSpec from '@site/docs/api/exception/spec'
-import ListSpec from '@site/docs/api/list/spec'
-import MapSpec from '@site/docs/api/map/spec'
-import MathSpec from '@site/docs/api/math/spec'
-import MetaSpec from '@site/docs/api/meta/spec'
-import StringSpec from '@site/docs/api/string/spec'
-import UrlSpec from '@site/docs/api/url/spec'
-import useActiveVersionPath from '@site/src/hooks/useActiveVersionPath';
+import IntroItem from '@site/src/components/IntroItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <img src={useBaseUrl('/img/logo.svg')} alt="Sass Fairy Logo" style={{ width: '200px', marginBottom: 'var(--ifm-spacing-vertical)', marginLeft: 'var(--ifm-spacing-vertical)', float: 'right' }} />
@@ -24,43 +14,21 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 There are two groups of modules: Core Modules and Special Modules. **Core Modules** extend the native, [built-in modules](https://sass-lang.com/documentation/modules) provided by Sass. While on the other hand, **Special Modules** are abstractions of other concepts and utilities commonly used when designing stylesheets, mixins, or functions.
 
-
-export const DescriptionItem = ({ name }) => {
-  const versionPath = useActiveVersionPath();
-  return (
-    <Fragment>
-      <dt><Link to={`${versionPath}/api/${name}`}>@sass-fairy/{name}</Link></dt>
-      <dd><p>{{
-        break: BreakSpec.description,
-        color: ColorSpec.description,
-        exception: ExceptionSpec.description,
-        list: ListSpec.description,
-        map: MapSpec.description,
-        math: MathSpec.description,
-        meta: MetaSpec.description,
-        string: StringSpec.description,
-        url: UrlSpec.description
-      }[name]}.</p></dd>
-      <dd><NpmBadge module={name} tag="next" color="44475a" /></dd>
-    </Fragment>
-  )
-};
-
 ## Core Modules
 
 <dl>
-	<DescriptionItem name="color" />
-	<DescriptionItem name="list" />
-	<DescriptionItem name="map" />
-	<DescriptionItem name="math" />
-	<DescriptionItem name="meta" />
-	<DescriptionItem name="string" />
+	<IntroItem name="color" npmTag="next" color="44475a" />
+	<IntroItem name="list" npmTag="next" color="44475a" />
+	<IntroItem name="map" npmTag="next" color="44475a" />
+	<IntroItem name="math" npmTag="next" color="44475a" />
+	<IntroItem name="meta" npmTag="next" color="44475a" />
+	<IntroItem name="string" npmTag="next" color="44475a" />
 </dl>
 
 ## Special Modules
 
 <dl>
-	<DescriptionItem name="break" />
-	<DescriptionItem name="url" />
-	<DescriptionItem name="exception" />
+	<IntroItem name="break" npmTag="next" color="44475a" />
+	<IntroItem name="url" npmTag="next" color="44475a" />
+	<IntroItem name="exception" npmTag="next" color="44475a" />
 </dl>
