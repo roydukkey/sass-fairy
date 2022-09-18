@@ -12,7 +12,8 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/roydukkey/sass-fairy.git"
+		"url": "https://github.com/roydukkey/sass-fairy.git",
+		"branch": "master"
 	},
 	"homepage": "https://github.com/roydukkey/sass-fairy#readme",
 	"bugs": {

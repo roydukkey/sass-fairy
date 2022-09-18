@@ -24,6 +24,8 @@ const commonFiles = [
 
 
 repository.directory = `packages/${buildName}`;
+const branch = repository.branch;
+delete repository.branch;
 
 
 const completePackage = require(buildRelativePath('package.json'));
@@ -42,7 +44,7 @@ module.exports = {
 		author,
 		license,
 		repository,
-		homepage: homepage.replace('#readme', `/tree/master/${repository.directory}$&`),
+		homepage: homepage.replace('#readme', `/tree/${branch}/${repository.directory}$&`),
 		bugs,
 		keywords: [...parentKeywords, ...keywords],
 		...package,
