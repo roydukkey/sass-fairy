@@ -11,6 +11,7 @@ import MathSpec from '@site/docs/api/math/spec';
 import MetaSpec from '@site/docs/api/meta/spec';
 import NpmBadge from '@site/src/components/NpmBadge.mdx';
 import StringSpec from '@site/docs/api/string/spec';
+import UrlSpec from '@site/docs/api/url/spec';
 import useActiveVersionPath from '@site/src/hooks/useActiveVersionPath';
 import React, { Fragment } from 'react';
 
@@ -28,7 +29,8 @@ export default function ({ name, npmTag, npmBadgeColor }: Attributes): JSX.Eleme
         map: MapSpec.description,
         math: MathSpec.description,
         meta: MetaSpec.description,
-        string: StringSpec.description
+        string: StringSpec.description,
+				url: UrlSpec.description
       }[name]}.</p></dd>
       <dd><NpmBadge module={name} tag={npmTag} color={npmBadgeColor} /></dd>
 		</Fragment>
