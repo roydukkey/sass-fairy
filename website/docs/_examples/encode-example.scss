@@ -32,7 +32,7 @@ $svg: list.join(
 #encode-example-v2::before {
 	content: url('data:image/svg+xml,' + url.encode($svg));
 	// The following produces the same output
-	// content: url.svg-url($svg);
+	// content: url.svg($svg);
 	display: block;
 	max-width: 500px;
 }
