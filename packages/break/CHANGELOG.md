@@ -3,7 +3,7 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
-## UNRELEASED
+## v1.1.1
 
 * Restructure and improve development underpinnings
 * Update internal handling of SVGs
