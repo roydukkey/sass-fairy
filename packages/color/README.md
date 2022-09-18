@@ -2,7 +2,7 @@
 
 <a href="https://sass-fairy.com/"><img src="https://sass-fairy.com/img/logo.svg" alt="Sass Fairy Logo" width="150" align="right" /></a>
 
-[![Release Version](https://img.shields.io/npm/v/@sass-fairy/color.svg)](https://www.npmjs.com/package/@sass-fairy/color)
+[![Release Version](https://img.shields.io/npm/v/@sass-fairy/color/next.svg)](https://www.npmjs.com/package/@sass-fairy/color/v/next)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Provides extended functionality for generating new colors from existing colors and building color themes in Sass.
@@ -43,4 +43,4 @@ sass.render({
 
 ## Documentation
 
-See [sass-fairy.com/api/color](http://sass-fairy.com/api/color) for more information about this package.
+See [sass-fairy.com/next/api/color](http://sass-fairy.com/next/api/color) for more information about this package.

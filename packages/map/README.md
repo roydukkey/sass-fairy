@@ -2,7 +2,7 @@
 
 <a href="https://sass-fairy.com/"><img src="https://sass-fairy.com/img/logo.svg" alt="Sass Fairy Logo" width="150" align="right" /></a>
 
-[![Release Version](https://img.shields.io/npm/v/@sass-fairy/map.svg)](https://www.npmjs.com/package/@sass-fairy/map)
+[![Release Version](https://img.shields.io/npm/v/@sass-fairy/map/next.svg)](https://www.npmjs.com/package/@sass-fairy/map/v/next)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Provides extended functionality for processing key/value pairs in Sass maps.
@@ -43,4 +43,4 @@ sass.render({
 
 ## Documentation
 
-See [sass-fairy.com/api/map](http://sass-fairy.com/api/map) for more information about this package.
+See [sass-fairy.com/next/api/map](http://sass-fairy.com/next/api/map) for more information about this package.

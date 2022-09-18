@@ -2,7 +2,7 @@
 
 <a href="https://sass-fairy.com/"><img src="https://sass-fairy.com/img/logo.svg" alt="Sass Fairy Logo" width="150" align="right" /></a>
 
-[![Release Version](https://img.shields.io/npm/v/@sass-fairy/url.svg)](https://www.npmjs.com/package/@sass-fairy/url)
+[![Release Version](https://img.shields.io/npm/v/@sass-fairy/url/next.svg)](https://www.npmjs.com/package/@sass-fairy/url/v/next)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Provides Sass functions for working with URL data, encoding, and inline SVGs.
@@ -43,4 +43,4 @@ sass.render({
 
 ## Documentation
 
-See [sass-fairy.com/api/url](http://sass-fairy.com/api/url) for more information about this package.
+See [sass-fairy.com/next/api/url](http://sass-fairy.com/next/api/url) for more information about this package.

@@ -2,7 +2,7 @@
 
 <a href="https://sass-fairy.com/"><img src="https://sass-fairy.com/img/logo.svg" alt="Sass Fairy Logo" width="150" align="right" /></a>
 
-[![Release Version](https://img.shields.io/npm/v/@sass-fairy/math.svg)](https://www.npmjs.com/package/@sass-fairy/math)
+[![Release Version](https://img.shields.io/npm/v/@sass-fairy/math/next.svg)](https://www.npmjs.com/package/@sass-fairy/math/v/next)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Provides extended functionality for working with numbers in Sass.
@@ -43,4 +43,4 @@ sass.render({
 
 ## Documentation
 
-See [sass-fairy.com/api/math](http://sass-fairy.com/api/math) for more information about this package.
+See [sass-fairy.com/next/api/math](http://sass-fairy.com/next/api/math) for more information about this package.

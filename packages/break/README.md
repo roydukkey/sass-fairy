@@ -2,7 +2,7 @@
 
 <a href="https://sass-fairy.com/"><img src="https://sass-fairy.com/img/logo.svg" alt="Sass Fairy Logo" width="150" align="right" /></a>
 
-[![Release Version](https://img.shields.io/npm/v/@sass-fairy/break.svg)](https://www.npmjs.com/package/@sass-fairy/break)
+[![Release Version](https://img.shields.io/npm/v/@sass-fairy/break/next.svg)](https://www.npmjs.com/package/@sass-fairy/break/v/next)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Provides Sass mixins, functions, and variables for working with breakpoints and aids in responsive development.
@@ -43,4 +43,4 @@ sass.render({
 
 ## Documentation
 
-See [sass-fairy.com/api/break](http://sass-fairy.com/api/break) for more information about this package.
+See [sass-fairy.com/next/api/break](http://sass-fairy.com/next/api/break) for more information about this package.

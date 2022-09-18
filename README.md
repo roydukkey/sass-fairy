@@ -17,24 +17,24 @@ yarn cross-env BUILD=exception yarn publish-package
 
 This set of modules extend the natively [built-in modules](https://sass-lang.com/documentation/modules) provided by Sass.
 
-### [@sass-fairy/color](https://github.com/roydukkey/sass-fairy/tree/master/packages/color#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/color.svg)](https://www.npmjs.com/package/@sass-fairy/color)
+### [@sass-fairy/color](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/color#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/color/next.svg)](https://www.npmjs.com/package/@sass-fairy/color/v/next)
 
-### [@sass-fairy/list](https://github.com/roydukkey/sass-fairy/tree/master/packages/list#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/list.svg)](https://www.npmjs.com/package/@sass-fairy/list)
+### [@sass-fairy/list](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/list#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/list/next.svg)](https://www.npmjs.com/package/@sass-fairy/list/v/next)
 
-### [@sass-fairy/map](https://github.com/roydukkey/sass-fairy/tree/master/packages/map#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/map.svg)](https://www.npmjs.com/package/@sass-fairy/map)
+### [@sass-fairy/map](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/map#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/map/next.svg)](https://www.npmjs.com/package/@sass-fairy/map/v/next)
 
-### [@sass-fairy/math](https://github.com/roydukkey/sass-fairy/tree/master/packages/math#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/math.svg)](https://www.npmjs.com/package/@sass-fairy/math)
+### [@sass-fairy/math](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/math#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/math/next.svg)](https://www.npmjs.com/package/@sass-fairy/math/v/next)
 
-### [@sass-fairy/meta](https://github.com/roydukkey/sass-fairy/tree/master/packages/meta#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/meta.svg)](https://www.npmjs.com/package/@sass-fairy/meta)
+### [@sass-fairy/meta](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/meta#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/meta/next.svg)](https://www.npmjs.com/package/@sass-fairy/meta/v/next)
 
-### [@sass-fairy/string](https://github.com/roydukkey/sass-fairy/tree/master/packages/string#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/string.svg)](https://www.npmjs.com/package/@sass-fairy/string)
+### [@sass-fairy/string](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/string#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/string/next.svg)](https://www.npmjs.com/package/@sass-fairy/string/v/next)
 
 ## Special Modules
 
 This set of modules are other concepts and utilities which can be used to aid in developing other modules or designing stylesheets.
 
-### [@sass-fairy/break](https://github.com/roydukkey/sass-fairy/tree/master/packages/break#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/break.svg)](https://www.npmjs.com/package/@sass-fairy/break)
+### [@sass-fairy/break](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/break#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/break/next.svg)](https://www.npmjs.com/package/@sass-fairy/break/v/next)
 
-### [@sass-fairy/exception](https://github.com/roydukkey/sass-fairy/tree/master/packages/exception#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/exception.svg)](https://www.npmjs.com/package/@sass-fairy/exception)
+### [@sass-fairy/exception](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/exception#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/exception/next.svg)](https://www.npmjs.com/package/@sass-fairy/exception/v/next)
 
-### [@sass-fairy/url](https://github.com/roydukkey/sass-fairy/tree/master/packages/url#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/url.svg)](https://www.npmjs.com/package/@sass-fairy/url)
+### [@sass-fairy/url](https://github.com/roydukkey/sass-fairy/tree/dev/v2/packages/url#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/url/next.svg)](https://www.npmjs.com/package/@sass-fairy/url/v/next)
