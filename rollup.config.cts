@@ -1,16 +1,16 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+import type { PackageJson } from 'type-fest';
 import type { RollupOptions } from 'rollup';
 import json from '@rollup/plugin-json';
 import license from 'rollup-plugin-license';
 import typescript from 'rollup-plugin-ts';
 import { author, name } from './package.json';
-import { buildName, buildNames, buildRelativePath } from './utils/build';
+import { buildName, buildNames, buildRelativePath } from './utils/build.js';
 
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
-const { version } = require(buildRelativePath('package.json'));
+const { version } = require(buildRelativePath('package.json')) as PackageJson;
 
 
 const config: RollupOptions = {

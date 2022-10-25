@@ -29,9 +29,9 @@ delete repository.branch;
 
 
 const completePackage = require(buildRelativePath('package.json'));
-const { name, description, version, keywords, dependencies, addPeerDependenciesOnPublish, optionalDependencies, publishConfig, ...package } = completePackage;
-delete package.scripts;
-delete package['//'];
+const { name, description, version, keywords, dependencies, addPeerDependenciesOnPublish, optionalDependencies, publishConfig, ...packageJson } = completePackage;
+delete packageJson.scripts;
+delete packageJson['//'];
 
 
 module.exports = {
@@ -47,7 +47,7 @@ module.exports = {
 		homepage: homepage.replace('#readme', `/tree/${branch}/${repository.directory}$&`),
 		bugs,
 		keywords: [...parentKeywords, ...keywords],
-		...package,
+		...packageJson,
 		dependencies,
 		peerDependencies: addPeerDependenciesOnPublish,
 		optionalDependencies,

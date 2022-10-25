@@ -1,6 +1,5 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
-/* eslint-disable tsdoc/syntax */
 
 
 // ================================================================= //
@@ -67,7 +66,6 @@ config.themeConfig = {
 			{
 				href: repoUrl,
 				className: 'header-github-link',
-				// eslint-disable-next-line @typescript-eslint/naming-convention
 				'aria-label': 'GitHub repository',
 				position: 'right'
 			}
@@ -120,7 +118,6 @@ config.presets = [
 						label: 'v2',
 						badge: false
 					},
-					// eslint-disable-next-line @typescript-eslint/naming-convention
 					1: {
 						label: 'v1',
 						badge: false

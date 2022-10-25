@@ -46,7 +46,7 @@
 		"write-translations": "docusaurus write-translations",
 		"write-heading-ids": "docusaurus write-heading-ids",
 		"typecheck": "tsc",
-		"lint": "eslint --ext js,jsx,ts,tsx ./"
+		"lint": "eslint './**/*.?(m|c){j,t}s?(x)'"
 	},
 	"browserslist": {
 		"production": [
@@ -67,84 +67,12 @@
 	},
 	"eslintConfig": {
 		"root": true,
-		"extends": [
-			"@roydukkey/eslint-config"
-		],
+		"extends": "@roydukkey/eslint-config",
 		"env": {
 			"node": true
 		},
-		"overrides": [
-			{
-				"files": [
-					"*.js?(x)"
-				],
-				"rules": {
-					"@typescript-eslint/no-require-imports": "off"
-				}
-			},
-			{
-				"files": [
-					"*.{j,t}s?(x)"
-				],
-				"rules": {
-					"@typescript-eslint/naming-convention": [
-						"error",
-						{
-							"selector": "default",
-							"format": [
-								"camelCase"
-							],
-							"filter": {
-								"regex": "^(.*?(Component)|sidebar_(label|class_name))$",
-								"match": false
-							}
-						},
-						{
-							"selector": "default",
-							"modifiers": [
-								"unused"
-							],
-							"filter": {
-								"regex": "^.*?(Component)$",
-								"match": false
-							},
-							"format": [
-								"camelCase"
-							],
-							"leadingUnderscore": "require"
-						},
-						{
-							"selector": [
-								"typeLike",
-								"enumMember"
-							],
-							"format": [
-								"PascalCase"
-							]
-						},
-						{
-							"selector": "property",
-							"modifiers": [
-								"private"
-							],
-							"format": [
-								"camelCase"
-							],
-							"leadingUnderscore": "require"
-						},
-						{
-							"selector": "interface",
-							"format": [
-								"PascalCase"
-							],
-							"custom": {
-								"regex": "^I[A-Z]",
-								"match": false
-							}
-						}
-					]
-				}
-			}
+		"ignorePatterns": [
+			"build"
 		]
 	}
 }

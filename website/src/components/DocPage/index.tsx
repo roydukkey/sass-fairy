@@ -12,19 +12,19 @@ import useFrontMatter from '@theme/useFrontMatter';
 
 
 export default function ({ spec, children }: Attributes): JSX.Element {
-	const { sidebar_label, sidebar_class_name } = useFrontMatter<FrontMatter>();
+	const { sidebar_label: sidebarLabel, sidebar_class_name: sidebarClassName } = useFrontMatter<FrontMatter>();
 
-	if (typeof sidebar_label !== 'string' || typeof sidebar_class_name !== 'string') {
+	if (typeof sidebarLabel !== 'string' || typeof sidebarClassName !== 'string') {
 		throw new TypeError('<DocPage /> requires `sidebar_label` and `sidebar_class_name` frontmatter to be defined.');
 	}
 
-	const isVariable = sidebar_class_name.includes('variable');
+	const isVariable = sidebarClassName.includes('variable');
 	const forwardProps = {
-		fieldName: sidebar_label,
-		field: (isVariable ? spec.variables : spec.functions)?.[sidebar_label],
+		fieldName: sidebarLabel,
+		field: (isVariable ? spec.variables : spec.functions)?.[sidebarLabel],
 		spec
 	};
-	const hasOverloads = (spec.functions?.[sidebar_label]?.overloads?.length ?? 0) > 0;
+	const hasOverloads = (spec.functions?.[sidebarLabel]?.overloads?.length ?? 0) > 0;
 
   return isVariable
 		? <VariableLayout {...forwardProps}>{children}</VariableLayout>

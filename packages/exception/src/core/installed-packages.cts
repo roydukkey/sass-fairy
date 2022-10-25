@@ -2,6 +2,7 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 import { OrderedMap } from 'immutable';
+import type { PackageJson } from 'type-fest';
 import { version } from '../../package.json';
 import { SassMap, SassString } from 'sass';
 
@@ -18,8 +19,10 @@ const packages = [
 
 
 // Using `require()` to avoid the limitations of `CustomFunction<'async'>`
-// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
-const getPackageVersion = (packageName: string): string => require(packageName).version;
+const getPackageVersion = (packageName: string): string => {
+	const packageJson = require(packageName) as PackageJson;
+	return packageJson.version ?? '';
+};
 
 
 const addPackage = (name: string, version: string): [SassString, SassString] => [
@@ -29,7 +32,7 @@ const addPackage = (name: string, version: string): [SassString, SassString] => 
 
 
 export default (): SassMap => {
-	const map: Array<[SassString, SassString]> = [
+	const map: [SassString, SassString][] = [
 		addPackage('exception', version)
 	];
 

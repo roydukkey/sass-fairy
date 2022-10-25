@@ -1,4 +1,7 @@
 {
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
 	"files.exclude": {
 		"**/node_modules": true,
 		".jest": true,

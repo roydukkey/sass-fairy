@@ -1,6 +1,5 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
-/* eslint-disable @typescript-eslint/naming-convention */
 
 import packageJson from '@sass-fairy/v1/list/package.json';
 import { passedByName } from '@site/versioned_docs/version-1/api/exception/spec';
@@ -78,7 +77,7 @@ const reduceFunction: SpecSignature = {
 
 
 const reduceRightFunction: SpecSignature = {
-	...JSON.parse(JSON.stringify(reduceFunction)), // Deep Copy
+	...JSON.parse(JSON.stringify(reduceFunction)) as SpecSignature, // Deep Copy
 	description: 'Reduces a list to a single value as the product of calling a specified function on every item in a list, starting with the last item to the first.'
 };
 

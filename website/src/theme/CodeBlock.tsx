@@ -22,7 +22,7 @@ export default function ({ highlightLines, highlightKeywords, isolateDefinition,
 
 			// Replace @use statements and build list of fields for replacement
 			children = children.replace(/^(@use\s*'@sass-fairy\/([a-z]*))\/(?:.*\/)(.*)'\n/gm,
-				(_, replacement, module, fieldName) => {
+				(_, replacement: string, module: string, fieldName: string) => {
 					module += '.';
 					fieldName += '.';
 
@@ -156,7 +156,7 @@ interface Attributes {
 	/**
 	 * Search code for line that contain specific keywords and highlight the line.
 	 */
-	highlightKeywords?: string | Array<[string, string?]>;
+	highlightKeywords?: string | [string, string?][];
 
 	/**
 	 * Isolate the definition of a Sass function or mixin as the only content of the code block.

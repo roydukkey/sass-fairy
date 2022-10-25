@@ -35,15 +35,15 @@
 	],
 	"devDependencies": {
 		"@rollup/plugin-json": "^4.1.0",
-		"@roydukkey/eslint-config": "^1.0.13",
-		"@tsconfig/node12": "^1.0.9",
-		"@typescript-eslint/eslint-plugin": "^5.25.0",
-		"@typescript-eslint/parser": "^5.25.0",
+		"@roydukkey/eslint-config": "^2.0.4",
+		"@tsconfig/node12": "^1.0.11",
+		"@typescript-eslint/eslint-plugin": "^5.41.0",
+		"@typescript-eslint/parser": "^5.41.0",
 		"clean-package": "^2.1.1",
 		"cross-env": "^7.0.3",
 		"cspell": "^5.19.3",
-		"eslint": "^8.15.0",
-		"eslint-plugin-tsdoc": "^0.2.16",
+		"eslint": "^8.26.0",
+		"eslint-plugin-tsdoc": "^0.2.17",
 		"fs-extra": "^10.0.1",
 		"globby": "^11.1.0",
 		"jest": "^28.1.0",
@@ -66,9 +66,9 @@
 		"clean": "run-s clean:src clean:website",
 		"clean:src": "node -e \"require('globby').sync('./packages/**/dist', { onlyDirectories: true }).forEach((path) => fs.rmSync(path, { recursive: true, force: true }))\"",
 		"clean:website": "yarn workspace website clear",
-		"lint": "run-s clean lint:spelling lint:src lint:website",
+		"lint": "run-s lint:spelling lint:src lint:website",
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
-		"lint:src": "eslint --ext js,jsx,ts,tsx ./",
+		"lint:src": "eslint './**/*.?(m|c){j,t}s?(x)'",
 		"lint:website": "yarn workspace website lint",
 		"pretest": "run-s lint:spelling lint:src",
 		"test": "jest",
@@ -82,7 +82,7 @@
 		"build:meta": "cross-env BUILD=meta yarn bundle:rollup",
 		"build:string": "cross-env BUILD=string yarn bundle:rollup",
 		"build:url": "cross-env BUILD=url yarn bundle:rollup",
-		"bundle:rollup": "rollup --config ./rollup.config.ts --configPlugin rollup-plugin-ts",
+		"bundle:rollup": "rollup --config ./rollup.config.cts --configPlugin rollup-plugin-ts",
 		"bundle:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"bundle:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"package": "yarn bundle:clean-package && yarn workspace @$npm_package_name/$BUILD pack && yarn bundle:clean-package:restore",
@@ -95,5 +95,16 @@
 		"verbose": true,
 		"coverageDirectory": ".jest/coverage",
 		"cacheDirectory": ".jest/cache"
+	},
+	"eslintConfig": {
+		"root": true,
+		"extends": "@roydukkey/eslint-config",
+		"env": {
+			"node": true
+		},
+		"ignorePatterns": [
+			"website",
+			"utils/**/*.js"
+		]
 	}
 }

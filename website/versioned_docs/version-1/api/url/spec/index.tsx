@@ -1,6 +1,5 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
-/* eslint-disable @typescript-eslint/naming-convention */
 
 import type { ModuleSpec } from '@site/src/spec/ModuleSpec';
 import packageJson from '@sass-fairy/url/package.json';
@@ -15,7 +14,7 @@ const spec: ModuleSpec = {
 
 	functions: {
 
-		'data': {
+		data: {
 			group: 'main',
 			description: <Fragment>
 				Creates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs" target="_blank" rel="nofollow noreferrer noopener">data URL</a> for the provided data of the specified type.
@@ -48,7 +47,7 @@ const spec: ModuleSpec = {
 			}
 		},
 
-		'encode': {
+		encode: {
 			group: 'main',
 			description: <Fragment>
 				<a href="https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding" target="_blank" rel="nofollow noreferrer noopener">Percent-encodes</a> a URL component, replacing each instance of certain characters by escape sequences representing the UTF-8 encoding of the characters.
@@ -67,7 +66,7 @@ const spec: ModuleSpec = {
 			}
 		},
 
-		'svg': {
+		svg: {
 			group: 'main',
 			description: <Fragment>
 				Creates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs" target="_blank" rel="nofollow noreferrer noopener">data URL</a> for the provided SVG, escaping the required characters.

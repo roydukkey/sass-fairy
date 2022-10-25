@@ -2,7 +2,7 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 import type { CustomFunction } from 'sass';
-import InstalledPackages from './core/installed-packages';
+import InstalledPackages from './core/installed-packages.cjs';
 
 
 const functions: { [key: string]: CustomFunction<'sync'> } = {
