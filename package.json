@@ -92,6 +92,10 @@
 	},
 	"jest": {
 		"testEnvironment": "jest-environment-node-single-context",
+		"testMatch": [
+			"**/__tests__/**/*.?(c)[jt]s?(x)",
+			"**/?(*.)+(spec|test).?(c)[tj]s?(x)"
+		],
 		"verbose": true,
 		"coverageDirectory": ".jest/coverage",
 		"cacheDirectory": ".jest/cache"
