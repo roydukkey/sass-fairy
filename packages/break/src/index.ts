@@ -6,17 +6,17 @@ import type { CustomFunction } from 'sass';
 import ExceptionFunctions from '@sass-fairy/exception';
 import ListFunctions from '@sass-fairy/list';
 import MapFunctions from '@sass-fairy/map';
-import MathFunctions from '@sass-fairy/math';
 import StringFunctions from '@sass-fairy/string';
+import UrlFunctions from '@sass-fairy/url';
 
 
 const functions: { [key: string]: CustomFunction<'sync'> } = {
 	...ExceptionFunctions,
 	...ColorFunctions,
-	...MathFunctions,
 	...ListFunctions,
 	...MapFunctions,
-	...StringFunctions
+	...StringFunctions,
+	...UrlFunctions
 };
 
 

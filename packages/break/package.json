@@ -16,14 +16,12 @@
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/color": "^2.0.0-alpha.0",
-		"@sass-fairy/exception": "^2.0.0-alpha.0",
-		"@sass-fairy/list": "^2.0.0-alpha.0",
-		"@sass-fairy/map": "^2.0.0-alpha.0",
-		"@sass-fairy/string": "^2.0.0-alpha.0",
-		"@sass-fairy/url": "^2.0.0-alpha.0"
-	},
-	"addPeerDependenciesOnPublish": {
+		"@sass-fairy/color": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/exception": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/list": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/map": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/string": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/url": "workspace:^2.0.0-alpha.0",
 		"sass": "^1.52.0"
 	},
 	"publishConfig": {

@@ -3,13 +3,16 @@
 	"version": "1.0.0",
 	"private": true,
 	"dependencies": {
+		"@algolia/client-search": "^4.14.2",
 		"@docusaurus/core": "2.1.0",
+		"@docusaurus/plugin-content-docs": "^2.1.0",
 		"@docusaurus/plugin-google-gtag": "2.1.0",
 		"@docusaurus/preset-classic": "2.1.0",
+		"@docusaurus/theme-common": "^2.1.0",
 		"@mdx-js/react": "^1.6.22",
-		"@sass-fairy/break": "^2.0.0-alpha.0",
-		"@sass-fairy/url": "^2.0.0-alpha.0",
-		"@sass-fairy/color": "^2.0.0-alpha.0",
+		"@sass-fairy/break": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/color": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/url": "workspace:^2.0.0-alpha.0",
 		"@sass-fairy/v1/break": "npm:@sass-fairy/break@^1",
 		"@sass-fairy/v1/color": "npm:@sass-fairy/color@^1",
 		"@sass-fairy/v1/exception": "npm:@sass-fairy/exception@^1",
@@ -28,12 +31,16 @@
 		"raw-loader": "^4.0.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"sass": "^1.52.0",
+		"sass-loader": "^13.1.0",
+		"typescript": "~4.7.4",
 		"url-loader": "^4.1.1",
 		"webpack": "^5.70.0"
 	},
 	"devDependencies": {
 		"@docusaurus/module-type-aliases": "2.1.0",
-		"@tsconfig/docusaurus": "^1.0.6"
+		"@tsconfig/docusaurus": "^1.0.6",
+		"@types/react": "^18.0.23"
 	},
 	"scripts": {
 		"docusaurus": "docusaurus",

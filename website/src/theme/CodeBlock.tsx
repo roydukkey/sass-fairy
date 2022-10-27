@@ -2,26 +2,26 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 import OriginalCodeBlock from '@theme-original/CodeBlock';
+import type { Props } from '@theme/CodeBlock';
 import React from 'react';
-import type { ReactElement } from 'react';
 
 
 export default function ({ highlightLines, highlightKeywords, isolateDefinition, stripSassDocs, rewriteFairyUses, children, ...props }: Attributes): JSX.Element {
 	if (typeof children === 'string') {
-		children = children.trim().replace(/\t/g, '  ');
+		let textChild = children.trim().replace(/\t/g, '  ');
 
 		if (stripSassDocs) {
-			children = children.replace(/^\/\/\/.*\n/gm, '');
+			textChild = textChild.replace(/^\/\/\/.*\n/gm, '');
 		}
 
 		// Replace version-aliased package @use statements.
-		children = children.replace(/(@use\s*'@sass-fairy\/)v\d\//g, '$1');
+		textChild = textChild.replace(/(@use\s*'@sass-fairy\/)v\d\//g, '$1');
 
 		if (rewriteFairyUses) {
 			const modules: { [key: string]: string[] } = {};
 
 			// Replace @use statements and build list of fields for replacement
-			children = children.replace(/^(@use\s*'@sass-fairy\/([a-z]*))\/(?:.*\/)(.*)'\n/gm,
+			textChild = textChild.replace(/^(@use\s*'@sass-fairy\/([a-z]*))\/(?:.*\/)(.*)'\n/gm,
 				(_, replacement: string, module: string, fieldName: string) => {
 					module += '.';
 					fieldName += '.';
@@ -39,14 +39,14 @@ export default function ({ highlightLines, highlightKeywords, isolateDefinition,
 
 			for (const [module, fields] of Object.entries(modules)) {
 				for (const field of fields) {
-					while (children.indexOf(field) > 0) {
-						children = children.replace(field, module);
+					while (textChild.indexOf(field) > 0) {
+						textChild = textChild.replace(field, module);
 					}
 				}
 			}
 		}
 
-		let lines = children.split('\n');
+		let lines = textChild.split('\n');
 
 		// Isolate Definition
 		if (isolateDefinition) {
@@ -135,11 +135,8 @@ export default function ({ highlightLines, highlightKeywords, isolateDefinition,
 }
 
 
-interface Attributes {
-	className?: string;
-	title?: string;
+interface Attributes extends Props {
 	metastring?: string;
-	children: string | ReactElement;
 	stripSassDocs?: boolean;
 
 	/**

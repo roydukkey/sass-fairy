@@ -4,12 +4,24 @@ Sass Fairy enhances built-in Sass modules with additional functions and adds mod
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+```scss
+$syntax-1: REGEX gi '^t';
+$syntax-2: regex gi '^t';
+$syntax-3: \\gi '^t';
+
+body {
+  syntax-1: $syntax-1;
+  syntax-2: $syntax-2;
+  syntax-3: $syntax-3;
+}
+```
+
 <!--
 
 ## Packing / Publishing
 
-yarn cross-env BUILD=exception yarn package
-yarn cross-env BUILD=exception yarn publish-package
+pnpm cross-env BUILD=exception pnpm package
+pnpm cross-env BUILD=exception pnpm publish-package
 
 -->
 

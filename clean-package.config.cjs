@@ -29,7 +29,7 @@ delete repository.branch;
 
 
 const completePackage = require(buildRelativePath('package.json'));
-const { name, description, version, keywords, dependencies, addPeerDependenciesOnPublish, optionalDependencies, publishConfig, ...packageJson } = completePackage;
+const { name, description, version, keywords, dependencies, peerDependencies, peerDependenciesMeta, optionalDependencies, publishConfig, ...packageJson } = completePackage;
 delete packageJson.scripts;
 delete packageJson['//'];
 
@@ -49,7 +49,8 @@ module.exports = {
 		keywords: [...parentKeywords, ...keywords],
 		...packageJson,
 		dependencies,
-		peerDependencies: addPeerDependenciesOnPublish,
+		peerDependencies,
+		peerDependenciesMeta,
 		optionalDependencies,
 		devDependencies,
 		publishConfig,

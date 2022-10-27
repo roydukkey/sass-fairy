@@ -13,11 +13,9 @@
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/exception": "^2.0.0-alpha.0",
-		"@sass-fairy/list": "^2.0.0-alpha.0",
-		"@sass-fairy/meta": "^2.0.0-alpha.0"
-	},
-	"addPeerDependenciesOnPublish": {
+		"@sass-fairy/exception": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/list": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/meta": "workspace:^2.0.0-alpha.0",
 		"sass": "^1.52.0"
 	},
 	"publishConfig": {
