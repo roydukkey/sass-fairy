@@ -13,13 +13,6 @@
 /// @throw `#{$breakpoint}` is not a string.
 /// @throw No breakpoint exists by the name `#{$breakpoint}`.
 ///
-/// @access public
-/// @require in-between.in-between
-/// @require next.next
-/// @require validate-breakpoint.validate-breakpoint
-/// @require out.out
-/// @require sizes.$names
-///
 @function in-only($breakpoint)
 	$first: validate-breakpoint.validate-breakpoint('in-only', 'breakpoint', $breakpoint, 'min-width', $must-be-name: true)
 
@@ -37,13 +30,6 @@
 ///
 /// @throw `#{$breakpoint}` is not a string.
 /// @throw No breakpoint exists by the name `#{$breakpoint}`.
-///
-/// @access public
-/// @require in-between.in-between
-/// @require next.next
-/// @require validate-breakpoint.validate-breakpoint
-/// @require out.out
-/// @require sizes.$names
 ///
 @mixin in-only($breakpoint)
 	$first: validate-breakpoint.validate-breakpoint('in-only', 'breakpoint', $breakpoint, 'min-width', true, true)

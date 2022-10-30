@@ -12,9 +12,6 @@
 /// @remarks This function is exposed by `@sass-fairy/string`, but has been abstracted to this package to avoid circular dependency.
 /// @see @link https://github.com/roydukkey/sass-fairy/tree/master/packages/string
 ///
-/// @access public
-/// @require to-string
-///
 @function from($value)
 	$type: meta.type-of($value)
 
@@ -45,10 +42,6 @@
 /// @param {'list' | 'map' | 'arglist'} $type - The type value from which to generate a string.
 /// @return {String}
 ///
-/// @access private
-/// @require delimiter.delimiter
-/// @require join
-///
 @function to-string($value, $type)
 
 	@if $type == 'map'
@@ -64,9 +57,6 @@
 /// @param {String} $glue - The string to separate each pair of adjacent items of the iterable value. The value is converted to a string if necessary.
 /// @param {'list' | 'map' | 'arglist'} $type - The type used to determine expected format.
 /// @return {String}
-///
-/// @access private
-/// @require from
 ///
 @function join($value, $glue, $type)
 	$length: list.length($value)

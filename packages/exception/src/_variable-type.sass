@@ -7,11 +7,6 @@
 @use 'internal/invalid-type'
 
 
-///
-/// @access public
-/// @require invalid-type.invalid-type
-/// @require variable.variable
-///
 @function variable-type($name, $value, $types...)
 	$keywords: meta.keywords($types)
 	$message: if(map.has-key($keywords, 'message'), map.get($keywords, 'message'), null)

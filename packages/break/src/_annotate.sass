@@ -20,16 +20,6 @@
 /// @throw `#{$color}` is not a color.
 /// @throw `#{$size}` is not a Number.
 ///
-/// @access public
-/// @require a11y.a11y
-/// @require box-model.box-model
-/// @require horizontal-sizes.horizontal-sizes
-/// @require includes.includes
-/// @require out.out
-/// @require parameter-type.parameter-type
-/// @require up.up
-/// @require vertical-sizes.vertical-sizes
-///
 @mixin annotate($direction: 'both', $position: 'bottom right', $color: #f3afe6, $size: 12px)
 
 	@if meta.type-of($position) != 'string'
@@ -117,17 +107,10 @@
 							content: '#{_content($h-name, $h-value)}\A#{_content($v-name, $v-value)}'
 
 
-///
-/// @access private
-/// @require starts-with.starts-with
-///
 @function _encode-color($color)
 	$color: '#{$color}'
 	@return if(starts-with.starts-with($color, '#'), '%23#{string.slice($color, 2)}', $color)
 
 
-///
-/// @access private
-///
 @function _content($name, $value)
 	@return '#{$name} ≥ #{$value}'

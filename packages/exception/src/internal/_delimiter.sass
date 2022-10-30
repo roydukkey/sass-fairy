@@ -10,8 +10,6 @@
 /// @param {List} - The list for which to determine a delimiter.
 /// @return {String}
 ///
-/// @access private
-///
 @function delimiter($list)
 	$separator: list.separator($list)
 	@return if($separator == 'space', ' ', if($separator == 'comma', ', ', ' / '))

@@ -15,10 +15,6 @@
 ///
 /// @throw `#{$breakpoint}` is not a string or number.
 ///
-/// @access public
-/// @require to-string.to-string
-/// @require validate-breakpoint.validate-breakpoint
-///
 @function up($breakpoint)
 	$breakpoint: validate-breakpoint.validate-breakpoint('up', 'breakpoint', $breakpoint, 'min-height')
 
@@ -38,10 +34,6 @@
 /// @output Unless the breakpoint's size is zero, makes the content apply to the given breakpoint.
 ///
 /// @throw `#{$breakpoint}` is not a string or number.
-///
-/// @access public
-/// @require to-string.to-string
-/// @require validate-breakpoint.validate-breakpoint
 ///
 @mixin up($breakpoint)
 	$breakpoint: validate-breakpoint.validate-breakpoint('up', 'breakpoint', $breakpoint, 'min-height', true)

@@ -12,10 +12,6 @@
 ///
 	@overload key($first-pair, $second-pair, $center: never)
 ///
-/// @access public
-/// @require _key
-/// @require call-or-reference.call-or-reference
-///
 @function key($args...)
 	@return call-or-reference.call-or-reference(meta.get-function('_key'), $args...)
 
@@ -24,10 +20,6 @@
 	@overload key-desc()
 ///
 	@overload key-desc($first-pair, $second-pair, $center: never)
-///
-/// @access public
-/// @require _key-desc
-/// @require call-or-reference.call-or-reference
 ///
 @function key-desc($args...)
 	@return call-or-reference.call-or-reference(meta.get-function('_key-desc'), $args...)
@@ -40,9 +32,6 @@
 /// @param {*} $second-pair - The key/value pair for the comparison.
 /// @ignore @param {Number} $center [never] - Irrelevant for this function.
 /// @return {Number}
-///
-/// @access private
-/// @require string.string
 ///
 @function _key($first-pair, $second-pair, $center: never)
 	@if list.length($first-pair) < 1
@@ -61,9 +50,6 @@
 /// @param {*} $second-pair - The key/value pair for the comparison.
 /// @ignore @param {Number} $center [never] - Irrelevant for this function.
 /// @return {Number}
-///
-/// @access private
-/// @require _key
 ///
 @function _key-desc($first-pair, $second-pair, $center: never)
 	@return _key($second-pair, $first-pair, $center)

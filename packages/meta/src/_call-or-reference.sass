@@ -9,17 +9,6 @@
 ///
 /// @throw `#{$function}` is not a function.
 ///
-/// @example sass
-///   // Taken from `sass-list`
-///   // https://github.com/roydukkey/sass-module-list/blob/8f8a322/src/list/compare/_string.sass#L15-L35
-///   @use '@sass-fairy/meta'
-///
-///   @function numeric($args...)
-///     @return meta.call-or-reference(meta.get-function('_numeric'), $args...)
-///
-/// @access public
-/// @require parameter-type.parameter-type
-///
 @function call-or-reference($function, $args...)
 
 	@if meta.type-of($function) != 'function'

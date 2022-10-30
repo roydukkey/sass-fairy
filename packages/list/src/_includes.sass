@@ -11,10 +11,6 @@
 /// @throw List index may not be 0.
 /// @throw Invalid index #{$start-at} for a list with #{length} elements.
 ///
-/// @access public
-/// @require index.index
-/// @require validate-index.validate-index
-///
 @function includes($list, $value, $start-at: 1)
 	$start-at: validate-index.validate-index('includes', 'start-at', $start-at, $list)
 

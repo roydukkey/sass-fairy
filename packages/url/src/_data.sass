@@ -10,10 +10,6 @@
 /// @throw `#{$data|$media-type}` is not a string.
 /// @throw `#{$encode}` is not a boolean.
 ///
-/// @access public
-/// @require encode.encode
-/// @require parameter-type.parameter-type
-///
 @function data($data, $media-type: 'text/plain', $encode: true)
 
 	@if meta.type-of($data) != 'string'

@@ -10,10 +10,6 @@
 ///
 /// @throw Must be "space", "comma", "slash", or "auto".
 ///
-/// @access public
-/// @require is-separator-invalid.is-separator-invalid
-/// @require separator.separator
-///
 @function empty($separator: null, $bracketed: null, $list: null)
 
 	@if meta.type-of($list) == 'list' or meta.type-of($list) == 'arglist'

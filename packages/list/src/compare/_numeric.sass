@@ -12,10 +12,6 @@
 ///
 	@overload numeric($first-item, $second-item, $center: 0)
 ///
-/// @access public
-/// @require _numeric
-/// @require call-or-reference.call-or-reference
-///
 @function numeric($args...)
 	@return call-or-reference.call-or-reference(meta.get-function('_numeric'), $args...)
 
@@ -24,10 +20,6 @@
 	@overload numeric-desc()
 ///
 	@overload numeric-desc($first-item, $second-item, $center: 0)
-///
-/// @access public
-/// @require _numeric-desc
-/// @require call-or-reference.call-or-reference
 ///
 @function numeric-desc($args...)
 	@return call-or-reference.call-or-reference(meta.get-function('_numeric-desc'), $args...)
@@ -40,9 +32,6 @@
 /// @param {*} $second-item - The second item for the comparison.
 /// @param {Number} $center [0] - The value indicating the center (zero) position between positive and negative values.
 /// @return {Number}
-///
-/// @access private
-/// @require change.change
 ///
 @function _numeric($first-item, $second-item, $center: 0)
 
@@ -73,9 +62,6 @@
 /// @param {*} $second-item - The second item for the comparison.
 /// @param {Number} $center [0] - The value indicating the center (zero) position between positive and negative values.
 /// @return {Number}
-///
-/// @access private
-/// @require _numeric
 ///
 @function _numeric-desc($first-item, $second-item, $center: 0)
 	@return _numeric($second-item, $first-item, $center)

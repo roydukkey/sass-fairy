@@ -13,13 +13,6 @@
 /// @throw Must be "space", "comma", "slash", or "auto".
 /// @throw The beginning index is not less than the length of the list.
 ///
-/// @access public
-/// @require empty.empty
-/// @require get-keyword.get-keyword
-/// @require is-separator-invalid.is-separator-invalid
-/// @require parameter.parameter
-/// @require separator.separator
-///
 @function concat($values...)
 
 	@if list.length($values) < 2

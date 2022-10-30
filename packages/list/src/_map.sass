@@ -15,14 +15,6 @@
 /// @throw `#{$transformer}` is not a function.
 /// @throw Must be "space", "comma", "slash", or "auto".
 ///
-/// @access public
-/// @require empty.empty
-/// @require get-keyword.get-keyword
-/// @require is-separator-invalid.is-separator-invalid
-/// @require parameter-type.parameter-type
-/// @require separator.separator
-/// @require strip-keywords.strip-keywords
-///
 @function map($list, $transformer, $args...)
 
 	@if meta.type-of($transformer) != 'function'

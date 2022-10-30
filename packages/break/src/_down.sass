@@ -15,10 +15,6 @@
 ///
 /// @throw `#{$breakpoint}` is not a string or number.
 ///
-/// @access public
-/// @require to-string.to-string
-/// @require validate-breakpoint.validate-breakpoint
-///
 @function down($breakpoint)
 	$breakpoint: validate-breakpoint.validate-breakpoint('down', 'breakpoint', $breakpoint, 'max-height')
 
@@ -38,10 +34,6 @@
 /// @output Unless the breakpoint is the largest, makes the content apply to the given breakpoint.
 ///
 /// @throw `#{$breakpoint}` is not a string or number.
-///
-/// @access public
-/// @require to-string.to-string
-/// @require validate-breakpoint.validate-breakpoint
 ///
 @mixin down($breakpoint)
 	$breakpoint: validate-breakpoint.validate-breakpoint('down', 'breakpoint', $breakpoint, 'max-height', true)

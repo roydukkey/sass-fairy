@@ -10,9 +10,6 @@
 ///
 /// @throw `#{$numbers[i]}` is not a number.
 ///
-/// @access public
-/// @require _lcm
-///
 @function lcm($numbers...)
 	$result: 1
 
@@ -31,11 +28,7 @@
 ///
 /// @throw `#{$first-number|$second-number}` is not a number.
 ///
-/// @access private
-/// @require gcd.gcd
-/// @require parameter-type.parameter-type
-///
-@function _lcm ($first-number, $second-number)
+@function _lcm($first-number, $second-number)
 
 	@if meta.type-of($first-number) != 'number'
 		@error parameter-type.parameter-type('lcm', 'numbers', $first-number, 'number')
