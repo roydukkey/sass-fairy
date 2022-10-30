@@ -10,16 +10,6 @@
 /// @throw `#{$args}` is not a arglist.
 /// @throw `#{$name}` is not a string.
 ///
-/// @example sass
-///   @use '@sass-fairy/meta'
-///
-///   @function concat($values...)
-///     $separator: meta.get-keyword($values, 'separator', auto)
-///     ...
-///
-/// @access public
-/// @require parameter-type.parameter-type
-///
 @function get-keyword($args, $name, $default: null)
 
 	@if meta.type-of($args) != 'arglist'

@@ -5,10 +5,6 @@
 @use 'core/join'
 
 
-///
-/// @access public
-/// @require join.join
-///
 @function variable($message, $names...)
 	$names: join.join($names, ', $')
 	@return string.unquote('$#{$names}: #{$message}.')

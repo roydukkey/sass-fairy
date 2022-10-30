@@ -7,13 +7,8 @@
 
 
 ///
-/// @type Map
-///
 /// @throw `#{$sizes}` is not a map.
 /// @throw The smallest breakpoint must be equal to zero, but is `#{size}`.
-///
-/// @access public
-/// @require validate-sizes.validate-sizes
 ///
 $sizes: (x-small: 0) !default
 
@@ -25,17 +20,7 @@ $sizes: validate-sizes.validate-sizes($sizes)
 	@error $sizes
 
 
-///
-/// @type List
-///
-/// @access public
-///
 $values: map.values($sizes)
 
 
-///
-/// @type List
-///
-/// @access public
-///
 $names: map.keys($sizes)

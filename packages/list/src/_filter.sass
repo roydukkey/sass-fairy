@@ -15,14 +15,6 @@
 /// @throw `#{$predicate}` is not a function.
 /// @throw Must be "space", "comma", "slash", or "auto".
 ///
-/// @access public
-/// @require empty.empty
-/// @require get-keyword.get-keyword
-/// @require parameter-type.parameter-type
-/// @require is-separator-invalid.is-separator-invalid
-/// @require separator.separator
-/// @require strip-keywords.strip-keywords
-///
 @function filter($list, $predicate, $args...)
 
 	@if meta.type-of($predicate) != 'function'

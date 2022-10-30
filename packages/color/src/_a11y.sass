@@ -17,12 +17,6 @@
 /// @throw Must be either "normal" or "large".
 /// @throw Must be either "AA" or "AAA".
 ///
-/// @access public
-/// @require contrast.$contrast-ratios
-/// @require contrast.contrast
-/// @require parameter.parameter
-/// @require parameter-type.parameter-type
-///
 @function a11y($a11y-color, $other-color, $size: 'normal', $level: 'AA')
 
 	@if meta.type-of($a11y-color) != 'color'

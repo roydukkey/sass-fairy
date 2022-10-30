@@ -10,12 +10,6 @@
 ///
 /// @throw Must be "space", "comma", "slash", or "auto".
 ///
-/// @access public
-/// @require _replace-transformer
-/// @require is-separator-invalid.is-separator-invalid
-/// @require map.map
-/// @require separator.separator
-///
 @function replace($list, $value, $replacement, $separator: auto)
 
 	@if is-separator-invalid.is-separator-invalid($separator)
@@ -36,8 +30,6 @@
 /// @param {*} $value - The value to be replace by the replacement.
 /// @param {*} $replacement - The value that replaces the specified value.
 /// @return {*}
-///
-/// @access private
 ///
 @function _replace-transformer($item, $index, $list, $value, $replacement)
 	@return if($item == $value, $replacement, $item)

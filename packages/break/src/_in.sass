@@ -15,10 +15,6 @@
 ///
 /// @throw `#{$breakpoint}` is not a string or number.
 ///
-/// @access public
-/// @require to-string.to-string
-/// @require validate-breakpoint.validate-breakpoint
-///
 @function in($breakpoint)
 	$breakpoint: validate-breakpoint.validate-breakpoint('in', 'breakpoint', $breakpoint, 'max-width')
 
@@ -38,10 +34,6 @@
 /// @output Unless the breakpoint is the largest, makes the content apply to the given breakpoint.
 ///
 /// @throw `#{$breakpoint}` is not a string or number.
-///
-/// @access public
-/// @require to-string.to-string
-/// @require validate-breakpoint.validate-breakpoint
 ///
 @mixin in($breakpoint)
 	$breakpoint: validate-breakpoint.validate-breakpoint('in', 'breakpoint', $breakpoint, 'max-width', true)

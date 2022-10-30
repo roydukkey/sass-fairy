@@ -13,10 +13,6 @@
 ///
 	@overload string($first-item, $second-item, $center: never)
 ///
-/// @access public
-/// @require _string
-/// @require call-or-reference.call-or-reference
-///
 @function string($args...)
 	@return call-or-reference.call-or-reference(meta.get-function('_string'), $args...)
 
@@ -26,20 +22,12 @@
 ///
 	@overload string($first-item, $second-item, $center: never)
 ///
-/// @access public
-/// @require _string-desc
-/// @require call-or-reference.call-or-reference
-///
 @function string-desc($args...)
 	@return call-or-reference.call-or-reference(meta.get-function('_string-desc'), $args...)
 
 
 ///
 /// The list that defines the sort order for UTF-16 code units.
-///
-/// @type List
-///
-/// @access private
 ///
 $_order: '' ' ' '!' '"' '#' '$' '%' '&' "'" '(' ')' '*' '+' ',' '-' '.' '/'
 $_order: list.join($_order, '0' '1' '2' '3' '4' '5' '6' '7' '8' '9')
@@ -57,9 +45,6 @@ $_order: list.join($_order, '{' '|' '}' '~')
 /// @param {*} $second-item - The second item for the comparison.
 /// @ignore @param {Number} $center: never - Irrelevant for this function.
 /// @return {Number}
-///
-/// @access private
-/// @require $_order
 ///
 @function _string($first-item, $second-item, $center: never)
 
@@ -99,9 +84,6 @@ $_order: list.join($_order, '{' '|' '}' '~')
 /// @param {*} $second-item - The second item for the comparison.
 /// @ignore @param {Number} $center [never] - Irrelevant for this function.
 /// @return {Number}
-///
-/// @access private
-/// @require _string
 ///
 @function _string-desc($first-item, $second-item, $center: never)
 	@return _string($second-item, $first-item, $center)

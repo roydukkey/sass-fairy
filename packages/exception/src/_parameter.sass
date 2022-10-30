@@ -4,9 +4,5 @@
 @use 'variable'
 
 
-///
-/// @access public
-/// @require variable.variable
-///
 @function parameter($message, $context, $names...)
 	@return variable.variable('#{$message} for `#{$context}()`', $names...)

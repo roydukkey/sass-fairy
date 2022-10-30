@@ -15,12 +15,6 @@
 /// @throw Invalid index #{$index} for a list with #{length} elements.
 /// @throw Must be "space", "comma", "slash", or "auto".
 ///
-/// @access public
-/// @require is-separator-invalid.is-separator-invalid
-/// @require separator.separator
-/// @require slice.slice
-/// @require validate-index.validate-index
-///
 @function remove-nth($list, $index, $separator: auto)
 	$index: validate-index.validate-index('remove-nth', 'index', $index, $list)
 

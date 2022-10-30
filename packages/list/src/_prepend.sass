@@ -10,11 +10,6 @@
 ///
 /// @throw Must be "space", "comma", "slash", or "auto".
 ///
-/// @access public
-/// @require insert-nth.insert-nth
-/// @require is-separator-invalid.is-separator-invalid
-/// @require separator.separator
-///
 @function prepend($list, $value, $separator: auto)
 
 	@if is-separator-invalid.is-separator-invalid($separator)

@@ -20,12 +20,6 @@
 /// @throw `#{$first-breakpoint|$second-breakpoint}` is not a string or number.
 /// @throw First breakpoint must be smaller than second breakpoint.
 ///
-/// @access public
-/// @require to-string.to-string
-/// @require validate-breakpoint.validate-breakpoint
-/// @require value.value
-/// @require parameter.parameter
-///
 @function down-between($first-breakpoint, $second-breakpoint)
 	$first-breakpoint: validate-breakpoint.validate-breakpoint('down-between', 'first-breakpoint', $first-breakpoint, 'min-height')
 
@@ -54,13 +48,6 @@
 ///
 /// @throw `#{$first-breakpoint|$second-breakpoint}` is not a string or number.
 /// @throw First breakpoint must be smaller than second breakpoint.
-///
-/// @access public
-/// @require down.down
-/// @require to-string.to-string
-/// @require validate-breakpoint.validate-breakpoint
-/// @require value.value
-/// @require up.up
 ///
 @mixin down-between($first-breakpoint, $second-breakpoint)
 	$first: validate-breakpoint.validate-breakpoint('down-between', 'first-breakpoint', $first-breakpoint, 'min-height', true)

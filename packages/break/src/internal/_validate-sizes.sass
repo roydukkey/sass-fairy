@@ -17,13 +17,6 @@
 /// @param {Map} $sizes - The name of the function or mixin validating a breakpoint.
 /// @return {Map | String} - A map is returned when the given sizes is valid; otherwise, a string contain an error message.
 ///
-/// @access private
-/// @require compare
-/// @require from.from
-/// @require sort.sort
-/// @require variable.variable
-/// @require variable-type.variable-type
-///
 @function validate-sizes($sizes)
 
 	@if meta.type-of($sizes) != 'map'
@@ -46,10 +39,6 @@
 /// @param {*} $second-pair - The key/value pair for the comparison.
 /// @param {Number} $center - The value indicating the center (zero) position between positive and negative values.
 /// @return {Number}
-///
-/// @access private
-/// @require numeric-value.numeric-value
-/// @require variable-type.variable-type
 ///
 @function compare($first-pair, $second-pair, $center)
 	$first-value: if(list.length($first-pair) < 2, null, list.nth($first-pair, 2))

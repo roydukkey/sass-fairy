@@ -24,17 +24,6 @@
 /// @return {Map | String | Null} - A map is returned when the given value is valid and requires the generation of a rule. A string contain an error message is returned when the given value is invalid. Null is returned when the generation of a rule is not required.
 ///   @prop {Number} base.#{$rule} - The validated breakpoint size for the specified rule.
 ///
-/// @access private
-/// @require $-max-correction
-/// @require ends-with.ends-with
-/// @require horizontal-sizes.$sizes
-/// @require horizontal-sizes.$values
-/// @require parameter.parameter
-/// @require parameter-type.parameter-type
-/// @require starts-with.starts-with
-/// @require vertical-sizes.$sizes
-/// @require vertical-sizes.$values
-///
 @function validate-breakpoint($context, $name, $value, $rule, $is-mixin: false, $must-be-name: false)
 	$is-horizontal: ends-with.ends-with($rule, 'width')
 	$sizes: if($is-horizontal, horizontal-sizes.$sizes, vertical-sizes.$sizes)
@@ -70,7 +59,5 @@
 ///
 /// Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
 /// @see @link https://bugs.webkit.org/show_bug.cgi?id=178261
-///
-/// @type Number
 ///
 $-max-correction: 0.02

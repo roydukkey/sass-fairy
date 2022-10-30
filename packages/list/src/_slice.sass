@@ -19,19 +19,6 @@
 /// @throw The starting index is not less than the ending index.
 /// @throw Must be "space", "comma", "slash", or "auto".
 ///
-/// @example scss
-/// 	slice([a, b, c, d], 3) //=> [c, d]
-/// 	slice([a, b, c, d], -2) //=> [c, d]
-/// 	slice([a, b, c, d], 2, 3) //=> [b, c]
-/// 	slice([a, b, c, d], 2, -3) //=> [b]
-///
-/// @access public
-/// @require empty.empty
-/// @require is-separator-invalid.is-separator-invalid
-/// @require parameter.parameter
-/// @require separator.separator
-/// @require validate-index.validate-index
-///
 @function slice($list, $start-at, $end-at: -1, $separator: auto)
 	$start-at: validate-index.validate-index('slice', 'start-at', $start-at, $list)
 

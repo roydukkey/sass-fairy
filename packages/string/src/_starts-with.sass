@@ -11,11 +11,6 @@
 /// @throw `#{$string|$substring}` is not a string.
 /// @throw `#{$start-at}` is not a number.
 ///
-/// @access public
-/// @require index.index
-/// @require parameter-type.parameter-type
-/// @require validate-index.validate-index
-///
 @function starts-with($string, $substring, $start-at: 1)
 
 	@if meta.type-of($string) != 'string'

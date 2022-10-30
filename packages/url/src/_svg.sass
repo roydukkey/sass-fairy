@@ -8,13 +8,6 @@
 @use 'data'
 
 
-///
-/// @access public
-/// @require data.data
-/// @require includes.includes
-/// @require join.join
-/// @require replace.replace
-///
 @function svg($data...)
 	$data: join.join($data, '')
 	$namespace: 'xmlns="http://www.w3.org/2000/svg"'

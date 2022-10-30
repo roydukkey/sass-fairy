@@ -15,12 +15,6 @@
 /// @throw The depth may not be less than 1.
 /// @throw Must be "space", "comma", "slash", or "auto".
 ///
-/// @access public
-/// @require is-separator-invalid.is-separator-invalid
-/// @require parameter.parameter
-/// @require parameter-type.parameter-type
-/// @require separator.separator
-///
 @function flat($list, $depth: 1, $separator: auto, $bracketed: auto)
 
 	@if meta.type-of($depth) != 'number'
@@ -44,9 +38,6 @@
 /// @param {String} $separator [auto] - The type of separator to be used by the flattened list.
 /// @param {Boolean | String} $bracketed [auto] - Whether the flattened list has square brackets or no brackets.
 /// @return {List}
-///
-/// @access private
-/// @require empty.empty
 ///
 @function _flat($list, $depth, $at-depth, $separator: auto, $bracketed: auto)
 	$result: empty.empty($separator, $bracketed, $list)

@@ -13,10 +13,6 @@
 /// @param {String} $rule - The rule to which this breakpoint applies.
 /// @return {String}
 ///
-/// @access private
-/// @require horizontal-sizes.$sizes
-/// @require vertical-sizes.$sizes
-///
 @function next($names, $breakpoint, $rule)
 	$index: list.index($names, $breakpoint)
 	@return if($index < list.length($names), list.nth($names, $index + 1), null)

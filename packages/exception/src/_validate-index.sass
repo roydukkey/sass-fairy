@@ -13,10 +13,6 @@
 ///
 	@overload validate-index($context, $name, $value, $string)
 ///
-/// @access public
-/// @require parameter.parameter
-/// @require parameter.parameter-type
-///
 @function validate-index($context, $name, $value, $list)
 
 	@if meta.type-of($value) != 'number'

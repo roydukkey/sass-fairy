@@ -12,10 +12,6 @@
 /// @throw `#{$transformer}` is not a function.
 /// @throw Reduction of empty list with no initial value.
 ///
-/// @access public
-/// @require parameter.parameter
-/// @require parameter-type.parameter-type
-///
 @function reduce-right($list, $transformer, $args...)
 
 	@if meta.type-of($transformer) != 'function'
