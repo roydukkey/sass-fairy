@@ -187,7 +187,7 @@ const spec: ModuleSpec = {
 			},
 			return: {
 				description: 'A string with all instances of the substring replaced by a replacement.',
-				type: ['Number']
+				type: ['String']
 			}
 		},
 
