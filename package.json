@@ -99,7 +99,7 @@
 		"package": "pnpm bundle:clean-package && pnpm --dir ./packages/$BUILD pack && pnpm bundle:clean-package:restore",
 		"publish-package": "run-s clean build test bundle:clean-package && pnpm --dir ./packages/$BUILD publish --tag next && pnpm bundle:clean-package:restore",
 		"serve": "pnpm --dir ./website start",
-		"deploy": "cross-env GIT_USER=roydukkey USE_SSH=true pnpm --dir ./website deploy"
+		"publish-website": "cross-env GIT_USER=roydukkey USE_SSH=true pnpm --dir ./website publish-website"
 	},
 	"jest": {
 		"testEnvironment": "jest-environment-node-single-context",
