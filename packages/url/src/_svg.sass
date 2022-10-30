@@ -4,7 +4,7 @@
 @use 'sass:meta'
 @use '@sass-fairy/list/src/join'
 @use '@sass-fairy/string/src/includes'
-@use '@sass-fairy/string/src/replace'
+@use '@sass-fairy/string/src/replace-all'
 @use 'data'
 
 
@@ -13,13 +13,13 @@
 /// @require data.data
 /// @require includes.includes
 /// @require join.join
-/// @require replace.replace
+/// @require replace-all.replace-all
 ///
 @function svg($data...)
 	$data: join.join($data, '')
 	$namespace: 'xmlns="http://www.w3.org/2000/svg"'
 
 	@if not includes.includes($data, $namespace)
-		$data: replace.replace($data, '<svg', '$& #{$namespace}')
+		$data: replace-all.replace-all($data, '<svg', '$& #{$namespace}')
 
 	@return data.data($data, 'image/svg+xml')

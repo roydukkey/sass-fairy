@@ -13,7 +13,7 @@
 ///
 /// @access public
 ///
-@function replace($string, $substring, $replacement, $original)
+@function replace-all($string, $substring, $replacement, $original)
 	$index: string.index($string, $substring)
 
 	@if $index
@@ -22,14 +22,14 @@
 		$replace: $replacement
 
 		@if string.index($replace, '$&') != null
-			$replace: replace($replace, '$&', $substring, $replace)
+			$replace: replace-all($replace, '$&', $substring, $replace)
 
 		@if string.index($replace, '$`') != null
-			$replace: replace($replace, '$`', string.slice($original, 1, $offset - 1), $replace)
+			$replace: replace-all($replace, '$`', string.slice($original, 1, $offset - 1), $replace)
 
 		@if string.index($replace, "$'") != null
-			$replace: replace($replace, "$'", string.slice($original, $offset + $length), $replace)
+			$replace: replace-all($replace, "$'", string.slice($original, $offset + $length), $replace)
 
-		@return string.slice($string, 1, $index - 1) + $replace + replace(string.slice($string, $index + $length), $substring, $replacement, $original)
+		@return string.slice($string, 1, $index - 1) + $replace + replace-all(string.slice($string, $index + $length), $substring, $replacement, $original)
 
 	@return $string

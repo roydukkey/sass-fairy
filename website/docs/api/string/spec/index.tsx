@@ -157,7 +157,7 @@ const spec: ModuleSpec = {
 			}
 		},
 
-		replace: {
+		'replace-all': {
 			group: 'main',
 			description: 'Replaces all instances of a specified substring from the source string with a given replacement.',
 			parameters: {

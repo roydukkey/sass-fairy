@@ -1,7 +1,7 @@
 ---
-title: replace ()
+title: replace-all ()
 module: string
-sidebar_label: replace
+sidebar_label: replace-all
 sidebar_class_name: function
 hide_table_of_contents: true
 ---
@@ -14,9 +14,9 @@ import FieldDetails from '@site/docs/api/string/spec/FieldDetails';
 
 $sentence: 'The quick brown fox jumps over the lazy dog.';
 
-@debug string.replace($sentence, 'jumps', 'skipped');
+@debug string.replace-all($sentence, 'jumps', 'skipped');
   // 'The quick brown fox skipped over the lazy dog.'
 
-@debug string.replace($sentence, 'jumps', '[$&]');
+@debug string.replace-all($sentence, 'jumps', '[$&]');
   // 'The quick brown fox [jumps] over the lazy dog.'
 ```

@@ -3,7 +3,7 @@
 
 @use 'sass:meta'
 @use '@sass-fairy/exception/src/parameter-type'
-@use '@sass-fairy/string/src/replace'
+@use '@sass-fairy/string/src/replace-all'
 
 
 ///
@@ -11,7 +11,7 @@
 ///
 /// @access public
 /// @require parameter-type.parameter-type
-/// @require replace.replace
+/// @require replace-all.replace-all
 ///
 @function encode($string)
 
@@ -25,6 +25,6 @@
 	// Dart Sass will handle escaping a few other special characters.
 	// https://sass-lang.com/documentation/values/strings#escapes
 	@each $char, $code in ('%': '%25', '#': '%23')
-		$string: replace.replace($string, $char, $code)
+		$string: replace-all.replace-all($string, $char, $code)
 
 	@return $string

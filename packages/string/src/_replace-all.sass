@@ -3,7 +3,7 @@
 
 @use 'sass:meta'
 @use '@sass-fairy/exception/src/parameter-type'
-@use 'internal/replace'
+@use 'internal/replace-all'
 
 
 ///
@@ -11,17 +11,17 @@
 ///
 /// @access public
 /// @require parameter-type.parameter-type
-/// @require replace.replace
+/// @require replace-all.replace-all
 ///
-@function replace($string, $substring, $replacement)
+@function replace-all($string, $substring, $replacement)
 
 	@if meta.type-of($string) != 'string'
-		@error parameter-type.parameter-type('replace', 'string', $string, 'string')
+		@error parameter-type.parameter-type('replace-all', 'string', $string, 'string')
 
 	@if meta.type-of($substring) != 'string'
-		@error parameter-type.parameter-type('replace', 'substring', $substring, 'string')
+		@error parameter-type.parameter-type('replace-all', 'substring', $substring, 'string')
 
 	@if meta.type-of($replacement) != 'string'
-		@error parameter-type.parameter-type('replace', 'replacement', $replacement, 'string')
+		@error parameter-type.parameter-type('replace-all', 'replacement', $replacement, 'string')
 
-	@return replace.replace($string, $substring, $replacement, $string)
+	@return replace-all.replace-all($string, $substring, $replacement, $string)
