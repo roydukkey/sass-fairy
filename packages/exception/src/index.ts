@@ -3,10 +3,12 @@
 
 import type { CustomFunction } from 'sass';
 import InstalledPackages from './core/installed-packages.cjs';
+import IsQuoted from './core/is-quoted';
 
 
 const functions: { [key: string]: CustomFunction<'sync'> } = {
-	'fairy-internal_core_installed-packages()': InstalledPackages
+	'fairy-internal_core_installed-packages()': InstalledPackages,
+	'fairy-internal_core_is-quoted($string)': IsQuoted
 };
 
 
