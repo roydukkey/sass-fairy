@@ -41,21 +41,16 @@ This set of modules are other concepts and utilities which can be used to aid in
 
 ## Dependency Graph
 
-![Mermaid Graph](https://mermaid.ink/img/pako:eNqNlLtuwyAUhl8FUSkTkYKvsYdOWTuloxdsSGL5KoKlRlHevcDBl8Ye6sHwH_98HA6YJy46LnCKr5L1N_R9ylqkn6KrO4n2-0-US8EqCIqfQvSq7Nr5A9o56w7V5V3ppmG9faubaYRiurkrWbZX3RlkDShrXlJg2Npo4m9pWLaJGYgLmXnGENDggwMuZ5rQurNEjwMetVis1K4u_YjCOCg40biuEqMcl9JWZzuKEo_4JCAhiUhMjmjLDXzIxbH9IDnwYmKDXLqhws4tfD_wLpMb5Hsmh3-4gW0LNiZyLGjszYlY-Y5OCD0QSgn10JYRqGbXHDQJIypmKMhV5Xy0ZRhher8dLY9Y7M00kCtagLYMjmaOiqNdoiTx5-qAXNFCQiO05QGgO2ITMuJJvkAauULGhB7RlgeQ5mQ6XsCLQx5OPJArXoL-GjDBjZANK7n-s5_GnmF1E43IcKq7nMkqw1n70j42qO78aAucKjkIgoeeMyVOJdMXQoPTC6vvOip4qTr5BVeFvTFev3jqT6w?type=png)
-
-<!-- SOURCE:
-
-https://mermaid.live/edit#pako:eNqNlLtuwyAUhl8FUSkTkYKvsYdOWTuloxdsSGL5KoKlRlHevcDBl8Ye6sHwH_98HA6YJy46LnCKr5L1N_R9ylqkn6KrO4n2-0-US8EqCIqfQvSq7Nr5A9o56w7V5V3ppmG9faubaYRiurkrWbZX3RlkDShrXlJg2Npo4m9pWLaJGYgLmXnGENDggwMuZ5rQurNEjwMetVis1K4u_YjCOCg40biuEqMcl9JWZzuKEo_4JCAhiUhMjmjLDXzIxbH9IDnwYmKDXLqhws4tfD_wLpMb5Hsmh3-4gW0LNiZyLGjszYlY-Y5OCD0QSgn10JYRqGbXHDQJIypmKMhV5Xy0ZRhher8dLY9Y7M00kCtagLYMjmaOiqNdoiTx5-qAXNFCQiO05QGgO2ITMuJJvkAauULGhB7RlgeQ5mQ6XsCLQx5OPJArXoL-GjDBjZANK7n-s5_GnmF1E43IcKq7nMkqw1n70j42qO78aAucKjkIgoeeMyVOJdMXQoPTC6vvOip4qTr5BVeFvTFev3jqT6w
-
+```mermaid
 graph TD
-  color -- > break
-  exception -- > break & color & list & map & math & meta & string & url
-  list -- > break & map & string & url
-  map -- > break
-  math -- > list
-  meta -- > list & map
-  string -- > break & url
-  url -- > break
+  color --> break
+  exception --> break & color & map & list & math & meta & string & url
+  list --> break & map & url & string
+  map --> break
+  math --> list
+  meta --> list & map
+  string --> break & url
+  url --> break
 
   style exception color:#6574cd,stroke:#6574cd
   linkStyle 1,2,3,4,5,6,7,8 stroke:#6574cd
@@ -74,4 +69,4 @@ graph TD
   linkStyle 17,18 stroke:#f66d9b
   style url color:#4dc0b5,stroke:#4dc0b5
   linkStyle 19 stroke:#4dc0b5
--->
+```
