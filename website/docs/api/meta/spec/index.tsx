@@ -10,6 +10,7 @@ const spec: ModuleSpec = {
 	module: 'meta',
 	description: packageJson.description,
 	basePath: '/api/meta',
+	hiddenNativeFields: ['type-of'],
 
 	functions: {
 
@@ -68,6 +69,21 @@ const spec: ModuleSpec = {
 			return: {
 				description: 'Returns the values of an argument list without named parameters.',
 				type: ['List']
+			}
+		},
+
+		'type-of': {
+			group: 'main',
+			description: 'Returns the type of the given value.',
+			parameters: {
+				value: {
+					description: 'The value from which to get a type.',
+					type: ['*']
+				}
+			},
+			return: {
+				description: 'Returns an unquoted string describing the type of value given.',
+				type: ['String']
 			}
 		}
 

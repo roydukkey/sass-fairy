@@ -26,6 +26,7 @@ const sidebars = {
 			label: 'Spec',
 			collapsed: false,
 			items: [
+				'docs/regular-expressions',
 				'docs/reference-functions',
 				'docs/compare-logic',
 				'docs/list-modifiers'

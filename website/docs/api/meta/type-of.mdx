@@ -1,0 +1,28 @@
+---
+title: type-of ()
+module: meta
+sidebar_label: type-of
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/docs/api/meta/spec/FieldDetails';
+import Link from '@docusaurus/Link';
+
+<FieldDetails>
+  <p>
+    In addition to the native <Link to="https://sass-lang.com/documentation/modules/meta#type-of">Sass types</Link>, <code>regex</code> will be returned when the given value is a <Link to="./../../docs/regular-expressions">regular expression</Link>.
+  </p>
+</FieldDetails>
+
+```scss
+@use '@sass-fairy/meta';
+
+@debug meta.type-of(20px);
+  // number
+
+@debug meta.type-of(20px 40px 80px);
+  // list
+
+@debug meta.type-of(REGEX 'ab+c');
+  // regex
+```

@@ -1,0 +1,37 @@
+# Regular Expressions
+
+Often shortened to *Regex* or *RegExp*, regular expressions are a [common feature of JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions). They use syntax to describe patterns of characters in strings.
+
+Even though there isn’t native Sass support for regular expressions, Sass Fairy is able to implement regular expressions support through the Sass JavaScript API. Don’t worry though. All of the implementation remains hidden under the hood.
+
+## Syntax
+
+The syntax for Sass Fairy regular expressions is slightly different from JavaScript. In fact the only difference is the way regular expression literals are denoted. Instead of enclosing the pattern between slashes, the pattern is preceded by `REGEX` or `\\`.
+
+```js
+// A regex in JavaScript:
+const expression = /pat{2}ern/;
+```
+
+```scss
+// In Sass, this becomes:
+$expression: REGEX 'pat{2}ern';
+
+// Or, for shorthand:
+$expression: \\'pat{2}ern';
+```
+
+`REGEX` and `\\` are case sensitive and must be unquoted. Though, the pattern must be quoted.
+
+### Flags
+
+With the exception of `s`, all of the [flags available in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#advanced_searching_with_flags) can be used in Sass Fairy regular expressions.
+
+```scss
+$expression: REGEX gi 'pat{2}ern';
+$expression: \\gi'pat{2}ern';
+```
+
+## Type Checking
+
+In order to determine whether a value is a regular expression, Sass Fairy has [extended `meta.type-of()`](./../api/meta/type-of.mdx) in the [`@sass-fairy/meta`](./../api/meta/overview.mdx) module to add `regex` as a type.
