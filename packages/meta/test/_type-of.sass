@@ -1,0 +1,35 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use '@sass-fairy/meta' as src
+@use 'true'
+
+
+@mixin test-patterns($patterns, $expected)
+	@each $pattern in $patterns
+		@include true.it('Returns `#{$expected}` as type for `#{meta.inspect($pattern)}`')
+			$assert: src.type-of($pattern)
+			@include true.assert-equal($assert, $expected)
+
+
+@include true.describe('@function meta.type-of')
+
+	$valid: REGEX 'x', REGEX gi 'x', \\ 'x', \\gi 'x', REGEX'x', \\'x', \\digmuy'x' // cSpell:disable-line
+	@include test-patterns($valid, regex)
+
+	// Unquoted pattern
+	$invalid: REGEX x, REGEX gi x, \\ x, \\gi x
+	@include test-patterns($invalid, list)
+
+	// Incorrect key
+	$invalid: regex 'x', REGEXgi 'x', \gi 'x', \\ gi 'x'
+	@include test-patterns($invalid, list)
+
+	// Duplicate flags
+	$invalid: REGEX gig 'x', \\gig 'x'
+	@include test-patterns($invalid, list)
+
+	// Missing pattern
+	$invalid: REGEX, \\, \\gi
+	@include test-patterns($invalid, string)

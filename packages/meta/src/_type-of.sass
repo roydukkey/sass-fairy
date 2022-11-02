@@ -1,0 +1,54 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:list'
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/exception/src/core/is-quoted'
+
+
+$_accepted-regex-flags: 'dgimuy' // cSpell:disable-line
+
+
+@function type-of($value)
+	@if meta.type-of($value) == 'list' and list.separator($value) == space and not list.is-bracketed($value)
+		$length: list.length($value)
+
+		@if $length >= 2 and $length <= 3
+			$key: list.nth($value, 1)
+
+			@if not is-quoted.is-quoted($key)
+				$flags: null
+				$pattern: null
+
+				@if string.index($key, \\) == 1
+					$flags: string.slice($key, 3)
+					$pattern: list.nth($value, 2)
+
+				@else if $key == REGEX
+					@if $length == 2
+						$pattern: list.nth($value, 2)
+					@else
+						$flags: list.nth($value, 2)
+						$pattern: list.nth($value, 3)
+
+				@if meta.type-of($pattern) == 'string' and is-quoted.is-quoted($pattern)
+					$index: 0
+
+					@if meta.type-of($flags) == 'string' and not is-quoted.is-quoted($flags)
+						$validated-flags: ''
+						$index: string.length($flags)
+
+						@while $index > 0
+							$flag: string.slice($flags, $index)
+
+							@if string.index($_accepted-regex-flags, $flag) and not string.index($validated-flags, $flag)
+								$validated-flags: $validated-flags + $flag
+								$index: $index - 1
+							@else
+								$index: -1
+
+					@if $index == 0
+						@return regex
+
+	@return meta.type-of($value)
