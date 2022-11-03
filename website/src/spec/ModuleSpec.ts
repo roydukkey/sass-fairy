@@ -60,7 +60,7 @@ export interface SpecSignatureOverload extends SpecSignatureBase {
 export interface SpecParameter {
 	description: string | JSX.Element;
 	type: ParameterType[];
-	defaultValue?: DefaultValue | DefaultValue[];
+	defaultValue?: DefaultValue;
 }
 
 

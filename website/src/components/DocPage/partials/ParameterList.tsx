@@ -1,7 +1,6 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
-import CodeBlock from '@theme/CodeBlock';
 import type { ModuleSpec } from '../../../spec/ModuleSpec';
 import React, { Fragment } from 'react';
 
@@ -25,10 +24,7 @@ export default function ({ fieldName, spec: { functions }, overloadIndex }: Attr
 							<Fragment>
 								<dt>Default</dt>
 								<dd>
-									{Array.isArray(defaultValue)
-										? <CodeBlock className="language-scss">{defaultValue.join('\n')}</CodeBlock>
-										: <code>{defaultValue.toString()}</code>
-									}
+									<code>{defaultValue.toString()}</code>
 								</dd>
 							</Fragment>
 							}
