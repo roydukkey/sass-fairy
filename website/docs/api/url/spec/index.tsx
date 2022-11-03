@@ -74,7 +74,7 @@ const spec: ModuleSpec = {
 			parameters: {
 				data: {
 					description: 'The data containing the SVG which is to be delivered by the URL.',
-					type: ['ArgList']
+					type: ['ArgList<*>']
 				}
 			},
 			return: {

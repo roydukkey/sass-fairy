@@ -21,7 +21,7 @@ const bracketedParameter: Omit<SpecParameter, 'description'> = {
 
 const predicateArgsParameter: SpecParameter = {
 	description: 'Additional parameters which are provided to predicate function.',
-	type: ['ArgList'],
+	type: ['ArgList<*>'],
 	defaultValue: '()'
 };
 
@@ -170,7 +170,7 @@ const spec: ModuleSpec = {
 			parameters: {
 				values: {
 					description: 'The lists or single values to concatenate.',
-					type: ['ArgList']
+					type: ['ArgList<*>']
 				},
 				separator: {
 					...separatorParameter,
@@ -222,7 +222,7 @@ const spec: ModuleSpec = {
 				},
 				list: {
 					description: 'The list from which to determine separator and bracket style.',
-					type: ['List', 'ArgList'],
+					type: ['List', 'ArgList<*>'],
 					defaultValue: 'null'
 				}
 			},
@@ -687,7 +687,7 @@ const spec: ModuleSpec = {
 			parameters: {
 				list: {
 					description: 'The list from which to generate a string.',
-					type: ['List', 'Map', 'ArgList']
+					type: ['List', 'Map', 'ArgList<*>']
 				}
 			},
 			return: {

@@ -66,7 +66,7 @@ export interface SpecParameter {
 
 /* eslint-disable @typescript-eslint/no-type-alias */
 
-type MainTypes = 'Number' | 'Boolean' | 'String' | 'Color' | 'List' | 'Map';
+type MainTypes = 'Number' | 'Boolean' | 'String' | 'Color' | 'List' | 'Map' | '*';
 type ListSeparator = 'auto' | 'comma' | 'space' | 'slash';
 type LibraryFunction = `${string}${string}.${string}${string}()`;
 type QuotedString = `'${string}${string}'`;
@@ -80,8 +80,8 @@ type RelativeLengthUnits = 'em' | 'rem' | 'vw' | 'vh' | 'vmin' | 'vmax' | '%';
 
 export type ParameterType = MainTypes | QuotedString | ListSeparator |
 	`List{${number},${number}}` |
-	`ArgList<${MainTypes}>` | `${'' | '!'}ArgList` |
-	'Function' | 'Null' | '*';
+	`ArgList<${MainTypes}>` | '!ArgList' |
+	'Function' | 'Null';
 
 
 export type DefaultValue = number | boolean |

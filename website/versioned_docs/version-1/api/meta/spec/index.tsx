@@ -23,7 +23,7 @@ const spec: ModuleSpec = {
 				},
 				args: {
 					description: 'The arguments to apply to the invocation of the function.',
-					type: ['ArgList']
+					type: ['ArgList<*>']
 				}
 			},
 			return: {

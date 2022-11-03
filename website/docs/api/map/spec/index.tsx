@@ -41,7 +41,7 @@ const spec: ModuleSpec = {
 			parameters: {
 				'key-value': {
 					description: 'The key/value pairs from which a map will be created.',
-					type: ['ArgList']
+					type: ['ArgList<*>']
 				}
 			},
 			return: {
@@ -56,7 +56,7 @@ const spec: ModuleSpec = {
 			parameters: {
 				map: {
 					description: 'The map from which to generate a string. When is an argument list, keywords will be included.',
-					type: ['Map', 'ArgList']
+					type: ['Map', 'ArgList<*>']
 				}
 			},
 			return: {

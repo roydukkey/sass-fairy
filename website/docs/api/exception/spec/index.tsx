@@ -33,7 +33,7 @@ const valueParameter: SpecSignature['parameters'] = {
 const typesParameter: SpecSignature['parameters'] = {
 	types: {
 		description: 'The types which are expected.',
-		type: ['ArgList']
+		type: ['ArgList<*>']
 	}
 };
 
@@ -86,7 +86,7 @@ const spec: ModuleSpec = {
 				...contextParameter,
 				names: {
 					description: 'The names of the parameters for which there is an issue.',
-					type: ['ArgList']
+					type: ['ArgList<*>']
 				}
 			},
 			return: {
@@ -170,7 +170,7 @@ const spec: ModuleSpec = {
 				...messageParameter,
 				names: {
 					description: 'The names of the variables for which there is an issue.',
-					type: ['ArgList']
+					type: ['ArgList<*>']
 				}
 			},
 			return: {
