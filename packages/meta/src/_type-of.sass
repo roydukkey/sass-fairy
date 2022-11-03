@@ -40,7 +40,7 @@ $_accepted-regex-flags: 'dgimuy' // cSpell:disable-line
 						$index: string.length($flags)
 
 						@while $index > 0
-							$flag: string.slice($flags, $index)
+							$flag: string.slice($flags, $index, $index)
 
 							@if string.index($_accepted-regex-flags, $flag) and not string.index($validated-flags, $flag)
 								$validated-flags: $validated-flags + $flag
