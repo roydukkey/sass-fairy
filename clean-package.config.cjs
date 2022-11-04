@@ -1,7 +1,6 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
-const { copySync, removeSync } = require('fs-extra');
 const { buildName, buildRelativePath } = require('./utils/build');
 
 
@@ -15,12 +14,6 @@ const {
 	repository,
 	files
 } = require('./package.json');
-
-
-// These files should be included from project root in every package.
-const commonFiles = [
-	'./LICENSE'
-];
 
 
 repository.directory = `packages/${buildName}`;
@@ -55,14 +48,6 @@ module.exports = {
 		devDependencies,
 		publishConfig,
 		files
-	},
-
-	onClean: () => commonFiles.forEach((file) => {
-		copySync(file, buildRelativePath(file));
-	}),
-
-	onRestore: () => commonFiles.forEach((file) => {
-		removeSync(buildRelativePath(file));
-	})
+	}
 
 };

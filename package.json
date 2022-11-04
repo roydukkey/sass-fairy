@@ -74,7 +74,8 @@
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
 		"postinstall": "tsc ./utils/build.ts",
-		"clean": "run-s clean:src clean:website",
+		"clean": "run-p clean:src clean:bundle clean:website",
+		"clean:bundle": "node -e \"require('globby').sync(['./packages/**/*.{tgz,backup}']).forEach((path) => fs.rmSync(path, { recursive: true, force: true }))\"",
 		"clean:src": "node -e \"require('globby').sync('./packages/**/dist', { onlyDirectories: true }).forEach((path) => fs.rmSync(path, { recursive: true, force: true }))\"",
 		"clean:pnpm": "node -e \"require('globby').sync('./**/node_modules', { onlyDirectories: true }).forEach((path) => fs.rmSync(path, { recursive: true, force: true }))\"",
 		"clean:website": "pnpm --dir ./website clear",
@@ -99,14 +100,13 @@
 		"bundle:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"bundle:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"package": "pnpm bundle:clean-package && pnpm --dir ./packages/$BUILD pack && pnpm bundle:clean-package:restore",
-		"publish-package": "run-s clean build test bundle:clean-package && pnpm --dir ./packages/$BUILD publish --tag next && pnpm bundle:clean-package:restore",
+		"publish-package": "run-s clean build test bundle:clean-package && pnpm publish ./packages/$BUILD --tag next && pnpm bundle:clean-package:restore",
 		"serve": "pnpm --dir ./website start",
 		"publish-website": "cross-env GIT_USER=roydukkey USE_SSH=true pnpm --dir ./website publish-website"
 	},
 	"jest": {
 		"testEnvironment": "jest-environment-node-single-context",
 		"testMatch": [
-			"**/__tests__/**/*.?(c)[jt]s?(x)",
 			"**/?(*.)+(spec|test).?(c)[tj]s?(x)"
 		],
 		"verbose": true,
