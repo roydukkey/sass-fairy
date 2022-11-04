@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/url",
 	"description": "Provides Sass functions for working with URL data, encoding, and inline SVGs",
-	"version": "2.0.0-alpha.0",
+	"version": "2.0.0-alpha.1",
 	"keywords": [
 		"url",
 		"encode",
@@ -16,9 +16,9 @@
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/exception": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/list": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/string": "workspace:^2.0.0-alpha.0"
+		"@sass-fairy/exception": "workspace:^2.0.0-alpha.1",
+		"@sass-fairy/list": "workspace:^2.0.0-alpha.1",
+		"@sass-fairy/string": "workspace:^2.0.0-alpha.1"
 	},
 	"peerDependencies": {
 		"sass": "^1.52.0"

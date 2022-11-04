@@ -6,17 +6,17 @@
 	],
 	"name": "@sass-fairy/map",
 	"description": "Provides extended functionality for processing key/value pairs in Sass maps",
-	"version": "2.0.0-alpha.0",
+	"version": "2.0.0-alpha.1",
 	"keywords": [
 		"map"
 	],
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/core": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/exception": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/list": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/meta": "workspace:^2.0.0-alpha.0"
+		"@sass-fairy/core": "workspace:^2.0.0-alpha.1",
+		"@sass-fairy/exception": "workspace:^2.0.0-alpha.1",
+		"@sass-fairy/list": "workspace:^2.0.0-alpha.1",
+		"@sass-fairy/meta": "workspace:^2.0.0-alpha.1"
 	},
 	"peerDependencies": {
 		"sass": "^1.52.0"

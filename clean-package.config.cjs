@@ -46,7 +46,7 @@ module.exports = {
 		repository,
 		homepage: homepage.replace('#readme', `/tree/${branch}/${repository.directory}$&`),
 		bugs,
-		keywords: [...parentKeywords, ...keywords],
+		keywords: [...parentKeywords, ...keywords ?? []],
 		...packageJson,
 		dependencies,
 		peerDependencies,

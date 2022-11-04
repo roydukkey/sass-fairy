@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/list",
 	"description": "Provides extended functionality for accessing and modifying lists in Sass, with interfaces similar to ECMA specifications",
-	"version": "2.0.0-alpha.0",
+	"version": "2.0.0-alpha.1",
 	"keywords": [
 		"list",
 		"array",
@@ -15,10 +15,10 @@
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/core": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/exception": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/math": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/meta": "workspace:^2.0.0-alpha.0"
+		"@sass-fairy/core": "workspace:^2.0.0-alpha.1",
+		"@sass-fairy/exception": "workspace:^2.0.0-alpha.1",
+		"@sass-fairy/math": "workspace:^2.0.0-alpha.1",
+		"@sass-fairy/meta": "workspace:^2.0.0-alpha.1"
 	},
 	"peerDependencies": {
 		"sass": "^1.52.0"

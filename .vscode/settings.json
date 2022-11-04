@@ -6,6 +6,7 @@
 		"**/node_modules": true,
 		".jest": true,
 		"package-lock.json": true,
+		"pnpm-lock.yaml": true,
 		"yarn.lock": true
 	}
 }

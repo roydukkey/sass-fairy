@@ -6,14 +6,14 @@
 	],
 	"name": "@sass-fairy/meta",
 	"description": "Provides extended functionality for handling Sass’s inner workings",
-	"version": "2.0.0-alpha.0",
+	"version": "2.0.0-alpha.1",
 	"keywords": [
 		"meta"
 	],
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/exception": "workspace:^2.0.0-alpha.0"
+		"@sass-fairy/exception": "workspace:^2.0.0-alpha.1"
 	},
 	"peerDependencies": {
 		"sass": "^1.52.0"
