@@ -77,7 +77,7 @@ export default function ({ highlightLines, highlightKeywords, isolateDefinition,
 				}
 
 				lines = abstractedLines;
-				children = lines.join('\n');
+				textChild = lines.join('\n');
 			}
 		}
 
@@ -125,6 +125,7 @@ export default function ({ highlightLines, highlightKeywords, isolateDefinition,
 			}
 		}
 
+		children = textChild;
 	}
 
 	if (highlightLines) {
