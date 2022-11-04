@@ -4,11 +4,11 @@
 	"private": true,
 	"dependencies": {
 		"@algolia/client-search": "^4.14.2",
-		"@docusaurus/core": "2.1.0",
-		"@docusaurus/plugin-content-docs": "^2.1.0",
-		"@docusaurus/plugin-google-gtag": "2.1.0",
-		"@docusaurus/preset-classic": "2.1.0",
-		"@docusaurus/theme-common": "^2.1.0",
+		"@docusaurus/core": "2.2.0",
+		"@docusaurus/plugin-content-docs": "2.2.0",
+		"@docusaurus/plugin-google-gtag": "2.2.0",
+		"@docusaurus/preset-classic": "2.2.0",
+		"@docusaurus/theme-common": "^2.2.0",
 		"@mdx-js/react": "^1.6.22",
 		"@sass-fairy/break": "workspace:^2.0.0-alpha.1",
 		"@sass-fairy/color": "workspace:^2.0.0-alpha.1",
@@ -38,7 +38,7 @@
 		"webpack": "^5.70.0"
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "2.1.0",
+		"@docusaurus/module-type-aliases": "2.2.0",
 		"@tsconfig/docusaurus": "^1.0.6",
 		"@types/react": "^18.0.23"
 	},
