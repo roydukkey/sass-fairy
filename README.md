@@ -42,34 +42,34 @@ This set of modules are other concepts and utilities which can be used to aid in
 ## Dependency Graph
 
 ```mermaid
-graph TD
-  COLOR[color] --> BREAK[break]
-  EXCEPTION[exception] --> COLOR & BREAK & URL & STRING & LIST & MATH & META & MAP
-  LIST[list] --> URL & BREAK & STRING & MAP
-  MAP[map] --> BREAK
-  MATH[math] --> LIST
-  META[meta] --> LIST & MAP
-  STRING[string] --> URL & BREAK
-  URL[url] --> BREAK
-  CORE[core] -.-> EXCEPTION & META & LIST & STRING & MAP
+graph TD;
+  COLOR[color] --> BREAK[break];
+  EXCEPTION[exception] --> COLOR & BREAK & URL & STRING & LIST & MATH & META & MAP;
+  LIST[list] --> URL & BREAK & STRING & MAP;
+  MAP[map] --> BREAK;
+  MATH[math] --> LIST;
+  META[meta] --> LIST & MAP;
+  STRING[string] --> URL & BREAK;
+  URL[url] --> BREAK;
+  CORE[core] -.-> EXCEPTION & META & LIST & STRING & MAP;
 
-  style EXCEPTION color:#6574cd,stroke:#6574cd
+  style EXCEPTION color:#6574cd,stroke:#6574cd,fill:#6574cd33
   linkStyle 1,2,3,4,5,6,7,8 stroke:#6574cd
-  style BREAK color:#3490dc,stroke:#3490dc
-  style COLOR color:#e3342f,stroke:#e3342f
-  linkStyle 0 color:#e3342f,stroke:#e3342f
-  style LIST color:#38c172,stroke:#38c172
+  style BREAK color:#3490dc,stroke:#3490dc,fill:#3490dc3;
+  style COLOR color:#e3342f,stroke:#e3342f,fill:#e3342f33
+  linkStyle 0 stroke:#e3342f
+  style LIST color:#38c172,stroke:#38c172,fill:#38c17233
   linkStyle 9,10,11,12 stroke:#38c172
-  style MAP color:#9561e2,stroke:#9561e2
+  style MAP color:#9561e2,stroke:#9561e2,fill:#9561e233
   linkStyle 13 stroke:#9561e2
-  style MATH color:#b6a722,stroke:#b6a722
+  style MATH color:#b6a722,stroke:#b6a722,fill:#b6a72233
   linkStyle 14 stroke:#b6a722
-  style META color:#f6993f,stroke:#f6993f
+  style META color:#f6993f,stroke:#f6993f,fill:#f6993f33
   linkStyle 15,16 stroke:#f6993f
-  style STRING color:#f66d9b,stroke:#f66d9b
+  style STRING color:#f66d9b,stroke:#f66d9b,fill:#f66d9b33
   linkStyle 17,18 stroke:#f66d9b
-  style URL color:#4dc0b5,stroke:#4dc0b5
+  style URL color:#4dc0b5,stroke:#4dc0b5,fill:#4dc0b533
   linkStyle 19 stroke:#4dc0b5
-  style CORE color:lightgrey,stroke:lightgrey
-  linkStyle 20,21,22 stroke:lightgrey
+  style CORE color:#d3d3d3,stroke:#d3d3d3,fill:#d3d3d333
+  linkStyle 20,21,22 stroke:#d3d3d3
 ```
