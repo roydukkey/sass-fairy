@@ -43,30 +43,33 @@ This set of modules are other concepts and utilities which can be used to aid in
 
 ```mermaid
 graph TD
-  color --> break
-  exception --> break & color & map & list & math & meta & string & url
-  list --> break & map & url & string
-  map --> break
-  math --> list
-  meta --> list & map
-  string --> break & url
-  url --> break
+  COLOR[color] --> BREAK[break]
+  EXCEPTION[exception] --> COLOR & BREAK & URL & STRING & LIST & MATH & META & MAP
+  LIST[list] --> URL & BREAK & STRING & MAP
+  MAP[map] --> BREAK
+  MATH[math] --> LIST
+  META[meta] --> LIST & MAP
+  STRING[string] --> URL & BREAK
+  URL[url] --> BREAK
+  CORE[core] -.-> EXCEPTION & META & LIST & STRING & MAP
 
-  style exception color:#6574cd,stroke:#6574cd
+  style EXCEPTION color:#6574cd,stroke:#6574cd
   linkStyle 1,2,3,4,5,6,7,8 stroke:#6574cd
-  style break color:#3490dc,stroke:#3490dc
-  style color color:#e3342f,stroke:#e3342f
+  style BREAK color:#3490dc,stroke:#3490dc
+  style COLOR color:#e3342f,stroke:#e3342f
   linkStyle 0 color:#e3342f,stroke:#e3342f
-  style list color:#38c172,stroke:#38c172
+  style LIST color:#38c172,stroke:#38c172
   linkStyle 9,10,11,12 stroke:#38c172
-  style map color:#9561e2,stroke:#9561e2
+  style MAP color:#9561e2,stroke:#9561e2
   linkStyle 13 stroke:#9561e2
-  style math color:#b6a722,stroke:#b6a722
+  style MATH color:#b6a722,stroke:#b6a722
   linkStyle 14 stroke:#b6a722
-  style meta color:#f6993f,stroke:#f6993f
+  style META color:#f6993f,stroke:#f6993f
   linkStyle 15,16 stroke:#f6993f
-  style string color:#f66d9b,stroke:#f66d9b
+  style STRING color:#f66d9b,stroke:#f66d9b
   linkStyle 17,18 stroke:#f66d9b
-  style url color:#4dc0b5,stroke:#4dc0b5
+  style URL color:#4dc0b5,stroke:#4dc0b5
   linkStyle 19 stroke:#4dc0b5
+  style CORE color:lightgrey,stroke:lightgrey
+  linkStyle 20,21,22 stroke:lightgrey
 ```

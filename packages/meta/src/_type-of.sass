@@ -4,7 +4,6 @@
 @use 'sass:list'
 @use 'sass:meta'
 @use 'sass:string'
-@use '@sass-fairy/exception/src/core/is-quoted'
 
 
 $_accepted-regex-flags: 'dgimuy' // cSpell:disable-line
@@ -17,7 +16,7 @@ $_accepted-regex-flags: 'dgimuy' // cSpell:disable-line
 		@if $length >= 2 and $length <= 3
 			$key: list.nth($value, 1)
 
-			@if not is-quoted.is-quoted($key)
+			@if meta.type-of($key) == 'string' and not fairy-internal_core_is-quoted($key)
 				$flags: null
 				$pattern: null
 
@@ -32,10 +31,10 @@ $_accepted-regex-flags: 'dgimuy' // cSpell:disable-line
 						$flags: list.nth($value, 2)
 						$pattern: list.nth($value, 3)
 
-				@if meta.type-of($pattern) == 'string' and is-quoted.is-quoted($pattern)
+				@if meta.type-of($pattern) == 'string' and fairy-internal_core_is-quoted($pattern)
 					$index: 0
 
-					@if meta.type-of($flags) == 'string' and not is-quoted.is-quoted($flags)
+					@if meta.type-of($flags) == 'string' and not fairy-internal_core_is-quoted($flags)
 						$validated-flags: ''
 						$index: string.length($flags)
 

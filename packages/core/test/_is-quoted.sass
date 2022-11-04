@@ -1,0 +1,15 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'true'
+
+
+@include true.describe('@function fairy-internal_core_is-quoted')
+
+	@include true.it('Does indicate string is quoted')
+		$assert: fairy-internal_core_is-quoted('"Helvetica Neue", helvetica, sans-serif')
+		@include true.assert-true($assert)
+
+	@include true.it('Does not indicate string is quoted')
+		$assert: fairy-internal_core_is-quoted(bold)
+		@include true.assert-false($assert)

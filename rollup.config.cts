@@ -10,15 +10,19 @@ import { author, name } from './package.json';
 import { buildName, buildNames, buildRelativePath } from './utils/build.js';
 
 
-const { version } = require(buildRelativePath('package.json')) as PackageJson;
+const { version, main } = require(buildRelativePath('package.json')) as PackageJson;
+
+if (!main) {
+	throw new Error(`'package.json' for ${buildName} is missing "main" property.`);
+}
 
 
 const config: RollupOptions = {
 	input: buildRelativePath('src', 'index.ts'),
 	output: {
-		file: buildRelativePath('dist', 'functions.js'),
+		file: buildRelativePath(main),
 		format: 'commonjs',
-		exports: 'default'
+		exports: 'auto'
 	},
 	external: [
 		'sass',

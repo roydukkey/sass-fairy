@@ -2,14 +2,14 @@
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
 @use 'sass:meta'
-@use '@sass-fairy/exception/src/core/join' as core
+@use '@sass-fairy/core/src/join' as core
 @use '@sass-fairy/list' as src
 @use 'true'
 
 
 @include true.describe('@function list.join')
 
-	@include true.it('Provides the same function as received from `sass-exception`')
+	@include true.it('Provides the same function as received from `core`')
 		$assert: meta.get-function('join', $module: 'core')
 		$expected: meta.get-function('join', $module: 'src')
 		@include true.assert-equal($assert, $expected)

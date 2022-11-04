@@ -3,13 +3,13 @@
 
 import { OrderedMap } from 'immutable';
 import type { PackageJson } from 'type-fest';
-import { version } from '../../package.json';
 import { SassMap, SassString } from 'sass';
 
 
 const packages = [
 	['break', '@sass-fairy/break/package.json'],
 	['color', '@sass-fairy/color/package.json'],
+	['exception', '@sass-fairy/exception/package.json'],
 	['list', '@sass-fairy/list/package.json'],
 	['map', '@sass-fairy/map/package.json'],
 	['math', '@sass-fairy/math/package.json'],
@@ -32,9 +32,7 @@ const addPackage = (name: string, version: string): [SassString, SassString] => 
 
 
 export default (): SassMap => {
-	const map: [SassString, SassString][] = [
-		addPackage('exception', version)
-	];
+	const map: [SassString, SassString][] = [];
 
 	for (const [name, path] of packages) {
 		try {

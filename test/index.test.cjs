@@ -16,10 +16,12 @@ const sassConfig = {
 		'node_modules'
 	],
 	functions: {
-		...buildNames.reduce((accumulator, name) => ({
-			...accumulator,
-			...require(`../packages/${name}`)
-		}), {})
+		...buildNames
+			.filter((name) => !['core'].includes(name))
+			.reduce((accumulator, name) => ({
+				...accumulator,
+				...require(`../packages/${name}`)
+			}), {})
 	}
 };
 const backupSlug = '.testing-backup';

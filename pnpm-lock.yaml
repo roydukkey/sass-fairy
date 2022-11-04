@@ -8,6 +8,7 @@ importers:
       '@roydukkey/eslint-config': ^2.0.4
       '@sass-fairy/break': workspace:*
       '@sass-fairy/color': workspace:*
+      '@sass-fairy/core': workspace:*
       '@sass-fairy/exception': workspace:*
       '@sass-fairy/list': workspace:*
       '@sass-fairy/map': workspace:*
@@ -41,6 +42,7 @@ importers:
     optionalDependencies:
       '@sass-fairy/break': link:packages/break
       '@sass-fairy/color': link:packages/color
+      '@sass-fairy/core': link:packages/core
       '@sass-fairy/exception': link:packages/exception
       '@sass-fairy/list': link:packages/list
       '@sass-fairy/map': link:packages/map
@@ -83,7 +85,6 @@ importers:
       '@sass-fairy/map': workspace:^2.0.0-alpha.0
       '@sass-fairy/string': workspace:^2.0.0-alpha.0
       '@sass-fairy/url': workspace:^2.0.0-alpha.0
-      sass: ^1.52.0
     dependencies:
       '@sass-fairy/color': link:../color
       '@sass-fairy/exception': link:../exception
@@ -91,80 +92,77 @@ importers:
       '@sass-fairy/map': link:../map
       '@sass-fairy/string': link:../string
       '@sass-fairy/url': link:../url
-      sass: 1.55.0
 
   packages/color:
     specifiers:
       '@sass-fairy/exception': workspace:^2.0.0-alpha.0
-      sass: ^1.52.0
     dependencies:
       '@sass-fairy/exception': link:../exception
-      sass: 1.55.0
+
+  packages/core:
+    specifiers: {}
 
   packages/exception:
-    specifiers: {}
+    specifiers:
+      '@sass-fairy/core': workspace:^2.0.0-alpha.0
+    dependencies:
+      '@sass-fairy/core': link:../core
 
   packages/list:
     specifiers:
+      '@sass-fairy/core': workspace:^2.0.0-alpha.0
       '@sass-fairy/exception': workspace:^2.0.0-alpha.0
       '@sass-fairy/math': workspace:^2.0.0-alpha.0
       '@sass-fairy/meta': workspace:^2.0.0-alpha.0
-      sass: ^1.52.0
     dependencies:
+      '@sass-fairy/core': link:../core
       '@sass-fairy/exception': link:../exception
       '@sass-fairy/math': link:../math
       '@sass-fairy/meta': link:../meta
-      sass: 1.55.0
 
   packages/map:
     specifiers:
+      '@sass-fairy/core': workspace:^2.0.0-alpha.0
       '@sass-fairy/exception': workspace:^2.0.0-alpha.0
       '@sass-fairy/list': workspace:^2.0.0-alpha.0
       '@sass-fairy/meta': workspace:^2.0.0-alpha.0
-      sass: ^1.52.0
     dependencies:
+      '@sass-fairy/core': link:../core
       '@sass-fairy/exception': link:../exception
       '@sass-fairy/list': link:../list
       '@sass-fairy/meta': link:../meta
-      sass: 1.55.0
 
   packages/math:
     specifiers:
       '@sass-fairy/exception': workspace:^2.0.0-alpha.0
-      sass: ^1.52.0
     dependencies:
       '@sass-fairy/exception': link:../exception
-      sass: 1.55.0
 
   packages/meta:
     specifiers:
       '@sass-fairy/exception': workspace:^2.0.0-alpha.0
-      sass: ^1.52.0
     dependencies:
       '@sass-fairy/exception': link:../exception
-      sass: 1.55.0
 
   packages/string:
     specifiers:
+      '@sass-fairy/core': workspace:^2.0.0-alpha.0
       '@sass-fairy/exception': workspace:^2.0.0-alpha.0
       '@sass-fairy/list': workspace:^2.0.0-alpha.0
-      sass: ^1.52.0
     dependencies:
+      '@sass-fairy/core': link:../core
       '@sass-fairy/exception': link:../exception
       '@sass-fairy/list': link:../list
-      sass: 1.55.0
 
   packages/url:
     specifiers:
       '@sass-fairy/exception': workspace:^2.0.0-alpha.0
       '@sass-fairy/list': workspace:^2.0.0-alpha.0
       '@sass-fairy/string': workspace:^2.0.0-alpha.0
-      sass: ^1.52.0
     dependencies:
       '@sass-fairy/exception': link:../exception
       '@sass-fairy/list': link:../list
       '@sass-fairy/string': link:../string
-      sass: 1.55.0
 
   website:
     specifiers:

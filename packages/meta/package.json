@@ -13,7 +13,9 @@
 	"main": "./dist/functions.js",
 	"types": "./dist/types.d.ts",
 	"dependencies": {
-		"@sass-fairy/exception": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/exception": "workspace:^2.0.0-alpha.0"
+	},
+	"peerDependencies": {
 		"sass": "^1.52.0"
 	},
 	"publishConfig": {

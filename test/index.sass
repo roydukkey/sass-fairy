@@ -4,32 +4,14 @@
 @use 'true' with ($catch-errors: true)
 
 
+// Modules are tested in order of their dependency hierarchy
+@use '@sass-fairy/core/test' as core
 @use '@sass-fairy/exception/test' as exception
-// Requires 'exception'
 @use '@sass-fairy/color/test' as color
-// Requires 'exception'
 @use '@sass-fairy/math/test' as math
-// Requires 'exception'
 @use '@sass-fairy/meta/test' as meta
-// Requires 'exception'
-// Requires 'math'
-// Requires 'meta'
 @use '@sass-fairy/list/test' as list
-// Requires 'exception'
-// Requires 'list'
-// Requires 'meta'
 @use '@sass-fairy/map/test' as map
-// Requires 'exception'
-// Requires 'list'
 @use '@sass-fairy/string/test' as string
-// Requires 'exception'
-// Requires 'list'
-// Requires 'string'
 @use '@sass-fairy/url/test' as url
-// Requires 'color'
-// Requires 'exception'
-// Requires 'list'
-// Requires 'map'
-// Requires 'string'
-// Requires 'url'
 @use '@sass-fairy/break/test' as break

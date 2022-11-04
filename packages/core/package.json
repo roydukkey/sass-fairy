@@ -1,0 +1,57 @@
+{
+	"//": [
+		"Several properties of this file will be derived from the project's root ",
+		"package.json while packing. This is done to avoid duplication and to ",
+		"help maintain symmetry between packages."
+	],
+	"name": "@sass-fairy/core",
+	"description": "",
+	"version": "2.0.0-alpha.0",
+	"main": "./dist/index.js",
+	"types": "./dist/types.d.ts",
+	"peerDependencies": {
+		"@sass-fairy/break": "workspace:>=2.0.0-alpha.0",
+		"@sass-fairy/color": "workspace:>=2.0.0-alpha.0",
+		"@sass-fairy/exception": "workspace:>=2.0.0-alpha.0",
+		"@sass-fairy/list": "workspace:>=2.0.0-alpha.0",
+		"@sass-fairy/map": "workspace:>=2.0.0-alpha.0",
+		"@sass-fairy/math": "workspace:>=2.0.0-alpha.0",
+		"@sass-fairy/meta": "workspace:>=2.0.0-alpha.0",
+		"@sass-fairy/string": "workspace:>=2.0.0-alpha.0",
+		"@sass-fairy/url": "workspace:>=2.0.0-alpha.0",
+		"immutable": "^4.0.0",
+		"sass": "^1.52.0"
+	},
+	"peerDependenciesMeta": {
+		"@sass-fairy/break": {
+			"optional": true
+		},
+		"@sass-fairy/color": {
+			"optional": true
+		},
+		"@sass-fairy/exception": {
+			"optional": true
+		},
+		"@sass-fairy/list": {
+			"optional": true
+		},
+		"@sass-fairy/map": {
+			"optional": true
+		},
+		"@sass-fairy/math": {
+			"optional": true
+		},
+		"@sass-fairy/meta": {
+			"optional": true
+		},
+		"@sass-fairy/string": {
+			"optional": true
+		},
+		"@sass-fairy/url": {
+			"optional": true
+		}
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

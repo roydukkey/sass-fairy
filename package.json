@@ -57,9 +57,10 @@
 		"typescript": "~4.7.4"
 	},
 	"optionalDependencies": {
-		"@sass-fairy/exception": "workspace:*",
 		"@sass-fairy/break": "workspace:*",
 		"@sass-fairy/color": "workspace:*",
+		"@sass-fairy/core": "workspace:*",
+		"@sass-fairy/exception": "workspace:*",
 		"@sass-fairy/list": "workspace:*",
 		"@sass-fairy/map": "workspace:*",
 		"@sass-fairy/math": "workspace:*",
@@ -83,8 +84,9 @@
 		"lint:website": "pnpm --dir ./website lint",
 		"test": "run-s lint:spelling lint:src test:jest",
 		"test:jest": "jest",
-		"build": "run-s build:exception build:color build:math build:meta build:list build:map build:string build:url build:break",
+		"build": "run-s build:core build:exception build:color build:math build:meta build:list build:map build:string build:url build:break",
 		"build:break": "cross-env BUILD=break pnpm bundle:rollup",
+		"build:core": "cross-env BUILD=core pnpm bundle:rollup",
 		"build:color": "cross-env BUILD=color pnpm bundle:rollup",
 		"build:exception": "cross-env BUILD=exception pnpm bundle:rollup",
 		"build:list": "cross-env BUILD=list pnpm bundle:rollup",

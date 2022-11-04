@@ -1,16 +1,14 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
-@use 'sass:meta'
-@use '@sass-fairy/exception/src/core/is-quoted' as core
-@use '@sass-fairy/string' as src
+@use '@sass-fairy/string/src/is-quoted' as src
 @use 'true'
 
 
 @include true.describe('@function string.is-quoted')
 
-	@include true.it('Provides the same function as received from `sass-exception`')
-		$assert: meta.get-function('is-quoted', $module: 'core')
-		$expected: meta.get-function('is-quoted', $module: 'src')
+	@include true.it('Throws when $string is not a string')
+		$assert: src.is-quoted(12345)
+		$expected: 'ERROR: $string: `12345` is not a string for `is-quoted()`.'
 		@include true.assert-equal($assert, $expected)
 

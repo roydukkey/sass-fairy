@@ -1,9 +1,21 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+@use 'sass:meta'
+@use '@sass-fairy/exception/src/parameter-type'
+
 
 ///
-/// Abstracted to `@sass-fairy/exception` to avoid circular dependency.
-/// @see @link https://github.com/roydukkey/sass-fairy/tree/master/packages/exception/src/core/_is-quoted.sass
+/// @remarks This function is exposed by `@sass-fairy/string`, but has been abstracted to this package to avoid circular dependency.
+/// @see @link https://github.com/roydukkey/sass-fairy/tree/master/packages/string
 ///
-@forward '@sass-fairy/exception/src/core/is-quoted' show is-quoted
+/// @throw `#{$string}` is not a string.
+///
+/// @see https://github.com/sass/sass/issues/1291
+///
+@function is-quoted($string)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('is-quoted', 'string', $string, 'string')
+
+	@return fairy-internal_core_is-quoted($string)

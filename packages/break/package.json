@@ -21,7 +21,9 @@
 		"@sass-fairy/list": "workspace:^2.0.0-alpha.0",
 		"@sass-fairy/map": "workspace:^2.0.0-alpha.0",
 		"@sass-fairy/string": "workspace:^2.0.0-alpha.0",
-		"@sass-fairy/url": "workspace:^2.0.0-alpha.0",
+		"@sass-fairy/url": "workspace:^2.0.0-alpha.0"
+	},
+	"peerDependencies": {
 		"sass": "^1.52.0"
 	},
 	"publishConfig": {
