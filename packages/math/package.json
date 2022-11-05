@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/math",
 	"description": "Provides extended functionality for working with numbers in Sass",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"keywords": [
 		"math"
 	],
