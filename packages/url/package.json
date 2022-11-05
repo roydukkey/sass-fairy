@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/url",
 	"description": "Provides Sass functions for working with URL data, encoding, and inline SVGs",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"keywords": [
 		"url",
 		"encode",
