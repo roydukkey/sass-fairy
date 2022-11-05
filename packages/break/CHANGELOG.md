@@ -5,6 +5,7 @@
 
 ## UNRELEASED
 
+* Remove encode implementation in `annotate()`
 * Update deprecated example in README
 
 ## v1.1.1
