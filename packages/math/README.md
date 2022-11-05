@@ -30,12 +30,10 @@ Depending on your setup, you may need to configure `node_modules` as include pat
 ```js
 const sass = require('sass');
 
-sass.render({
-  file: scss_filename,
-  includePaths: ['node_modules']
+sass.compile(filePath, {
+  loadPaths: ['node_modules']
 });
 ```
-
 
 ## Documentation
 
