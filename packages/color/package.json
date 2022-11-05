@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/color",
 	"description": "Provides extended functionality for generating new colors from existing colors and building color themes in Sass",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"keywords": [
 		"color",
 		"a11y",
