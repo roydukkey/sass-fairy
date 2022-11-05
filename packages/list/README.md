@@ -31,15 +31,13 @@ Configure Sass options to use the functions provided by this package:
 const sass = require('sass');
 const ListFunctions = require('@sass-fairy/list');
 
-sass.render({
-  file: scss_filename,
-  includePaths: ['node_modules'],
+sass.compile(filePath, {
+  loadPaths: ['node_modules'],
   functions: {
     ...ListFunctions
   }
 });
 ```
-
 
 ## Documentation
 

@@ -35,7 +35,7 @@ First and foremost, each Sass Fairy v2 package now exports a JavaScript API. The
 Simply update your Sass compiler to include them:
 
 ```js
-sass.render({
+sass.compile(filePath, {
   // ...
   functions: {
     ...require('@sass-fairy/list'),

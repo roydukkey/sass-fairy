@@ -23,8 +23,7 @@ However, if Sass can't find the module, your compiler will need to be configured
 ```js
 const sass = require('sass');
 
-sass.render({
-  file: scss_filename,
-  includePaths: ['node_modules']
+sass.compile(filePath, {
+  loadPaths: ['node_modules']
 });
 ```

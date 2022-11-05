@@ -31,15 +31,13 @@ Configure Sass options to use the functions provided by this package:
 const sass = require('sass');
 const MapFunctions = require('@sass-fairy/map');
 
-sass.render({
-  file: scss_filename,
-  includePaths: ['node_modules'],
+sass.compile(filePath, {
+  loadPaths: ['node_modules'],
   functions: {
     ...MapFunctions
   }
 });
 ```
-
 
 ## Documentation
 
