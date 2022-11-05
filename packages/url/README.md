@@ -35,7 +35,6 @@ sass.compile(filePath, {
 });
 ```
 
-
 ## Documentation
 
 See [sass-fairy.com/api/url](http://sass-fairy.com/api/url) for more information about this package.

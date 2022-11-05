@@ -5,6 +5,7 @@
 
 ## UNRELEASED
 
+* Update deprecated example in README
 * Restructure and improve development underpinnings
 
 ## 1.2.0
