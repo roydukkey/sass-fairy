@@ -6,7 +6,7 @@
 	],
 	"name": "@sass-fairy/meta",
 	"description": "Provides extended functionality for handling Sass’s inner workings",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"keywords": [
 		"meta"
 	],
