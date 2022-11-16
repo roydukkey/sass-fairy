@@ -12,33 +12,33 @@
 
 	@include true.it('Does end with substring')
 		$assert: src.ends-with($string, 'efg')
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does end with substring at a positive (+) index')
 		$assert: src.ends-with($string, 'bcd', 4)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 		$assert: src.ends-with($string, 'bcd', 11)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does end with substring at a negative (-) index')
 		$assert: src.ends-with($string, 'bcd', -11)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 		$assert: src.ends-with($string, 'bcd', -4)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does not end with substring')
 		$assert: src.ends-with($string, 'abc')
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Does not end with substring at a positive (+) index')
 		$assert: src.ends-with($string, 'bcd', 3)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Does not end with substring at a negative (-) index')
 		$assert: src.ends-with($string, 'bcd', -3)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Throws when $string is not a string')
 		$assert: src.ends-with(12345, 'a')

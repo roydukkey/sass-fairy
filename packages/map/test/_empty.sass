@@ -12,7 +12,7 @@
 	@include true.it('Creates an empty map')
 		$result: src.empty()
 		$assert: meta.type-of($result) == 'map'
-		@include true.assert-true($assert, '[type-of]')
+		@include true.assert-equal($assert, true, '[type-of]')
 
 		$assert: list.length($result) == 0
-		@include true.assert-true($assert, '[length]')
+		@include true.assert-equal($assert, true, '[length]')

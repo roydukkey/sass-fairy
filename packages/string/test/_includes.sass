@@ -12,30 +12,30 @@
 
 	@include true.it('Does include substring')
 		$assert: src.includes($string, 'abc')
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does include substring at a positive (+) index')
 		$assert: src.includes($string, 'bcd', 2)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does include substring at a negative (-) index')
 		$assert: src.includes($string, 'bcd', -13)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 		$assert: src.includes($string, 'bcd', -6)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does not include substring')
 		$assert: src.includes($string, 'xyz')
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Does not include substring at a positive (+) index')
 		$assert: src.includes($string, 'bcd', 10)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Does not include substring at a negative (-) index')
 		$assert: src.includes($string, 'bcd', -2)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Throws when $string is not a string')
 		$assert: src.includes(12345, 'a')

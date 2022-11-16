@@ -13,8 +13,8 @@
 
 	@include true.it('Has access to native map.get() as module function')
 		$assert: native-map.has-key($module-functions, 'get')
-		@include true.assert-true($assert, '[get]')
+		@include true.assert-equal($assert, true, '[get]')
 
 	@include true.it("Has access to library's src.empty() as module function")
 		$assert: native-map.has-key($module-functions, 'empty')
-		@include true.assert-true($assert, '[empty]')
+		@include true.assert-equal($assert, true, '[empty]')

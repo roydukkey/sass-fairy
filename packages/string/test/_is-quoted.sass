@@ -9,11 +9,11 @@
 
 	@include true.it('Does indicate string is quoted')
 		$assert: src.is-quoted('"Helvetica Neue", helvetica, sans-serif')
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does not indicate string is quoted')
 		$assert: src.is-quoted(bold)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Throws when $string is not a string')
 		$assert: src.is-quoted(12345)

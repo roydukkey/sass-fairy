@@ -9,29 +9,29 @@
 
 	@include true.it('Indicates the value is invalid')
 		$assert: src.is-separator-invalid('a')
-		@include true.assert-true($assert, '[a]')
+		@include true.assert-equal($assert, true, '[a]')
 
 		$assert: src.is-separator-invalid(100)
-		@include true.assert-true($assert, '[100]')
+		@include true.assert-equal($assert, true, '[100]')
 
 		$assert: src.is-separator-invalid(true)
-		@include true.assert-true($assert, '[true]')
+		@include true.assert-equal($assert, true, '[true]')
 
 		$assert: src.is-separator-invalid(false)
-		@include true.assert-true($assert, '[true]')
+		@include true.assert-equal($assert, true, '[true]')
 
 		$assert: src.is-separator-invalid(null)
-		@include true.assert-true($assert, '[null]')
+		@include true.assert-equal($assert, true, '[null]')
 
 	@include true.it('Indicates the value is valid')
 		$assert: src.is-separator-invalid(space)
-		@include true.assert-false($assert, '[space]')
+		@include true.assert-equal($assert, false, '[space]')
 
 		$assert: src.is-separator-invalid(comma)
-		@include true.assert-false($assert, '[comma]')
+		@include true.assert-equal($assert, false, '[comma]')
 
 		$assert: src.is-separator-invalid('slash')
-		@include true.assert-false($assert, '[slash]')
+		@include true.assert-equal($assert, false, '[slash]')
 
 		$assert: src.is-separator-invalid('auto')
-		@include true.assert-false($assert, '[auto]')
+		@include true.assert-equal($assert, false, '[auto]')
