@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## UNRELEASED
+
+* Fix `.includes()`, `.index()`, and `.last-index()` so no error is thrown when list is empty
+
 ## 1.2.2
 
 * Update deprecated example in README

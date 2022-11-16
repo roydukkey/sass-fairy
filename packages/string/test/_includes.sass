@@ -6,6 +6,11 @@
 
 
 @include true.describe('@function string.includes')
+	$string: ''
+
+	@include true.it('Does not include substring when empty')
+		$assert: src.includes($string, 'abc')
+		@include true.assert-equal($assert, false)
 
 	// cSpell:disable-next-line
 	$string: 'abcdefgabcdefg'

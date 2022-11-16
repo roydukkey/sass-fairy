@@ -7,6 +7,12 @@
 
 
 @include true.describe('@function string.last-index')
+	$string: ''
+
+	@include true.it('Does not get an index when empty')
+		$assert: src.last-index($string, 'd')
+		$expected: 0
+		@include true.assert-equal($assert, $expected)
 
 	// cSpell:disable-next-line
 	$string: 'abcdefgabcdefg'

@@ -6,6 +6,12 @@
 
 
 @include true.describe('@function list.includes')
+	$list: []
+
+	@include true.it('List includes nothing when empty')
+		$assert: src.includes($list, 'duck')
+		@include true.assert-equal($assert, false)
+
 	$list: ['ant', 'bison', 'camel', 'duck', 'elephant']
 
 	@include true.it('List includes a value')
