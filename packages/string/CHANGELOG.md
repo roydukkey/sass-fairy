@@ -3,7 +3,7 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
-## UNRELEASED
+## 1.3.0
 
 * Add [`.repeat()`](https://sass-fairy.com/api/string/repeat)
 
