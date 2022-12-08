@@ -1,0 +1,32 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:math'
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/exception/src/parameter-type'
+@use 'is-quoted'
+
+
+///
+/// @throw `#{$string}` is not a string.
+/// @throw `#{$count}` is not a non-negative number.
+///
+@function repeat($string, $count)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('repeat', 'string', $string, 'string')
+
+	@if meta.type-of($count) != 'number' or $count < 0
+		@error parameter-type.parameter-type('repeat', 'count', $count, 'non-negative number')
+
+	$result: ''
+
+	@if not is-quoted.is-quoted($string)
+		$result: string.unquote($result)
+
+	@if $count > 0
+		@for $_ from 1 through math.floor($count)
+			$result: $result + $string
+
+	@return $result
