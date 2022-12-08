@@ -3,7 +3,7 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
-## UNRELEASED
+## 1.2.4
 
 * Fix `.prepend()` so no error is thrown when list is empty
 
