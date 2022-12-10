@@ -29,25 +29,25 @@
 
 	@include true.it('Predicate matches every item in a list')
 		$assert: src.every(16 32 64 128 256, meta.get-function('_greater-than-ten'))
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Predicate does not match any items in a list')
 		$assert: src.every(2 4 6 8, meta.get-function('_greater-than-ten'))
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Predicate receives the item indexes')
 		$assert: src.every(16 32 64 128 256, meta.get-function('_greater-than-index'))
-		@include true.assert-true($assert, '[16 32 64 128 256]')
+		@include true.assert-equal($assert, true, '[16 32 64 128 256]')
 
 		$assert: src.every(1 1 1 1 1, meta.get-function('_greater-than-index'))
-		@include true.assert-false($assert, '[1 1 1 1 1]')
+		@include true.assert-equal($assert, false, '[1 1 1 1 1]')
 
 	@include true.it('Predicate receives the calling list')
 		$assert: src.every(1 2 1 2 1 2 1 2, meta.get-function('_equals-2n-plus-index'))
-		@include true.assert-true($assert, '[1 2 1 2 1 2 1 2]')
+		@include true.assert-equal($assert, true, '[1 2 1 2 1 2 1 2]')
 
 		$assert: src.every(2 1 1 2 1 2 1 2, meta.get-function('_equals-2n-plus-index'))
-		@include true.assert-false($assert, '[2 1 1 2 1 2 1 2]')
+		@include true.assert-equal($assert, false, '[2 1 1 2 1 2 1 2]')
 
 	@include true.it('Throws when $predicate is not a function')
 		$assert: src.every(null, null)

@@ -20,4 +20,4 @@
 
 	@include true.it("Has access to library's src.call-or-reference() as module function")
 		$assert: map.has-key($combined-functions, 'call-or-reference')
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)

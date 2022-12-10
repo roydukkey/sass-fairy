@@ -9,29 +9,29 @@
 
 	@include true.it('Indicates color is light')
 		$assert: src.is-light(#fff)
-		@include true.assert-true($assert, '[#fff]')
+		@include true.assert-equal($assert, true, '[#fff]')
 
 		$assert: src.is-light(pink)
-		@include true.assert-true($assert, '[pink]')
+		@include true.assert-equal($assert, true, '[pink]')
 
 		$assert: src.is-light(goldenrod)
-		@include true.assert-true($assert, '[goldenrod]')
+		@include true.assert-equal($assert, true, '[goldenrod]')
 
 		$assert: src.is-light(goldenrod)
-		@include true.assert-true($assert, '[greenyellow]')
+		@include true.assert-equal($assert, true, '[greenyellow]')
 
 	@include true.it('Indicates color is not light')
 		$assert: src.is-light(#000)
-		@include true.assert-false($assert, '[#000]')
+		@include true.assert-equal($assert, false, '[#000]')
 
 		$assert: src.is-light(blue)
-		@include true.assert-false($assert, '[blue]')
+		@include true.assert-equal($assert, false, '[blue]')
 
 		$assert: src.is-light(darkgreen)
-		@include true.assert-false($assert, '[darkgreen]')
+		@include true.assert-equal($assert, false, '[darkgreen]')
 
 		$assert: src.is-light(red)
-		@include true.assert-false($assert, '[red]')
+		@include true.assert-equal($assert, false, '[red]')
 
 	@include true.it('Throws when $color is not a color')
 		$assert: src.is-light(boogie)

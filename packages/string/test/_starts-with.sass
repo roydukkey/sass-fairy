@@ -12,30 +12,30 @@
 
 	@include true.it('Does start with substring')
 		$assert: src.starts-with($string, 'abc')
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does start with substring at a positive (+) index')
 		$assert: src.starts-with($string, 'bcd', 2)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does start with substring at a negative (-) index')
 		$assert: src.starts-with($string, 'bcd', -13)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 		$assert: src.starts-with($string, 'bcd', -6)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('Does not start with substring')
 		$assert: src.starts-with($string, 'bcd')
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Does not start with substring at a positive (+) index')
 		$assert: src.starts-with($string, 'bcd', 3)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Does not start with substring at a negative (-) index')
 		$assert: src.starts-with($string, 'bcd', -3)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Throws when $string is not a string')
 		$assert: src.starts-with(12345, 'a')

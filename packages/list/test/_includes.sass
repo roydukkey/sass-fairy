@@ -10,27 +10,27 @@
 
 	@include true.it('List includes a value')
 		$assert: src.includes($list, 'duck')
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('List includes a value from a positive (+) index')
 		$assert: src.includes($list, 'camel', 3)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('List includes a value from a negative (-) index')
 		$assert: src.includes($list, 'camel', -3)
-		@include true.assert-true($assert)
+		@include true.assert-equal($assert, true)
 
 	@include true.it('List does not include a value')
 		$assert: src.includes($list, 'deer')
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('List does not include a value from a positive (+) index')
 		$assert: src.includes($list, 'camel', 4)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('List does not include a value from a negative (-) index')
 		$assert: src.includes($list, 'camel', -2)
-		@include true.assert-false($assert)
+		@include true.assert-equal($assert, false)
 
 	@include true.it('Throws when $start-at is not a number')
 		$assert: src.includes(null, null, null)
