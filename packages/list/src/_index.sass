@@ -12,13 +12,16 @@
 /// @throw Invalid index #{$start-at} for a list with #{length} elements.
 ///
 @function index($list, $value, $start-at: 1)
-	$start-at: validate-index.validate-index('index', 'start-at', $start-at, $list)
+	$length: list.length($list)
 
-	@if meta.type-of($start-at) != 'number'
-		@error $start-at
+	@if $length > 0
+		$start-at: validate-index.validate-index('index', 'start-at', $start-at, $list)
 
-	@for $index from $start-at through list.length($list)
-		@if list.nth($list, $index) == $value
-			@return $index
+		@if meta.type-of($start-at) != 'number'
+			@error $start-at
+
+		@for $index from $start-at through $length
+			@if list.nth($list, $index) == $value
+				@return $index
 
 	@return 0

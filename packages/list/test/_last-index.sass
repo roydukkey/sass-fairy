@@ -8,6 +8,13 @@
 
 
 @include true.describe('@function list.last-index')
+	$list: []
+
+	@include true.it('Return zero when list is empty')
+		$assert: src.last-index($list, 'b')
+		$expected: 0
+		@include true.assert-equal($assert, $expected)
+
 	$list: 'a' true 8 'b' true 2 4 10 'b' false
 
 	@include true.it('Get a last index for an item from a list')

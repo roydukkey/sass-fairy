@@ -7,6 +7,15 @@
 
 Version 2 is still under heavy development and is not yet ready for use in production. Changelog will resume with beta releases.
 
+## UNRELEASED
+
+* Fix `.includes()`, `.index()`, and `.last-index()` so no error is thrown when list is empty
+
+## 1.2.2
+
+* Update deprecated example in README
+* Restructure and improve development underpinnings
+
 ## 1.2.1
 
 * Fix co-oping configuration from ArgLists for `.empty()`

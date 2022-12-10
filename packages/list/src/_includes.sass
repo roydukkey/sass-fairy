@@ -1,6 +1,7 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+@use 'sass:list'
 @use 'sass:meta'
 @use '@sass-fairy/exception/src/validate-index'
 @use 'index'
@@ -12,6 +13,9 @@
 /// @throw Invalid index #{$start-at} for a list with #{length} elements.
 ///
 @function includes($list, $value, $start-at: 1)
+	@if list.length($list) == 0
+		@return false
+
 	$start-at: validate-index.validate-index('includes', 'start-at', $start-at, $list)
 
 	@if meta.type-of($start-at) != 'number'
