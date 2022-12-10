@@ -7,7 +7,7 @@
 
 Version 2 is still under heavy development and is not yet ready for use in production. Changelog will resume with beta releases.
 
-## UNRELEASED
+## 1.2.3
 
 * Fix `.includes()`, `.index()`, and `.last-index()` so no error is thrown when list is empty
 
