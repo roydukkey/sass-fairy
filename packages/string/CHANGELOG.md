@@ -7,6 +7,15 @@
 
 Version 2 is still under heavy development and is not yet ready for use in production. Changelog will resume with beta releases.
 
+## UNRELEASED
+
+* Add [`.repeat()`](https://sass-fairy.com/api/string/repeat)
+
+## 1.2.1
+
+* Update deprecated example in README
+* Restructure and improve development underpinnings
+
 ## 1.2.0
 
 * Add [`.is-quoted()`](https://sass-fairy.com/api/string/is-quoted)
