@@ -16,12 +16,14 @@
 ///
 @function insert-nth($list, $index, $value, $separator)
 	$result: empty.empty($separator, $list: $list)
+	$length: list.length($list)
 
-	@for $n from 1 through list.length($list)
+	@for $n from 1 through if($length, $length, 1)
 
 		@if $n == $index
 			$result: list.append($result, $value)
 
-		$result: list.append($result, list.nth($list, $n))
+		@if $length > 0
+			$result: list.append($result, list.nth($list, $n))
 
 	@return $result

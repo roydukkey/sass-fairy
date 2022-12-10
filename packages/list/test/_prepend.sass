@@ -8,6 +8,12 @@
 
 @include true.describe('@function list.prepend')
 
+	@include true.it('Add an item to the beginning of a empty list')
+		$list: []
+		$assert: src.prepend($list, 'a')
+		$expected: list.append($list, 'a')
+		@include true.assert-equal($assert, $expected)
+
 	@include true.it('Add an item to the beginning of a list')
 		$assert: src.prepend('a' 'b' 'c' 'd', 'e')
 		$expected: 'e' 'a' 'b' 'c' 'd'
