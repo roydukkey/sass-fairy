@@ -7,7 +7,7 @@
 
 Version 2 is still under heavy development and is not yet ready for use in production. Changelog will resume with beta releases.
 
-## UNRELEASED
+## 1.3.0
 
 * Add [`.repeat()`](https://sass-fairy.com/api/string/repeat)
 
