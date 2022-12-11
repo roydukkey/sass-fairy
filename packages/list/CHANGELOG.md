@@ -7,7 +7,7 @@
 
 Version 2 is still under heavy development and is not yet ready for use in production. Changelog will resume with beta releases.
 
-## UNRELEASED
+## 1.2.4
 
 * Fix `.prepend()` so no error is thrown when list is empty
 
