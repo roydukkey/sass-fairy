@@ -1,0 +1,23 @@
+---
+title: repeat ()
+module: string
+sidebar_label: repeat
+sidebar_class_name: function
+hide_table_of_contents: true
+---
+import FieldDetails from '@site/versioned_docs/version-1/api/string/spec/FieldDetails';
+
+<FieldDetails />
+
+```scss
+@use '@sass-fairy/string';
+
+@debug string.repeat('.', 15);
+  // '...............'
+
+@debug string.repeat('ABC', 0);
+  // ''
+
+@debug string.repeat('!', 2.5em);
+  // '!!'
+```

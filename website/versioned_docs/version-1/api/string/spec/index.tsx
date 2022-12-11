@@ -157,6 +157,25 @@ const spec: ModuleSpec = {
 			}
 		},
 
+		repeat: {
+			group: 'main',
+			description: 'Returns a string which contains the specified number of copies of the source string, concatenated together.',
+			parameters: {
+				string: {
+					description: 'The source string to be copied.',
+					type: ['String']
+				},
+				count: {
+					description: 'The number of times to copy the source string.',
+					type: ['Number']
+				}
+			},
+			return: {
+				description: 'A string containing the specified number of copies of the given source string.',
+				type: ['String']
+			}
+		},
+
 		replace: {
 			group: 'main',
 			description: 'Replaces all instances of a specified substring from the source string with a given replacement.',
