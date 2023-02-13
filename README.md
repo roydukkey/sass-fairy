@@ -71,5 +71,5 @@ graph TD;
   style URL color:#4dc0b5,stroke:#4dc0b5,fill:#4dc0b533
   linkStyle 19 stroke:#4dc0b5
   style CORE color:#d3d3d3,stroke:#d3d3d3,fill:#d3d3d333
-  linkStyle 20,21,22 stroke:#d3d3d3
+  linkStyle 20,21,22,23,24 stroke:#d3d3d3
 ```
