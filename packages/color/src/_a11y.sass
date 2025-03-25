@@ -42,7 +42,7 @@
 	@if contrast.contrast($a11y-color, $other-color) >= $size
 		@return $a11y-color
 
-	$lightness: color.lightness($a11y-color)
+	$lightness: color.channel($a11y-color, 'lightness', $space: hsl)
 
 	$is-contrasted-to-black: contrast.contrast(#000, $other-color) >= $size
 	$is-contrasted-to-white: contrast.contrast(#fff, $other-color) >= $size
@@ -70,7 +70,7 @@
 
 	@while $found-color == null
 		$mid-lightness: math.div($min-lightness + $max-lightness, 2)
-		$mid-color: hsl(color.hue($a11y-color), color.saturation($a11y-color), $mid-lightness)
+		$mid-color: hsl(color.channel($a11y-color, 'hue', $space: hsl), color.channel($a11y-color, 'saturation', $space: hsl), $mid-lightness)
 
 		@if contrast.contrast($mid-color, $other-color) >= $size
 			@if	$max-lightness - $min-lightness < math.div(100, 255)
