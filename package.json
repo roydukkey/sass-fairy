@@ -47,6 +47,7 @@
 		"npm": "please-use-yarn",
 		"yarn": ">= 1.22.0"
 	},
+	"packageManager": "yarn@1.22.0",
 	"scripts": {
 		"lint": "yarn lint:spelling",
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
