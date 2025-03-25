@@ -16,7 +16,7 @@
 	@if meta.type-of($color) != 'color'
 		@error parameter-type.parameter-type('luminance', 'color', $color, 'color')
 
-	$color: color.red($color), color.green($color), color.blue($color)
+	$color: color.channel($color, 'red', $space: rgb), color.channel($color, 'green', $space: rgb), color.channel($color, 'blue', $space: rgb)
 
 	@for $i from 1 through 3
 		$channel: math.div(list.nth($color, $i), 255)
