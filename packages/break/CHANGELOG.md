@@ -3,6 +3,11 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## 1.2.0
+
+* ⚠ BREAKING: requires Sass >=1.79.0
+* Update to `@sass-fairy/color@^1.2.0`
+
 ## 1.1.2
 
 * Remove encode implementation in `annotate()`
