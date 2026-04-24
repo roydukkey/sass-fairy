@@ -8,8 +8,6 @@ node_modules
 npm-debug.log
 
 # Build Artifacts
-*.lock.json
-*-lock.json
 *.backup
 *.cache
 *.jest

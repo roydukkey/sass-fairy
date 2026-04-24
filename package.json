@@ -43,20 +43,16 @@
 		"sass": "^1.99.0",
 		"sass-true": "^10.1.0"
 	},
-	"engines": {
-		"npm": "please-use-yarn",
-		"yarn": ">= 1.22.0"
-	},
-	"packageManager": "yarn@1.22.0",
+	"packageManager": "npm@10.9.8",
 	"scripts": {
-		"lint": "yarn lint:spelling",
+		"lint": "npm run lint:spelling",
 		"lint:spelling": "cspell --config './.vscode/cSpell.json' --no-progress '**/{.*/**/,.*/**/.,,.}*'",
-		"pretest": "yarn lint:spelling",
+		"pretest": "npm run lint:spelling",
 		"test": "jest",
 		"bundle:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"bundle:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
-		"package": "yarn bundle:clean-package && yarn workspace @$npm_package_name/$BUILD pack && yarn bundle:clean-package:restore",
-		"publish-package": "run-s test bundle:clean-package && yarn workspace @$npm_package_name/$BUILD publish && yarn bundle:clean-package:restore"
+		"package": "npm run bundle:clean-package && npm run -w ./packages/$BUILD run pack && npm bundle:clean-package:restore",
+		"publish-package": "run-s test bundle:clean-package && npm -w ./packages/$BUILD publish && npm run bundle:clean-package:restore"
 	},
 	"jest": {
 		"testEnvironment": "jest-environment-node-single-context",
