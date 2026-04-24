@@ -58,16 +58,16 @@
 	$h-icon: svg.svg($h-icon)
 	$v-icon: svg.svg($v-icon)
 
-	$use-icon: if($direction == 'horizontal', $h-icon, if($direction == 'vertical', $v-icon, ($h-icon, $v-icon)))
+	$use-icon: if(sass($direction == 'horizontal'): $h-icon; else: if(sass($direction == 'vertical'): $v-icon; else: ($h-icon, $v-icon)))
 
 	&::before
 		position: fixed
-		#{if($isBottom, bottom, top)}: 0
-		#{if($isRight, right, left)}: 0
+		#{if(sass($isBottom): bottom; else: top)}: 0
+		#{if(sass($isRight): right; else: left)}: 0
 		border: 0 solid $foreground
-			#{if($isBottom, top, bottom)}-width: $border-width
-			#{if($isRight, left, right)}-width: $border-width
-			#{if($isBottom, top, bottom)}-#{if($isRight, left, right)}-radius: $border-radius
+			#{if(sass($isBottom): top; else: bottom)}-width: $border-width
+			#{if(sass($isRight): left; else: right)}-width: $border-width
+			#{if(sass($isBottom): top; else: bottom)}-#{if(sass($isRight): left; else: right)}-radius: $border-radius
 		padding:
 			top: box-model.box-model($padding, top)
 			right: box-model.box-model($padding, right)

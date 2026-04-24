@@ -9,5 +9,5 @@
 
 @function variable-type($name, $value, $types...)
 	$keywords: meta.keywords($types)
-	$message: if(map.has-key($keywords, 'message'), map.get($keywords, 'message'), null)
+	$message: if(sass(map.has-key($keywords, 'message')): map.get($keywords, 'message'); else: null)
 	@return variable.variable(invalid-type.invalid-type($types, $value, $message), $name)

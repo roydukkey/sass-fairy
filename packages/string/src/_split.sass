@@ -44,7 +44,7 @@
 			// Return all characters
 			@if string.length($delimiter) == 0
 
-				@for $index from 1 through if($limit == null, $length, math.min($limit, $length))
+				@for $index from 1 through if(sass($limit == null): $length; else: math.min($limit, $length))
 					$list: list.append($list, string.slice($string, $index, $index))
 
 				@return $list

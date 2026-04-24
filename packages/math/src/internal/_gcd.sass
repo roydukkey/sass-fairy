@@ -28,4 +28,4 @@
 	$first-number: math.abs($first-number)
 	$second-number: math.abs($second-number)
 
-	@return if($second-number == 0, $first-number, gcd($second-number, $first-number % $second-number))
+	@return if(sass($second-number == 0): $first-number; else: gcd($second-number, $first-number % $second-number))

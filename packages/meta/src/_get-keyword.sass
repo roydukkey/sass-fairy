@@ -20,4 +20,4 @@
 
 	$args: meta.keywords($args)
 
-	@return if(map.has-key($args, $name), map.get($args, $name), $default)
+	@return if(sass(map.has-key($args, $name)): map.get($args, $name); else: $default)

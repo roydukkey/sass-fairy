@@ -32,5 +32,4 @@
 
 	$string: string.index(string.slice($string, $start-at), $substring)
 
-	@return if($string, $string + math.min($start-at, $length) - 1, 0)
-
+	@return if(sass($string): $string + math.min($start-at, $length) - 1; else: 0)

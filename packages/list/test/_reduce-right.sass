@@ -12,7 +12,7 @@
 
 
 @function _add-then-multiply($accumulator, $item, $index, $list)
-	@return if($index % 2 > 0, $accumulator + $item, $accumulator * $item)
+	@return if(sass($index % 2 > 0): $accumulator + $item; else: $accumulator * $item)
 
 
 @function _call-count($accumulator, $item, $index, $list)

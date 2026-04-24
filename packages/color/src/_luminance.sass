@@ -20,7 +20,7 @@
 
 	@for $i from 1 through 3
 		$channel: math.div(list.nth($color, $i), 255)
-		$channel: if($channel <= 0.03928, math.div($channel, 12.92), math.pow(math.div($channel + 0.055, 1.055), 2.4))
+		$channel: if(sass($channel <= 0.03928): math.div($channel, 12.92); else: math.pow(math.div($channel + 0.055, 1.055), 2.4))
 		$color: list.set-nth($color, $i, $channel)
 
 	@return 0.2126 * list.nth($color, 1) + 0.7152 * list.nth($color, 2) + 0.0722 * list.nth($color, 3)

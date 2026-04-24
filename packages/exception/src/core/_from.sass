@@ -25,7 +25,7 @@
 		$is-bracketed: list.is-bracketed($value)
 		$value: to-string($value, $type)
 
-		@return if($is-bracketed, '[' + $value + ']', '(' + $value + ')')
+		@return if(sass($is-bracketed): '[' + $value + ']'; else: '(' + $value + ')')
 
 	@if $type == 'function'
 		$value: meta.inspect($value)

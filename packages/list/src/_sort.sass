@@ -43,7 +43,7 @@
 
 	@else
 		$item: find.find($list, meta.get-function('_is-number-and-not-unitless'))
-		$center: if($item == null, 0, $item - $item)
+		$center: if(sass($item == null): 0; else: $item - $item)
 
 	@if $length < 2
 		@if meta.type-of($list) == 'map'
@@ -87,7 +87,7 @@
 			$result: list.append($result, $right-value)
 			$right-index: $right-index + 1
 
-	$remainder: if($left-index < $right-index, slice.slice($left, $left-index), slice.slice($right, $right-index))
+	$remainder: if(sass($left-index < $right-index): slice.slice($left, $left-index); else: slice.slice($right, $right-index))
 
 	@return list.join($result, $remainder, $separator)
 

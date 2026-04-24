@@ -26,8 +26,8 @@
 ///
 @function validate-breakpoint($context, $name, $value, $rule, $is-mixin: false, $must-be-name: false)
 	$is-horizontal: ends-with.ends-with($rule, 'width')
-	$sizes: if($is-horizontal, horizontal-sizes.$sizes, vertical-sizes.$sizes)
-	$values: if($is-horizontal, horizontal-sizes.$values, vertical-sizes.$values)
+	$sizes: if(sass($is-horizontal): horizontal-sizes.$sizes; else: vertical-sizes.$sizes)
+	$values: if(sass($is-horizontal): horizontal-sizes.$values; else: vertical-sizes.$values)
 	$size: $value
 	$type: meta.type-of($value)
 
@@ -39,7 +39,7 @@
 		$size: map.get($sizes, $value)
 
 	@else if $must-be-name or $type != 'number'
-		$types: if($must-be-name, 'string', 'string' 'number')
+		$types: if(sass($must-be-name): 'string'; else: 'string' 'number')
 		@return parameter-type.parameter-type($context, $name, $value, $types...)
 
 	$is-max-rule: starts-with.starts-with($rule, 'max')

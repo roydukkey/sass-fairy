@@ -16,7 +16,7 @@
 
 
 @function _greater-than-1n-plus-index($item, $index, $list)
-	$n: if($index == list.length($list), 1, $index + 1)
+	$n: if(sass($index == list.length($list)): 1; else: $index + 1)
 	@return $item > list.nth($list, $n)
 
 

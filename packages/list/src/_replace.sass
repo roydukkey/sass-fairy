@@ -32,4 +32,4 @@
 /// @return {*}
 ///
 @function _replace-transformer($item, $index, $list, $value, $replacement)
-	@return if($item == $value, $replacement, $item)
+	@return if(sass($item == $value): $replacement; else: $item)

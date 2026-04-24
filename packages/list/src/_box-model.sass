@@ -26,4 +26,4 @@
 	@if $length == 1
 		@return $values
 
-	@return map.get((top: list.nth($values, 1), right: list.nth($values, 2), bottom: list.nth($values, if($length > 2, 3, 1)), left: list.nth($values, if($length == 4, 4, 2))), $side)
+	@return map.get((top: list.nth($values, 1), right: list.nth($values, 2), bottom: list.nth($values, if(sass($length > 2): 3; else: 1)), left: list.nth($values, if(sass($length == 4): 4; else: 2))), $side)

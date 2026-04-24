@@ -21,7 +21,7 @@
 	@if $length > 1
 		$types: list.set-nth($types, $length, 'or #{list.nth($types, $length)}')
 
-	$types: join.join($types, if($length > 2, ', ', ' '))
+	$types: join.join($types, if(sass($length > 2): ', '; else: ' '))
 	$message: '`#{meta.inspect($value)}` is not a #{string.unquote($types)}'
 
 	@if $additional-message

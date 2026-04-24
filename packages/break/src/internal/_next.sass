@@ -15,4 +15,4 @@
 ///
 @function next($names, $breakpoint, $rule)
 	$index: list.index($names, $breakpoint)
-	@return if($index < list.length($names), list.nth($names, $index + 1), null)
+	@return if(sass($index < list.length($names)): list.nth($names, $index + 1); else: null)

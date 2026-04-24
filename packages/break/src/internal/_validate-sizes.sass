@@ -41,12 +41,12 @@
 /// @return {Number}
 ///
 @function compare($first-pair, $second-pair, $center)
-	$first-value: if(list.length($first-pair) < 2, null, list.nth($first-pair, 2))
+	$first-value: if(sass(list.length($first-pair) < 2): null; else: list.nth($first-pair, 2))
 
 	@if meta.type-of($first-value) != 'number'
 		@error variable-type.variable-type('sizes', $first-value, 'number', $message: 'Invalid breakpoint value')
 
-	$second-value: if(list.length($second-pair) < 2, null, list.nth($second-pair, 2))
+	$second-value: if(sass(list.length($second-pair) < 2): null; else: list.nth($second-pair, 2))
 
 	@if meta.type-of($second-value) != 'number'
 		@error variable-type.variable-type('sizes', $second-value, 'number', $message: 'Invalid breakpoint value')

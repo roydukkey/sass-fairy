@@ -13,4 +13,4 @@
 @function separator($context: null)
 	$message: 'Must be "space", "comma", "slash", or "auto"'
 	$name: 'separator'
-	@return if($context == null, variable.variable($message, $name), parameter.parameter($message, $context, $name))
+	@return if(sass($context == null): variable.variable($message, $name); else: parameter.parameter($message, $context, $name))

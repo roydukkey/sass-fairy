@@ -12,4 +12,4 @@
 ///
 @function delimiter($list)
 	$separator: list.separator($list)
-	@return if($separator == 'space', ' ', if($separator == 'comma', ', ', ' / '))
+	@return if(sass($separator == 'space'): ' '; else: if(sass($separator == 'comma'): ', '; else: ' / '))

@@ -18,7 +18,7 @@
 	$result: empty.empty($separator, $list: $list)
 	$length: list.length($list)
 
-	@for $n from 1 through if($length, $length, 1)
+	@for $n from 1 through if(sass($length): $length; else: 1)
 
 		@if $n == $index
 			$result: list.append($result, $value)

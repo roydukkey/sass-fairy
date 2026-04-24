@@ -23,7 +23,7 @@
 	@if $is-list and $value == 0
 		@return parameter.parameter('List index may not be 0', $context, $name)
 
-	$length: if($is-list, list.length($list), string.length($list))
+	$length: if(sass($is-list): list.length($list); else: string.length($list))
 	$negative-transform: $value + $length + 1
 
 	@if $value < 1 and ($negative-transform >= 1 and $negative-transform <= $length)
