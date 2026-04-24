@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## 1.2.5
+
+* fix: migrate deprecated Sass `if()` to modern CSS syntax
+
 ## 1.2.4
 
 * Fix `.prepend()` so no error is thrown when list is empty
