@@ -1,10 +1,13 @@
 // Copyright (c) roydukkey. All rights reserved.
 // Licensed under the MIT. See LICENSE file in the project root for full license information.
 
+const { deprecations } = require('sass');
 const { copySync, moveSync } = require('fs-extra');
 const { sync: replaceSync } = require('replace-in-file');
 const { runSass: sassTrue } = require('sass-true');
 
+const fatalDeprecations = Object.keys(deprecations)
+	.filter((id) => !['css-function-mixin', 'mixed-decls', 'type-function'].includes(id));
 
 // Configuration
 const sourcePath = './packages';
@@ -12,7 +15,8 @@ const entry = './test/index.sass';
 const sassConfig = {
 	loadPaths: [
 		'node_modules'
-	]
+	],
+	fatalDeprecations
 };
 const backupSlug = '.testing-backup';
 
