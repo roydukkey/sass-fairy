@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## 1.3.2
+
+* fix: migrate deprecated Sass `if()` to modern CSS syntax
+
 ## 1.3.1
 
 * fix: hide `split` when using combined api
