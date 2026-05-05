@@ -37,4 +37,6 @@ This set of modules are other concepts and utilities which can be used to aid in
 
 ### [@sass-fairy/exception](https://github.com/roydukkey/sass-fairy/tree/master/packages/exception#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/exception.svg)](https://www.npmjs.com/package/@sass-fairy/exception)
 
+### [@sass-fairy/fluid](https://github.com/roydukkey/sass-fairy/tree/master/packages/fluid#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/fluid.svg)](https://www.npmjs.com/package/@sass-fairy/fluid)
+
 ### [@sass-fairy/url](https://github.com/roydukkey/sass-fairy/tree/master/packages/url#readme) [![Release Version](https://img.shields.io/npm/v/@sass-fairy/url.svg)](https://www.npmjs.com/package/@sass-fairy/url)

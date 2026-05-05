@@ -1,0 +1,22 @@
+{
+	"//": [
+		"Several properties of this file will be derived from the project's root ",
+		"package.json while packing. This is done to avoid duplication and to ",
+		"help maintain symmetry between packages."
+	],
+	"name": "@sass-fairy/fluid",
+	"description": "Provides Sass utilities to assist in creating completely native fluid typography scales and singular responsive clamps",
+	"version": "0.0.0",
+	"keywords": [
+		"clamp",
+		"fluid-type",
+		"fluid"
+	],
+	"main": "./index.sass",
+	"dependencies": {
+		"@sass-fairy/exception": "^1.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
