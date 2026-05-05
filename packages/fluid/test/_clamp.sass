@@ -1,0 +1,33 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use '@sass-fairy/fluid' as src
+@use 'true'
+
+
+@include true.describe('@function fluid.clamp')
+
+	@include true.it('Returns a calc using defaults')
+		$assert: '#{src.clamp()}'
+		$expected: 'clamp(var(--a), -1 * var(--c) * tan(atan2(var(--b) - var(--a), 1px)) / tan(atan2(var(--d) - var(--c), 1px)) + var(--a) + tan(atan2(var(--b) - var(--a), 1px)) / tan(atan2(var(--d) - var(--c), 1px)) * 100 * 1cqi, var(--b))'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a calc using vw relative units')
+		$assert: '#{src.clamp('vw')}'
+		$expected: 'clamp(var(--a), -1 * var(--c) * tan(atan2(var(--b) - var(--a), 1px)) / tan(atan2(var(--d) - var(--c), 1px)) + var(--a) + tan(atan2(var(--b) - var(--a), 1px)) / tan(atan2(var(--d) - var(--c), 1px)) * 100 * 1vw, var(--b))'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a calc using vi relative units')
+		$assert: '#{src.clamp('vi')}'
+		$expected: 'clamp(var(--a), -1 * var(--c) * tan(atan2(var(--b) - var(--a), 1px)) / tan(atan2(var(--d) - var(--c), 1px)) + var(--a) + tan(atan2(var(--b) - var(--a), 1px)) / tan(atan2(var(--d) - var(--c), 1px)) * 100 * 1vi, var(--b))'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a calc specifying different custom properties names')
+		$assert: '#{src.clamp($size-min: --w, $size-max: --x, $container-min: --y, $container-max: --z)}'
+		$expected: 'clamp(var(--w), -1 * var(--y) * tan(atan2(var(--x) - var(--w), 1px)) / tan(atan2(var(--z) - var(--y), 1px)) + var(--w) + tan(atan2(var(--x) - var(--w), 1px)) / tan(atan2(var(--z) - var(--y), 1px)) * 100 * 1cqi, var(--x))'
+		@include true.assert-equal($assert, $expected)
+
+	@include true.it('Returns a calc unquoting specified custom properties names')
+		$assert: '#{src.clamp($size-min: '--m', $size-max: '--n', $container-min: '--o', $container-max: '--p')}'
+		$expected: 'clamp(var(--m), -1 * var(--o) * tan(atan2(var(--n) - var(--m), 1px)) / tan(atan2(var(--p) - var(--o), 1px)) + var(--m) + tan(atan2(var(--n) - var(--m), 1px)) / tan(atan2(var(--p) - var(--o), 1px)) * 100 * 1cqi, var(--n))'
+		@include true.assert-equal($assert, $expected)
