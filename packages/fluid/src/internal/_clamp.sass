@@ -1,0 +1,30 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:string'
+@use '../properties'
+
+
+@function p($relative-unit: 'cqi', $size-min: properties.$size-min, $size-max: properties.$size-max, $container-min: properties.$container-min, $container-max: properties.$container-max)
+	$size-min: string.unquote($size-min)
+	$size-max: string.unquote($size-max)
+	$container-min: string.unquote($container-min)
+	$container-max: string.unquote($container-max)
+
+	$relative-unit: if(sass($relative-unit == 'vi'): 1vi; else: if(sass($relative-unit == 'vw'): 1vw; else: 1cqi));
+
+	$size-difference: calc(var($size-max) - var($size-min))
+	$width-difference: calc(var($container-max) - var($container-min))
+
+	$slope: calc(_unitless($size-difference, 1px) / _unitless($width-difference, 1px))
+	$intersection: calc(-1 * var($container-min) * $slope + var($size-min))
+
+	@return clamp(var($size-min), $intersection + $slope * 100 * $relative-unit, var($size-max))
+
+
+///
+/// @see @link https://gist.github.com/EmranAhmed/e82d5c52445b29580a53be646082221b
+/// @see @link https://codepen.io/propjockey/pen/rNoRayv/ccd8e39e0c5cf9c71007a76c643ef40c?editors=0100 to test
+///
+@function _unitless($value, $units)
+	@return tan(atan2($value, $units))

@@ -1,0 +1,16 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+
+$size-min: --sf-fluid-size-min !default
+$size-max: --sf-fluid-size-max !default
+$container-min: --sf-fluid-container-min !default
+$container-max: --sf-fluid-container-max !default
+
+
+@mixin define-properties($size-min: $size-min, $size-max: $size-max, $container-min: $container-min, $container-max: $container-max)
+	@each $property in ($size-min, $size-max, $container-min, $container-max)
+		@property #{$property}
+			syntax: '<length>'
+			initial-value: 0px
+			inherits: false
