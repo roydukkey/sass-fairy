@@ -11,7 +11,7 @@ Provides Sass utilities to assist in creating completely native fluid typography
 
 ### Requires
 
-* Dart Sass: `>=1.23.0`
+* Dart Sass: `>=1.95.0`
 
 Install the package:
 

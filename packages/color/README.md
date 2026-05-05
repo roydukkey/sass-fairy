@@ -11,7 +11,7 @@ Provides extended functionality for generating new colors from existing colors a
 
 ### Requires
 
-* Dart Sass: `>=1.79.0`
+* Dart Sass: `>=1.95.0`
 
 Install the package:
 
