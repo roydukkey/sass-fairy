@@ -11,7 +11,7 @@
 	$container-min: string.unquote($container-min)
 	$container-max: string.unquote($container-max)
 
-	$relative-unit: if(sass($relative-unit == 'vi'): 1vi; else: if(sass($relative-unit == 'vw'): 1vw; else: 1cqi));
+	$relative-unit: if(sass($relative-unit == 'vi'): 1vi; else: if(sass($relative-unit == 'vw'): 1vw; else: 1cqi))
 
 	$size-difference: calc(var($size-max) - var($size-min))
 	$width-difference: calc(var($container-max) - var($container-min))
