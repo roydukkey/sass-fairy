@@ -25,6 +25,11 @@
 	@if meta.type-of($end-at) != 'number'
 		@error $end-at
 
-	$start-at: $end-at - string.length($substring) + 1
+	$substring-length: string.length($substring)
+
+	@if $substring-length > string.length($string)
+		@return false
+
+	$start-at: $end-at - $substring-length + 1
 
 	@return index.index($string, $substring, $start-at) == $start-at

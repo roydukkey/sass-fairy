@@ -40,6 +40,10 @@
 		$assert: src.ends-with($string, 'bcd', -3)
 		@include true.assert-equal($assert, false)
 
+	@include true.it('Does not end with longer substring')
+		$assert: src.ends-with('abc', 'abcd')
+		@include true.assert-equal($assert, false)
+
 	@include true.it('Throws when $string is not a string')
 		$assert: src.ends-with(12345, 'a')
 		$expected: 'ERROR: $string: `12345` is not a string for `ends-with()`.'
