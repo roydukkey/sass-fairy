@@ -3,6 +3,10 @@
 <!-- The order of list items should be: Critical/Fixes, New, Update, Remove, Underpinnings -->
 <!-- ## UNRELEASED -->
 
+## 1.3.3
+
+* fix: ensure `.ends-with()` fails for substring longer than source string
+
 ## 1.3.2
 
 * fix: migrate deprecated Sass `if()` to modern CSS syntax
