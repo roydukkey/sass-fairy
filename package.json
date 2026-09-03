@@ -51,7 +51,7 @@
 		"test": "jest",
 		"bundle:clean-package": "clean-package ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
 		"bundle:clean-package:restore": "clean-package restore ./packages/$BUILD/package.json ./packages/$BUILD/package.backup",
-		"package": "npm run bundle:clean-package && npm run -w ./packages/$BUILD run pack && npm bundle:clean-package:restore",
+		"package": "npm run bundle:clean-package && npm pack -w ./packages/$BUILD && npm run bundle:clean-package:restore",
 		"publish-package": "run-s test bundle:clean-package && npm -w ./packages/$BUILD publish && npm run bundle:clean-package:restore"
 	},
 	"jest": {
