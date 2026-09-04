@@ -1,0 +1,24 @@
+// Copyright (c) roydukkey. All rights reserved.
+// Licensed under the MIT. See LICENSE file in the project root for full license information.
+
+@use 'sass:meta'
+@use 'sass:string'
+@use '@sass-fairy/exception/src/parameter-type'
+@use '@sass-fairy/exception/src/validate-index'
+
+
+//
+// @throw `#{$string}` is not a string.
+// @throw `#{$index}` is not a number.
+//
+@function nth($string, $index)
+
+	@if meta.type-of($string) != 'string'
+		@error parameter-type.parameter-type('nth', 'string', $string, 'string')
+
+	$index: validate-index.validate-index('nth', 'index', $index, $string)
+
+	@if meta.type-of($index) != 'number'
+		@error $index
+
+	@return string.slice($string, $index, $index)
